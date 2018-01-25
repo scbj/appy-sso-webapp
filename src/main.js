@@ -12,6 +12,8 @@ Vue.config.productionTip = false
 Vue.use(VueI18n)
 Vue.use(ElementUI)
 
+// for more info (pluralization, date time localization..etc) refer
+// to the doc (http://kazupon.github.io/vue-i18n/en/)
 const i18n = new VueI18n({
   locale: 'en',
   messages: {
