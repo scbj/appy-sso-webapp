@@ -1,56 +1,90 @@
 <template>
-<div id="login">
-  <span>{{ $t('hello') }}</span>
-  <el-select v-model="locale" placeholder="Langue">
-    <el-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
-    </el-option>
-  </el-select>
-  <el-button>Button</el-button>
+<div class="login">
+  <el-card>
+    <h1 class="h1" v-text="$t('title')" />
+    <el-form ref="form"
+             :model="form"
+             :rules="rules"
+             label-width="180px"
+             label-position="left"
+             status-icon>
+      <el-form-item prop="username" :label="$t('usernameLabel')">
+        <el-input type="email" v-model="form.username"></el-input>
+      </el-form-item>
+      <el-form-item prop="password" :label="$t('passwordLabel')">
+        <el-input type="password" v-model="form.password" auto-complete="off"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-checkbox disabled :model="form.rememberMe">{{ $t('rememberMe') }}</el-checkbox>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary"
+                   v-text="$t('signInButton')"
+                   @click="submit" />
+        <el-button disabled v-text="$t('helpButton')" />
+      </el-form-item>
+    </el-form>
+  </el-card>
 </div>
 </template>
 
 <i18n>
 {
   "en": {
-    "hello": "Welcome"
+    "title": "Login",
+    "usernameLabel": "Username",
+    "passwordLabel": "Password",
+    "rememberMe": "Remember me",
+    "signInButton": "Sign in",
+    "helpButton": "Need help ?"
   },
   "fr": {
-    "hello": "Bonjour"
+    "title": "Connexion",
+    "usernameLabel": "Nom d'utilisateur",
+    "passwordLabel": "Mot de passe",
+    "rememberMe": "Se souvenir de moi",
+    "signInButton": "Se connecter",
+    "helpButton": "Besoin d'aide ?"
   }
 }
 </i18n>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'ay-login',
   data () {
     return {
-      locale: 'en',
-      msg: 'Welcome to Your Vue.js App',
-      options: [
-        {
-          value: 'en',
-          label: 'English'
-        }, {
-          value: 'fr',
-          label: 'Français'
-        }
-      ]
+      form: {
+        username: '',
+        password: '',
+        rememberMe: false
+      },
+      rules: {
+        username: [ { required: true, message: this.$t('alert.username'), trigger: 'blur' } ],
+        password: [ { required: true, message: this.$t('alert.password'), trigger: 'blur' } ]
+      }
     }
   },
-  watch: {
-    locale (value) {
-      console.log(value)
-      this.$i18n.locale = value
+  methods: {
+    submit () {
+      this.$refs.form.validate(valid => {
+        if (valid) {
+          console.log('YEP')
+        } else {
+          console.log('oups...')
+          return false
+        }
+      })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 </style>

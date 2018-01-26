@@ -10,16 +10,24 @@ Vue.prototype.$http = HTTP
 Vue.config.productionTip = false
 
 Vue.use(VueI18n)
-Vue.use(ElementUI)
+Vue.use(ElementUI, { size: 'small' })
 
 // for more info (pluralization, date time localization..etc) refer
 // to the doc (http://kazupon.github.io/vue-i18n/en/)
 const i18n = new VueI18n({
-  locale: 'en',
+  locale: 'fr',
   messages: {
     en: {
+      alert: {
+        username: 'Please enter your username',
+        password: 'Please enter your password'
+      }
     },
     fr: {
+      alert: {
+        username: 'Veuillez renseigner votre nom d\'utilisateur',
+        password: 'Veuillez renseigner votre mot de passe'
+      }
     }
   }
 })
