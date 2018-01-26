@@ -4,9 +4,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
-import HTTP from './http/axios'
 
-Vue.prototype.$http = HTTP
 Vue.config.productionTip = false
 
 Vue.use(VueI18n)

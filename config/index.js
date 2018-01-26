@@ -6,6 +6,10 @@ const path = require('path')
 
 module.exports = {
   dev: {
+    // Headers
+    headers: {
+      "Access-Control-Allow-Origin": '*'
+    },
 
     // Paths
     assetsSubDirectory: 'static',
