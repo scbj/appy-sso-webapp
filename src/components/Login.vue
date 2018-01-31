@@ -45,7 +45,6 @@
 import { HTTP, setAuthorizaion } from '@/http-common'
 
 export default {
-  name: 'AYLogin',
   data () {
     return {
       form: {
