@@ -14,7 +14,7 @@
       el-form-item(prop='password' :label="$t('passwordLabel')")
         el-input(type='password' v-model='form.password' auto-complete='off')
       el-form-item
-        el-checkbox(disabled='' :model='form.rememberMe')
+        el-checkbox(disabled='' :model='form.rememberMe') {{ $t('rememberMe') }}
       el-form-item
         el-button(type='primary' v-text="$t('signInButton')" @click='submit')
         el-button(disabled='' v-text="$t('helpButton')")
