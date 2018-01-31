@@ -18,6 +18,7 @@ Vue.use(ElementUI, { size: 'small' })
 // to the doc (http://kazupon.github.io/vue-i18n/en/)
 const i18n = new VueI18n({
   locale: 'fr',
+  silentTranslationWarn: true,
   messages: {
     en: {
       alert: {
