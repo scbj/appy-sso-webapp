@@ -62,18 +62,15 @@ export default {
   display: grid;
   grid-template-columns: auto 1fr auto auto auto auto;
   grid-template-areas: "copyright . contact about terms language";
-  grid-column-gap: 1rem;
+  grid-gap: 1rem;
 
   &.mobile {
     grid-template-columns: none;
-    grid-template-rows: none ;
     grid-template-areas: "language"
                          "contact"
                          "about"
                          "terms"
                          "copyright";
-    grid-column-gap: 0;
-    grid-row-gap: 1rem;
     justify-items: center;
   }
 
@@ -90,7 +87,6 @@ a:hover {
 
 .language {
   color: #909399;
-  cursor: pointer;
 
   img {
     opacity: .4;

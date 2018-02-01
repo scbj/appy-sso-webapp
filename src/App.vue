@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss">
 @import './assets/scss/_base.scss';
+@import './assets/scss/element-ui.scss';
 
 #app {
   height: 100%

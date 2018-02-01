@@ -1,7 +1,7 @@
 <template lang="pug">
 .login
   el-card
-    h1.h1(v-text="$t('title')")
+    h2(v-text="$t('title')")
     el-form(
       ref='form'
       :model='form'
