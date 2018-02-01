@@ -18,7 +18,7 @@
   "en": {
     "contact": "Contact",
     "about": "About",
-    "terms": "Terms & conditions"
+    "terms": "Terms & Conditions"
   },
   "fr": {
     "contact": "Contact",
@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     changeLanguage (locale) {
-      this.$i18n.locale = locale
+      this.$store.dispatch('changeLocale', locale)
     }
   }
 }
@@ -56,7 +56,7 @@ export default {
 <style lang="scss" scoped>
 .ay-footer {
   user-select: none;
-  background: #F2F6FC;
+  background: #fbfbfb;
   color: #909399;
   padding: 2rem;
   display: grid;

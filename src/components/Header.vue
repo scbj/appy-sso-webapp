@@ -1,6 +1,9 @@
 <template lang="pug">
 .header
-  h1.title appy
+  a.title(href='/dashboard')
+    h1
+      | appy
+      span.secondary pack
   .profil
     img.face(:src='pictureUrl' :alt="$t('img.alt')")
     el-dropdown
@@ -9,6 +12,7 @@
         i.el-icon-arrow-down.el-icon--right
       el-dropdown-menu(slot='dropdown')
         el-dropdown-item Mon profil
+        el-dropdown-item Mes applications
         el-dropdown-item Paramètres
         el-dropdown-item(divided) Se déconnecter
 </template>
@@ -28,17 +32,20 @@
 export default {
   data () {
     return {
-      pictureUrl: 'https://www.w3schools.com/howto/img_avatar2.png',
-      username: 'Jessica'
+      pictureUrl: 'https://www.nypassivehouse.org/wp-content/uploads/2016/12/placeholder-profile-pic.png',
+      username: 'John Doe'
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=Lato|Ubuntu|Roboto|Poppins:100,200,300,400,500,600');
+
 .header {
   user-select: none;
-  background: white;
+  background-color: #303133;
+  color: white;
   padding: 2rem;
   display: flex;
   justify-content: space-between;
@@ -47,14 +54,27 @@ export default {
 
 // Appy
 .title {
-  color: #606266;
-  font-weight: 100;
+  font-family: 'Poppins', sans-serif;
+
+  h1 {
+    font-weight: 500;
+  }
+
+  span.secondary {
+    padding-left: .5rem;
+    font-weight: 300;
+    opacity: .8;
+  }
 }
 
 // Profil picture and dropdown menu
 .profil {
   display: flex;
   align-items: center;
+
+  .el-dropdown {
+    color: white;
+  }
 
   // Rounded profil picture
   .face {

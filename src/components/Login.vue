@@ -1,5 +1,5 @@
 <template lang="pug">
-.login
+.ay-login
   el-card
     h2(v-text="$t('title')")
     el-form(
@@ -69,7 +69,12 @@ export default {
       }
       HTTP.post('oauth/token', data)
         .then(response => {
-          setAuthorizaion(response.data.access_token)
+          const token = response.data.access_token
+          setAuthorizaion(token)
+          this.$store.dispatch('login', {
+            username: this.form.username,
+            token
+          })
           this.$router.push('dashboard')
         })
         .catch(e => {
@@ -81,7 +86,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login {
+.ay-login {
   display: flex;
   justify-content: center;
   align-items: center;

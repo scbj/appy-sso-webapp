@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: null
+    user: null,
+    locale: 'fr'
   },
   mutations,
   actions

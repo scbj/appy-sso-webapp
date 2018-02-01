@@ -23,3 +23,17 @@ export const i18n = new VueI18n({
     }
   }
 })
+
+/**
+ * Changes the locale configuration of the instance of VueI18n.
+ * @param {string} locale Ex: fr or en
+ */
+export function changeLocale (locale) {
+  if (!i18n.messages.hasOwnProperty(locale)) {
+    console.log(`'${locale}' doesn't exist`)
+    return false
+  }
+
+  i18n.locale = locale
+  return true
+}

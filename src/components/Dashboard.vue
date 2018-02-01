@@ -18,11 +18,11 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard {
-  background-color: #F2F6FC;
+  background-color: #fbfbfb;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "header"
-                       "main"
+                       "."
                        "footer";
   min-height: 100vh;
 }
