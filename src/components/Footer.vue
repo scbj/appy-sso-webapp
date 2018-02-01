@@ -1,17 +1,16 @@
 <template lang="pug">
-.ay-footer
+.ay-footer(:class='$mq')
   .copyright {{ copyright }}
   a.contact(href='#contact' v-text="$t('contact')")
   a.about(href='#about' v-text="$t('about')")
   a.terms(href='#terms' v-text="$t('terms')")
-  el-dropdown.language
+  el-dropdown.language(v-show='currentLanguage'  @command="changeLanguage")
     span.el-dropdown-link
       img(src='/static/img/world.svg')
-      | Français
+      | {{ currentLanguage }}
       i.el-icon-arrow-down.el-icon--right
     el-dropdown-menu(slot='dropdown')
-      el-dropdown-item Français
-      el-dropdown-item(disabled) English
+      el-dropdown-item(v-for='lang in languages' :key='lang.locale' :command='lang.locale') {{ lang.label }}
 </template>
 
 <i18n>
@@ -33,7 +32,22 @@
 export default {
   data () {
     return {
-      copyright: '© Appy. Version 0.0.1'
+      copyright: '© Appy. Version 0.0.1',
+      languages: [
+        { label: 'Français', locale: 'fr' },
+        { label: 'English', locale: 'en' }
+      ]
+    }
+  },
+  computed: {
+    currentLanguage () {
+      const lang = this.languages.find(lang => lang.locale === this.$i18n.locale)
+      if (lang) return lang.label
+    }
+  },
+  methods: {
+    changeLanguage (locale) {
+      this.$i18n.locale = locale
     }
   }
 }
@@ -49,6 +63,19 @@ export default {
   grid-template-columns: auto 1fr auto auto auto auto;
   grid-template-areas: "copyright . contact about terms language";
   grid-column-gap: 1rem;
+
+  &.mobile {
+    grid-template-columns: none;
+    grid-template-rows: none ;
+    grid-template-areas: "language"
+                         "contact"
+                         "about"
+                         "terms"
+                         "copyright";
+    grid-column-gap: 0;
+    grid-row-gap: 1rem;
+    justify-items: center;
+  }
 
   .copyright { grid-area: copyright; }
   .contact { grid-area: contact; }
@@ -70,8 +97,9 @@ a:hover {
     margin-right: .5em;
   }
 
-  .el-dropdown-link {
-    display: flex
+  span.el-dropdown-link {
+    display: flex;
+    font-size: 1rem;
   }
 
   i {
