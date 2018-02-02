@@ -7,7 +7,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import config from './plugin.config'
-import { i18n } from './internationalization'
+import { i18n } from './i18n'
 import { handleIE } from './utils/ie.suck'
 
 Vue.use(VueMq, config.vueMq)
@@ -16,8 +16,7 @@ Vue.use(ElementUI, config.elementUI)
 // handle IE weakness... 🤓
 handleIE()
 
-/* eslint-disable no-new */
-new Vue({
+const vue = new Vue({
   i18n,
   el: '#app',
   router,
@@ -25,3 +24,9 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+if (process.env.NODE_ENV === 'development') {
+  window.vue = vue
+  window.store = store
+  window.router = router
+}

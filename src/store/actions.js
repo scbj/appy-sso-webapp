@@ -1,5 +1,5 @@
 import * as types from './mutation-types'
-import { changeLocale } from '@/internationalization'
+import { changeLocale } from '@/i18n'
 
 export default {
   login ({ commit, state }, user) {

@@ -13,21 +13,6 @@
       el-dropdown-item(v-for='lang in languages' :key='lang.locale' :command='lang.locale') {{ lang.label }}
 </template>
 
-<i18n>
-{
-  "en": {
-    "contact": "Contact",
-    "about": "About",
-    "terms": "Terms & Conditions"
-  },
-  "fr": {
-    "contact": "Contact",
-    "about": "A propos",
-    "terms": "Mentions légales"
-  }
-}
-</i18n>
-
 <script>
 export default {
   data () {

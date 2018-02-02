@@ -7,5 +7,9 @@ export default {
       desktop: Infinity
     }
   },
-  elementUI: { size: 'small' }
+  elementUI: { size: 'small' },
+  i18n: {
+    fallbackLocale: 'en',
+    silentTranslationWarn: true
+  }
 }

@@ -5,7 +5,7 @@
       | appy
       span.secondary pack
   .profil
-    img.face(:src='pictureUrl' :alt="$t('img.alt')")
+    img.face(:src='pictureUrl' :alt="$t('alt.profilPicture')")
     el-dropdown
       span.el-dropdown-link
         | {{ username }}
@@ -16,17 +16,6 @@
         el-dropdown-item Paramètres
         el-dropdown-item(divided) Se déconnecter
 </template>
-
-<i18n>
-{
-  "fr": {
-    "img.alt": "Photo de profil"
-  },
-  "en": {
-    "img.alt": "Profile picture"
-  }
-}
-</i18n>
 
 <script>
 export default {
@@ -82,7 +71,7 @@ export default {
     height: 38px;
     border-radius: 50%;
     margin: auto 1rem;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.9)
   }
 }
 </style>
