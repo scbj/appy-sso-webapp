@@ -1,13 +1,7 @@
 import * as types from './mutation-types'
-import { changeLocale } from '@/i18n'
+import { changeLocale as i18nChangeLocale } from '@/i18n'
 
-export default {
-  login ({ commit, state }, user) {
-    commit(types.LOGIN, user)
-  },
-
-  changeLocale ({ commit, state }, locale) {
-    changeLocale(locale)
-    commit(types.CHANGE_LOCALE, locale)
-  }
+export function changeLocale ({ commit, state }, locale) {
+  i18nChangeLocale(locale)
+  commit(types.CHANGE_LOCALE, locale)
 }

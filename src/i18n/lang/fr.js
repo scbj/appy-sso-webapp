@@ -6,7 +6,8 @@ export default {
   password: 'Mot de passe',
   alert: {
     username: { ask: "Veuillez renseigner votre nom d'utilisateur" },
-    password: { ask: 'Veuillez renseigner votre mot de passe' }
+    password: { ask: 'Veuillez renseigner votre mot de passe' },
+    incorrectCredentials: 'Identifiant ou mot de passe incorrect.'
   },
   button: {
     signIn: 'Se connecter',

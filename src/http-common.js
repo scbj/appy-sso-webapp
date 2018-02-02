@@ -11,7 +11,7 @@ export const HTTP = axios.create({
  * Define the default Authorization header for all request.
  * @param {string} token The Bearer token
  */
-export function setAuthorizaion (token) {
+export function setAuthorizationHeader (token) {
   // Alter defaults after instance has been created
   HTTP.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }

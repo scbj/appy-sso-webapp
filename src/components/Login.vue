@@ -1,6 +1,6 @@
 <template lang="pug">
 .ay-login
-  el-card
+  el-card(v-loading="loading")
     h2(v-text="$t('title.login')")
     el-form(
       ref='form'
@@ -9,6 +9,11 @@
       label-width='180px'
       label-position='left'
       status-icon='')
+      el-alert(
+        :closable="false"
+        :title="$t('alert.incorrectCredentials')"
+        type='error'
+        v-show='error')
       el-form-item(prop='username' :label="$t('username')")
         el-input(type='email' v-model='form.username')
       el-form-item(prop='password' :label="$t('password')")
@@ -32,11 +37,14 @@
 </i18n>
 
 <script>
-import { HTTP, setAuthorizaion } from '@/http-common'
+import { createNamespacedHelpers } from 'vuex'
+
+const { mapState } = createNamespacedHelpers('auth')
 
 export default {
   data () {
     return {
+      error: false,
       form: {
         username: 'thomas.dubois@digi-smart.fr',
         password: 'secret',
@@ -48,35 +56,32 @@ export default {
       }
     }
   },
+  computed: {
+    // repatriates the state of the auth module in the computed properties
+    ...mapState({
+      loading: state => state.pending
+    })
+  },
   methods: {
     submit () {
+      // reset the error initial value
+      this.error = false
+
+      // login only if the user has completed the form
       this.$refs.form.validate((valid) => {
         if (!valid) return false
         this.login()
       })
     },
 
-    login () {
-      const data = {
-        grant_type: 'password',
-        client_id: '1',
-        client_secret: 'pegUI3n9Ow30nPCVadaz0SLPiYIhZzzwjiVnVUI9',
+    async login () {
+      const creds = {
         username: this.form.username,
         password: this.form.password
       }
-      HTTP.post('oauth/token', data)
-        .then(response => {
-          const token = response.data.access_token
-          setAuthorizaion(token)
-          this.$store.dispatch('login', {
-            username: this.form.username,
-            token
-          })
-          this.$router.push('dashboard')
-        })
-        .catch(e => {
-          console.log('Oups', e)
-        })
+      const success = await this.$store.dispatch('auth/login', creds)
+      if (success) this.$router.push('Dashboard')
+      else this.error = true
     }
   }
 }
@@ -88,5 +93,9 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.el-alert {
+  margin-bottom: 18px;
 }
 </style>

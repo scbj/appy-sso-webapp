@@ -6,7 +6,8 @@ export default {
   password: 'Password',
   alert: {
     username: { ask: 'Please enter your username' },
-    password: { ask: 'Please enter your password' }
+    password: { ask: 'Please enter your password' },
+    incorrectCredentials: 'Incorrect username or password.'
   },
   button: {
     signIn: 'Sign in',

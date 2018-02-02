@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import { messages } from './lang'
 import config from '../plugin.config'
-console.log(messages)
+
 Vue.use(VueI18n)
 
 const navigatorLanguage = navigator.language || navigator.userLanguage || 'en'
