@@ -80,7 +80,7 @@ export default {
         password: this.form.password
       }
       const success = await this.$store.dispatch('auth/login', creds)
-      if (success) this.$router.push('Dashboard')
+      if (success) this.$router.push({ name: 'dashboard' })
       else this.error = true
     }
   }

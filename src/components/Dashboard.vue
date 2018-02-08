@@ -1,5 +1,5 @@
 <template lang="pug">
-  .dashboard
+  .ay-dashboard
     ay-header
     ay-footer
 </template>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
+.ay-dashboard {
   background-color: #fbfbfb;
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -29,6 +29,7 @@ export default {
 
 .ay-header {
   grid-area: header;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .ay-footer {

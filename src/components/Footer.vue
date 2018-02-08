@@ -6,8 +6,8 @@
   a.terms(href='#terms' v-text="$t('terms')")
   el-dropdown.language(v-show='currentLanguage'  @command="changeLanguage")
     span.el-dropdown-link
-      img(src='/static/img/world.svg')
-      | {{ currentLanguage }}
+      <i class="icon ion-ios-world-outline"></i>
+      <span v-text="currentLanguage" />
       i.el-icon-arrow-down.el-icon--right
     el-dropdown-menu(slot='dropdown')
       el-dropdown-item(v-for='lang in languages' :key='lang.locale' :command='lang.locale') {{ lang.label }}
@@ -48,6 +48,7 @@ export default {
   grid-template-columns: auto 1fr auto auto auto auto;
   grid-template-areas: "copyright . contact about terms language";
   grid-gap: 1rem;
+  align-items: center;
 
   &.mobile {
     grid-template-columns: none;
@@ -73,13 +74,14 @@ a:hover {
 .language {
   color: #909399;
 
-  img {
-    opacity: .4;
-    margin-right: .5em;
+  .icon {
+    font-size: 1.8rem;
+    margin-right: .3em;
   }
 
   span.el-dropdown-link {
     display: flex;
+    align-items: center;
     font-size: 1rem;
   }
 

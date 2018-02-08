@@ -1,5 +1,5 @@
 <template lang="pug">
-.header
+.ay-header
   a.title(href='/dashboard')
     h1
       | appy
@@ -31,7 +31,7 @@ export default {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Lato|Ubuntu|Roboto|Poppins:100,200,300,400,500,600');
 
-.header {
+.ay-header {
   user-select: none;
   background-color: #303133;
   color: white;
@@ -71,7 +71,6 @@ export default {
     height: 38px;
     border-radius: 50%;
     margin: auto 1rem;
-    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.9)
   }
 }
 </style>
