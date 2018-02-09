@@ -1,16 +1,22 @@
+@import './fonts';
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html {
+  height: 100%;
+  font-size: 12px;
+}
+
+body {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100%;
   overflow-x: hidden;
-  font-size: 12px;
+  min-height: 100%;
 }
 
 body {
@@ -19,7 +25,7 @@ body {
 
 h2 {
   font-size: 1.5rem;
-  padding-bottom: 1rem;
+  // padding-bottom: 1rem;
 }
 
 a, a:visited, a:active {
@@ -30,4 +36,23 @@ a, a:visited, a:active {
   &:hover {
     transition: none;
   }
+}
+
+.app-title {
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+
+  h1 {
+    font-weight: 500;
+  }
+
+  span.secondary {
+    padding-left: .5rem;
+    font-weight: 300;
+    opacity: .8;
+  }
+}
+
+p {
+  padding-bottom: 1.8rem;
 }

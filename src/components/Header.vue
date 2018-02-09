@@ -1,6 +1,6 @@
 <template lang="pug">
 .ay-header
-  a.title(href='/dashboard')
+  a.app-title(href='/dashboard')
     h1
       | appy
       span.secondary pack
@@ -29,8 +29,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css?family=Lato|Ubuntu|Roboto|Poppins:100,200,300,400,500,600');
-
 .ay-header {
   user-select: none;
   background-color: #303133;
@@ -39,21 +37,6 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-// Appy
-.title {
-  font-family: 'Poppins', sans-serif;
-
-  h1 {
-    font-weight: 500;
-  }
-
-  span.secondary {
-    padding-left: .5rem;
-    font-weight: 300;
-    opacity: .8;
-  }
 }
 
 // Profil picture and dropdown menu

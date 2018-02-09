@@ -10,10 +10,18 @@ export default {
     incorrectCredentials: 'Incorrect username or password.'
   },
   button: {
-    signIn: 'Sign in',
-    needHelp: 'Need help ?'
+    logIn: 'Sign in',
+    logOut: 'Sign out',
+    needHelp: 'Need help ?',
+    continueAs: 'Continue as <b>{username}</b>'
   },
   check: { rememberMe: 'Remember me' },
   alt: { profilPicture: 'Profile picture' },
-  title: { login: 'Login' }
+  title: {
+    login: 'Login',
+    alreadyLogged: 'Already logged in!'
+  },
+  message: {
+    alreadyLogged: 'You are already logged in, you can change to another account at any time.'
+  }
 }

@@ -10,10 +10,18 @@ export default {
     incorrectCredentials: 'Identifiant ou mot de passe incorrect.'
   },
   button: {
-    signIn: 'Se connecter',
-    needHelp: "Besoin d'aide ?"
+    logIn: 'Se connecter',
+    logOut: 'Se déconnecter',
+    needHelp: "Besoin d'aide ?",
+    continueAs: 'Continuer en tant que <b>{username}</b>'
   },
   check: { rememberMe: 'Se souvenir de moi' },
   alt: { profilPicture: 'Photo de profil' },
-  title: { login: 'Connexion' }
+  title: {
+    login: 'Connexion',
+    alreadyLogged: 'Déjà connecté !'
+  },
+  message: {
+    alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.'
+  }
 }

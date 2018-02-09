@@ -37,6 +37,10 @@ export const actions = {
         resolve(false)
       }
     })
+  },
+
+  logout ({ commit }) {
+    commit(types.LOGOUT)
   }
 }
 
@@ -50,6 +54,9 @@ export const mutations = {
   },
   [types.LOGIN_FAILURE] (state) {
     state.pending = false
+  },
+  [types.LOGOUT] (state) {
+    state.token = null
   }
 }
 
