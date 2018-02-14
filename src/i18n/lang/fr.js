@@ -22,6 +22,7 @@ export default {
     alreadyLogged: 'Déjà connecté !'
   },
   message: {
-    alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.'
+    alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',
+    hello: 'Bonjour {firstname} !'
   }
 }

@@ -2,7 +2,11 @@ import * as types from '../mutation-types'
 import { changeLocale as i18nChangeLocale } from '@/i18n/index'
 
 export const state = {
-  language: null
+  language: null,
+  email: null,
+  fistname: null,
+  lastname: null,
+  pictureUrl: null
 }
 
 export const actions = {

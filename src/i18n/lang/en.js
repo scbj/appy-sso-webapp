@@ -22,6 +22,7 @@ export default {
     alreadyLogged: 'Already logged in!'
   },
   message: {
-    alreadyLogged: 'You are already logged in, you can change to another account at any time.'
+    alreadyLogged: 'You are already logged in, you can change to another account at any time.',
+    hello: 'Hi {firstname}!'
   }
 }
