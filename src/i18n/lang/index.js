@@ -1,7 +1,2 @@
-import en from './en'
-import fr from './fr'
-
-export const messages = {
-  en,
-  fr
-}
+export { default as en } from './en'
+export { default as fr } from './fr'

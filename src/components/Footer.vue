@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     changeLanguage (locale) {
-      this.$store.dispatch('changeLocale', locale)
+      this.$store.dispatch('user/changeLanguage', { locale })
     }
   }
 }

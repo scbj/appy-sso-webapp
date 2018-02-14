@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import { messages } from './lang'
-import config from '../plugin.config'
+import * as messages from './lang'
+import config from '@/plugin.config'
 
 Vue.use(VueI18n)
 
-const navigatorLanguage = navigator.language || navigator.userLanguage || 'en'
+const navigatorLanguage = navigator.language || navigator.userLanguage || ''
 export const defaultLocale = navigatorLanguage.substr(0, 2)
 
 // for more info (pluralization, date time localization..etc) refer
