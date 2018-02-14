@@ -22,9 +22,15 @@ const router = new Router({
   ]
 })
 
-router.beforeEach(({ name }, from, next) => {
+router.beforeEach(({ name, path }, from, next) => {
+  const isLoggedIn = store.getters['auth/isLoggedIn'] === true
+  if (path === '/') {
+    return next({
+      name: isLoggedIn ? 'dashboard' : 'login'
+    })
+  }
   // redirects the user to the login page if it's not authenticated
-  if (name !== 'login' && store.getters['auth/isLoggedIn'] !== true) {
+  if (name !== 'login' && !isLoggedIn) {
     return next({ name: 'login' })
   }
   next()
