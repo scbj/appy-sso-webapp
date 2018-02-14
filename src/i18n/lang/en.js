@@ -4,6 +4,9 @@ export default {
   terms: 'Terms & Conditions',
   username: 'Username',
   password: 'Password',
+  settings: 'Settings',
+  news: 'News',
+  apps: 'My apps',
   alert: {
     username: { ask: 'Please enter your username' },
     password: { ask: 'Please enter your password' },

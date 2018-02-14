@@ -1,21 +1,22 @@
 <template lang="pug">
-  .ay-dashboard
-    ay-header
-    .main
-      ay-hello
-      el-tabs( v-model='activeName' )
-        el-tab-pane( label='Mes applications' name='apps' ref='defaultActive' )
-          ay-applications
-        el-tab-pane( label='Actualités' name='news' )
-        el-tab-pane( label='Administration' name='admin' )
-
-    ay-footer
+.ay-dashboard
+  ay-header
+  .main
+    ay-hello
+    el-tabs( v-model='activeName' v-show="$mq !== 'mobile'" )
+      el-tab-pane( label='Mes applications' name='apps' ref='defaultActive' )
+        ay-applications
+      el-tab-pane( label='Actualités' name='news' )
+      el-tab-pane( label='Administration' name='admin' )
+  ay-footer( v-show="$mq !== 'mobile'" )
+  ay-nav-bar( v-show="$mq === 'mobile'" )
 </template>
 
 <script>
 import Header from '@/components/Header'
 import Hello from '@/components/Dashboard/Hello'
-import Applications from '@/components/Dashboard/Applications'
+import Applications from '@/components/dashboard/Applications'
+import NavBar from '@/components/dashboard/NavBar'
 import Footer from '@/components/Footer'
 
 export default {
@@ -23,7 +24,8 @@ export default {
     'ay-header': Header,
     'ay-hello': Hello,
     'ay-applications': Applications,
-    'ay-footer': Footer
+    'ay-footer': Footer,
+    'ay-nav-bar': NavBar
   },
   data () {
     return {

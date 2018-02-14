@@ -36,10 +36,6 @@ export default {
 .ay-applications {
   display: flex;
   flex-flow: wrap;
-
-  * {
-    // border: 1px solid rgba(red, .08);
-  }
 }
 
 .app {

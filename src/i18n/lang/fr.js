@@ -4,6 +4,9 @@ export default {
   terms: 'Mentions légales',
   username: "Nom d'utilisateur",
   password: 'Mot de passe',
+  settings: 'Paramètres',
+  news: 'Actualités',
+  apps: 'Mes applications',
   alert: {
     username: { ask: "Veuillez renseigner votre nom d'utilisateur" },
     password: { ask: 'Veuillez renseigner votre mot de passe' },

@@ -4,7 +4,7 @@
     h1
       | appy
       span.secondary pack
-  .profil
+  .profil( v-show="$mq !== 'mobile'" )
     img.face(:src='pictureUrl' :alt="$t('alt.profilPicture')")
     el-dropdown
       span.el-dropdown-link
