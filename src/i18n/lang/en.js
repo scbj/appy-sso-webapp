@@ -10,7 +10,8 @@ export default {
   alert: {
     username: { ask: 'Please enter your username' },
     password: { ask: 'Please enter your password' },
-    incorrectCredentials: 'Incorrect username or password.'
+    incorrectCredentials: 'Incorrect username or password.',
+    networkError: 'We have trouble contacting the moon... please try again later! 🚀🌘'
   },
   button: {
     logIn: 'Sign in',

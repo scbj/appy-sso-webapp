@@ -1,6 +1,7 @@
 export default {
   vueMq: {
     breakpoints: {
+      // synchronise this value with the CSS variables
       mobile: 500,
       tablet: 900,
       laptop: 1250,

@@ -23,18 +23,27 @@ export const actions = {
       try {
         const res = await HTTP.post('oauth/token', data)
         const token = res.data.access_token
-        if (!token) throw new Error('token')
+        if (!token) throw new Error()
 
         // set the Bearer Token HTTP Header
         setAuthorizationHeader(token)
 
         // commit and store the token
         commit(types.LOGIN_SUCCESS, { token })
-        resolve(true)
-      } catch (error) {
-        console.log(error)
+
+        // resolve promise with a status
+        resolve({ status: res.status })
+      } catch (err) {
+        // try to get the status and the reason
+        const status = err.response && err.response.status
+        const error = err.response && err.response.statusText
         commit(types.LOGIN_FAILURE)
-        resolve(false)
+
+        // resolve the promise with a status and an error
+        resolve({
+          status: status || null,
+          error: error || err.message
+        })
       }
     })
   },

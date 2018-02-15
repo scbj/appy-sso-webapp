@@ -16,12 +16,12 @@
     el-form(v-else ref='form' :model='form' :rules='rules'
       label-width='180px' :label-position="$mq === 'mobile' ? 'top' : 'left'"
       status-icon='')
-      el-alert(v-show='error' :closable="false" type='error'
-        :title="$t('alert.incorrectCredentials')")
+      el-alert( v-show='error' :closable="false" :type="errorType"
+        :title="error" class="alert" )
       el-form-item(prop='username' :label="$t('username')")
-        el-input(type='email' v-model='form.username')
+        el-input(type='email' v-model='form.username' autofocus )
       el-form-item(prop='password' :label="$t('password')")
-        el-input(type='password' v-model='form.password' auto-complete='off')
+        el-input(type='password' v-model='form.password' auto-complete='off' @focus.native="$event.target.select()")
       el-form-item
         el-checkbox(disabled='' :model='form.rememberMe') {{ $t('check.rememberMe') }}
       el-form-item
@@ -48,7 +48,8 @@ const { mapState, mapGetters } = createNamespacedHelpers('auth')
 export default {
   data () {
     return {
-      error: false,
+      error: '',
+      errorType: 'error',
       form: {
         username: 'thomas.dubois@digi-smart.fr',
         password: 'secret',
@@ -81,7 +82,7 @@ export default {
      */
     submit () {
       // reset the initial error value
-      this.error = false
+      this.error = ''
 
       // login only if the user has completed the form
       this.$refs.form.validate((valid) => {
@@ -98,9 +99,24 @@ export default {
         username: this.form.username,
         password: this.form.password
       }
-      const success = await this.$store.dispatch('auth/login', creds)
-      if (success) this.navigateToDashboard()
-      else this.error = true
+      const login = await this.$store.dispatch('auth/login', creds)
+
+      // check for error
+      if (login.status !== 200) {
+        // defines the message and type of error for the alert component
+        this.error = login.status === 401
+          ? this.$t('alert.incorrectCredentials')
+          : this.$t('alert.networkError')
+        this.errorType = login.status === 401
+          ? 'error'
+          : 'warning'
+
+        // exit login function and log error type
+        return console.debug(login.error)
+      }
+
+      // login successfully, navigate to the Dashboard
+      this.navigateToDashboard()
     },
 
     /**
@@ -142,7 +158,7 @@ export default {
   }
 
   > .el-card {
-    max-width: 500px
+    max-width: 450px
   }
 }
 
@@ -150,7 +166,7 @@ export default {
   margin: 4rem 0
 }
 
-.el-alert {
+.alert {
   margin-bottom: 18px;
 }
 

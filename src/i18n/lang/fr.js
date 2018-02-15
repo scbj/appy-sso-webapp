@@ -10,7 +10,8 @@ export default {
   alert: {
     username: { ask: "Veuillez renseigner votre nom d'utilisateur" },
     password: { ask: 'Veuillez renseigner votre mot de passe' },
-    incorrectCredentials: 'Identifiant ou mot de passe incorrect.'
+    incorrectCredentials: 'Identifiant ou mot de passe incorrect.',
+    networkError: 'Nous avons du mal à contacter la lune... veuillez réessayer plus tard ! 🚀🌘'
   },
   button: {
     logIn: 'Se connecter',
