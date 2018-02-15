@@ -4,10 +4,10 @@
   .main
     ay-hello
     el-tabs( v-model='activeName' v-show="$mq !== 'mobile'" )
-      el-tab-pane( label='Mes applications' name='apps' ref='defaultActive' )
+      el-tab-pane( :label="$t('apps')" name='apps' ref='defaultActive' )
         ay-applications
-      el-tab-pane( label='Actualités' name='news' )
-      el-tab-pane( label='Administration' name='admin' )
+      el-tab-pane( :label="$t('news')" name='news' )
+      el-tab-pane( :label="$t('settings')" name='admin' )
   ay-footer( v-show="$mq !== 'mobile'" )
   ay-nav-bar( v-show="$mq === 'mobile'" )
 </template>

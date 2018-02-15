@@ -7,6 +7,7 @@ export default {
   settings: 'Paramètres',
   news: 'Actualités',
   apps: 'Mes applications',
+  new: 'Nouveau',
   alert: {
     username: { ask: "Veuillez renseigner votre nom d'utilisateur" },
     password: { ask: 'Veuillez renseigner votre mot de passe' },

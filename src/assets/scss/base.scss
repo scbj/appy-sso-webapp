@@ -1,4 +1,5 @@
 @import './fonts';
+@import './vars';
 
 *, *::before, *::after {
   margin: 0;
@@ -46,6 +47,11 @@ a, a:visited, a:active {
 
   h1 {
     font-weight: 500;
+    font-size: 1.8rem;
+
+    @media screen and (min-width: $mobile) {
+      font-size: 2rem;
+    }
   }
 
   span.secondary {

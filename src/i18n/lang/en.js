@@ -7,6 +7,7 @@ export default {
   settings: 'Settings',
   news: 'News',
   apps: 'My apps',
+  new: 'New',
   alert: {
     username: { ask: 'Please enter your username' },
     password: { ask: 'Please enter your password' },

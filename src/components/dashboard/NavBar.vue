@@ -13,8 +13,12 @@
 export default {
   data () {
     return {
-      active: '',
-      items: [
+      active: ''
+    }
+  },
+  computed: {
+    items () {
+      return [
         {
           icon: 'ion-android-apps',
           label: this.$t('apps')
@@ -53,7 +57,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  padding: .5rem;
+  padding: .4rem;
   box-shadow: 0 4px 16px rgba(black, .1)
 }
 
@@ -66,13 +70,27 @@ export default {
   align-items: center;
   min-width: 0;
   overflow: hidden;
+  transition: color .3s ease-in-out;
 
   &.active {
     color: rgb(44, 121, 255);
+    transition: color 0s;
+
+    .icon {
+      animation: pop .4s ease-in-out;
+
+      @keyframes pop {
+        0% { transform: translateY(0) }
+        10% { transform: translateY(-1px) }
+        40% { transform: translateY(4px) }
+        85% { transform: translateY(-1px) }
+        100% { transform: translateY(0) }
+      }
+    }
   }
 
   .icon {
-    font-size: 2.2rem;
+    font-size: 2rem;
     display: block;
   }
 

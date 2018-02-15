@@ -29,14 +29,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/vars';
+
 .ay-header {
   user-select: none;
   background-color: #303133;
   color: white;
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (min-width: $mobile) {
+    padding: 2rem;
+  }
 }
 
 // Profil picture and dropdown menu
