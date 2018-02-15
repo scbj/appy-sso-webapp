@@ -3,7 +3,8 @@
   ay-header
   .main
     ay-hello
-    el-tabs( v-model='activeName' v-show="$mq !== 'mobile'" )
+    ay-applications( v-if="$mq === 'mobile'" )
+    el-tabs( v-else v-model='activeName' )
       el-tab-pane( :label="$t('apps')" name='apps' ref='defaultActive' )
         ay-applications
       el-tab-pane( :label="$t('news')" name='news' )
@@ -39,6 +40,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/vars';
+
 .ay-dashboard {
   background-color: #fbfbfb;
   display: grid;
@@ -58,6 +61,10 @@ export default {
 }
 
 .main {
-  padding: 4em 6em;
+  padding: 8rem 0;
+
+  @media screen and (min-width: $mobile) {
+    padding: 4em 6em;
+  }
 }
 </style>

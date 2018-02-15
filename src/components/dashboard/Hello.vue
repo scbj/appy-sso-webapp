@@ -20,8 +20,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/vars';
+
 h2 {
-  font-size: 2.4rem;
-  margin-bottom: 1rem;
+  font-size: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: $mobile) {
+    font-size: 2.4rem;
+    margin-left: 0;
+    margin-bottom: 2rem;
+  }
 }
 </style>

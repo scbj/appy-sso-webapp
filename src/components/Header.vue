@@ -39,9 +39,15 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
 
   @media screen and (min-width: $mobile) {
     padding: 2rem;
+    position: relative;
+    top: 0;
+    width: auto;
   }
 }
 
