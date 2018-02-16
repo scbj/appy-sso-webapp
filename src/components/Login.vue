@@ -140,6 +140,9 @@ export default {
 
 <style lang="scss" scoped>
 .ay-login {
+  background-image: url(../../static/img/low-poly.svg);
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,6 +154,7 @@ export default {
 
     > .el-card {
       width: 100%;
+      max-width: 100%;
       height: 100%;
       border-radius: 0;
       box-shadow: none;
@@ -158,7 +162,8 @@ export default {
   }
 
   > .el-card {
-    max-width: 450px
+    max-width: 450px;
+    box-shadow: 1px 12px 20px 0 rgba(0,0,0,.05);
   }
 }
 

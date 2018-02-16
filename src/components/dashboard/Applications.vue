@@ -1,6 +1,6 @@
 <template lang="pug">
 ul.ay-applications
-  .app( v-for="app in apps" :key="app.name" )
+  li.app( v-for="app in apps" :key="app.name" )
     img.logo( :src="app.logoUrl" :alt="app.name" )
     span.name( v-text="app.name" )
     span.new( v-show="app.new" ) {{ $t('new') | uppercase }}
@@ -56,7 +56,8 @@ export default {
   }
 }
 
-.app {
+li.app {
+  -webkit-tap-highlight-color: transparent;
   user-select: none;
   cursor: pointer;
   position: relative;
@@ -64,8 +65,8 @@ export default {
   padding: .5rem 1rem;
   display: flex;
   align-items: center;
-  transition: background-color .3s ease-in-out,
-              box-shadow .3s ease-in-out;
+  transition: background-color .2s ease-in-out,
+              box-shadow .2s ease-in-out;
 
   @media screen and (min-width: $mobile) {
     align-items: center;
@@ -73,6 +74,8 @@ export default {
     margin: 1rem;
     padding: 0 2rem;
     box-shadow: 0 0px 5px 0 rgba(0,0,0,.0);
+    transition: background-color .3s ease-in-out,
+                box-shadow .3s ease-in-out;
   }
 
   &:hover {
@@ -129,8 +132,10 @@ export default {
 
       @media screen and (min-width: $mobile) {
         top: 1em;
+        right: 0;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,.1);
         background-color: var(--color-new);
+        border-radius: 0;
         color: white;
         padding: .5em 1em;
       }

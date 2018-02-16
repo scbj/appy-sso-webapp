@@ -51,6 +51,7 @@ export default {
 <style lang="scss" scoped>
 .ay-nav-bar {
   z-index: 1000;
+  user-select: none;
   background-color: white;
   position: fixed;
   bottom: 0;

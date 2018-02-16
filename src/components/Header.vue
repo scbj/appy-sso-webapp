@@ -32,6 +32,7 @@ export default {
 @import '../assets/scss/vars';
 
 .ay-header {
+  z-index: 1000;
   user-select: none;
   background-color: #303133;
   color: white;

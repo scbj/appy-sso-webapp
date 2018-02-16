@@ -34,7 +34,9 @@ export default {
     }
   },
   mounted () {
-    this.activeName = this.$refs.defaultActive.name
+    if (this.$refs.defaultActive) {
+      this.activeName = this.$refs.defaultActive.name
+    }
   }
 }
 </script>
