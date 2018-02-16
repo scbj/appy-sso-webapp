@@ -10,7 +10,7 @@
       el-tab-pane( :label="$t('news')" name='news' )
       el-tab-pane( :label="$t('settings')" name='admin' )
   ay-footer( v-show="$mq !== 'mobile'" )
-  ay-nav-bar( v-show="$mq === 'mobile'" )
+  ay-nav-bar( v-show="$mq === 'mobile'" @changed="navBarChanged" )
 </template>
 
 <script>
@@ -31,6 +31,11 @@ export default {
   data () {
     return {
       activeName: ''
+    }
+  },
+  methods: {
+    navBarChanged (index) {
+      console.log(index)
     }
   },
   mounted () {

@@ -42,7 +42,10 @@ export default {
       return this.active === item.label
     },
     setActive (item) {
-      this.active = item.label
+      if (this.active !== item.label) {
+        this.active = item.label
+        this.$emit('changed', this.items.findIndex(x => x.label === item.label))
+      }
     }
   }
 }
