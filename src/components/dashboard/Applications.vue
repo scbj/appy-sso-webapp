@@ -1,11 +1,13 @@
 <template lang="pug">
 .ay-applications
-  ul.apps
+  ul.apps( v-if="apps.length" )
     li.app( v-for="app in apps" :key="app.name" )
       img.logo( :src="app.logoUrl" :alt="app.name" )
       span.name( v-text="app.name" )
       span.new( v-show="app.new" ) {{ $t('new') | uppercase }}
-  .changelog( v-text="" )
+  .no-data( v-else )
+    i( class="icon ion-ios-albums-outline" )
+    span.label( v-text="$t('message.noData.applications')" )
 </template>
 
 <script>
@@ -142,6 +144,27 @@ export default {
         }
       }
     }
+  }
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3em 1em;
+  color: #C0C4CC;
+  font-size: 2rem;
+
+  .icon {
+    opacity: .6;
+    font-size: 3em;
+  }
+
+  .label {
+    font-size: .8em;
+    font-family: 'orator-std';
+    text-align: center;
   }
 }
 

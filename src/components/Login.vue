@@ -164,6 +164,7 @@ export default {
   > .el-card {
     max-width: 450px;
     box-shadow: 1px 12px 20px 0 rgba(0,0,0,.05);
+    border: none;
   }
 }
 

@@ -28,6 +28,9 @@ export default {
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',
-    hello: 'Bonjour {firstname} !'
+    hello: 'Bonjour {firstname} !',
+    noData: {
+      applications: 'Aucune application à afficher... tant pis 👻'
+    }
   }
 }
