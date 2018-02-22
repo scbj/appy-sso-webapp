@@ -2,13 +2,17 @@
 .ay-dashboard
   ay-header
   .main
-    ay-hello
-    ay-applications( v-if="$mq === 'mobile'" v-show="activeName === 'apps'" )
-    el-tabs( v-else v-model='activeName' )
-      el-tab-pane( :label="$t('apps')" name='apps' ref='defaultActive' )
-        ay-applications
-      el-tab-pane( :label="$t('news')" name='news' )
-      el-tab-pane( :label="$t('settings')" name='admin' )
+    ay-hello( v-show="$mq !== 'mobile'" )
+    mq-layout( mq='mobile' )
+      ay-applications( v-if="activeName === 'apps'" )
+      ay-news( v-else-if="activeName === 'news'" )
+    mq-layout( mq='tablet+' )
+      el-tabs( v-model='activeName' )
+        el-tab-pane( :label="$t('apps')" name='apps' ref='defaultActive' )
+          ay-applications
+        el-tab-pane( :label="$t('news')" name='news' )
+          ay-news
+        el-tab-pane( :label="$t('settings')" name='admin' )
   ay-footer( v-show="$mq !== 'mobile'" )
   ay-nav-bar( v-show="$mq === 'mobile'" @changed="navBarChanged" )
 </template>
@@ -17,6 +21,7 @@
 import Header from '@/components/Header'
 import Hello from '@/components/Dashboard/Hello'
 import Applications from '@/components/dashboard/Applications'
+import News from '@/components/dashboard/News'
 import NavBar from '@/components/dashboard/NavBar'
 import Footer from '@/components/Footer'
 
@@ -25,6 +30,7 @@ export default {
     'ay-header': Header,
     'ay-hello': Hello,
     'ay-applications': Applications,
+    'ay-news': News,
     'ay-footer': Footer,
     'ay-nav-bar': NavBar
   },

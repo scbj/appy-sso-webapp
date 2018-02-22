@@ -1,5 +1,6 @@
 <template lang="pug">
 .ay-applications
+  ay-hello( v-show="$mq === 'mobile'" )
   ul.apps( v-if="apps.length" )
     li.app( v-for="app in apps" :key="app.name" )
       img.logo( :src="app.logoUrl" :alt="app.name" )
@@ -11,9 +12,13 @@
 </template>
 
 <script>
+import Hello from '@/components/Dashboard/Hello'
 import { uppercase } from '@/utils/filters'
 
 export default {
+  components: {
+    'ay-hello': Hello
+  },
   data () {
     return {
       apps: [
