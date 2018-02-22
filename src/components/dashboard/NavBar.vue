@@ -13,7 +13,7 @@
 export default {
   data () {
     return {
-      active: ''
+      activeName: ''
     }
   },
   computed: {
@@ -21,30 +21,33 @@ export default {
       return [
         {
           icon: 'ion-android-apps',
-          label: this.$t('apps')
+          label: this.$t('apps'),
+          name: 'apps'
         },
         {
           icon: 'ion-ios-paper-outline',
-          label: this.$t('news')
+          label: this.$t('news'),
+          name: 'news'
         },
         {
           icon: 'ion-ios-gear',
-          label: this.$t('settings')
+          label: this.$t('settings'),
+          name: 'settings'
         }
       ]
     }
   },
   mounted () {
-    this.active = this.items[0].label
+    this.activeName = this.items[0].name
   },
   methods: {
     isActive (item) {
-      return this.active === item.label
+      return this.activeName === item.name
     },
     setActive (item) {
-      if (this.active !== item.label) {
-        this.active = item.label
-        this.$emit('changed', this.items.findIndex(x => x.label === item.label))
+      if (this.activeName !== item.name) {
+        this.activeName = item.name
+        this.$emit('changed', this.activeName)
       }
     }
   }

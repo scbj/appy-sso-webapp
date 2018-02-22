@@ -3,7 +3,7 @@
   ay-header
   .main
     ay-hello
-    ay-applications( v-if="$mq === 'mobile'" )
+    ay-applications( v-if="$mq === 'mobile'" v-show="activeName === 'apps'" )
     el-tabs( v-else v-model='activeName' )
       el-tab-pane( :label="$t('apps')" name='apps' ref='defaultActive' )
         ay-applications
@@ -30,12 +30,14 @@ export default {
   },
   data () {
     return {
-      activeName: ''
+      activeName: 'apps'
     }
   },
   methods: {
-    navBarChanged (index) {
-      console.log(index)
+    navBarChanged (name) {
+      if (this.activeName !== name) {
+        this.activeName = name
+      }
     }
   },
   mounted () {
