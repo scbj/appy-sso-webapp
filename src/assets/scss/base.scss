@@ -83,7 +83,7 @@ a, a:visited, a:active {
 
   h4 {
     font-family: 'source-sans-pro';
-    font-weight: 1000;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .1em;
     margin-top: .3em;
@@ -113,7 +113,7 @@ a, a:visited, a:active {
       &::before {
         content: '';
         position: absolute;
-        top: 50%;
+        top: 1.15em;
         left: -1em;
         background-color: #384759;
         width: 4px;

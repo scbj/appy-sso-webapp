@@ -21,7 +21,7 @@ export default {
     items () {
       return [
         {
-          icon: 'ion-android-apps',
+          icon: 'ion-ios-browsers-outline',
           label: this.$t('apps'),
           name: 'apps'
         },
@@ -31,7 +31,7 @@ export default {
           name: 'news'
         },
         {
-          icon: 'ion-ios-gear',
+          icon: 'ion-ios-gear-outline',
           label: this.$t('settings'),
           name: 'settings'
         }
