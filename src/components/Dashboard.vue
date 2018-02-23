@@ -14,7 +14,7 @@
           ay-news
         el-tab-pane( :label="$t('settings')" name='admin' )
   ay-footer( v-show="$mq !== 'mobile'" )
-  ay-nav-bar( v-show="$mq === 'mobile'" @changed="navBarChanged" )
+  ay-nav-bar( v-show="$mq === 'mobile'" v-model='activeName' )
 </template>
 
 <script>
@@ -37,13 +37,6 @@ export default {
   data () {
     return {
       activeName: 'apps'
-    }
-  },
-  methods: {
-    navBarChanged (name) {
-      if (this.activeName !== name) {
-        this.activeName = name
-      }
     }
   },
   mounted () {

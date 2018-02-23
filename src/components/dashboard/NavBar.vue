@@ -11,9 +11,10 @@
 
 <script>
 export default {
-  data () {
-    return {
-      activeName: ''
+  props: {
+    value: {
+      type: String,
+      required: true
     }
   },
   computed: {
@@ -37,17 +38,13 @@ export default {
       ]
     }
   },
-  mounted () {
-    this.activeName = this.items[0].name
-  },
   methods: {
     isActive (item) {
-      return this.activeName === item.name
+      return this.value === item.name
     },
     setActive (item) {
-      if (this.activeName !== item.name) {
-        this.activeName = item.name
-        this.$emit('changed', this.activeName)
+      if (this.value !== item.name) {
+        this.$emit('input', item.name)
       }
     }
   }
