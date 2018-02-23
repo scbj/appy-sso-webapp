@@ -8,7 +8,13 @@ Vue.use(Vuex)
 
 const vuexLocalStorage = new VuexPersist({
   key: 'vuex',
-  storage: window.localStorage
+  storage: window.localStorage,
+  reducer: state => ({
+    auth: {
+      token: state.auth.token
+    },
+    user: state.user
+  })
 })
 
 export default new Vuex.Store({

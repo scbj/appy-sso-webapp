@@ -23,12 +23,20 @@ export default {
 @import '../../assets/scss/vars';
 
 h2 {
-  font-size: 2rem;
+  // text
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+  // position
   margin-left: 2rem;
   margin-bottom: 2rem;
 
   @media screen and (min-width: $mobile) {
-    font-size: 2.4rem;
+    // text
+    text-align: left;
+    font-size: 2.1rem;
+    font-weight: 500;
+    // position
     margin-left: 0;
     margin-bottom: 2rem;
   }

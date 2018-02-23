@@ -1,9 +1,7 @@
 <template lang="pug">
 .ay-header
-  a.app-title(href='/dashboard')
-    h1
-      | appy
-      span.secondary pack
+  a.app-title
+    img( src='/static/img/title-gradient.svg' alt="appy pack" )
   .profil( v-show="$mq !== 'mobile'" )
     img.face(:src='pictureUrl' :alt="$t('alt.profilPicture')")
     el-dropdown
@@ -21,7 +19,7 @@
 export default {
   data () {
     return {
-      pictureUrl: 'https://www.nypassivehouse.org/wp-content/uploads/2016/12/placeholder-profile-pic.png',
+      pictureUrl: '/static/img/default-user-picture.png',
       username: 'John Doe'
     }
   }
@@ -34,8 +32,7 @@ export default {
 .ay-header {
   z-index: 1000;
   user-select: none;
-  background-color: #303133;
-  color: white;
+  background-color: rgba(white, .95);
   padding: 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -56,10 +53,6 @@ export default {
 .profil {
   display: flex;
   align-items: center;
-
-  .el-dropdown {
-    color: white;
-  }
 
   // Rounded profil picture
   .face {

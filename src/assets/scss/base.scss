@@ -45,22 +45,13 @@ a, a:visited, a:active {
 }
 
 .app-title {
-  user-select: none;
-  font-family: 'Poppins', sans-serif;
-
-  h1 {
-    font-weight: 500;
-    font-size: 1.8rem;
+  img {
+    display: block;
+    width: 9rem;
 
     @media screen and (min-width: $mobile) {
-      font-size: 2rem;
+      width: 11.2rem;
     }
-  }
-
-  span.secondary {
-    padding-left: .5rem;
-    font-weight: 300;
-    opacity: .8;
   }
 }
 
@@ -68,16 +59,26 @@ a, a:visited, a:active {
 .ay-news .html-content {
   font-size: .8rem;
 
+  @media screen and (min-width: $mobile) {
+    h3 {
+      font-size: 2.8em;
+    }
+
+    h4, p, ul {
+      font-size: 1.5em;
+    }
+  }
+
   h3 {
     font-family: "orator-std";
     line-height: 1.8;
-    font-size: 2.8em;
+    font-size: 2.4em;
     font-weight: 100;
     padding-bottom: .2em;
   }
 
   h4, p, ul {
-    font-size: 1.5em;
+    font-size: 1.75em;
   }
 
   h4 {

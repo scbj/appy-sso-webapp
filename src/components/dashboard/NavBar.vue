@@ -80,7 +80,7 @@ export default {
   transition: color .3s ease-in-out;
 
   &.active {
-    color: rgb(44, 121, 255);
+    color: #A250E5;
     transition: color 0s;
 
     .icon {

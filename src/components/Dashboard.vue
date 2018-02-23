@@ -72,14 +72,14 @@ export default {
 }
 
 .ay-header {
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 10px rgba(#442261,0.1);
 }
 
 .main {
-  padding: 8rem 0;
+  padding: 7rem 0;
 
   @media screen and (min-width: $mobile) {
-    padding: 4em 6em;
+    padding: 4rem 6rem;
   }
 }
 </style>

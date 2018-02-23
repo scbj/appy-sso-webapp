@@ -34,8 +34,14 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../../assets/scss/vars.scss';
+
 .ay-news {
-  padding: 1rem 0;
+  padding: 1rem 1rem;
+
+  @media screen and (min-width: $mobile) {
+    padding: 1rem 0;
+  }
 }
 
 .html-content {
