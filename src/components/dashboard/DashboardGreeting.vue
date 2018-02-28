@@ -1,6 +1,6 @@
 <template lang="pug">
-.ay-hello
-  h2( v-text="message" )
+.dashboard-greeting
+  h2( v-text='message' )
 </template>
 
 <script>
@@ -10,6 +10,7 @@ export default {
       firstname: 'John'
     }
   },
+
   computed: {
     message () {
       const firstname = this.firstname

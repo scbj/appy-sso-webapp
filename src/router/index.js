@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
-import Dashboard from '@/components/Dashboard.vue'
+import LoginPage from '@/components/login/LoginPage'
+import DashboardPage from '@/components/Dashboard/DashboardPage'
 import store from '@/store'
 
 Vue.use(Router)
@@ -12,12 +12,12 @@ const router = new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: LoginPage
     },
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: Dashboard
+      component: DashboardPage
     }
   ]
 })

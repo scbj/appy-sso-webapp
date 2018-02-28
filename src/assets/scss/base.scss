@@ -61,7 +61,7 @@ a, a:visited, a:active {
 }
 
 // scoped style in single-file .vue doesn't work with v-html
-.ay-news .html-content {
+.article-list .html-content {
   font-size: .8rem;
 
   @media screen and (min-width: $mobile) {

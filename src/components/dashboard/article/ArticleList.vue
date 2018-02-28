@@ -1,11 +1,17 @@
 <template lang="pug">
-.ay-news
-  .html-content( v-for='news in $options.newsList' v-html='news.content' )
+.article-list
+  ArticleItem(
+    v-for='article in $options.articles'
+    :key='article.id'
+    :content='article.content')
 </template>
 
 <script>
-const newsList = [
+import ArticleItem from './ArticleItem'
+
+const articles = [
   {
+    id: 456,
     createdAt: new Date(),
     content: `<h3> Progress • Glisser-déposer</h3>
 <p>Nemo quaeso miretur, si post exsudatos labores itinerum longos congestosque adfatim commeatus fiducia vestri ductante barbaricos pagos adventans velut mutato repente consilio ad placidiora deverti.</p>
@@ -13,6 +19,7 @@ const newsList = [
 <p>Quanta autem vis amicitiae sit, ex hoc <a href="#">intellegi maxime potest</a>, quod ex infinita societate generis humani, quam conciliavit ipsa natura, ita contracta res est et adducta in angustum ut omnis caritas aut inter duos aut inter paucos iungeretur.</p>`
   },
   {
+    id: 654,
     createdAt: new Date(2018, 1, 12),
     content: `<h3>Tenez-vous au courant</h3>
     <h4>Lisez l'actualité d'Appy Pack dans la nouvelle version ☀</h4>
@@ -29,27 +36,22 @@ const newsList = [
 ]
 
 export default {
-  newsList
+  articles,
+
+  components: {
+    ArticleItem
+  }
 }
 </script>
 
 <style lang="scss">
-@import '../../assets/scss/vars.scss';
+@import '../../../assets/scss/vars.scss';
 
-.ay-news {
+.article-list {
   padding: 1rem 1rem;
 
   @media screen and (min-width: $mobile) {
     padding: 1rem 0;
-  }
-}
-
-.html-content {
-  max-width: 800px;
-  margin: 4rem 0;
-
-  &:first-of-type {
-    margin-top: 0;
   }
 }
 </style>

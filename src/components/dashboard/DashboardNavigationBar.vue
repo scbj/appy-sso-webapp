@@ -1,12 +1,12 @@
 <template lang="pug">
-.ay-nav-bar
+.dashboard-navigation-bar
   .item(
-    v-for="item in items"
-    :key="item.label"
-    @click="setActive(item)"
-    :class="{ active: isActive(item) }" )
-    i( class="icon" :class="item.icon" )
-    span.label( v-text="item.label" )
+    v-for='item in items'
+    :key='item.label'
+    @click='setActive(item)'
+    :class='{ active: isActive(item) }')
+    i( class='icon' :class='item.icon' )
+    span.label( v-text='item.label' )
 </template>
 
 <script>
@@ -17,6 +17,7 @@ export default {
       required: true
     }
   },
+
   computed: {
     items () {
       return [
@@ -38,6 +39,7 @@ export default {
       ]
     }
   },
+
   methods: {
     isActive (item) {
       return this.value === item.name
@@ -52,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ay-nav-bar {
+.dashboard-navigation-bar {
   z-index: 1000;
   user-select: none;
   background-color: white;

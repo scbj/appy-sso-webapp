@@ -1,16 +1,20 @@
 <template lang="pug">
-.ay-footer(:class='$mq')
+.dashboard-footer( :class='$mq' )
   .copyright {{ copyright }}
-  a.contact(href='#contact' v-text="$t('contact')")
-  a.about(href='#about' v-text="$t('about')")
-  a.terms(href='#terms' v-text="$t('terms')")
-  el-dropdown.language(v-show='currentLanguage'  @command="changeLanguage")
+  a.contact( href='#contact' v-text="$t('contact')" )
+  a.about( href='#about' v-text="$t('about')" )
+  a.terms( href='#terms' v-text="$t('terms')" )
+  el-dropdown.language( v-show='currentLanguage' @command='changeLanguage' )
     span.el-dropdown-link
-      <i class="icon ion-ios-world-outline"></i>
-      <span v-text="currentLanguage" />
+      i( class='icon ion-ios-world-outline' )
+      span( v-text='currentLanguage' )
       i.el-icon-arrow-down.el-icon--right
-    el-dropdown-menu(slot='dropdown')
-      el-dropdown-item(v-for='lang in languages' :key='lang.locale' :command='lang.locale') {{ lang.label }}
+    el-dropdown-menu( slot='dropdown' )
+      el-dropdown-item(
+        v-for='lang in languages'
+        :key='lang.locale'
+        :command='lang.locale'
+      ) {{ lang.label }}
 </template>
 
 <script>
@@ -24,12 +28,14 @@ export default {
       ]
     }
   },
+
   computed: {
     currentLanguage () {
       const lang = this.languages.find(lang => lang.locale === this.$i18n.locale)
       if (lang) return lang.label
     }
   },
+
   methods: {
     changeLanguage (locale) {
       this.$store.dispatch('user/changeLanguage', { locale })
@@ -39,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ay-footer {
+.dashboard-footer {
   user-select: none;
   background: #fbfbfb;
   color: #909399;

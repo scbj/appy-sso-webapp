@@ -1,18 +1,18 @@
 <template lang="pug">
-.ay-header
+.dashboard-header
   a.app-title
-    img( src='/static/img/title-gradient.svg' alt="appy pack" )
+    img( src='/static/img/title-gradient.svg' alt='appy pack' )
   .profil( v-show="$mq !== 'mobile'" )
-    img.face(:src='pictureUrl' :alt="$t('alt.profilPicture')")
+    img.face( :src='pictureUrl' :alt="$t('alt.profilPicture')" )
     el-dropdown
       span.el-dropdown-link
         | {{ username }}
         i.el-icon-arrow-down.el-icon--right
-      el-dropdown-menu(slot='dropdown')
+      el-dropdown-menu( slot='dropdown' )
         el-dropdown-item Mon profil
         el-dropdown-item Mes applications
         el-dropdown-item Paramètres
-        el-dropdown-item(divided) Se déconnecter
+        el-dropdown-item( divided ) Se déconnecter
 </template>
 
 <script>
@@ -27,9 +27,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/vars';
+@import '../../assets/scss/vars';
 
-.ay-header {
+.dashboard-header {
   z-index: 1000;
   user-select: none;
   background-color: rgba(white, .95);
