@@ -8,6 +8,7 @@ export default {
   [types.LOGIN_SUCCESS] (state, payload) {
     state.pending = false
     state.token = payload.token
+    state.refreshToken = payload.refreshToken
   },
 
   [types.LOGIN_FAILURE] (state) {
@@ -16,5 +17,6 @@ export default {
 
   [types.LOGOUT] (state) {
     state.token = null
+    state.refreshToken = null
   }
 }

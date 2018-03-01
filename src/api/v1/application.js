@@ -1,17 +1,21 @@
-import { HTTP } from '../../http-common'
+import { getAsync } from '../../http-common'
 
 const base = 'api/v1/application'
 
+/**
+ * @typedef {Object} ApiResponse
+ * @property {Object} data The response data
+ * @property {Number} status The status code of the response
+ * @property {String} [message] The optional message
+ * @property {Error} [error] The response error
+ */
+
+/**
+ * Return the list of application.
+ * @method GET
+ * @returns {Promise<ApiResponse>}
+ */
+
 export function list () {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const res = await HTTP.get(base)
-      if (!res.data) {
-        throw new Error('data')
-      }
-      resolve(res.data)
-    } catch (err) {
-      reject(err)
-    }
-  })
+  return getAsync(base)
 }

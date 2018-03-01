@@ -15,3 +15,49 @@ export function setAuthorizationHeader (token) {
   // Alter defaults after instance has been created
   HTTP.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }
+
+export function getAsync (url) {
+  return new Promise(async resolve => {
+    const response = {
+      data: null,
+      status: 0
+      // [message],
+      // [error]
+    }
+    try {
+      const res = await HTTP.get(url)
+      response.status = res.status
+      if (!res.data) {
+        response.message = `No data received from "${url}"`
+      }
+      response.data = res.data
+    } catch (err) {
+      response.error = err
+    }
+
+    resolve(response)
+  })
+}
+
+export function postAsync (url, data) {
+  return new Promise(async resolve => {
+    const response = {
+      data: null,
+      status: 0
+      // [message],
+      // [error]
+    }
+    try {
+      const res = await HTTP.post(url, data)
+      response.status = res.status
+      if (!res.data) {
+        response.message = `No data received from "${url}"`
+      }
+      response.data = res.data
+    } catch (err) {
+      response.error = err
+    }
+
+    resolve(response)
+  })
+}

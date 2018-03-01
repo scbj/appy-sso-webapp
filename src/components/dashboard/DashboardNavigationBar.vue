@@ -83,7 +83,7 @@ export default {
     transition: color 0s;
 
     .icon {
-      animation: pop .4s ease-in-out;
+      animation: pop .3s ease-in-out;
 
       @keyframes pop {
         0% { transform: translateY(0) }

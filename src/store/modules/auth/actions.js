@@ -1,41 +1,24 @@
 import * as types from '../../mutation-types'
-import { HTTP, setAuthorizationHeader } from '@/http-common'
+import { setAuthorizationHeader } from '@/http-common'
+import api from '../../../api/v1/'
 
-export function login ({ commit }, credentials) {
+export async function login ({ commit }, credentials) {
   commit(types.LOGIN_REQUEST)
-  return new Promise(async (resolve) => {
-    const data = {
-      ...credentials,
-      grant_type: 'password',
-      client_id: '1',
-      client_secret: 'pegUI3n9Ow30nPCVadaz0SLPiYIhZzzwjiVnVUI9'
-    }
-    try {
-      const res = await HTTP.post('oauth/token', data)
-      const token = res.data.access_token
-      if (!token) throw new Error()
 
-      // set the Bearer Token HTTP Header
-      setAuthorizationHeader(token)
+  // call API login route
+  const res = await api.auth.login(credentials)
+  const token = res.data && res.data.access_token
+  const refreshToken = res.data && res.data.refresh_token
 
-      // commit and store the token
-      commit(types.LOGIN_SUCCESS, { token })
-
-      // resolve promise with a status
-      resolve({ status: res.status })
-    } catch (err) {
-      // try to get the status and the reason
-      const status = err.response && err.response.status
-      const error = err.response && err.response.statusText
-      commit(types.LOGIN_FAILURE)
-
-      // resolve the promise with a status and an error
-      resolve({
-        status: status || null,
-        error: error || err.message
-      })
-    }
-  })
+  // we must have the token to validate the connection
+  if (token && refreshToken) {
+    // set the Bearer Token HTTP Header
+    setAuthorizationHeader(token)
+    commit(types.LOGIN_SUCCESS, { token, refreshToken })
+  } else {
+    commit(types.LOGIN_FAILURE)
+  }
+  return res
 }
 
 export function logout ({ commit }) {

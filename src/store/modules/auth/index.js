@@ -3,7 +3,8 @@ import * as actions from './actions'
 import mutations from './mutations'
 
 export const state = {
-  token: null,
+  token: '',
+  refreshToken: '',
   pending: false
 }
 
