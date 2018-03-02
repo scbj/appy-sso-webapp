@@ -4,14 +4,15 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      firstname: 'John'
-    }
-  },
+import { createNamespacedHelpers } from 'vuex'
 
+const { mapState } = createNamespacedHelpers('user')
+
+export default {
   computed: {
+    ...mapState([
+      'firstname'
+    ]),
     message () {
       const firstname = this.firstname
       return this.$t('message.hello', { firstname })

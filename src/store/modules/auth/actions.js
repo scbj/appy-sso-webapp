@@ -1,6 +1,6 @@
-import * as types from '../../mutation-types'
+import * as types from '@/store/mutation-types'
 import { setAuthorizationHeader } from '@/http-common'
-import api from '../../../api/v1/'
+import api from '@/api/v1/'
 
 export async function login ({ commit }, credentials) {
   commit(types.LOGIN_REQUEST)
@@ -12,9 +12,10 @@ export async function login ({ commit }, credentials) {
 
   // we must have the token to validate the connection
   if (token && refreshToken) {
+    commit(types.LOGIN_SUCCESS, { token, refreshToken })
+
     // set the Bearer Token HTTP Header
     setAuthorizationHeader(token)
-    commit(types.LOGIN_SUCCESS, { token, refreshToken })
   } else {
     commit(types.LOGIN_FAILURE)
   }

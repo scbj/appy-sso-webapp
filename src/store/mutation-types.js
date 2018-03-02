@@ -7,3 +7,5 @@ export const LOGOUT = 'LOGOUT'
 
 // user module
 export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE'
+
+export const USER_FETCH = 'USER_FETCH'

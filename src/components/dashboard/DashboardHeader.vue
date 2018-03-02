@@ -3,7 +3,7 @@
   a.app-title
     img( src='/static/img/title-gradient.svg' alt='appy pack' )
   .profil( v-show="$mq !== 'mobile'" )
-    img.face( :src='pictureUrl' :alt="$t('alt.profilPicture')" )
+    img.face( :src="pictureUrl || '/static/img/default-user-picture.png'" :alt="$t('alt.profilPicture')" )
     el-dropdown
       span.el-dropdown-link
         | {{ username }}
@@ -16,12 +16,18 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+
+const { mapState, mapGetters } = createNamespacedHelpers('user')
+
 export default {
-  data () {
-    return {
-      pictureUrl: '/static/img/default-user-picture.png',
-      username: 'John Doe'
-    }
+  computed: {
+    ...mapState([
+      'pictureUrl'
+    ]),
+    ...mapGetters([
+      'username'
+    ])
   }
 }
 </script>

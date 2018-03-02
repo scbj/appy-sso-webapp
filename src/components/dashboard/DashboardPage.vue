@@ -45,8 +45,17 @@ export default {
   },
 
   mounted () {
-    if (this.$refs.defaultActive) {
-      this.activeName = this.$refs.defaultActive.name
+    this.$store.dispatch('user/fetch')
+    this.setDefaultActiveTab({
+      name: this.$refs.defaultActive.name
+    })
+  },
+
+  methods: {
+    setDefaultActiveTab ({ name }) {
+      if (name) {
+        this.activeName = name
+      }
     }
   }
 }

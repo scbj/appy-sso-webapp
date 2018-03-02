@@ -9,7 +9,7 @@ const navigatorLanguage = navigator.language || navigator.userLanguage || ''
 export const defaultLocale = navigatorLanguage.substr(0, 2)
 
 // for more info (pluralization, date time localization..etc) refer
-// to the doc (http://kazupon.github.io/vue-i18n/en/)
+// to the doc (http://kazupon.github.io/vue-i18n/en/) 🌍
 export const i18n = new VueI18n({
   ...config.i18n,
   locale: defaultLocale,
