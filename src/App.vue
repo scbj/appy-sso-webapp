@@ -10,9 +10,11 @@ import { setAuthorizationHeader } from './http-common'
 
 export default {
   name: 'App',
-  mounted () {
+
+  created () {
     this.openTheStore()
   },
+
   methods: {
     /**
      * Do the needed stuff before use app. Set language,

@@ -12,8 +12,9 @@ export const HTTP = axios.create({
  * @param {string} token The Bearer token
  */
 export function setAuthorizationHeader (token) {
-  // Alter defaults after instance has been created
-  HTTP.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  if (token) {
+    HTTP.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  }
 }
 
 export function getAsync (url) {
