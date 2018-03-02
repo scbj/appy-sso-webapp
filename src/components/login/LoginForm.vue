@@ -40,7 +40,7 @@ export default {
       error: '',
       errorType: '',
       form: {
-        username: 'thomas.dubois@digi-smart.fr',
+        username: 'john.doe@example.com',
         password: 'secret',
         rememberMe: false
       },
