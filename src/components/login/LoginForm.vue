@@ -74,7 +74,7 @@ export default {
         password: this.form.password
       }
       const login = await this.$store.dispatch('auth/login', creds)
-      console.dir(login)
+
       // check for error
       if (login.status !== 200) {
         return this.handleError(login)
