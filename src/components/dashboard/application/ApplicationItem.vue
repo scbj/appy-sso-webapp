@@ -1,14 +1,23 @@
 <template lang="pug">
 li.application-item
-  img.logo( :src="logo || '/static/img/logo-default.png'" :alt='name' )
+  BaseImage.logo( :src='logo' fallbackSrc='/static/img/logo-default.png')
   span.name {{ name }}
   span.new( v-show='isNew' ) {{ $t('new') | uppercase }}
 </template>
 
 <script>
+import BaseImage from '@/components/base/BaseImage'
 import { uppercase } from '@/utils/filters'
 
 export default {
+  components: {
+    BaseImage
+  },
+
+  filters: {
+    uppercase
+  },
+
   props: {
     name: {
       type: String,
@@ -22,10 +31,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-
-  filters: {
-    uppercase
   }
 }
 </script>
@@ -73,10 +78,11 @@ export default {
   &:focus { text-decoration: underline; }
 }
 
-img.logo {
+.logo {
   width: 80px;
   height: 80px;
   border-radius: 4px;
+  overflow: hidden;
   margin-right: 2rem;
 
   @media screen and (min-width: $mobile) {
