@@ -14,17 +14,18 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      username: 'John Doe'
-    }
-  },
+import { createNamespacedHelpers } from 'vuex'
 
+const { mapGetters } = createNamespacedHelpers('user')
+
+export default {
   computed: {
+    ...mapGetters([
+      'username'
+    ]),
     buttonContinueLoggedInHtml () {
-      const username = this.username.length > 10
-        ? `${this.username.substring(0, 7)}...`
+      const username = this.username.length > 14
+        ? `${this.username.substring(0, 11)}...`
         : this.username
       return this.$t('button.continueAs', { username })
     }

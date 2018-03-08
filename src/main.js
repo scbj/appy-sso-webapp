@@ -9,6 +9,7 @@ import store from './store'
 import config from './plugin.config'
 import { i18n } from './i18n'
 import { handleIE } from './utils/ie.suck'
+import api from './api/v1'
 
 Vue.use(VueMq, config.vueMq)
 Vue.use(ElementUI, config.elementUI)
@@ -29,4 +30,5 @@ if (process.env.NODE_ENV === 'development') {
   window.vue = vue
   window.store = store
   window.router = router
+  window.api = api
 }

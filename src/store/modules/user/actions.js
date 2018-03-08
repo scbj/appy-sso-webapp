@@ -18,7 +18,7 @@ export async function changeLanguage ({ commit, state }, payload) {
   }
 }
 
-export async function fetch ({ commit, dispatch }) {
+export async function fetch ({ commit }) {
   const res = await api.user.self()
   if (!res.data) {
     return false
