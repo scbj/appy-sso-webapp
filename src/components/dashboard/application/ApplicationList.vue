@@ -7,16 +7,21 @@
       :key='app.name'
       :name='app.name'
       :logo='app.logoUrl'
-      :isNew='app.new')
+      :isNew='app.createdAt | isNew')
   .no-data( v-else )
     i( class='icon ion-ios-albums-outline' )
     span.label( v-text="$t('message.noData.applications')" )
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+import moment from 'moment'
+
 import DashboardGreeting from '@/components/Dashboard/DashboardGreeting'
 import ApplicationItem from './ApplicationItem'
 import { uppercase } from '@/utils/filters'
+
+const { mapState } = createNamespacedHelpers('application')
 
 export default {
   components: {
@@ -24,36 +29,26 @@ export default {
     ApplicationItem
   },
 
-  data () {
-    return {
-      apps: [
-        {
-          name: 'Brainstormin',
-          logoUrl: '/static/img/logo-brainstormin.png'
-        },
-        {
-          name: 'Foo',
-          logoUrl: '/static/img/logo-foo.png',
-          new: true
-        },
-        {
-          name: 'Progress',
-          logoUrl: '/static/img/logo-progress.png'
-        },
-        {
-          name: 'Sondage',
-          logoUrl: '/static/img/logo-sondage.png'
-        },
-        {
-          name: 'TextIt',
-          logoUrl: '/static/img/logo-textit.png'
-        }
-      ]
+  filters: {
+    uppercase,
+    isNew (value) {
+      const createdAt = moment(value)
+      const now = moment(new Date())
+      const duration = moment.duration(now.diff(createdAt))
+
+      // we consider the application as new if it has been added there is less than a month
+      return duration.asMonths() <= 1
     }
   },
 
-  filters: {
-    uppercase
+  computed: {
+    ...mapState({
+      'apps': 'applications'
+    })
+  },
+
+  mounted () {
+    this.$store.dispatch('application/list')
   }
 }
 </script>

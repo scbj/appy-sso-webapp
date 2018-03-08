@@ -1,6 +1,6 @@
 <template lang="pug">
 li.application-item
-  img.logo( :src='logo' :alt='name' )
+  img.logo( :src="logo || '/static/img/logo-default.png'" :alt='name' )
   span.name {{ name }}
   span.new( v-show='isNew' ) {{ $t('new') | uppercase }}
 </template>

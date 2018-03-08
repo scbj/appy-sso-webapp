@@ -9,3 +9,6 @@ export const LOGOUT = 'LOGOUT'
 export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE'
 
 export const USER_FETCH = 'USER_FETCH'
+
+// application module
+export const APPLICATION_LIST = 'APPLICATION_LIST'
