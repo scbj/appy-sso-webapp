@@ -12,3 +12,6 @@ export const USER_FETCH = 'USER_FETCH'
 
 // application module
 export const APPLICATION_LIST = 'APPLICATION_LIST'
+
+// article module
+export const ARTICLE_LIST = 'ARTICLE_LIST'
