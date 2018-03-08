@@ -30,7 +30,6 @@ h2 {
   font-weight: 500;
   text-align: center;
   // position
-  margin-left: 2rem;
   margin-bottom: 2rem;
 
   @media screen and (min-width: $mobile) {
@@ -39,7 +38,6 @@ h2 {
     font-size: 2.1rem;
     font-weight: 500;
     // position
-    margin-left: 0;
     margin-bottom: 2rem;
   }
 }

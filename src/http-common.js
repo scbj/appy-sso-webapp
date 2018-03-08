@@ -33,6 +33,9 @@ export function getAsync (url) {
       }
       response.data = res.data
     } catch (err) {
+      if (err.response) {
+        response.status = err.status
+      }
       response.error = err
     }
 
@@ -56,6 +59,9 @@ export function postAsync (url, data) {
       }
       response.data = res.data
     } catch (err) {
+      if (err.response) {
+        response.status = err.response.status
+      }
       response.error = err
     }
 
@@ -79,6 +85,9 @@ export function putAsync (url, data) {
       }
       response.data = res.data
     } catch (err) {
+      if (err.response) {
+        response.status = err.status
+      }
       response.error = err
     }
 
