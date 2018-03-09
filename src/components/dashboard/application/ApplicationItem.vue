@@ -1,19 +1,17 @@
 <template lang="pug">
 li.application-item
-  BaseImage.logo( :src='logo' fallbackSrc='/static/img/logo-default.png')
+  BaseImage.logo(
+    :src='logo'
+    fallbackSrc='/static/img/logo-default.png'
+    draggable='false')
   span.name {{ name }}
   span.new( v-show='isNew' ) {{ $t('new') | uppercase }}
 </template>
 
 <script>
-import BaseImage from '@/components/base/BaseImage'
 import { uppercase } from '@/utils/filters'
 
 export default {
-  components: {
-    BaseImage
-  },
-
   filters: {
     uppercase
   },
@@ -79,6 +77,7 @@ export default {
 }
 
 .logo {
+  user-select: none;
   width: 80px;
   height: 80px;
   border-radius: 4px;

@@ -1,12 +1,40 @@
 <template lang="pug">
-.base-image
-  transition( name='fade' )
-    img.image( v-if='loaded' :src='source' )
-    .loader( v-else )
+.placeholder( v-if='!source' :class='{ loading }' )
+img.image( v-else :src='source' )
 </template>
 
 <script>
+/**
+ * @param {String} src
+ * @returns {Promise<Boolean>}
+ */
+function isImageAvailable (src) {
+  return new Promise(resolve => {
+    const image = new Image()
+    image.onload = () => resolve(true)
+    image.onerror = () => resolve(false)
+    image.src = src
+  })
+}
+
+/**
+ * @param {Array<String>} sources
+ * @returns {String|null}
+*/
+async function getAvailableSource (...sources) {
+  // remove duplicates
+  sources = Array.from(new Set(sources))
+  for (const source of sources) {
+    if (await isImageAvailable(source)) {
+      return source
+    }
+  }
+
+  return null
+}
+
 export default {
+  name: 'BaseImage',
   props: {
     src: {
       type: String | null | undefined,
@@ -20,40 +48,52 @@ export default {
 
   data () {
     return {
-      loaded: false,
-      source: ''
+      loading: true,
+      source: '',
+      isFallback: false
     }
   },
 
   watch: {
     src: {
       immediate: true,
-      handler (src) {
-        const image = new Image()
-        image.onload = () => {
-          this.source = src
-          this.loaded = true
+      async handler (src) {
+        const available = await getAvailableSource(src, this.fallbackSrc)
+        if (!available) {
+          return this.resetSource()
         }
-        image.src = src
+        this.source = available
+        this.isFallback =
+          available === this.fallbackSrc &&
+          available !== src
       }
+    },
+    fallbackSrc: {
+      async handler (src) {
+        if (!this.isFallback) return
+        const available = await isImageAvailable(src)
+        if (!available) {
+          return this.resetSource()
+        }
+        this.source = available
+      }
+    }
+  },
+
+  methods: {
+    resetSource () {
+      this.source = ''
+      this.isFallback = false
+      this.loading = false
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.base-image {
+.placeholder {
   --color1: #eeeeee;
   --color2: #e6e6e6;
-  position: relative;
-}
-
-.image {
-  width: 100%;
-  height: 100%;
-}
-
-.loader {
   background: linear-gradient(
     to right,
     var(--color1) 0%,
@@ -64,13 +104,10 @@ export default {
   );
   background-size: 300% 100%;
   background-position-x: 100%;
-  // position
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  animation: Gradient 1.3s ease infinite;
+
+  &.loading {
+    animation: Gradient 1.3s ease infinite;
+  }
 }
 
 @keyframes Gradient {
@@ -80,12 +117,5 @@ export default {
   100% {
     background-position-x: 0%
   }
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
 }
 </style>

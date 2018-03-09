@@ -4,6 +4,7 @@ import ElementUI from 'element-ui'
 import './assets/scss/element-ui/index.scss'
 
 import App from './App'
+import BaseComponents from './plugins/BaseComponents'
 import router from './router'
 import store from './store'
 import config from './plugin.config'
@@ -13,6 +14,7 @@ import api from './api/v1'
 
 Vue.use(VueMq, config.vueMq)
 Vue.use(ElementUI, config.elementUI)
+Vue.use(BaseComponents)
 
 // handle IE weakness... 🤓
 handleIE()

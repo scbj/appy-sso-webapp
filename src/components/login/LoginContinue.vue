@@ -4,8 +4,9 @@
   el-button(
     type='primary'
     size='big'
-    v-html="buttonContinueLoggedInHtml"
-    @click='continueLoggedIn')
+    v-html="primaryButtonHtml"
+    @click='continueLoggedIn'
+    :title='shouldTruncateUsername ? username : null')
   el-button(
     type='text'
     size='big'
@@ -23,8 +24,13 @@ export default {
     ...mapGetters([
       'username'
     ]),
-    buttonContinueLoggedInHtml () {
-      const username = this.username.length > 14
+    /** @returns {Boolean} */
+    shouldTruncateUsername () {
+      return this.username.length > 14
+    },
+    /** @returns {String} */
+    primaryButtonHtml () {
+      const username = this.shouldTruncateUsername
         ? `${this.username.substring(0, 11)}...`
         : this.username
       return this.$t('button.continueAs', { username })
