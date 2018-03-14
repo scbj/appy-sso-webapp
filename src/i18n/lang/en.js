@@ -5,9 +5,12 @@ export default {
   username: 'Username',
   password: 'Password',
   settings: 'Settings',
+  administration: 'Administration',
   news: 'News',
   apps: 'My apps',
   new: 'New',
+  noGroup: 'No group',
+  byDefault: 'By default',
   alert: {
     username: { ask: 'Please enter your username' },
     password: { ask: 'Please enter your password' },
@@ -18,7 +21,8 @@ export default {
     logIn: 'Sign in',
     logOut: 'Sign out',
     needHelp: 'Need help ?',
-    continueAs: 'Continue as <b>{username}</b>'
+    continueAs: 'Continue as <b>{username}</b>',
+    createGroup: 'Create a group'
   },
   check: { rememberMe: 'Remember me' },
   alt: { profilPicture: 'Profile picture' },

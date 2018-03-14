@@ -15,26 +15,29 @@
           ApplicationList
         el-tab-pane( :label="$t('news')" name='news' )
           ArticleList
-        el-tab-pane( :label="$t('settings')" name='admin' )
+        el-tab-pane( :label="$t('administration')" name='admin' )
+          AdministrationPanel
   DashboardFooter( v-show="$mq !== 'mobile'" )
   DashboardNavigationBar( v-show="$mq === 'mobile'" v-model='activeName' )
 </template>
 
 <script>
-import DashboardHeader from '@/components/dashboard/DashboardHeader'
-import DashboardGreeting from '@/components/Dashboard/DashboardGreeting'
+import AdministrationPanel from './administration/AdministrationPanel'
 import ApplicationList from '@/components/dashboard/application/ApplicationList'
 import ArticleList from '@/components/dashboard/article/ArticleList'
-import DashboardNavigationBar from '@/components/dashboard/DashboardNavigationBar'
 import DashboardFooter from '@/components/dashboard/DashboardFooter'
+import DashboardGreeting from '@/components/Dashboard/DashboardGreeting'
+import DashboardHeader from '@/components/dashboard/DashboardHeader'
+import DashboardNavigationBar from '@/components/dashboard/DashboardNavigationBar'
 
 export default {
   components: {
-    DashboardHeader,
-    DashboardGreeting,
+    AdministrationPanel,
     ApplicationList,
     ArticleList,
     DashboardFooter,
+    DashboardGreeting,
+    DashboardHeader,
     DashboardNavigationBar
   },
 
