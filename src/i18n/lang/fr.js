@@ -22,7 +22,10 @@ export default {
     logOut: 'Se déconnecter',
     needHelp: "Besoin d'aide ?",
     continueAs: 'Continuer en tant que <b>{username}</b>',
-    createGroup: 'Créer un groupe'
+    createGroup: 'Créer un groupe',
+    switchGroup: 'Changer de groupe',
+    users: 'Utilisateurs',
+    applications: 'Applications'
   },
   check: { rememberMe: 'Se souvenir de moi' },
   alt: { profilPicture: 'Photo de profil' },
