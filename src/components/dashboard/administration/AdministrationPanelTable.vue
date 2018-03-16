@@ -4,15 +4,15 @@
   .header.lastname Nom
   .header.email Mail
   template( v-for='user in users' )
-    span.cell.firstname {{ user.firstname }}
+    .cell( :class='{ dot: user.role_id === 2 }' )
+      span.cell.firstname {{ user.firstname }}
+      el-tag.tag( v-if='isAdmin(user)' size='mini' type='danger' ) admin
     span.cell.lastname {{ user.lastname }}
     span.cell.email {{ user.email }}
     .row-border-bottom
 </template>
 
 <script>
-// TODO: afficher différement les administrateurs
-
 export default {
   data () {
     return {
@@ -55,11 +55,19 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    isAdmin (user) {
+      const admin = 2
+      return !!(user && user.role_id === admin)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../../assets/scss/colors';
+
 .administration-panel-table {
   display: grid;
   grid-template-columns:
@@ -78,6 +86,15 @@ export default {
   font-size: 1.2rem;
   font-weight: 600;
   padding: .5em 0;
+}
+
+div.cell {
+  display: flex;
+  align-items: center;
+
+  .tag {
+    margin-left: 1rem;
+  }
 }
 
 span.cell {
