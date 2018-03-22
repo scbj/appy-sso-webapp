@@ -21,7 +21,7 @@ export function login ({ username, password }) {
     password,
     grant_type: 'password',
     client_id: '1',
-    client_secret: 'y4E126mjyY5Eni3pszH0iHFzyuGXJUXELpXxl6P4'
+    client_secret: 'KLJu9fBeBZDXKxZCan8Wyy4aODVsAaM28uiWdl56'
   }
   return postAsync('oauth/token', data)
 }

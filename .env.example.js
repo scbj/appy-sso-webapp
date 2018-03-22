@@ -4,5 +4,5 @@
  */
 
 module.exports = {
-  API_URL: '"http://192.168.1.98/SACHA/appy-sso/public/"'
+  API_URL: '"http://192.168.1.98/THOMAS/sso_appy/public/"'
 }

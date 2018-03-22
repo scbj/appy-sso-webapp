@@ -8,6 +8,12 @@
 # install dependencies
 npm install
 
+# create the .env.js file by copying the .env.example.js file and verify the api url
+
+# modify the host url in config/index.js file to the url you want to run the app
+
+# verify the client_id and client_secret for the authentication of the api in src/api/auth.js
+
 # serve with hot reload at localhost:8080
 npm run dev
 
