@@ -23,7 +23,7 @@ export default {
     },
     logo: {
       type: String,
-      required: true
+      default: null
     },
     isNew: {
       type: Boolean,
