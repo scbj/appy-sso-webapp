@@ -6,7 +6,7 @@
       v-for='app in apps'
       :key='app.name'
       :name='app.name'
-      :logo='app.logoUrl'
+      :logo='app.pictureUrl'
       :isNew='app.createdAt | isNew')
   .no-data( v-else )
     i( class='icon ion-ios-albums-outline' )
