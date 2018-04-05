@@ -1,20 +1,25 @@
 <template lang="pug">
 .activate-licence-page
-  ActivateLicenceStep( :active='1' :count='3' )
+  StepIndicator( :active='activeStep' :count='3' )
 </template>
 
 <script>
 import ActivateLicenceKey from './ActivateLicenceKey'
 import ActivateLicenceCompany from './ActivateLicenceCompany'
 import ActivateLicenceOwner from './ActivateLicenceOwner'
-import ActivateLicenceStep from './ActivateLicenceStep'
+import StepIndicator from './StepIndicator'
 
 export default {
   components: {
     ActivateLicenceKey,
     ActivateLicenceCompany,
     ActivateLicenceOwner,
-    ActivateLicenceStep
+    StepIndicator
+  },
+  data () {
+    return {
+      activeStep: 1
+    }
   }
 }
 </script>

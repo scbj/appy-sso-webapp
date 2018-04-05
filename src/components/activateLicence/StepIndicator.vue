@@ -1,12 +1,12 @@
 <template lang="pug">
-.activate-licence-step
+.step-indicator
   .progress
     .placeholder-line
     .line( :style='{ width: progression }' )
   .circle(
     v-for='n in count'
     :key='n'
-    :class='{ active: n <= active }'
+    :class='{ pending: n <= active }'
   )
     span {{ n }}
 </template>
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.activate-licence-step {
+.step-indicator {
   --active-color: #9B049B;
   --inactive-color: #EBEBEB;
   --circle-size: 42px;
@@ -84,11 +84,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color .1s ease-in-out .2s;
+  transition: background-color .1s ease-in-out;
 
-  &.active {
+  &.pending {
     background-color: var(--active-color);
-    border-color: var(--active-color);
+    transition: background-color .1s ease-in-out .2s;
     animation: pop .2s ease-in-out .2s;
   }
 
