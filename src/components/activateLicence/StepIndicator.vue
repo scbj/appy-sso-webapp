@@ -37,12 +37,12 @@ export default {
 .step-indicator {
   --active-color: #9B049B;
   --inactive-color: #EBEBEB;
-  --circle-size: 42px;
+  --circle-size: 34px;
   --progress-height: 4px;
 
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 450px;
   display: flex;
   justify-content: space-between;
 }
@@ -76,7 +76,6 @@ export default {
 .circle {
   color: white;
   background-color: var(--inactive-color);
-  font-size: 24px;
   width: var(--circle-size);
   height: var(--circle-size);
   border-radius: 50%;
@@ -94,6 +93,7 @@ export default {
 
   > span {
     user-select: none;
+    font-size: 20px;
     height: var(--circle-size);
     line-height: var(--circle-size);
   }

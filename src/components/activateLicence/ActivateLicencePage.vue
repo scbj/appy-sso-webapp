@@ -1,6 +1,7 @@
 <template lang="pug">
 .activate-licence-page
   StepIndicator( :active='activeStep' :count='3' )
+  ActivateLicenceKey
 </template>
 
 <script>
@@ -30,9 +31,13 @@ export default {
   background-size: cover;
   background-position: center;
   height: 100vh;
-  padding: 100px;
+  padding-top: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.step-indicator {
+  margin-bottom: 4.2rem;
 }
 </style>

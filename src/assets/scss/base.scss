@@ -49,6 +49,13 @@ a, a:visited, a:active {
   }
 }
 
+button {
+  border: none;
+  color: inherit;
+  line-height: normal;
+  padding: 1rem 2rem;
+}
+
 .app-title {
   img {
     display: block;
