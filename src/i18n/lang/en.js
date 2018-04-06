@@ -27,14 +27,16 @@ export default {
     switchGroup: 'Switch group',
     users: 'Users',
     applications: 'Applications',
-    validate: 'Validate'
+    validate: 'Validate',
+    next: 'Next'
   },
   check: { rememberMe: 'Remember me' },
   alt: { profilPicture: 'Profile picture' },
   title: {
     login: 'Login',
     alreadyLogged: 'Already logged in!',
-    licenceKey: 'Enter your license key'
+    licenceKey: 'Enter your license key',
+    companyName: 'Choose the name of your company'
   },
   message: {
     alreadyLogged: 'You are already logged in, you can change to another account at any time.',

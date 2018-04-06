@@ -27,14 +27,16 @@ export default {
     switchGroup: 'Changer de groupe',
     users: 'Utilisateurs',
     applications: 'Applications',
-    validate: 'Valider'
+    validate: 'Valider',
+    next: 'Suivant'
   },
   check: { rememberMe: 'Se souvenir de moi' },
   alt: { profilPicture: 'Photo de profil' },
   title: {
     login: 'Connexion',
     alreadyLogged: 'Déjà connecté !',
-    licenceKey: 'Entrez votre clé de licence'
+    licenceKey: 'Entrez votre clé de licence',
+    companyName: 'Choisissez le nom de votre entreprise'
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',

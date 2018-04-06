@@ -1,5 +1,5 @@
 <template lang="pug">
-ActivateLicenceBaseStep(
+ActivateLicenceBaseStep.activate-licence-key(
   :title="$t('title.licenceKey')",
   :button="$t('button.validate')"
   @next='next'
@@ -67,6 +67,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/activate-licence.scss';
+
 .input {
   --input-padding-horizontal: 3rem;
   --text-color: #707070;
@@ -82,26 +84,12 @@ export default {
 
   input {
     width: 34.2em;
-    color: var(--text-color);
-    padding: 1.2rem var(--input-padding-horizontal);
-    border: 1px solid #E4E4E4;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 3px 14px -1px rgba(#393939, 0.1);
-    transition: box-shadow .1s ease-in-out;
-
-    &:focus, &:active {
-      outline: none;
-      box-shadow: 0 3px 14px -1px rgba(#393939, 0.2);
-    }
   }
 
   .placeholder {
     pointer-events: none;
     user-select: none;
     white-space: pre;
-    opacity: .2;
-    color: var(--text-color);
     position: absolute;
     top: 50%;
     left: var(--input-padding-horizontal);
