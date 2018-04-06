@@ -1,11 +1,13 @@
 <template lang="pug">
 .activate-licence-base-step
   h1 {{ title }}
-  //- slot
-  button( @click="$emit('next')" ) {{ button }}
+  slot
+  button( @click="$emit('next')" ) {{ button | uppercase }}
 </template>
 
 <script>
+import { uppercase } from '@/utils/filters'
+
 export default {
   props: {
     title: {
@@ -16,6 +18,10 @@ export default {
       type: String,
       required: true
     }
+  },
+
+  filters: {
+    uppercase
   }
 }
 </script>
@@ -25,11 +31,13 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 
   > h1 {
-    color: #9B049B;
+    color: #9E3AA6;
     font-weight: 600;
     font-size: 2.55rem;
+    margin-bottom: 4.2rem;
   }
 
   > button {
@@ -39,8 +47,8 @@ export default {
     --stop-color: #7C4BFC;
     background: linear-gradient(
       135deg,
-      #a250e5 0%,
-      #7c4bfc 100%
+      var(--start-color) 0%,
+      var(--stop-color) 100%
     );
     color: white;
     font-family: "source-sans-pro",sans-serif;
@@ -48,18 +56,26 @@ export default {
     font-weight: 600;
     letter-spacing: .2em;
     border-radius: 5px;
+    margin-top: 7.4rem;
     min-width: 12.7em;
-    box-shadow: 0 3px 10px -2px rgba(black, .5);
-    transition: box-shadow .2s ease-out,
-                transform .2s ease-in-out;
+    box-shadow:
+      0 3px 10px -3px rgba(black, .8);
+    transition: box-shadow .2s ease-out;
 
     &:active, &:focus {
       outline: none;
     }
 
     &:hover {
-      box-shadow: 0 4px 18px -3px rgba(black, .7);
-      // transform: translateY(-2px);
+      box-shadow:
+        0 8px 37px -8px rgba(black, .7);
+    }
+
+    &:active {
+      box-shadow:
+        0 0px 8px -2px rgba(black, .5),
+        0 0 0 1px rgba(black, .06) inset;
+      transition-duration: .06s;
     }
   }
 }

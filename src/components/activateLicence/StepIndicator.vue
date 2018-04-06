@@ -6,7 +6,7 @@
   .circle(
     v-for='n in count'
     :key='n'
-    :class='{ pending: n <= active }'
+    :class='{ pending: n > active }'
   )
     span {{ n }}
 </template>
@@ -35,7 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .step-indicator {
-  --active-color: #9B049B;
+  --active-color: #9E3AA6;
   --inactive-color: #EBEBEB;
   --circle-size: 34px;
   --progress-height: 4px;
@@ -75,7 +75,7 @@ export default {
 
 .circle {
   color: white;
-  background-color: var(--inactive-color);
+  background-color: var(--active-color);
   width: var(--circle-size);
   height: var(--circle-size);
   border-radius: 50%;
@@ -83,12 +83,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color .1s ease-in-out;
+  transition: background-color .1s ease-in-out .2s;
+  animation: pop .2s ease-in-out .2s;
 
   &.pending {
-    background-color: var(--active-color);
-    transition: background-color .1s ease-in-out .2s;
-    animation: pop .2s ease-in-out .2s;
+    background-color: var(--inactive-color);
+    transition: background-color .1s ease-in-out;
+    animation: none;
   }
 
   > span {

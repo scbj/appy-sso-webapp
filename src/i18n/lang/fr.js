@@ -15,7 +15,8 @@ export default {
     username: { ask: "Veuillez renseigner votre nom d'utilisateur" },
     password: { ask: 'Veuillez renseigner votre mot de passe' },
     incorrectCredentials: 'Identifiant ou mot de passe incorrect.',
-    networkError: 'Nous avons du mal à contacter la lune... veuillez réessayer plus tard ! 🚀🌘'
+    networkError: 'Nous avons du mal à contacter la lune... veuillez réessayer plus tard ! 🚀🌘',
+    invalidLicenceKey: 'Clé de licence invalide ou incorrect'
   },
   button: {
     logIn: 'Se connecter',
@@ -25,13 +26,15 @@ export default {
     createGroup: 'Créer un groupe',
     switchGroup: 'Changer de groupe',
     users: 'Utilisateurs',
-    applications: 'Applications'
+    applications: 'Applications',
+    validate: 'Valider'
   },
   check: { rememberMe: 'Se souvenir de moi' },
   alt: { profilPicture: 'Photo de profil' },
   title: {
     login: 'Connexion',
-    alreadyLogged: 'Déjà connecté !'
+    alreadyLogged: 'Déjà connecté !',
+    licenceKey: 'Entrez votre clé de licence'
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',

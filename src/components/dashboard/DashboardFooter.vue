@@ -4,41 +4,19 @@
   a.contact( href='#contact' v-text="$t('contact')" )
   a.about( href='#about' v-text="$t('about')" )
   a.terms( href='#terms' v-text="$t('terms')" )
-  el-dropdown.language( v-show='currentLanguage' @command='changeLanguage' )
-    span.el-dropdown-link
-      i( class='icon ion-ios-world-outline' )
-      span( v-text='currentLanguage' )
-      i.el-icon-arrow-down.el-icon--right
-    el-dropdown-menu( slot='dropdown' )
-      el-dropdown-item(
-        v-for='lang in languages'
-        :key='lang.locale'
-        :command='lang.locale'
-      ) {{ lang.label }}
+  BaseLanguageSwitch.language
 </template>
 
 <script>
+import BaseLanguageSwitch from '@/components/base/BaseLanguageSwitch'
+
 export default {
+  components: {
+    BaseLanguageSwitch
+  },
   data () {
     return {
-      copyright: '© Appy. Version 0.0.1',
-      languages: [
-        { label: 'Français', locale: 'fr' },
-        { label: 'English', locale: 'en' }
-      ]
-    }
-  },
-
-  computed: {
-    currentLanguage () {
-      const lang = this.languages.find(lang => lang.locale === this.$i18n.locale)
-      if (lang) return lang.label
-    }
-  },
-
-  methods: {
-    changeLanguage (locale) {
-      this.$store.dispatch('user/changeLanguage', { locale })
+      copyright: '© Appy. Version 0.0.1'
     }
   }
 }
@@ -75,24 +53,5 @@ export default {
 
 a:hover {
     color: #409EFF;
-}
-
-.language {
-  color: #909399;
-
-  .icon {
-    font-size: 1.8rem;
-    margin-right: .3em;
-  }
-
-  span.el-dropdown-link {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-  }
-
-  i {
-    align-self: center;
-  }
 }
 </style>

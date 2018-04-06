@@ -15,7 +15,8 @@ export default {
     username: { ask: 'Please enter your username' },
     password: { ask: 'Please enter your password' },
     incorrectCredentials: 'Incorrect username or password.',
-    networkError: 'We have trouble contacting the moon... please try again later! 🚀🌘'
+    networkError: 'We have trouble contacting the moon... please try again later! 🚀🌘',
+    invalidLicenceKey: 'Invalid or incorrect license key'
   },
   button: {
     logIn: 'Sign in',
@@ -25,13 +26,15 @@ export default {
     createGroup: 'Create a group',
     switchGroup: 'Switch group',
     users: 'Users',
-    applications: 'Applications'
+    applications: 'Applications',
+    validate: 'Validate'
   },
   check: { rememberMe: 'Remember me' },
   alt: { profilPicture: 'Profile picture' },
   title: {
     login: 'Login',
-    alreadyLogged: 'Already logged in!'
+    alreadyLogged: 'Already logged in!',
+    licenceKey: 'Enter your license key'
   },
   message: {
     alreadyLogged: 'You are already logged in, you can change to another account at any time.',
