@@ -28,7 +28,8 @@ export default {
     users: 'Users',
     applications: 'Applications',
     validate: 'Validate',
-    next: 'Next'
+    next: 'Next',
+    create: 'Create'
   },
   check: { rememberMe: 'Remember me' },
   alt: { profilPicture: 'Profile picture' },
@@ -36,7 +37,8 @@ export default {
     login: 'Login',
     alreadyLogged: 'Already logged in!',
     licenceKey: 'Enter your license key',
-    companyName: 'Choose the name of your company'
+    companyName: 'Choose the name of your company',
+    ownerInfos: 'Create the user who owns the license'
   },
   message: {
     alreadyLogged: 'You are already logged in, you can change to another account at any time.',

@@ -28,7 +28,8 @@ export default {
     users: 'Utilisateurs',
     applications: 'Applications',
     validate: 'Valider',
-    next: 'Suivant'
+    next: 'Suivant',
+    create: 'Créer'
   },
   check: { rememberMe: 'Se souvenir de moi' },
   alt: { profilPicture: 'Photo de profil' },
@@ -36,7 +37,8 @@ export default {
     login: 'Connexion',
     alreadyLogged: 'Déjà connecté !',
     licenceKey: 'Entrez votre clé de licence',
-    companyName: 'Choisissez le nom de votre entreprise'
+    companyName: 'Choisissez le nom de votre entreprise',
+    ownerInfos: "Créez l'utilisateur propriétaire de la licence"
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',
