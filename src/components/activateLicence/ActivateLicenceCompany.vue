@@ -22,11 +22,18 @@ export default {
     }
   },
 
+  mounted () {
+    this.companyName = this.$store.state.licence.companyName
+  },
+
   methods: {
     next () {
       this.hasError = this.companyName.length < 2
       if (this.hasError === false) {
-        this.$emit('next')
+        const step = this.$route.meta.step
+        this.$store.dispatch('licence/updateCompanyName', { companyName: this.companyName })
+        this.$store.dispatch('licence/completeStep', { step })
+        this.$router.push({ name: 'activateOwner' })
       }
     }
   }

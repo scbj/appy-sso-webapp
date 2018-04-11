@@ -42,6 +42,10 @@ export default {
     }
   },
 
+  mounted () {
+    this.licenceKey = this.$store.state.licence.key
+  },
+
   methods: {
     onKeypress (e) {
       // Manually handle keypress ⌨
@@ -59,7 +63,10 @@ export default {
     next () {
       this.hasError = this.licenceKey.length < 36
       if (this.hasError === false) {
-        this.$emit('next')
+        const step = this.$route.meta.step
+        this.$store.dispatch('licence/updateKey', { key: this.licenceKey })
+        this.$store.dispatch('licence/completeStep', { step })
+        this.$router.push({ name: 'activateCompany' })
       }
     }
   }

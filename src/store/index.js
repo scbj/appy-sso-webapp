@@ -16,7 +16,8 @@ const vuexLocalStorage = new VuexPersist({
     },
     user: state.user,
     application: state.application,
-    article: state.article
+    article: state.article,
+    licence: state.licence
   })
 })
 

@@ -1,25 +1,17 @@
 <template lang="pug">
 .activate-licence-page
   StepIndicator( :active='activeStep' :count='3' )
-  ActivateLicenceKey( v-if='activeStep === 1' @next='next' )
-  ActivateLicenceCompany( v-else-if='activeStep === 2' @next='next' )
-  ActivateLicenceOwner( v-else-if='activeStep === 3' @next='next' )
+  router-view
   BaseLanguageSwitch.language
 </template>
 
 <script>
 import BaseLanguageSwitch from '@/components/base/BaseLanguageSwitch'
-import ActivateLicenceKey from './ActivateLicenceKey'
-import ActivateLicenceCompany from './ActivateLicenceCompany'
-import ActivateLicenceOwner from './ActivateLicenceOwner'
 import StepIndicator from './StepIndicator'
 
 export default {
   components: {
     BaseLanguageSwitch,
-    ActivateLicenceKey,
-    ActivateLicenceCompany,
-    ActivateLicenceOwner,
     StepIndicator
   },
 
@@ -29,9 +21,18 @@ export default {
     }
   },
 
+  mounted () {
+    this.updateActiveStep()
+  },
+
+  beforeRouteUpdate (to, from, next) {
+    this.updateActiveStep(to)
+    next()
+  },
+
   methods: {
-    next () {
-      this.activeStep = this.activeStep + 1
+    updateActiveStep (to) {
+      this.activeStep = (to && to.meta.step) || this.$route.meta.step || 1
     }
   }
 }
