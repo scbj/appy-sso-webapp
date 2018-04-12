@@ -5,11 +5,11 @@
   @dragover='onDragOver'
   @dragleave='onDragLeave'
   @drop='onDrop' )
-  span.label {{ $t('message.dragAndDropHere') }}
+  span.label( v-show='!hasImage' ) {{ $t('message.dragAndDropHere') }}
   input( ref='fileExplorerInput' type='file' class='file-explorer' accept='image/*' @change='onFileSelected' )
   BaseImage.preview( v-if='hasImage' :src='preview' draggable='false' )
-  button.open-remove-button( @click='onClick'  )
-    i( v-show='hasImage' class='icon ion-ios-trash' )
+  button.open-remove-button( @click='onClick' :class="{ 'has-image': hasImage }"  )
+    i( v-show='hasImage' class='icon ion-ios-trash-outline' )
 </template>
 
 <script>
@@ -110,6 +110,7 @@ export default {
 
   > .preview,
   > .open-remove-button {
+    border-radius: 5px;
     width: 100%;
     height: 100%;
     grid-area: 1 / 1 / 2 / 2;
@@ -128,18 +129,25 @@ export default {
   > .preview {
     pointer-events: none;
     object-fit: cover;
-    border-radius: 5px;
     box-shadow: 0 3px 10px -2px rgba(black, .6);
   }
+
   > .open-remove-button {
+    background-color: transparent;
     cursor: pointer;
     display : flex;
     align-items: center;
     justify-content: center;
+    transition: background-color .2s ease-in-out;
 
-    &:hover i {
-      opacity: 1;
+    &.has-image:hover {
+      background-color: rgba(black, .2);
       transition: none;
+
+      i {
+        opacity: 1;
+        transition: none;
+      }
     }
 
     > i {

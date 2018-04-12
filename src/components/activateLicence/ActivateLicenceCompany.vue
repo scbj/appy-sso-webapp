@@ -5,6 +5,11 @@ ActivateLicenceBaseStep.activate-licence-company(
   @next='next'
 )
   input( v-model='companyName' placeholder='The good company' )
+  span.message.error( v-show='hasError' )
+    | {{ $t('alert.invalidCompanyName') }},&nbsp;
+    el-tooltip
+      div( slot='content' v-html="$t('message.invalidCompanyName')" )
+      span.learn-more {{ $t('learnMore') }}.
 </template>
 
 <script>
@@ -28,7 +33,7 @@ export default {
 
   methods: {
     next () {
-      this.hasError = this.companyName.length < 2
+      this.hasError = this.companyName.length < 3
       if (this.hasError === false) {
         const step = this.$route.meta.step
         this.$store.dispatch('licence/updateCompanyName', { companyName: this.companyName })
@@ -45,5 +50,21 @@ export default {
 
 input {
   text-align: center;
+}
+
+.message.error > .learn-more {
+  cursor: help;
+  position: relative;
+  max-width: 30em;
+
+  &::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    background-color: $errorColor;
+    width: 100%;
+    left: 0;
+    bottom: -.1em;
+  }
 }
 </style>

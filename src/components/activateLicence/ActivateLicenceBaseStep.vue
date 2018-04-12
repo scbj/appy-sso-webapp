@@ -40,6 +40,11 @@ export default {
     margin-bottom: 4.2rem;
   }
 
+  button::-moz-focus-inner {
+    // Remove dotted outline on Firefox
+    border: 0;
+  }
+
   > button {
     cursor: pointer;
     user-select: none;
@@ -61,10 +66,6 @@ export default {
     box-shadow:
       0 3px 10px -3px rgba(black, .8);
     transition: box-shadow .2s ease-out;
-
-    &:active, &:focus {
-      outline: none;
-    }
 
     &:hover {
       box-shadow:

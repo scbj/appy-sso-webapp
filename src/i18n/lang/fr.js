@@ -11,12 +11,14 @@ export default {
   new: 'Nouveau',
   noGroup: 'Aucun groupe',
   byDefault: 'Par défaut',
+  learnMore: 'en savoir plus',
   alert: {
     username: { ask: "Veuillez renseigner votre nom d'utilisateur" },
     password: { ask: 'Veuillez renseigner votre mot de passe' },
     incorrectCredentials: 'Identifiant ou mot de passe incorrect.',
     networkError: 'Nous avons du mal à contacter la lune... veuillez réessayer plus tard ! 🚀🌘',
-    invalidLicenceKey: 'Clé de licence invalide ou incorrect'
+    invalidLicenceKey: 'Clé de licence invalide ou incorrect',
+    invalidCompanyName: 'Nom invalide'
   },
   button: {
     logIn: 'Se connecter',
@@ -46,6 +48,11 @@ export default {
     noData: {
       applications: 'Aucune application à afficher... tant pis 👻'
     },
-    dragAndDropHere: 'Glissez-déposez votre photo de profil'
+    dragAndDropHere: 'Glissez-déposez votre photo de profil',
+    invalidCompanyName: "Le nom de l'entreprise doit<br>contenir au moins 3 caractères.<br>Il ne doit pas commencer ni finir<br>par un espace, les espaces<br>consécutifs seront remplacés par<br>un seul."
+  },
+  placeholder: {
+    fullName: 'Nom complet (prénom et nom)',
+    email: 'Adresse mail'
   }
 }

@@ -1,4 +1,10 @@
+$errorColor: #C70F0F;
+
 .activate-licence-base-step {
+  input::-ms-clear {
+    display: none;
+  }
+
   input {
     font-family: "source-sans-pro";
     font-size: 1.8rem;
@@ -21,5 +27,12 @@
   .placeholder {
     opacity: .2;
     color: var(--text-color);
+  }  
+
+  .message.error {
+    color: $errorColor;
+    font-size: 1.33rem;
+    font-weight: 600;
+    margin-top: 1.2rem;
   }
 }

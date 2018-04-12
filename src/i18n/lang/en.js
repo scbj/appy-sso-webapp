@@ -11,12 +11,14 @@ export default {
   new: 'New',
   noGroup: 'No group',
   byDefault: 'By default',
+  learnMore: 'learn more',
   alert: {
     username: { ask: 'Please enter your username' },
     password: { ask: 'Please enter your password' },
     incorrectCredentials: 'Incorrect username or password.',
     networkError: 'We have trouble contacting the moon... please try again later! 🚀🌘',
-    invalidLicenceKey: 'Invalid or incorrect license key'
+    invalidLicenceKey: 'Invalid or incorrect license key',
+    invalidCompanyName: 'Invalid name'
   },
   button: {
     logIn: 'Sign in',
@@ -46,6 +48,11 @@ export default {
     noData: {
       applications: 'No apps to display ... too bad 👻'
     },
-    dragAndDropHere: 'Drag and drop your profile picture'
+    dragAndDropHere: 'Drag and drop your profile picture',
+    invalidCompanyName: 'The company name must contain at<br>least 3 characters. It must not<br>begin or end with a space,<br>consecutive spaces will be<br>replaced by one.'
+  },
+  placeholder: {
+    fullName: 'Full name (first and last name)',
+    email: 'Email address'
   }
 }

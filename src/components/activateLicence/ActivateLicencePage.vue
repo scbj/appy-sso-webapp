@@ -44,7 +44,7 @@ export default {
   background-size: cover;
   background-position: center;
   height: 100vh;
-  padding-top: 25vh;
+  padding-top: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;

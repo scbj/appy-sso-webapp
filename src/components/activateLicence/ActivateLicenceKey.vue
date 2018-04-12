@@ -50,7 +50,7 @@ export default {
     onKeypress (e) {
       // Manually handle keypress ⌨
       e.preventDefault()
-      const char = String.fromCharCode(e.keyCode)
+      const char = String.fromCharCode(e.keyCode || e.charCode)
       const licence = licenceMask(this.licenceKey + char)
       this.licenceKey = licence
     },
@@ -80,7 +80,6 @@ export default {
   --input-padding-horizontal: 3rem;
   --text-color: #707070;
   position: relative;
-  margin-bottom: 1.2rem;
 
   input,
   .placeholder {
@@ -103,11 +102,5 @@ export default {
     transform: translateY(-50%);
   }
 
-}
-
-.message.error {
-  color: #C70F0F;
-  font-size: 1.33rem;
-  font-weight: 600;
 }
 </style>
