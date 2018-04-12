@@ -45,6 +45,7 @@ export default {
     hello: 'Bonjour {firstname} !',
     noData: {
       applications: 'Aucune application à afficher... tant pis 👻'
-    }
+    },
+    dragAndDropHere: 'Glissez-déposez votre photo de profil'
   }
 }

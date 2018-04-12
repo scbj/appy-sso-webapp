@@ -52,8 +52,15 @@ a, a:visited, a:active {
 button {
   border: none;
   color: inherit;
+  background: none;
   line-height: normal;
   padding: 1rem 2rem;
+
+  &:active,
+  &:focus,
+  &:hover {
+    outline: none;
+  }
 }
 
 .app-title {

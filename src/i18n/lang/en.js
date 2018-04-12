@@ -45,6 +45,7 @@ export default {
     hello: 'Hi {firstname}!',
     noData: {
       applications: 'No apps to display ... too bad 👻'
-    }
+    },
+    dragAndDropHere: 'Drag and drop your profile picture'
   }
 }
