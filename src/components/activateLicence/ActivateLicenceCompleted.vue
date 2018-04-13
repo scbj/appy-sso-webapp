@@ -3,8 +3,7 @@ ActivateLicenceBaseStep.activate-licence-completed(
   :title="$t('title.completed')"
   :button="$t('button.logIn')"
   :showButton='false'
-  @next='next'
-)
+  @next='next' )
   p.email-sent( v-html="$t('message.emailSent')" )
   .card
     .check-sign

@@ -93,27 +93,27 @@ export default {
 .drag-drop-zone {
   $color: #c3bbc1;
   color: $color;
-  position: relative;
-  display: grid;
-  grid-template: 1fr / 1fr;
-  width: 12rem;
-  height: 12rem;
   border: 3px dashed $color;
   border-radius: 5px;
+  display: grid;
+  grid-template: 1fr / 1fr;
   padding: 1rem;
+  position: relative;
+  width: 12rem;
+  height: 12rem;
 
   &.highlight {
     $color: #9E3AA6;
-    border-color: $color;
     color: $color;
+    border-color: $color;
   }
 
   > .preview,
   > .open-remove-button {
     border-radius: 5px;
+    grid-area: 1 / 1 / 2 / 2;
     width: 100%;
     height: 100%;
-    grid-area: 1 / 1 / 2 / 2;
   }
 
   > .label {
@@ -133,8 +133,8 @@ export default {
   }
 
   > .open-remove-button {
-    background-color: transparent;
     cursor: pointer;
+    background-color: transparent;
     display : flex;
     align-items: center;
     justify-content: center;

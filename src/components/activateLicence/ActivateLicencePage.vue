@@ -53,11 +53,11 @@ export default {
   background-image: url(/static/img/low-poly.svg);
   background-size: cover;
   background-position: center;
-  height: 100vh;
-  padding-top: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 20vh;
+  height: 100vh;
 }
 
 .step-indicator {

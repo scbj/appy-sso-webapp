@@ -10,18 +10,9 @@ import { uppercase } from '@/utils/filters'
 
 export default {
   props: {
-    title: {
-      type: String,
-      required: true
-    },
-    button: {
-      type: String,
-      required: true
-    },
-    showButton: {
-      type: Boolean,
-      default: true
-    }
+    title: { type: String, required: true },
+    button: { type: String, required: true },
+    showButton: { type: Boolean, default: true }
   },
 
   filters: {
@@ -55,12 +46,12 @@ export default {
     user-select: none;
     --start-color: #A250E5;
     --stop-color: #7C4BFC;
+    color: white;
     background: linear-gradient(
       135deg,
       var(--start-color) 0%,
       var(--stop-color) 100%
     );
-    color: white;
     font-family: "source-sans-pro",sans-serif;
     font-size: 1.45rem;
     font-weight: 600;

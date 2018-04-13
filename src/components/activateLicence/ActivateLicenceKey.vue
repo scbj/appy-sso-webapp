@@ -2,8 +2,7 @@
 ActivateLicenceBaseStep.activate-licence-key(
   :title="$t('title.licenceKey')",
   :button="$t('button.validate')"
-  @next='next'
-)
+  @next='next' )
   .input( ref='input' )
     input(
       spellcheck='false'
@@ -93,8 +92,8 @@ export default {
   }
 
   .placeholder {
-    pointer-events: none;
     user-select: none;
+    pointer-events: none;
     white-space: pre;
     position: absolute;
     top: 50%;

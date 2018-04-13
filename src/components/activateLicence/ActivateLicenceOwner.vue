@@ -2,8 +2,7 @@
 ActivateLicenceBaseStep.activate-licence-owner(
   :title="$t('title.ownerInfos')",
   :button="$t('button.create')"
-  @next='next'
-)
+  @next='next' )
   .layout
     DragDropZone
     input( v-model='name' :placeholder="$t('placeholder.fullName')" )

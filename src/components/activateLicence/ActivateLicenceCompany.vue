@@ -2,8 +2,7 @@
 ActivateLicenceBaseStep.activate-licence-company(
   :title="$t('title.companyName')"
   :button="$t('button.next')"
-  @next='next'
-)
+  @next='next' )
   input( v-model='companyName' placeholder='The good company' )
   span.message.error( v-show='hasError' )
     | {{ $t('alert.invalidCompanyName') }},&nbsp;
@@ -59,9 +58,9 @@ input {
 
   &::after {
     content: '';
+    background-color: $errorColor;
     position: absolute;
     height: 1px;
-    background-color: $errorColor;
     width: 100%;
     left: 0;
     bottom: -.1em;

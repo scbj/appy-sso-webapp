@@ -6,22 +6,15 @@
   .circle(
     v-for='n in count'
     :key='n'
-    :class='{ pending: n > active }'
-  )
+    :class='{ pending: n > active }' )
     span {{ n }}
 </template>
 
 <script>
 export default {
   props: {
-    active: {
-      type: Number,
-      required: true
-    },
-    count: {
-      type: Number,
-      required: true
-    }
+    active: { type: Number, required: true },
+    count: { type: Number, required: true }
   },
   computed: {
     progression () {
@@ -40,11 +33,11 @@ export default {
   --circle-size: 34px;
   --progress-height: 4px;
 
+  display: flex;
+  justify-content: space-between;
   position: relative;
   width: 100%;
   max-width: 450px;
-  display: flex;
-  justify-content: space-between;
 }
 
 .progress {
@@ -58,9 +51,9 @@ export default {
 
 .line,
 .placeholder-line {
+  border-radius: var(--progress-height);
   position: absolute;
   height: var(--progress-height);
-  border-radius: var(--progress-height);
 }
 
 .placeholder-line {
@@ -76,13 +69,13 @@ export default {
 .circle {
   color: white;
   background-color: var(--active-color);
-  width: var(--circle-size);
-  height: var(--circle-size);
   border-radius: 50%;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  width: var(--circle-size);
+  height: var(--circle-size);
   transition: background-color .1s ease-in-out .2s;
   animation: pop .2s ease-in-out .2s;
 
