@@ -1,7 +1,8 @@
 import {
   LICENCE_COMPLETE_STEP,
   LICENCE_UPDATE_KEY,
-  LICENCE_UPDATE_COMPANY_NAME
+  LICENCE_UPDATE_COMPANY_NAME,
+  LICENCE_UPDATE_OWNER
 } from '../../mutation-types'
 
 export default {
@@ -15,5 +16,10 @@ export default {
 
   [LICENCE_UPDATE_COMPANY_NAME] (state, payload) {
     state.companyName = payload.companyName
+  },
+
+  [LICENCE_UPDATE_OWNER] (state, payload) {
+    state.owner.name = payload.name
+    state.owner.email = payload.email
   }
 }

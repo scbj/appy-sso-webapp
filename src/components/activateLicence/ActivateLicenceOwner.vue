@@ -29,6 +29,11 @@ export default {
     }
   },
 
+  mounted () {
+    this.name = this.$store.state.licence.owner.name
+    this.email = this.$store.state.licence.owner.email
+  },
+
   methods: {
     next () {
       // TODO: Validate the fields: whitespace, special characters...etc
@@ -37,7 +42,12 @@ export default {
         this.email < 7
       if (this.hasError === false) {
         const step = this.$route.meta.step
+        this.$store.dispatch('licence/updateOwner', {
+          name: this.name,
+          email: this.email
+        })
         this.$store.dispatch('licence/completeStep', { step })
+        this.$router.push({ name: 'activateCompleted' })
       }
     }
   }

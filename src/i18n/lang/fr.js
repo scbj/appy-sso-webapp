@@ -12,6 +12,7 @@ export default {
   noGroup: 'Aucun groupe',
   byDefault: 'Par défaut',
   learnMore: 'en savoir plus',
+  licenceKey: 'Clé de licence :',
   alert: {
     username: { ask: "Veuillez renseigner votre nom d'utilisateur" },
     password: { ask: 'Veuillez renseigner votre mot de passe' },
@@ -40,7 +41,8 @@ export default {
     alreadyLogged: 'Déjà connecté !',
     licenceKey: 'Entrez votre clé de licence',
     companyName: 'Choisissez le nom de votre entreprise',
-    ownerInfos: "Créez l'utilisateur propriétaire de la licence"
+    ownerInfos: "Créez l'utilisateur propriétaire de la licence",
+    completed: "Félicitations ! Vous venez d'activer votre licence !"
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',
@@ -49,7 +51,8 @@ export default {
       applications: 'Aucune application à afficher... tant pis 👻'
     },
     dragAndDropHere: 'Glissez-déposez votre photo de profil',
-    invalidCompanyName: "Le nom de l'entreprise doit<br>contenir au moins 3 caractères.<br>Il ne doit pas commencer ni finir<br>par un espace, les espaces<br>consécutifs seront remplacés par<br>un seul."
+    invalidCompanyName: "Le nom de l'entreprise doit<br>contenir au moins 3 caractères.<br>Il ne doit pas commencer ni finir<br>par un espace, les espaces<br>consécutifs seront remplacés par<br>un seul.",
+    emailSent: 'Nous vous avons envoyé un mail afin que vous puissiez accèder à votre compte.&#13;&#10;Vous serez amené à définir un mot de passe.'
   },
   placeholder: {
     fullName: 'Nom complet (prénom et nom)',

@@ -2,7 +2,7 @@
 .activate-licence-base-step
   h1 {{ title }}
   slot
-  button( @click="$emit('next')" ) {{ button | uppercase }}
+  button( v-if='showButton' @click="$emit('next')" ) {{ button | uppercase }}
 </template>
 
 <script>
@@ -17,6 +17,10 @@ export default {
     button: {
       type: String,
       required: true
+    },
+    showButton: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -34,6 +38,7 @@ export default {
   width: 100%;
 
   > h1 {
+    user-select: none;
     color: #9E3AA6;
     font-weight: 600;
     font-size: 2.55rem;

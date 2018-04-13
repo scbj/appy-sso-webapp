@@ -4,6 +4,7 @@ import ActivateLicencePage from '@/components/activateLicence/ActivateLicencePag
 import ActivateLicenceKey from '@/components/activateLicence/ActivateLicenceKey'
 import ActivateLicenceCompany from '@/components/activateLicence/ActivateLicenceCompany'
 import ActivateLicenceOwner from '@/components/activateLicence/ActivateLicenceOwner'
+import ActivateLicenceCompleted from '@/components/activateLicence/ActivateLicenceCompleted'
 import LoginPage from '@/components/login/LoginPage'
 import DashboardPage from '@/components/Dashboard/DashboardPage'
 import PageNotFound from '@/components/error/NotFound'
@@ -49,6 +50,13 @@ const router = new Router({
           name: 'activateOwner',
           component: ActivateLicenceOwner,
           meta: { step: 3 },
+          beforeEnter
+        },
+        {
+          path: 'completed',
+          name: 'activateCompleted',
+          component: ActivateLicenceCompleted,
+          meta: { step: 4 },
           beforeEnter
         }
       ]

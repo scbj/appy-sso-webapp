@@ -21,3 +21,9 @@ export function updateCompanyName ({ commit }, payload) {
     commit(types.LICENCE_UPDATE_COMPANY_NAME, payload)
   }
 }
+
+export function updateOwner ({ commit }, payload) {
+  if (payload.name && payload.email) {
+    commit(types.LICENCE_UPDATE_OWNER, payload)
+  }
+}

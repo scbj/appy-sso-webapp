@@ -12,6 +12,7 @@ export default {
   noGroup: 'No group',
   byDefault: 'By default',
   learnMore: 'learn more',
+  licenceKey: 'Licence key:',
   alert: {
     username: { ask: 'Please enter your username' },
     password: { ask: 'Please enter your password' },
@@ -40,7 +41,8 @@ export default {
     alreadyLogged: 'Already logged in!',
     licenceKey: 'Enter your license key',
     companyName: 'Choose the name of your company',
-    ownerInfos: 'Create the user who owns the license'
+    ownerInfos: 'Create the user who owns the license',
+    completed: 'Congratulations! You have activated your license!'
   },
   message: {
     alreadyLogged: 'You are already logged in, you can change to another account at any time.',
@@ -49,7 +51,8 @@ export default {
       applications: 'No apps to display ... too bad 👻'
     },
     dragAndDropHere: 'Drag and drop your profile picture',
-    invalidCompanyName: 'The company name must contain at<br>least 3 characters. It must not<br>begin or end with a space,<br>consecutive spaces will be<br>replaced by one.'
+    invalidCompanyName: 'The company name must contain at<br>least 3 characters. It must not<br>begin or end with a space,<br>consecutive spaces will be<br>replaced by one.',
+    emailSent: 'We have sent you an email so you can access your account.&#13;&#10;You will need to set a password.'
   },
   placeholder: {
     fullName: 'Full name (first and last name)',

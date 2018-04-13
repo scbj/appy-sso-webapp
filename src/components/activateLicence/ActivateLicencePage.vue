@@ -1,13 +1,17 @@
 <template lang="pug">
 .activate-licence-page
-  StepIndicator( :active='activeStep' :count='3' )
+  StepIndicator( :active='activeStep' :count='3' v-show='completedStepCount < 3' )
   router-view
   BaseLanguageSwitch.language
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+
 import BaseLanguageSwitch from '@/components/base/BaseLanguageSwitch'
 import StepIndicator from './StepIndicator'
+
+const { mapState } = createNamespacedHelpers('licence')
 
 export default {
   components: {
@@ -19,6 +23,12 @@ export default {
     return {
       activeStep: 1
     }
+  },
+
+  computed: {
+    ...mapState([
+      'completedStepCount'
+    ])
   },
 
   mounted () {
