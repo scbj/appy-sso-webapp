@@ -50,20 +50,4 @@ export default {
 input {
   text-align: center;
 }
-
-.message.error > .learn-more {
-  cursor: help;
-  position: relative;
-  max-width: 30em;
-
-  &::after {
-    content: '';
-    background-color: $errorColor;
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    left: 0;
-    bottom: -.1em;
-  }
-}
 </style>

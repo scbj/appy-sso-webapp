@@ -19,7 +19,11 @@ export default {
     incorrectCredentials: 'Incorrect username or password.',
     networkError: 'We have trouble contacting the moon... please try again later! 🚀🌘',
     invalidLicenceKey: 'Invalid or incorrect license key',
-    invalidCompanyName: 'Invalid name'
+    invalidCompanyName: 'Invalid name',
+    invalidFullName: 'Invalid name',
+    invalidEmail: 'Invaild email',
+    invalidFields: 'Invalid fields',
+    unknownField: 'Unknown field'
   },
   button: {
     logIn: 'Sign in',
@@ -52,6 +56,10 @@ export default {
     },
     dragAndDropHere: 'Drag and drop your profile picture',
     invalidCompanyName: 'The company name must contain at<br>least 3 characters. It must not<br>begin or end with a space,<br>consecutive spaces will be<br>replaced by one.',
+    invalidFullName: 'Your full name must contain only letters and at least 4 characters.',
+    invalidEmail: 'The email must contain an at sign, followed by the domain name with a single dot.',
+    invalidFields: '@:message.invalidFullName<br>@:message.invalidEmail',
+    unknownField: 'Unable to process {key} field.',
     emailSent: 'We have sent you an email so you can access your account.&#13;&#10;You will need to set a password.'
   },
   placeholder: {

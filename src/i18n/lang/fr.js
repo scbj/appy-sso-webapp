@@ -19,7 +19,11 @@ export default {
     incorrectCredentials: 'Identifiant ou mot de passe incorrect.',
     networkError: 'Nous avons du mal à contacter la lune... veuillez réessayer plus tard ! 🚀🌘',
     invalidLicenceKey: 'Clé de licence invalide ou incorrect',
-    invalidCompanyName: 'Nom invalide'
+    invalidCompanyName: 'Nom invalide',
+    invalidFullName: 'Nom complet invalide',
+    invalidEmail: 'Email invalide',
+    invalidFields: 'Champs invalides',
+    unknownField: 'Champ inconnu'
   },
   button: {
     logIn: 'Se connecter',
@@ -52,6 +56,10 @@ export default {
     },
     dragAndDropHere: 'Glissez-déposez votre photo de profil',
     invalidCompanyName: "Le nom de l'entreprise doit<br>contenir au moins 3 caractères.<br>Il ne doit pas commencer ni finir<br>par un espace, les espaces<br>consécutifs seront remplacés par<br>un seul.",
+    invalidFullName: 'Votre nom complet doit contenir uniquement des<br>lettres et au minimum 4 caractères.',
+    invalidEmail: "L'email doit contenir un arobase, suivi du nom de domaine avec un seul point.",
+    invalidFields: '@:message.invalidFullName<br>@:message.invalidEmail',
+    unknownField: 'Impossible de traiter le champ {key}.',
     emailSent: 'Nous vous avons envoyé un mail afin que vous puissiez accèder à votre compte.&#13;&#10;Vous serez amené à définir un mot de passe.'
   },
   placeholder: {

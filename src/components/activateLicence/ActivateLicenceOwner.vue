@@ -7,11 +7,18 @@ ActivateLicenceBaseStep.activate-licence-owner(
     DragDropZone
     input( v-model='name' :placeholder="$t('placeholder.fullName')" )
     input( v-model='email' :placeholder="$t('placeholder.email')" )
+  span.message.error( v-show='hasError' )
+    | {{ error.title }},&nbsp;
+    el-tooltip
+      div( slot='content' v-html="error.description" )
+      span.learn-more {{ $t('learnMore') }}.
 </template>
 
 <script>
 import ActivateLicenceBaseStep from './ActivateLicenceBaseStep'
 import DragDropZone from './DragDropZone'
+import * as helpers from '@/utils/string-helpers'
+import { validate } from '@/validators'
 
 export default {
   components: {
@@ -24,7 +31,16 @@ export default {
       name: '',
       email: '',
       picture: '',
-      hasError: false
+      error: {
+        title: '',
+        description: ''
+      }
+    }
+  },
+
+  computed: {
+    hasError () {
+      return !!this.error.title && !!this.error.description
     }
   },
 
@@ -34,20 +50,41 @@ export default {
   },
 
   methods: {
+    cleanError () {
+      this.error.title = ''
+      this.error.description = ''
+    },
+
+    showErrors (errors) {
+      // We must choose between a title for a specific field or a generic title
+      this.error.title = errors.length === 1
+        ? errors[0].title
+        : this.$t('alert.invalidFields')
+
+      // Stack each description below each other
+      this.error.description = errors
+        .map(e => e.description)
+        .join('<br>')
+    },
+
     next () {
-      // TODO: Validate the fields: whitespace, special characters...etc
-      this.hasError =
-        this.name.length < 7 &&
-        this.email < 7
-      if (this.hasError === false) {
-        const step = this.$route.meta.step
-        this.$store.dispatch('licence/updateOwner', {
-          name: this.name,
-          email: this.email
-        })
-        this.$store.dispatch('licence/completeStep', { step })
-        this.$router.push({ name: 'activateCompleted' })
+      this.cleanError()
+      this.name = helpers.cleanWhitespaces(this.name)
+      const errors = validate({
+        fullName: this.name,
+        email: this.email
+      })
+      if (errors.length > 0) {
+        return this.showErrors(errors)
       }
+
+      const step = this.$route.meta.step
+      this.$store.dispatch('licence/updateOwner', {
+        name: this.name,
+        email: this.email
+      })
+      this.$store.dispatch('licence/completeStep', { step })
+      this.$router.push({ name: 'activateCompleted' })
     }
   }
 }

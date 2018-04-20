@@ -1,30 +1,36 @@
 <template lang="pug">
 .drag-drop-zone(
-  :class='{ highlight: isDragging || hasImage }'
+  :class='{ highlight: isDragging }'
   @dragenter='onDrag'
   @dragover='onDragOver'
   @dragleave='onDragLeave'
-  @drop='onDrop' )
+  @drop='onDrop'
+)
   span.label( v-show='!hasImage' ) {{ $t('message.dragAndDropHere') }}
-  input( ref='fileExplorerInput' type='file' class='file-explorer' accept='image/*' @change='onFileSelected' )
-  BaseImage.preview( v-if='hasImage' :src='preview' draggable='false' )
+  input(
+    ref='fileExplorerInput'
+    type='file'
+    class='file-explorer'
+    accept='image/*'
+    @change='onFileSelected'
+  )
+  BaseImage.preview(
+    v-if='hasImage'
+    :src='preview'
+    draggable='false'
+  )
   button.open-remove-button( @click='onClick' :class="{ 'has-image': hasImage }"  )
     i( v-show='hasImage' class='icon ion-ios-trash-outline' )
 </template>
 
 <script>
-import BaseImage from '../base/BaseImage'
-
+/** Stop popagation and prevent default. */
 function handleEvent (e) {
   e.stopPropagation()
   e.preventDefault()
 }
 
 export default {
-  components: {
-    BaseImage
-  },
-
   data () {
     return {
       preview: '',
@@ -39,7 +45,6 @@ export default {
   },
 
   methods: {
-    /** Stop popagation and prevent default. */
     onDrag: e => handleEvent(e),
 
     onDragOver (e) {

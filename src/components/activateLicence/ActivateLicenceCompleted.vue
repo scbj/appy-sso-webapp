@@ -60,7 +60,6 @@ export default {
 }
 
 .card {
-  // animation: balance 2s ease-in-out infinite;
   background: radial-gradient(
     circle at top,
     transparent 0%,
@@ -124,10 +123,5 @@ span {
     }
     .key { font-family: 'Consolas' }
   }
-}
-
-@keyframes balance {
-  0%, 100% { transform: rotate(4deg); }
-  50% { transform: rotate(-4deg); }
 }
 </style>
