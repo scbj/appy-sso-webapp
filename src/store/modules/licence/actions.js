@@ -1,4 +1,5 @@
 import * as types from '@/store/mutation-types'
+import api from '@/api/v1'
 
 export function completeStep ({ state, commit }, payload) {
   const completedStepCount = state.completedStepCount
@@ -25,5 +26,17 @@ export function updateCompanyName ({ commit }, payload) {
 export function updateOwner ({ commit }, payload) {
   if (payload.name && payload.email) {
     commit(types.LICENCE_UPDATE_OWNER, payload)
+  }
+}
+
+export function validate ({ commit }, payload) {
+  if (payload.key) {
+    return api.licence.validate(payload.key)
+  }
+}
+
+export function activate ({ commit }, payload) {
+  if (payload) {
+    return api.licence.validate(payload)
   }
 }

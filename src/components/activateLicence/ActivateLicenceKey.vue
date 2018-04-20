@@ -60,13 +60,18 @@ export default {
       this.licenceKey = licence
     },
 
-    next () {
+    async next () {
       this.hasError = this.licenceKey.length < 36
       if (this.hasError === false) {
-        const step = this.$route.meta.step
-        this.$store.dispatch('licence/updateKey', { key: this.licenceKey })
-        this.$store.dispatch('licence/completeStep', { step })
-        this.$router.push({ name: 'activateCompany' })
+        const res = await this.$store.dispatch('licence/validate', { key: this.licenceKey })
+        if (res.status !== 200) {
+          this.hasError = true
+        } else {
+          const step = this.$route.meta.step
+          this.$store.dispatch('licence/updateKey', { key: this.licenceKey })
+          this.$store.dispatch('licence/completeStep', { step })
+          this.$router.push({ name: 'activateCompany' })
+        }
       }
     }
   }
