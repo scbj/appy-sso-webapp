@@ -1,10 +1,10 @@
 <template lang="pug">
 .drag-drop-zone(
   :class='{ highlight: isDragging }'
-  @dragenter='onDrag'
-  @dragover='onDragOver'
-  @dragleave='onDragLeave'
-  @drop='onDrop'
+  @dragenter.stop.prevent='onDrag'
+  @dragover.stop.prevent='onDragOver'
+  @dragleave.stop.prevent='onDragLeave'
+  @drop.stop.prevent='onDrop'
 )
   span.label( v-show='!hasImage' ) {{ $t('message.dragAndDropHere') }}
   input(
@@ -24,12 +24,6 @@
 </template>
 
 <script>
-/** Stop popagation and prevent default. */
-function handleEvent (e) {
-  e.stopPropagation()
-  e.preventDefault()
-}
-
 export default {
   data () {
     return {
@@ -45,20 +39,15 @@ export default {
   },
 
   methods: {
-    onDrag: e => handleEvent(e),
-
-    onDragOver (e) {
-      handleEvent(e)
+    onDragOver () {
       this.isDragging = true
     },
 
-    onDragLeave (e) {
-      handleEvent(e)
+    onDragLeave () {
       this.isDragging = false
     },
 
     onDrop (e) {
-      handleEvent(e)
       const transfer = e.dataTransfer
       this.handleFiles(transfer.files)
       this.isDragging = false

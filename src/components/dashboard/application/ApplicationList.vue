@@ -7,7 +7,7 @@
       :key='app.name'
       :name='app.name'
       :logo='app.pictureUrl'
-      :isNew='app.createdAt | isNew')
+      :isNew='app.created_at | isNew')
   .no-data( v-else )
     i( class='icon ion-ios-albums-outline' )
     span.label( v-text="$t('message.noData.applications')" )

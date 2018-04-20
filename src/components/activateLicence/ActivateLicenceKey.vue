@@ -8,6 +8,7 @@ ActivateLicenceBaseStep.activate-licence-key(
       spellcheck='false'
       v-model='licenceKey'
       @input='onInput'
+      @keyup.enter="next"
       @keypress='onKeypress' )
     span.placeholder {{ placeholder }}
   span.message.error( v-show='hasError' ) {{ $t('alert.invalidLicenceKey') }}

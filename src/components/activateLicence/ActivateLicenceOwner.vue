@@ -6,7 +6,10 @@ ActivateLicenceBaseStep.activate-licence-owner(
   .layout
     DragDropZone
     input( v-model='name' :placeholder="$t('placeholder.fullName')" )
-    input( v-model='email' :placeholder="$t('placeholder.email')" )
+    input(
+      v-model='email'
+      :placeholder="$t('placeholder.email')"
+      @keyup.enter="next" )
   span.message.error( v-show='hasError' )
     | {{ error.title }},&nbsp;
     el-tooltip

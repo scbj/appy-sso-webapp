@@ -22,7 +22,8 @@ el-form(
       type='password'
       v-model='form.password'
       auto-complete='off'
-      @focus.native='$event.target.select()')
+      @focus.native='$event.target.select()'
+      @keyup.enter.native='submit' )
   el-form-item
     el-checkbox( disabled :model='form.rememberMe' ) {{ $t('check.rememberMe') }}
   el-form-item
@@ -40,7 +41,7 @@ export default {
       error: '',
       errorType: '',
       form: {
-        username: 'john.doe@example.com',
+        username: 'simeon.hoeger@example.com',
         password: 'secret',
         rememberMe: false
       },

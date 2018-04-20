@@ -3,7 +3,10 @@ ActivateLicenceBaseStep.activate-licence-company(
   :title="$t('title.companyName')"
   :button="$t('button.next')"
   @next='next' )
-  input( v-model='companyName' placeholder='The good company' )
+  input(
+    v-model='companyName'
+    placeholder='The good company'
+    @keyup.enter="next" )
   span.message.error( v-show='hasError' )
     | {{ $t('alert.invalidCompanyName') }},&nbsp;
     el-tooltip
