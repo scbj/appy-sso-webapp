@@ -2,7 +2,8 @@
 ActivateLicenceBaseStep.activate-licence-key(
   :title="$t('title.licenceKey')",
   :button="$t('button.validate')"
-  @next='next' )
+  @next='next'
+  :pending='pending' )
   .input( ref='input' )
     input(
       spellcheck='false'
@@ -17,6 +18,7 @@ ActivateLicenceBaseStep.activate-licence-key(
 <script>
 import ActivateLicenceBaseStep from './ActivateLicenceBaseStep'
 import { licenceMask } from '@/utils/masks'
+import delay from '../../utils/delay'
 
 export default {
   components: {
@@ -27,7 +29,14 @@ export default {
     return {
       licenceKey: '',
       placeholder: '',
-      hasError: false
+      hasError: false,
+      pending: false
+    }
+  },
+
+  computed: {
+    keyLengthTooSmall () {
+      return this.licenceKey.length < 36
     }
   },
 
@@ -48,7 +57,7 @@ export default {
 
   methods: {
     onKeypress (e) {
-      // Manually handle keypress ⌨
+      // Manually handle keypress behavior ⌨
       e.preventDefault()
       const char = String.fromCharCode(e.keyCode || e.charCode)
       const licence = licenceMask(this.licenceKey + char)
@@ -61,18 +70,47 @@ export default {
     },
 
     async next () {
-      this.hasError = this.licenceKey.length < 36
-      if (this.hasError === false) {
-        const res = await this.$store.dispatch('licence/validate', { key: this.licenceKey })
-        if (res.status !== 200) {
-          this.hasError = true
-        } else {
-          const step = this.$route.meta.step
-          this.$store.dispatch('licence/updateKey', { key: this.licenceKey })
-          this.$store.dispatch('licence/completeStep', { step })
-          this.$router.push({ name: 'activateCompany' })
-        }
+      this.hasError = false
+
+      if (this.keyLengthTooSmall) {
+        return (this.hasError = true)
       }
+
+      await this.validateKey()
+        ? this.completeStep()
+        : this.hasError = true
+    },
+
+    /** @returns {Promise<Boolean>} */
+    validateKey () {
+      return new Promise(async resolve => {
+        this.pending = true
+
+        // Start the asynchronous task to wait for it later
+        const request = this.$store.dispatch(
+          'licence/validate',
+          { key: this.licenceKey })
+
+        // We must wait at least 1000 milliseconds for the change
+        // of state of the button so that it is not too fast (abrupt).
+        await delay(1000)
+
+        // Wait for the result of the task and
+        // complete the step if the answer is correct.
+        const response = await request
+        response.status === 200
+          ? this.completeStep()
+          : this.hasError = true
+
+        this.pending = false
+      })
+    },
+
+    completeStep () {
+      const step = this.$route.meta.step
+      this.$store.dispatch('licence/updateKey', { key: this.licenceKey })
+      this.$store.dispatch('licence/completeStep', { step })
+      this.$router.push({ name: 'activateCompany' })
     }
   }
 }

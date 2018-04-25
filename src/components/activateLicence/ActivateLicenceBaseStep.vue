@@ -2,7 +2,10 @@
 .activate-licence-base-step
   h1 {{ title }}
   slot
-  button( v-if='showButton' @click="$emit('next')" ) {{ button | uppercase }}
+  button(
+    v-if='showButton'
+    @click="$emit('next')"
+    :class='{ pending }' ) {{ button | uppercase }}
 </template>
 
 <script>
@@ -12,7 +15,8 @@ export default {
   props: {
     title: { type: String, required: true },
     button: { type: String, required: true },
-    showButton: { type: Boolean, default: true }
+    showButton: { type: Boolean, default: true },
+    pending: { type: Boolean, default: false }
   },
 
   filters: {
@@ -43,6 +47,7 @@ export default {
   }
 
   > button {
+    overflow: hidden;
     cursor: pointer;
     user-select: none;
     --start-color: #A250E5;
@@ -60,6 +65,7 @@ export default {
     border-radius: 5px;
     margin-top: 7.4rem;
     min-width: 12.7em;
+    position: relative;
     box-shadow:
       0 3px 10px -3px rgba(black, .8);
     transition: box-shadow .2s ease-out;
@@ -75,6 +81,94 @@ export default {
         0 0 0 1px rgba(black, .06) inset;
       transition-duration: .06s;
     }
+
+    &.pending {
+      color: transparent;
+
+      &::before,
+      &::after {
+        $size: 30px;
+        content: '';
+        // border: 1px solid rgba(white, .8);
+        border-radius: 50%;
+
+        // Position
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: $size;
+        height: $size;
+        transform: scale(1) translateX(-50%) translateY(-50%);
+        // animation: pop 1.3s ease-in-out infinite;
+        animation-duration: 1.1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+      }
+
+      $animation-duration: 1s;
+      &::before {
+        border: none;
+        background-color: rgba(white, .4);
+        animation-name: broadcast;
+        animation-timing-function: ease-out;
+        animation-delay: .24s;
+      }
+      &::after {
+        background-color: rgba(white, .9);
+        animation-name: breath;
+      }
+      $background-color: rgba(white, .3);
+      $base-transform: translateX(-50%) translateY(-50%);
+      @keyframes breath {
+        0% {
+          transform: $base-transform scale(.1);
+        }
+        40% {
+          background-color: rgba(white, .6);
+          transform: $base-transform scale(.8);
+        }
+        100% {
+          // background-color: rgba(white, .7);
+          transform: $base-transform scale(.1);
+        }
+      }
+
+      @keyframes broadcast {
+        0% {
+          transform: $base-transform scale(0);
+        }
+        75% {
+          transform: $base-transform scale(10);
+        }
+        90% {
+          background-color: transparent;
+          transform: $base-transform scale(1.1);
+        }
+        100% {
+          background-color: transparent;
+          transform: $base-transform scale(1);
+        }
+      }
+    }
+
+    // &::after {
+    //   animation-delay: .8s;
+    // }
+
+    // $background-color: rgba(white, .3);
+    // @keyframes pop {
+    //   0% {
+    //     background-color: $background-color;
+    //     transform: translateX(-50%) translateY(-50%) scale(1);
+    //   }
+    //   50% {
+    //     transform: translateX(-50%) translateY(-50%) scale(.1);
+    //   }
+    //   100% {
+    //     background-color: $background-color;
+    //     transform: translateX(-50%) translateY(-50%) scale(1);
+    //   }
+    // }
   }
 }
 
