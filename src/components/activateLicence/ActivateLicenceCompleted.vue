@@ -2,8 +2,7 @@
 ActivateLicenceBaseStep.activate-licence-completed(
   :title="$t('title.completed')"
   :button="$t('button.logIn')"
-  :showButton='false'
-  @next='next' )
+  :showButton='false' )
   p.email-sent( v-html="$t('message.emailSent')" )
   .card
     .check-sign
@@ -14,30 +13,32 @@ ActivateLicenceBaseStep.activate-licence-completed(
     span.email {{ email }}
     span.licence-key
       b {{ $t('licenceKey') }}&nbsp;
-      span.key {{ key }}
+      span.key {{ licenceKey }}
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-
 import ActivateLicenceBaseStep from './ActivateLicenceBaseStep'
-
-const { mapState } = createNamespacedHelpers('licence')
 
 export default {
   components: {
     ActivateLicenceBaseStep
   },
 
-  computed: {
-    ...mapState([
-      'key',
-      'companyName'
-    ]),
-    ...mapState({
-      name: state => state.owner.name,
-      email: state => state.owner.email
-    })
+  data () {
+    return {
+      licenceKey: this.$store.state.licence.key,
+      companyName: this.$store.state.licence.companyName,
+      name: this.$store.state.licence.owner.name,
+      email: this.$store.state.licence.owner.email
+    }
+  },
+
+  created () {
+    this.$store.dispatch('licence/updateCurrentStep', { step: 0 })
+  },
+
+  mounted () {
+    this.$store.dispatch('licence/clean')
   }
 }
 </script>
@@ -107,6 +108,10 @@ span {
   &.full-name,
   &.email {
     font-size: 1.5em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
   }
 
   &.full-name {

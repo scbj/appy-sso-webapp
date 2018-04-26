@@ -10,7 +10,8 @@ ActivateLicenceBaseStep.activate-licence-key(
       v-model='licenceKey'
       @input='onInput'
       @keyup.enter="next"
-      @keypress='onKeypress' )
+      @keypress='onKeypress'
+      autofocus )
     span.placeholder {{ placeholder }}
   span.message.error( v-show='hasError' ) {{ $t('alert.invalidLicenceKey') }}
 </template>
@@ -18,7 +19,7 @@ ActivateLicenceBaseStep.activate-licence-key(
 <script>
 import ActivateLicenceBaseStep from './ActivateLicenceBaseStep'
 import { licenceMask } from '@/utils/masks'
-import delay from '../../utils/delay'
+import delay from '@/utils/delay'
 
 export default {
   components: {
@@ -27,7 +28,7 @@ export default {
 
   data () {
     return {
-      licenceKey: '',
+      licenceKey: this.$store.state.licence.key,
       placeholder: '',
       hasError: false,
       pending: false
@@ -51,8 +52,8 @@ export default {
     }
   },
 
-  mounted () {
-    this.licenceKey = this.$store.state.licence.key
+  created () {
+    this.$store.dispatch('licence/updateCurrentStep', { step: 1 })
   },
 
   methods: {
@@ -82,28 +83,23 @@ export default {
     },
 
     /** @returns {Promise<Boolean>} */
-    validateKey () {
-      return new Promise(async resolve => {
-        this.pending = true
+    async validateKey () {
+      this.pending = true
 
-        // Start the asynchronous task to wait for it later
-        const request = this.$store.dispatch(
-          'licence/validate',
-          { key: this.licenceKey })
+      // Start the asynchronous task to wait for it later
+      const request = this.$store.dispatch(
+        'licence/validate',
+        { key: this.licenceKey })
 
-        // We must wait at least 1000 milliseconds for the change
-        // of state of the button so that it is not too fast (abrupt).
-        await delay(1000)
+      // We must wait at least 1000 milliseconds for the change
+      // of state of the button so that it is not too fast (abrupt).
+      await delay(1000)
 
-        // Wait for the result of the task and
-        // complete the step if the answer is correct.
-        const response = await request
-        response.status === 200
-          ? this.completeStep()
-          : this.hasError = true
-
-        this.pending = false
-      })
+      // Wait for the result of the task and
+      // complete the step if the answer is correct.
+      const response = await request
+      this.pending = false
+      return response.status === 200
     },
 
     completeStep () {

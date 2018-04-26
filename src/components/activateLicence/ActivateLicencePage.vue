@@ -1,6 +1,9 @@
 <template lang="pug">
 .activate-licence-page
-  StepIndicator( :active='activeStep' :count='3' v-show='completedStepCount < 3' )
+  StepIndicator(
+    :active='currentStep'
+    :count='maxStep'
+    v-show='shouldShowStepIndicator' )
   router-view
   BaseLanguageSwitch.language
 </template>
@@ -19,16 +22,16 @@ export default {
     StepIndicator
   },
 
-  data () {
-    return {
-      activeStep: 1
-    }
-  },
-
   computed: {
     ...mapState([
-      'completedStepCount'
-    ])
+      'maxStep',
+      'currentStep'
+    ]),
+
+    shouldShowStepIndicator () {
+      return this.currentStep > 0 &&
+        this.currentStep <= this.maxStep
+    }
   },
 
   mounted () {
@@ -42,7 +45,10 @@ export default {
 
   methods: {
     updateActiveStep (to) {
-      this.activeStep = (to && to.meta.step) || this.$route.meta.step || 1
+      const step = (to && to.meta.step) || this.$route.meta.step || 1
+      if (step <= this.maxStep) {
+        this.activeStep = step
+      }
     }
   }
 }
@@ -57,7 +63,8 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-top: 20vh;
-  height: 100vh;
+  padding-bottom: 10vh;
+  min-height: 100vh;
 }
 
 .step-indicator {
@@ -65,7 +72,7 @@ export default {
 }
 
 .language {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   margin: 2rem;

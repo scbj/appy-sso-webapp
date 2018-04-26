@@ -56,7 +56,7 @@ export default {
     },
     dragAndDropHere: 'Glissez-déposez votre photo de profil',
     invalidCompanyName: "Le nom de l'entreprise doit<br>contenir au moins 3 caractères.<br>Il ne doit pas commencer ni finir<br>par un espace, les espaces<br>consécutifs seront remplacés par<br>un seul.",
-    invalidFullName: 'Votre nom complet doit contenir uniquement des<br>lettres et au minimum 4 caractères.',
+    invalidFullName: "Votre nom complet doit être constitué d'au moins deux mots, uniquement des<br>lettres et au minimum 4 caractères.",
     invalidEmail: "L'email doit contenir un arobase, suivi du nom de domaine avec un seul point.",
     invalidFields: '@:message.invalidFullName<br>@:message.invalidEmail',
     unknownField: 'Impossible de traiter le champ {key}.',

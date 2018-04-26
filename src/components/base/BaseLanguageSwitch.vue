@@ -48,6 +48,7 @@ export default {
   }
 
   span.el-dropdown-link {
+    user-select: none;
     display: flex;
     align-items: center;
     font-size: 1rem;

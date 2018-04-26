@@ -2,10 +2,11 @@
 ActivateLicenceBaseStep.activate-licence-owner(
   :title="$t('title.ownerInfos')",
   :button="$t('button.create')"
-  @next='next' )
+  @next='next'
+  :pending='pending' )
   .layout
-    DragDropZone
-    input( v-model='name' :placeholder="$t('placeholder.fullName')" )
+    DragDropZone( @drag='onImageDragged' )
+    input( v-model='name' :placeholder="$t('placeholder.fullName')" autofocus )
     input(
       v-model='email'
       :placeholder="$t('placeholder.email')"
@@ -21,6 +22,7 @@ ActivateLicenceBaseStep.activate-licence-owner(
 import ActivateLicenceBaseStep from './ActivateLicenceBaseStep'
 import DragDropZone from './DragDropZone'
 import * as helpers from '@/utils/string-helpers'
+import delay from '@/utils/delay'
 import { validate } from '@/validators'
 
 export default {
@@ -37,7 +39,8 @@ export default {
       error: {
         title: '',
         description: ''
-      }
+      },
+      pending: false
     }
   },
 
@@ -47,9 +50,8 @@ export default {
     }
   },
 
-  mounted () {
-    this.name = this.$store.state.licence.owner.name
-    this.email = this.$store.state.licence.owner.email
+  created () {
+    this.$store.dispatch('licence/updateCurrentStep', { step: 3 })
   },
 
   methods: {
@@ -70,7 +72,11 @@ export default {
         .join('<br>')
     },
 
-    next () {
+    onImageDragged (e) {
+      this.picture = e.image
+    },
+
+    async next () {
       this.cleanError()
       this.name = helpers.cleanWhitespaces(this.name)
       const errors = validate({
@@ -81,6 +87,12 @@ export default {
         return this.showErrors(errors)
       }
 
+      await this.activateLicence()
+        ? this.completeStep()
+        : alert('Activation failed... contact support please.')
+    },
+
+    completeStep () {
       const step = this.$route.meta.step
       this.$store.dispatch('licence/updateOwner', {
         name: this.name,
@@ -88,6 +100,28 @@ export default {
       })
       this.$store.dispatch('licence/completeStep', { step })
       this.$router.push({ name: 'activateCompleted' })
+    },
+
+    /** @returns {Promise<Boolean>} */
+    async activateLicence () {
+      this.pending = true
+      // TODO: Convert image to Base64
+      const owner = {
+        firstname: this.name.split(' ')[0],
+        lastname: this.name.split(' ')[1],
+        email: this.email,
+        picture: this.picture
+      }
+
+      const request = this.$store.dispatch('licence/activate', owner)
+
+      // We must wait at least 1000 milliseconds for the change
+      // of state of the button so that it is not too fast (abrupt).
+      await delay(1000)
+
+      const response = await request
+      this.pending = false
+      return response.status === 200
     }
   }
 }

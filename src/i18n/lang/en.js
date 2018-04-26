@@ -56,7 +56,7 @@ export default {
     },
     dragAndDropHere: 'Drag and drop your profile picture',
     invalidCompanyName: 'The company name must contain at<br>least 3 characters. It must not<br>begin or end with a space,<br>consecutive spaces will be<br>replaced by one.',
-    invalidFullName: 'Your full name must contain only letters and at least 4 characters.',
+    invalidFullName: 'Your full name must consist of at least two words, only letters and at least 4 characters.',
     invalidEmail: 'The email must contain an at sign, followed by the domain name with a single dot.',
     invalidFields: '@:message.invalidFullName<br>@:message.invalidEmail',
     unknownField: 'Unable to process {key} field.',

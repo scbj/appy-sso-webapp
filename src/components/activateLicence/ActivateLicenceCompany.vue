@@ -6,7 +6,8 @@ ActivateLicenceBaseStep.activate-licence-company(
   input(
     v-model='companyName'
     placeholder='The good company'
-    @keyup.enter="next" )
+    @keyup.enter="next"
+    autofocus )
   span.message.error( v-show='hasError' )
     | {{ $t('alert.invalidCompanyName') }},&nbsp;
     el-tooltip
@@ -24,13 +25,13 @@ export default {
 
   data () {
     return {
-      companyName: '',
+      companyName: this.$store.state.licence.companyName,
       hasError: false
     }
   },
 
-  mounted () {
-    this.companyName = this.$store.state.licence.companyName
+  created () {
+    this.$store.dispatch('licence/updateCurrentStep', { step: 2 })
   },
 
   methods: {

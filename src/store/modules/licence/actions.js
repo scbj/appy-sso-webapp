@@ -11,6 +11,12 @@ export function completeStep ({ state, commit }, payload) {
   }
 }
 
+export function updateCurrentStep ({ state, commit }, payload) {
+  if (typeof payload.step === 'number') {
+    commit(types.LICENCE_UPDATE_CURRENT_STEP, payload)
+  }
+}
+
 export function updateKey ({ commit }, payload) {
   if (payload.key) {
     commit(types.LICENCE_UPDATE_KEY, payload)
@@ -30,13 +36,18 @@ export function updateOwner ({ commit }, payload) {
 }
 
 export function validate ({ commit }, payload) {
-  if (payload.key) {
-    return api.licence.validate(payload.key)
-  }
+  return api.licence.validate(payload && payload.key)
 }
 
-export function activate ({ commit }, payload) {
-  if (payload) {
-    return api.licence.validate(payload)
+export function activate ({ state, commit }, owner) {
+  const data = {
+    owner,
+    licenceKey: state.key,
+    companyName: state.companyName
   }
+  return api.licence.activate(data)
+}
+
+export function clean ({ commit }) {
+  commit(types.LICENCE_CLEAN)
 }

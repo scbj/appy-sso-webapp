@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { limitResolution } from '@/utils/image-helpers'
+
 export default {
   data () {
     return {
@@ -69,14 +71,18 @@ export default {
       this.handleFiles(input.files)
     },
 
-    handleFiles (files) {
+    async handleFiles (files) {
       const containsFile = files && !!files.length
       if (!containsFile) {
         return console.debug("'files' doesn't contains file.")
       }
       const file = files[0]
       if (file.type.startsWith('image/')) {
-        this.preview = window.URL.createObjectURL(file)
+        const image = await limitResolution(file, 200)
+        if (image) {
+          this.preview = image
+          this.$emit('drag', { image })
+        }
       }
     }
   }
