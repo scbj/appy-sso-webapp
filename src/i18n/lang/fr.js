@@ -60,7 +60,10 @@ export default {
     invalidEmail: "L'email doit contenir un arobase, suivi du nom de domaine avec un seul point.",
     invalidFields: '@:message.invalidFullName<br>@:message.invalidEmail',
     unknownField: 'Impossible de traiter le champ {key}.',
-    emailSent: 'Nous vous avons envoyé un mail afin que vous puissiez accèder à votre compte.&#13;&#10;Vous serez amené à définir un mot de passe.'
+    emailSent: 'Nous vous avons envoyé un mail afin que vous puissiez accèder à votre compte.&#13;&#10;Vous serez amené à définir un mot de passe.',
+    tooCramped: "Un peu trop à l'étroit ici !",
+    tooCrampedInstructions: "Utilisez un ordinateur et agrandissez la fenêtre jusqu'à ce qu'on soit plus à l'aise",
+    tooCrampedWhy: "L'activation de la licence sur mobile est en développement ! Vous pourrez bientôt utiliser 100% d'Appy sur votre mobile."
   },
   placeholder: {
     fullName: 'Nom complet (prénom et nom)',

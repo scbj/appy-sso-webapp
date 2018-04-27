@@ -60,7 +60,10 @@ export default {
     invalidEmail: 'The email must contain an at sign, followed by the domain name with a single dot.',
     invalidFields: '@:message.invalidFullName<br>@:message.invalidEmail',
     unknownField: 'Unable to process {key} field.',
-    emailSent: 'We have sent you an email so you can access your account.&#13;&#10;You will need to set a password.'
+    emailSent: 'We have sent you an email so you can access your account.&#13;&#10;You will need to set a password.',
+    tooCramped: 'A little too cramped here!',
+    tooCrampedInstructions: 'Use a computer and resize the window until you are more comfortable',
+    tooCrampedWhy: 'Activation of the license on mobile is under development! You will soon be able to use 100% of Appy on your mobile.'
   },
   placeholder: {
     fullName: 'Full name (first and last name)',

@@ -5,6 +5,7 @@
     :count='maxStep'
     v-show='shouldShowStepIndicator' )
   router-view
+  ActivateLicenceMobile
   BaseLanguageSwitch.language
 </template>
 
@@ -12,6 +13,7 @@
 import { createNamespacedHelpers } from 'vuex'
 
 import BaseLanguageSwitch from '@/components/base/BaseLanguageSwitch'
+import ActivateLicenceMobile from './ActivateLicenceMobile'
 import StepIndicator from './StepIndicator'
 
 const { mapState } = createNamespacedHelpers('licence')
@@ -19,6 +21,7 @@ const { mapState } = createNamespacedHelpers('licence')
 export default {
   components: {
     BaseLanguageSwitch,
+    ActivateLicenceMobile,
     StepIndicator
   },
 
@@ -76,5 +79,13 @@ export default {
   right: 0;
   bottom: 0;
   margin: 2rem;
+}
+
+.activate-licence-mobile {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>
