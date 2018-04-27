@@ -24,6 +24,7 @@ import DragDropZone from './DragDropZone'
 import * as helpers from '@/utils/string-helpers'
 import delay from '@/utils/delay'
 import { validate } from '@/validators'
+import { i18n } from '@/i18n/'
 
 export default {
   components: {
@@ -110,7 +111,8 @@ export default {
         firstname: this.name.split(' ')[0],
         lastname: this.name.split(' ')[1],
         email: this.email,
-        picture: this.picture
+        picture: this.picture,
+        language: i18n.locale
       }
 
       const request = this.$store.dispatch('licence/activate', owner)
