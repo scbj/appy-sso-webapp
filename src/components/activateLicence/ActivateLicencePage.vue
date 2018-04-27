@@ -3,8 +3,10 @@
   StepIndicator(
     :active='currentStep'
     :count='maxStep'
-    v-show='shouldShowStepIndicator' )
-  router-view
+    v-show='shouldShowStepIndicator'
+    class='step-indicator-licence-page' )
+  .steps
+    router-view
   ActivateLicenceMobile
   BaseLanguageSwitch.language
 </template>
@@ -58,20 +60,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Breakpoint at which a message is displayed to users
+// telling them to activate the license on a computer.
+$width-breakpoint-mobile: 660px;
+
 .activate-licence-page {
-  background-image: url(/static/img/low-poly.svg);
   background-size: cover;
   background-position: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding-top: 20vh;
-  padding-bottom: 10vh;
+  justify-content: center;
   min-height: 100vh;
+  position: relative;
+
+  @media screen and (min-width: $width-breakpoint-mobile) {
+    background-image: url(/static/img/low-poly.svg);
+    padding-top: 20vh;
+    padding-bottom: 10vh;
+    align-items: center;
+    justify-content: flex-start;
+
+    .activate-licence-mobile {
+      display: none;
+    }
+
+    .step-indicator.step-indicator-licence-page {
+      display: flex;
+    }
+
+    .steps {
+      display: block;
+    }
+  }
 }
 
-.step-indicator {
+.step-indicator.step-indicator-licence-page {
+  display: none;
   margin-bottom: 4.2rem;
+}
+
+.steps {
+  display: none;
 }
 
 .language {
@@ -82,10 +111,6 @@ export default {
 }
 
 .activate-licence-mobile {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+  min-height: 100%;
 }
 </style>

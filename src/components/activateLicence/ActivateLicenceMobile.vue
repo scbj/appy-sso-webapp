@@ -17,12 +17,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
-  // Show this component only under
-  // the specified pixel width ↴
-  @media screen and (min-width: 660px){
-    display: none;
-  }
 }
 
 .container {
