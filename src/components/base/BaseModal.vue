@@ -55,7 +55,7 @@ export default {
 <style lang="scss" scoped>
 .base-modal.modal-backdrop {
   z-index: 9998;
-  background-color: rgba(white, .7);
+  background-color: rgba(black, .2);
   position: fixed;
   top: 0;
   left: 0;

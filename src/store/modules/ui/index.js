@@ -2,7 +2,8 @@ import * as actions from './actions'
 import mutations from './mutations'
 
 export const state = {
-  canScroll: true
+  canScroll: true,
+  shouldOpenModal: false
 }
 
 export default {

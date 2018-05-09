@@ -19,3 +19,11 @@ export function disableScroll ({ commit }) {
   shouldBodyScrollable(false)
   commit(types.UI_DISABLE_SCROLL)
 }
+
+export function openModal ({ commit }) {
+  commit(types.UI_OPEN_MODAL)
+}
+
+export function closeModal ({ commit }) {
+  commit(types.UI_CLOSE_MODAL)
+}

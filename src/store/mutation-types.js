@@ -27,3 +27,6 @@ export const LICENCE_CLEAN = 'LICENCE_CLEAN'
 // ui
 export const UI_ENABLE_SCROLL = 'UI_ENABLE_SCROLL'
 export const UI_DISABLE_SCROLL = 'UI_DISABLE_SCROLL'
+
+export const UI_OPEN_MODAL = 'UI_OPEN_MODAL'
+export const UI_CLOSE_MODAL = 'UI_CLOSE_MODAL'
