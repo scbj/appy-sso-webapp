@@ -14,7 +14,6 @@
 <script>
 import { createNamespacedHelpers } from 'vuex'
 
-import BaseLanguageSwitch from '@/components/base/BaseLanguageSwitch'
 import ActivateLicenceMobile from './ActivateLicenceMobile'
 import StepIndicator from './StepIndicator'
 
@@ -22,7 +21,6 @@ const { mapState } = createNamespacedHelpers('licence')
 
 export default {
   components: {
-    BaseLanguageSwitch,
     ActivateLicenceMobile,
     StepIndicator
   },

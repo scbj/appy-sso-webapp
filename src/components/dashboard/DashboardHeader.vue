@@ -4,7 +4,7 @@
     img( src='/static/img/title-gradient.svg' alt='appy pack' )
   .profil( v-show="$mq !== 'mobile'" )
     BaseImage.face(
-      src='/static/img/test.jpg'
+      :src='pictureUrl'
       fallbackSrc='/static/img/default-user-picture.png'
       :alt="$t('alt.profilPicture')"
     )
