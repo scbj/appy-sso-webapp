@@ -14,6 +14,8 @@ el-dropdown.base-language-switch( v-show='currentLanguage' @command='changeLangu
 
 <script>
 export default {
+  name: 'BaseLanguageSwitch',
+
   data () {
     return {
       languages: [
