@@ -8,12 +8,7 @@
 </template>
 
 <script>
-import BaseLanguageSwitch from '@/components/base/BaseLanguageSwitch'
-
 export default {
-  components: {
-    BaseLanguageSwitch
-  },
   data () {
     return {
       copyright: '© Appy. Version 0.0.1'
