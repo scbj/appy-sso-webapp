@@ -7,7 +7,14 @@ export const state = {
   email: null,
   firstname: null,
   lastname: null,
-  pictureUrl: null
+  pictureUrl: null,
+  all: {
+    total: 0,
+    currentPage: 0,
+    perPage: 8,
+    lastPage: 0,
+    list: []
+  }
 }
 
 export default {

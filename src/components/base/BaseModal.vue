@@ -1,5 +1,5 @@
 <template lang="pug">
-.base-modal.modal-backdrop( v-show='open' @click='close' )
+.base-modal.modal-backdrop( v-if='open' @click='close' )
   .modal-container( @click.stop='' )
     slot
 </template>

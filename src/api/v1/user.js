@@ -1,6 +1,6 @@
 import { getAsync, putAsync } from '../../http-common'
 
-const base = 'api/v1/user/'
+const base = 'api/v1/user'
 
 /**
  * @typedef {Object} Response
@@ -16,7 +16,7 @@ const base = 'api/v1/user/'
  * @returns {Promise<Response>}
  */
 export function self () {
-  return getAsync(`${base}me`)
+  return getAsync(`${base}/me`)
 }
 
 /**
@@ -27,5 +27,15 @@ export function self () {
  * @returns {Promise<Response>}
  */
 export function update (id, data) {
-  return putAsync(`${base}${id}`, data)
+  return putAsync(`${base}/${id}`, data)
+}
+
+/**
+ * Return the list of the users.
+ * @method GET
+ * @returns {Promise<ApiResponse>}
+ */
+
+export function list (page) {
+  return getAsync(base + '?fields=id,firstname,lastname,email&orderBy=firstname,asc&paginate=8&page=' + page)
 }

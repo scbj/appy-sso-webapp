@@ -1,6 +1,7 @@
 import {
   CHANGE_LANGUAGE,
-  USER_FETCH
+  USER_FETCH,
+  USER_LIST
 } from '../../mutation-types'
 
 export default {
@@ -18,5 +19,13 @@ export default {
     state.companyId = payload.company_id
     state.roleName = payload.role_name
     state.createdAt = payload.created_at
+  },
+
+  [USER_LIST] (state, payload) {
+    state.all.total = payload.total
+    state.all.perPage = payload.perPage
+    state.all.currentPage = payload.currentPage
+    state.all.lastPage = payload.lastPage
+    state.all.list = payload.users
   }
 }

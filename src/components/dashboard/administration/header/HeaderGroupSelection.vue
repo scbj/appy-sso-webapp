@@ -5,7 +5,7 @@
       el-button(
         type='text'
         class='button-group-add button-standalone'
-        @click="createGroup")
+        @click="$store.dispatch('ui/openModal')")
         i( class='el-icon-plus el-icon--left' )
     el-tooltip( :content="$t('button.switchGroup')" :open-delay=500 )
       el-button {{ activeGroupName }}...
@@ -29,7 +29,7 @@
         el-button(
           type='text'
           class='button-group-add'
-          @click='createGroup')
+          @click="$store.dispatch('ui/openModal')")
           i( class='el-icon-plus el-icon--left' )
           | {{ $t('button.createGroup') }}
 </template>
@@ -102,9 +102,6 @@ export default {
       if (group && this.activeGroupId !== group.id) {
         this.activeGroupId = group.id
       }
-    },
-    createGroup () {
-      console.log('Create a group clicked!')
     }
   }
 }

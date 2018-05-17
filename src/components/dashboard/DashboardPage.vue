@@ -19,9 +19,12 @@
           AdministrationPanel
   DashboardFooter( v-show="$mq !== 'mobile'" )
   DashboardNavigationBar( v-show="$mq === 'mobile'" v-model='activeName' )
+  ModalGroupCreate( :open='shouldOpenModal' @close="$store.dispatch('ui/closeModal')" )
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex'
+
 import AdministrationPanel from './administration/AdministrationPanel'
 import ApplicationList from '@/components/dashboard/application/ApplicationList'
 import ArticleList from '@/components/dashboard/article/ArticleList'
@@ -29,6 +32,9 @@ import DashboardFooter from '@/components/dashboard/DashboardFooter'
 import DashboardGreeting from '@/components/Dashboard/DashboardGreeting'
 import DashboardHeader from '@/components/dashboard/DashboardHeader'
 import DashboardNavigationBar from '@/components/dashboard/DashboardNavigationBar'
+import ModalGroupCreate from '@/components/dashboard/administration/modals/group/ModalGroupCreate'
+
+const { mapState } = createNamespacedHelpers('ui')
 
 export default {
   components: {
@@ -38,12 +44,20 @@ export default {
     DashboardFooter,
     DashboardGreeting,
     DashboardHeader,
-    DashboardNavigationBar
+    DashboardNavigationBar,
+    ModalGroupCreate
+  },
+
+  computed: {
+    ...mapState([
+      'shouldOpenModal'
+    ])
   },
 
   data () {
     return {
-      activeName: 'apps'
+      activeName: 'apps',
+      shouldShowModalGroupCreate: true
     }
   },
 
