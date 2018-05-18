@@ -13,6 +13,9 @@ export default {
   byDefault: 'By default',
   learnMore: 'learn more',
   licenceKey: 'Licence key:',
+  addPeople: 'Add people',
+  chooseGroupName: 'Choose the name of the group',
+  cancel: 'Cancel',
   alert: {
     username: { ask: 'Please enter your username' },
     password: { ask: 'Please enter your password' },
@@ -23,7 +26,9 @@ export default {
     invalidFullName: 'Invalid name',
     invalidEmail: 'Invaild email',
     invalidFields: 'Invalid fields',
-    unknownField: 'Unknown field'
+    unknownField: 'Unknown field',
+    atLeastOneCharacter: 'Must contain at least 1 character',
+    atMostSixtyCharacters: 'Must not exceed 60 characters'
   },
   button: {
     logIn: 'Sign in',
@@ -36,7 +41,8 @@ export default {
     applications: 'Applications',
     validate: 'Validate',
     next: 'Next',
-    create: 'Create'
+    create: 'Create',
+    createGroupWithPeoples: 'Create now | Create and add 1 person | Create and add {count} people'
   },
   check: { rememberMe: 'Remember me' },
   alt: { profilPicture: 'Profile picture' },
@@ -46,13 +52,15 @@ export default {
     licenceKey: 'Enter your license key',
     companyName: 'Choose the name of your company',
     ownerInfos: 'Create the user who owns the license',
-    completed: 'Congratulations! You have activated your license!'
+    completed: 'Congratulations! You have activated your license!',
+    createGroup: 'Create a group'
   },
   message: {
     alreadyLogged: 'You are already logged in, you can change to another account at any time.',
     hello: 'Hi {firstname}!',
     noData: {
-      applications: 'No apps to display ... too bad 👻'
+      applications: 'No apps to display ... too bad 👻',
+      search: 'No results to display'
     },
     dragAndDropHere: 'Drag and drop your profile picture',
     invalidCompanyName: 'The company name must contain at<br>least 3 characters. It must not<br>begin or end with a space,<br>consecutive spaces will be<br>replaced by one.',
@@ -67,6 +75,7 @@ export default {
   },
   placeholder: {
     fullName: 'Full name (first and last name)',
-    email: 'Email address'
+    email: 'Email address',
+    search: 'Search a name, first name or email'
   }
 }

@@ -13,6 +13,9 @@ export default {
   byDefault: 'Par défaut',
   learnMore: 'en savoir plus',
   licenceKey: 'Clé de licence :',
+  addPeople: 'Ajouter des personnes',
+  chooseGroupName: 'Choisissez le nom du groupe',
+  cancel: 'Annuler',
   alert: {
     username: { ask: "Veuillez renseigner votre nom d'utilisateur" },
     password: { ask: 'Veuillez renseigner votre mot de passe' },
@@ -23,7 +26,9 @@ export default {
     invalidFullName: 'Nom complet invalide',
     invalidEmail: 'Email invalide',
     invalidFields: 'Champs invalides',
-    unknownField: 'Champ inconnu'
+    unknownField: 'Champ inconnu',
+    atLeastOneCharacter: 'Doit contenir au moins 1 caractère',
+    atMostSixtyCharacters: 'Ne doit pas dépasser 60 caractères'
   },
   button: {
     logIn: 'Se connecter',
@@ -36,7 +41,8 @@ export default {
     applications: 'Applications',
     validate: 'Valider',
     next: 'Suivant',
-    create: 'Créer'
+    create: 'Créer',
+    createGroupWithPeoples: 'Créer maintenant | Créer et ajouter 1 personne | Créer et ajouter {count} personnes'
   },
   check: { rememberMe: 'Se souvenir de moi' },
   alt: { profilPicture: 'Photo de profil' },
@@ -46,13 +52,15 @@ export default {
     licenceKey: 'Entrez votre clé de licence',
     companyName: 'Choisissez le nom de votre entreprise',
     ownerInfos: "Créez l'utilisateur propriétaire de la licence",
-    completed: "Félicitations ! Vous venez d'activer votre licence !"
+    completed: "Félicitations ! Vous venez d'activer votre licence !",
+    createGroup: 'Créer un groupe'
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',
     hello: 'Bonjour {firstname} !',
     noData: {
-      applications: 'Aucune application à afficher... tant pis 👻'
+      applications: 'Aucune application à afficher... tant pis 👻',
+      search: 'Aucun résultat à afficher'
     },
     dragAndDropHere: 'Glissez-déposez votre photo de profil',
     invalidCompanyName: "Le nom de l'entreprise doit<br>contenir au moins 3 caractères.<br>Il ne doit pas commencer ni finir<br>par un espace, les espaces<br>consécutifs seront remplacés par<br>un seul.",
@@ -67,6 +75,7 @@ export default {
   },
   placeholder: {
     fullName: 'Nom complet (prénom et nom)',
-    email: 'Adresse mail'
+    email: 'Adresse mail',
+    search: 'Rechercher un nom, prénom ou email'
   }
 }

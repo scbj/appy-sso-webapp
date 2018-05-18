@@ -4,26 +4,15 @@ el-form.modal-group-create-choose-name(
   ref='form'
   :model='form'
   :rules='rules' status-icon )
-  el-form-item( prop='name' label='Nom du groupe' )
+  el-form-item( prop='name' :label="$t('chooseGroupName')" )
     el-input( v-model='form.name' @keyup.enter.native='validate' )
   el-form-item.buttons
-    el-button( type='text' @click="$emit('requestClose')" ) Annuler
-    el-button( type='primary' @click='validate' ) Valider
+    el-button( type='text' @click="$emit('requestClose')" )  {{ $t('cancel') }}
+    el-button( type='primary' @click='validate' )  {{ $t('button.validate') }}
 </template>
 
 <script>
 import { cleanWhitespaces } from '@/utils/string-helpers'
-
-function validateGroupName (rule, value, callback) {
-  const clean = cleanWhitespaces(value) || ''
-  if (clean.length < 1) {
-    callback(new Error('Doit contenir au moins 1 caractère'))
-  } else if (clean.length > 60) {
-    callback(new Error('Ne doit pas dépasser 60 caractères'))
-  } else {
-    callback()
-  }
-}
 
 export default {
   data () {
@@ -32,12 +21,22 @@ export default {
         name: ''
       },
       rules: {
-        name: [ { trigger: 'blur', validator: validateGroupName } ]
+        name: [ { trigger: 'blur', validator: this.validateGroupName } ]
       }
     }
   },
 
   methods: {
+    validateGroupName (rule, value, callback) {
+      const clean = cleanWhitespaces(value) || ''
+      if (clean.length < 1) {
+        callback(new Error(this.$t('alert.atLeastOneCharacter')))
+      } else if (clean.length > 60) {
+        callback(new Error(this.$t('alert.atMostSixtyCharacters')))
+      } else {
+        callback()
+      }
+    },
     validate (e) {
       this.$refs.form.validate(valid => {
         if (!valid) return false

@@ -1,6 +1,6 @@
 <template lang="pug">
 BaseModal.modal-group-create( v-on='$listeners' v-bind='$attrs' )
-  h2.title Créer un groupe
+  h2.title {{ $t('title.createGroup') }}
   ModalGroupCreateChooseName(
     v-if='!groupName'
     @nameChosen='nameChosen'

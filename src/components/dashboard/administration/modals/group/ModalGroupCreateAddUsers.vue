@@ -4,15 +4,15 @@
     ref='form'
     :model='form'
     status-icon )
-    el-form-item( prop='query' label='Ajouter des personnes' )
+    el-form-item( prop='query' :label="$t('addPeople')" )
       el-input(
         ref='searchInput'
         v-model='form.query'
-        :disabled='searching'
         prefix-icon="el-icon-search"
-        placeholder='Rechercher un nom, prénom ou email' )
+        :placeholder="$t('placeholder.search')" )
     ModalGroupCreateAddUsersList.user-list(
       v-loading='searching'
+      v-show='hasUsers'
       :users='users'
       :selected-users='selectedUsers'
       @userSelected='onUserSelected'
@@ -25,9 +25,9 @@
       :current-page='currentPage'
       :page-size='perPage'
       @current-change='changePage' )
-    span.no-data( v-show='!hasUsers && !searching' ) Aucun résultat à afficher
+    span.no-data( v-show='!hasUsers && !searching' ) {{ $t('message.noData.search') }}
     el-form-item.buttons
-      el-button( type='text' @click="$emit('requestClose')" ) Annuler
+      el-button( type='text' @click="$emit('requestClose')" ) {{ $t('cancel') }}
       el-button( type='primary' @click='createGroup' ) {{ createGroupLabel }}
 </template>
 
@@ -53,9 +53,8 @@ export default {
       return this.users.length
     },
     createGroupLabel () {
-      return this.selectedUsers.length
-        ? `Créer et ajouter ${this.selectedUsers.length} personnes`
-        : 'Créer maintenant'
+      const count = this.selectedUsers.length
+      return this.$tc('button.createGroupWithPeoples', count, { count })
     }
   },
 
