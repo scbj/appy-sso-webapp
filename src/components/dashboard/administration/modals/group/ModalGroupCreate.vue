@@ -1,11 +1,14 @@
 <template lang="pug">
-BaseModal.modal-group-create( v-on='$listeners' v-bind='$attrs' )
+BaseModal.modal-group-create(
+  v-on='$listeners'
+  v-bind='$attrs' )
   h2.title {{ $t('title.createGroup') }}
   ModalGroupCreateChooseName(
     v-if='!groupName'
     @nameChosen='nameChosen'
     @requestClose='close' )
   ModalGroupCreateAddUsers(
+    v-loading='creating'
     v-else
     @usersAdded='usersAdded'
     @requestClose='close' )
@@ -25,6 +28,7 @@ export default {
 
   data () {
     return {
+      creating: false,
       groupName: '',
       users: []
     }
@@ -37,6 +41,30 @@ export default {
 
     usersAdded (users) {
       this.users = users
+      this.createGroup()
+    },
+
+    async createGroup () {
+      this.creating = true
+
+      const success = await this.$store.dispatch('group/createAndAddUsers', {
+        name: this.groupName,
+        users: this.users
+      })
+
+      this.notifyUser(success)
+
+      this.creating = false
+      this.close()
+    },
+
+    notifyUser (success) {
+      if (success) {
+        this.$message({
+          message: this.$t('message.groupCreatedSuccess'),
+          type: 'success'
+        })
+      }
     },
 
     close () {

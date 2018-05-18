@@ -71,7 +71,8 @@ export default {
     emailSent: 'We have sent you an email so you can access your account.&#13;&#10;You will need to set a password.',
     tooCramped: 'A little too cramped here!',
     tooCrampedInstructions: 'Use a computer and resize the window until you are more comfortable',
-    tooCrampedWhy: 'Activation of the license on mobile is under development! You will soon be able to use 100% of Appy on your mobile.'
+    tooCrampedWhy: 'Activation of the license on mobile is under development! You will soon be able to use 100% of Appy on your mobile.',
+    groupCreatedSuccess: 'New group created successfully!'
   },
   placeholder: {
     fullName: 'Full name (first and last name)',
