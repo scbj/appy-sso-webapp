@@ -10,8 +10,7 @@
       el-tabs( v-model='activeName' )
         el-tab-pane(
           :label="$t('apps')"
-          name='apps'
-          ref='defaultActive')
+          name='apps')
           ApplicationList
         el-tab-pane( :label="$t('news')" name='news' )
           ArticleList
@@ -63,9 +62,6 @@ export default {
 
   mounted () {
     this.$store.dispatch('user/fetch')
-    this.setDefaultActiveTab({
-      name: this.$refs.defaultActive.name
-    })
   },
 
   methods: {

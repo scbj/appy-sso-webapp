@@ -1,7 +1,8 @@
 import {
   CHANGE_LANGUAGE,
   USER_FETCH,
-  USER_LIST
+  USER_LIST,
+  USER_CLEAN_LIST
 } from '../../mutation-types'
 
 export default {
@@ -27,5 +28,13 @@ export default {
     state.all.currentPage = payload.currentPage
     state.all.lastPage = payload.lastPage
     state.all.list = payload.users
+  },
+
+  [USER_CLEAN_LIST] (state, payload) {
+    state.all.total = 0
+    state.all.currentPage = 1
+    state.all.perPage = 8
+    state.all.lastPage = 0
+    state.all.list = []
   }
 }

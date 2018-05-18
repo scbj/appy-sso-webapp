@@ -39,3 +39,8 @@ export function update (id, data) {
 export function list (page) {
   return getAsync(base + '?fields=id,firstname,lastname,email&orderBy=firstname,asc&paginate=8&page=' + page)
 }
+
+export function search ({ query, page }) {
+  const url = `/search/${query}?fields=id,firstname,lastname,email&paginate=8&page=${page}`
+  return getAsync(base + url)
+}

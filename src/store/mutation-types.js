@@ -10,6 +10,7 @@ export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE'
 
 export const USER_FETCH = 'USER_FETCH'
 export const USER_LIST = 'USER_LIST'
+export const USER_CLEAN_LIST = 'USER_CLEAN_LIST'
 
 // application module
 export const APPLICATION_LIST = 'APPLICATION_LIST'

@@ -53,6 +53,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/vars.scss';
+
 .base-modal.modal-backdrop {
   z-index: 9998;
   background-color: rgba(black, .2);
@@ -69,7 +71,14 @@ export default {
 .modal-container {
   background: white;
   padding: 2rem;
-  border-radius: 6px;
-  box-shadow: 0 6px 22px -2px rgba(black, .1);
+  width: 100%;
+  height: 100%;
+
+  @media screen and (min-width: $mobile) {
+    width: 460px;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 6px 22px -2px rgba(black, .1);
+  }
 }
 </style>

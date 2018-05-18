@@ -10,7 +10,7 @@ export const state = {
   pictureUrl: null,
   all: {
     total: 0,
-    currentPage: 0,
+    currentPage: 1,
     perPage: 8,
     lastPage: 0,
     list: []

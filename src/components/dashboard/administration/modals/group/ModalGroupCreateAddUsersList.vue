@@ -1,6 +1,6 @@
 <template lang="pug">
-.modal-group-create-add-users-list
-  .list-item(
+ul.modal-group-create-add-users-list
+  li.list-item(
     v-for='user in users'
     :key='user.id'
   )
@@ -37,6 +37,9 @@ export default {
 <style lang="scss" scoped>
 .list-item {
   margin-bottom: .5em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .email {

@@ -43,6 +43,7 @@ export default {
       this.groupName = ''
       this.users = ''
       this.$store.dispatch('ui/closeModal')
+      this.$store.dispatch('user/cleanList')
     }
   }
 }
