@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
+import pathify from 'vuex-pathify'
 
 import * as modules from './modules'
 
@@ -22,6 +23,9 @@ const vuexLocalStorage = new VuexPersist({
 })
 
 export default new Vuex.Store({
-  plugins: [ vuexLocalStorage.plugin ],
+  plugins: [
+    vuexLocalStorage.plugin,
+    pathify.plugin
+  ],
   modules
 })

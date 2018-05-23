@@ -7,10 +7,9 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-import ArticleItem from './ArticleItem'
+import { get } from 'vuex-pathify'
 
-const { mapState } = createNamespacedHelpers('article')
+import ArticleItem from './ArticleItem'
 
 export default {
   components: {
@@ -18,9 +17,7 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'articles'
-    ])
+    articles: get('article/articles')
   },
 
   mounted () {

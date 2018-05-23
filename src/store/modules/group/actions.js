@@ -1,4 +1,3 @@
-import * as types from '@/store/mutation-types'
 import api from '@/api/v1/index'
 
 export async function list ({ commit }) {
@@ -9,7 +8,7 @@ export async function list ({ commit }) {
     return false
   }
 
-  commit(types.GROUP_LIST, { groups })
+  commit('SET_GROUPS', groups)
 }
 
 export async function createAndAddUsers ({ commit, dispatch }, payload) {

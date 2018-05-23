@@ -1,9 +1,12 @@
+import { make } from 'vuex-pathify'
+
 import * as actions from './actions'
-import mutations from './mutations'
 
 export const state = {
   applications: []
 }
+
+const mutations = make.mutations(state)
 
 export default {
   namespaced: true,

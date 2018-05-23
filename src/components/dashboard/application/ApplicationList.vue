@@ -14,14 +14,12 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
+import { get } from 'vuex-pathify'
 import moment from 'moment'
 
 import DashboardGreeting from '@/components/Dashboard/DashboardGreeting'
 import ApplicationItem from './ApplicationItem'
 import { uppercase } from '@/utils/filters'
-
-const { mapState } = createNamespacedHelpers('application')
 
 export default {
   components: {
@@ -42,9 +40,7 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      'apps': 'applications'
-    })
+    apps: get('application/applications')
   },
 
   mounted () {

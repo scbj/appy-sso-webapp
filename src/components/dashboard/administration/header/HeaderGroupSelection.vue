@@ -13,7 +13,7 @@
     span( class='el-dropdown-link' )
       | {{ activeGroupName }} <i class="el-icon-arrow-down el-icon--right"></i>
     el-dropdown-menu( slot='dropdown' )
-      el-dropdown-item( v-show='groups.length === 1' disabled ) {{ $t('noGroup') }}
+      el-dropdown-item( v-show='groups && groups.length === 1' disabled ) {{ $t('noGroup') }}
       el-dropdown-item(
         v-for='group in groupsWithoutDefault'
         :key='group.id'
@@ -35,9 +35,10 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
+import { get } from 'vuex-pathify'
+// import { createNamespacedHelpers } from 'vuex'
 
-const { mapState } = createNamespacedHelpers('group')
+// const { mapState } = createNamespacedHelpers('group')
 
 export default {
   data () {
@@ -47,16 +48,14 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'groups'
-    ]),
+    groups: get('group/groups'),
 
     /**
      * Returns true if the group number is too big for the
      * "Create a group" button to be at the end of the list
      */
     shouldShowSeparateButton () {
-      return this.groups.length > 12
+      return this.groups && this.groups.length > 12
     },
 
     /** Returns the default group. */
@@ -77,6 +76,10 @@ export default {
     },
 
     groupsWithoutDefault () {
+      if (this.groups === undefined) {
+        console.log('Oups... groups is undefined')
+      }
+
       /** Compare function by name attribute. */
       const byName = (first, second) => {
         const firstName = first.name && first.name.toLowerCase()

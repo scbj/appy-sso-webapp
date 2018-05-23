@@ -18,9 +18,6 @@ export const APPLICATION_LIST = 'APPLICATION_LIST'
 // article module
 export const ARTICLE_LIST = 'ARTICLE_LIST'
 
-// group module
-export const GROUP_LIST = 'GROUP_LIST'
-
 // licence
 export const LICENCE_COMPLETE_STEP = 'LICENCE_COMPLETE_STEP'
 export const LICENCE_UPDATE_CURRENT_STEP = 'LICENCE_UPDATE_CURRENT_STEP'
