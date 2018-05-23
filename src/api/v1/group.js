@@ -1,4 +1,4 @@
-import { postAsync } from '@/http-common'
+import { getAsync, postAsync } from '@/http-common'
 
 const base = 'api/v1/group'
 
@@ -9,6 +9,16 @@ const base = 'api/v1/group'
  * @property {String} [message] The optional message
  * @property {Error} [error] The response error
  */
+
+/**
+ * Return the list of groups.
+ * @method GET
+ * @returns {Promise<ApiResponse>}
+ */
+
+export function list () {
+  return getAsync(base)
+}
 
 /**
   * Create a new group with the specified name.
