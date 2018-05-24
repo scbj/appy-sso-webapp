@@ -1,8 +1,8 @@
 'use strict'
 const merge = require('webpack-merge')
 const prodEnv = require('./prod.env')
-const machineEnv = require('../.env')
 
-module.exports = merge(prodEnv, machineEnv, {
-  NODE_ENV: '"development"'
+module.exports = merge(prodEnv, {
+  NODE_ENV: '"development"',
+  API_URL: '"http://192.168.1.98/THOMAS/sso_appy/public/"'
 })

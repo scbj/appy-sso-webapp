@@ -1,6 +1,6 @@
 <template lang="pug">
-.placeholder( v-if='!source' :class='{ loading }' )
-img.image( v-else :src='source' )
+.BaseImage_no-source( v-if='!source' :class='{ loading }' )
+img.BaseImage( v-else :src='source' )
 </template>
 
 <script>
@@ -46,9 +46,14 @@ export default {
     }
   },
 
+  computed: {
+    loading () {
+      return this.source === ''
+    }
+  },
+
   data () {
     return {
-      loading: true,
       source: '',
       isFallback: false
     }
@@ -58,9 +63,10 @@ export default {
     src: {
       immediate: true,
       async handler (src) {
+        this.source = ''
         const available = await getAvailableSource(src, this.fallbackSrc)
         if (!available) {
-          return this.resetSource()
+          return
         }
         this.source = available
         this.isFallback =
@@ -71,6 +77,7 @@ export default {
     fallbackSrc: {
       async handler (src) {
         if (!this.isFallback) return
+        this.source = ''
         const available = await isImageAvailable(src)
         if (!available) {
           return this.resetSource()
@@ -78,20 +85,12 @@ export default {
         this.source = available
       }
     }
-  },
-
-  methods: {
-    resetSource () {
-      this.source = ''
-      this.isFallback = false
-      this.loading = false
-    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.placeholder {
+.BaseImage_no-source {
   --color1: #eeeeee;
   --color2: #e6e6e6;
   background: linear-gradient(
@@ -106,11 +105,11 @@ export default {
   background-position-x: 100%;
 
   &.loading {
-    animation: Gradient 1.3s ease infinite;
+    animation: gradient 1.3s ease infinite;
   }
 }
 
-@keyframes Gradient {
+@keyframes gradient {
   0% {
     background-position-x: 100%
   }

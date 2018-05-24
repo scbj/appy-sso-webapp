@@ -1,6 +1,6 @@
 <template lang="pug">
-.base-modal.modal-backdrop( v-if='open' @click='close' )
-  .modal-container( @click.stop='' )
+.BaseModal( v-if='open' @click='close' )
+  .BaseModal__container( @click.stop='' )
     slot
 </template>
 
@@ -55,7 +55,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/vars.scss';
 
-.base-modal.modal-backdrop {
+.BaseModal {
   z-index: 9998;
   background-color: rgba(black, .2);
   position: fixed;
@@ -68,7 +68,7 @@ export default {
   justify-content: center;
 }
 
-.modal-container {
+.BaseModal__container {
   background: white;
   padding: 2rem;
   width: 100%;
@@ -79,6 +79,13 @@ export default {
     height: auto;
     border-radius: 6px;
     box-shadow: 0 6px 22px -2px rgba(black, .1);
+  }
+
+  > .title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #373737;
+    margin-bottom: 1rem;
   }
 }
 </style>
