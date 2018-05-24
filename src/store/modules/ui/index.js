@@ -3,7 +3,8 @@ import mutations from './mutations'
 
 export const state = {
   canScroll: true,
-  shouldOpenModal: false
+  shouldOpenModalGroupCreate: false,
+  shouldOpenModalUserCreate: false
 }
 
 export default {

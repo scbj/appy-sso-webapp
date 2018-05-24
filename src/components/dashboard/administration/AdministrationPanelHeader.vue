@@ -1,7 +1,8 @@
 <template lang="pug">
-.administration-panel-header
+.AdministrationPanelHeader
   HeaderGroupSelection
   HeaderRadioButtons
+  el-button.AdministrationPanelHeader__button-edit( type='text' ) {{ $t('button.edit') }}
 </template>
 
 <script>
@@ -17,12 +18,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.administration-panel-header {
+.AdministrationPanelHeader {
   display: flex;
   align-items: center;
 }
 
-.header-radio-buttons {
+.AdministrationPanelHeader__button-edit {
+  color: #A250E5;
+  margin-left: 1.5rem;
+}
+
+.HeaderRadioButtons {
   margin-left: 3rem;
 }
 </style>

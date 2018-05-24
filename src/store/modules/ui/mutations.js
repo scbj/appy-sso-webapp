@@ -1,8 +1,10 @@
 import {
   UI_ENABLE_SCROLL,
   UI_DISABLE_SCROLL,
-  UI_OPEN_MODAL,
-  UI_CLOSE_MODAL
+  UI_OPEN_MODAL_GROUP_CREATE,
+  UI_CLOSE_MODAL_GROUP_CREATE,
+  UI_OPEN_MODAL_USER_CREATE,
+  UI_CLOSE_MODAL_USER_CREATE
 } from '../../mutation-types'
 
 export default {
@@ -14,11 +16,19 @@ export default {
     state.canScroll = false
   },
 
-  [UI_OPEN_MODAL] (state) {
-    state.shouldOpenModal = true
+  [UI_OPEN_MODAL_GROUP_CREATE] (state) {
+    state.shouldOpenModalGroupCreate = true
   },
 
-  [UI_CLOSE_MODAL] (state) {
-    state.shouldOpenModal = false
+  [UI_CLOSE_MODAL_GROUP_CREATE] (state) {
+    state.shouldOpenModalGroupCreate = false
+  },
+
+  [UI_OPEN_MODAL_USER_CREATE] (state) {
+    state.shouldOpenModalUserCreate = true
+  },
+
+  [UI_CLOSE_MODAL_USER_CREATE] (state) {
+    state.shouldOpenModalUserCreate = false
   }
 }

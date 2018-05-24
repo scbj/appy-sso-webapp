@@ -42,7 +42,8 @@ export default {
     validate: 'Validate',
     next: 'Next',
     create: 'Create',
-    createGroupWithPeoples: 'Create now | Create and add 1 person | Create and add {count} people'
+    createGroupWithPeoples: 'Create now | Create and add 1 person | Create and add {count} people',
+    edit: 'Edit group...'
   },
   check: { rememberMe: 'Remember me' },
   alt: { profilPicture: 'Profile picture' },
@@ -53,7 +54,8 @@ export default {
     companyName: 'Choose the name of your company',
     ownerInfos: 'Create the user who owns the license',
     completed: 'Congratulations! You have activated your license!',
-    createGroup: 'Create a group'
+    createGroup: 'Create a group',
+    createUser: 'Create a user'
   },
   message: {
     alreadyLogged: 'You are already logged in, you can change to another account at any time.',

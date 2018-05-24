@@ -20,10 +20,18 @@ export function disableScroll ({ commit }) {
   commit(types.UI_DISABLE_SCROLL)
 }
 
-export function openModal ({ commit }) {
-  commit(types.UI_OPEN_MODAL)
+export function openModalGroupCreate ({ commit }) {
+  commit(types.UI_OPEN_MODAL_GROUP_CREATE)
 }
 
-export function closeModal ({ commit }) {
-  commit(types.UI_CLOSE_MODAL)
+export function closeModalGroupCreate ({ commit }) {
+  commit(types.UI_CLOSE_MODAL_GROUP_CREATE)
+}
+
+export function openModalUserCreate ({ commit }) {
+  commit(types.UI_OPEN_MODAL_USER_CREATE)
+}
+
+export function closeModalUserCreate ({ commit }) {
+  commit(types.UI_CLOSE_MODAL_USER_CREATE)
 }

@@ -70,20 +70,9 @@ export default {
     close () {
       this.groupName = ''
       this.users = ''
-      this.$store.dispatch('ui/closeModal')
+      this.$store.dispatch('ui/closeModalGroupCreate')
       this.$store.dispatch('user/cleanList')
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.title {
-  font-size: 2rem;
-  font-weight: 600;
-  // color: #A250E5;
-  --text-color: #373737;
-  color: var(--text-color);
-  margin-bottom: 1rem;
-}
-</style>

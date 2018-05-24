@@ -18,7 +18,8 @@
           AdministrationPanel
   DashboardFooter( v-show="$mq !== 'mobile'" )
   DashboardNavigationBar( v-show="$mq === 'mobile'" v-model='activeName' )
-  ModalGroupCreate( :open='shouldOpenModal' @close="$store.dispatch('ui/closeModal')" )
+  ModalGroupCreate( :open='shouldOpenModalGroupCreate' @close="$store.dispatch('ui/closeModalGroupCreate')" )
+  ModalGroupCreate( :open='shouldOpenModalUserCreate' @close="$store.dispatch('ui/closeModalUserCreate')" )
 </template>
 
 <script>
@@ -32,6 +33,7 @@ import DashboardGreeting from '@/components/Dashboard/DashboardGreeting'
 import DashboardHeader from '@/components/dashboard/DashboardHeader'
 import DashboardNavigationBar from '@/components/dashboard/DashboardNavigationBar'
 import ModalGroupCreate from '@/components/dashboard/administration/modals/group/ModalGroupCreate'
+import ModalUserCreate from '@/components/dashboard/administration/modals/user/ModalUserCreate'
 
 const { mapState } = createNamespacedHelpers('ui')
 
@@ -44,12 +46,14 @@ export default {
     DashboardGreeting,
     DashboardHeader,
     DashboardNavigationBar,
-    ModalGroupCreate
+    ModalGroupCreate,
+    ModalUserCreate
   },
 
   computed: {
     ...mapState([
-      'shouldOpenModal'
+      'shouldOpenModalGroupCreate',
+      'shouldOpenModalUserCreate'
     ])
   },
 
