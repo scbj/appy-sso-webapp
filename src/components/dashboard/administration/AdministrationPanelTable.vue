@@ -6,14 +6,13 @@
     el-tooltip
       div( slot='content' )
         div Obi-Wan Kenobi 🌌
-        div John Doe
         div Anakin Skywalker 💮
       span.number 2
     | &nbsp;administrateurs
   header.AdministrationPanelTable__header
     div.cell.profil-picture
     div.cell.full-name
-      span NOM COMPLET
+      span PRÉNOM ET NOM
     div.cell.email
       span EMAIL
     div.cell.role
@@ -27,15 +26,16 @@
       div.cell.profil-picture
         BaseImage( src='/static/img/default-user-picture.png' )
       div.cell.full-name
-        span {{ user.firstname }} {{ user.lastname }}
+        span {{ user.firstname }}&nbsp;
+        span.lastname {{ user.lastname }}
       div.cell.email
         span {{ user.email }}
       div.cell.role
         el-tag.tag( size='mini' :type='getTagTypeFromRole(user.role_name)' ) {{ user.role_name }}
       div.cell.creation-time
-        span {{ relativeTimFromNow(user.created_at) }}
+        span( :title='formatDate(user.created_at)' ) {{ relativeTimFromNow(user.created_at) }}
       div.cell.modification-time
-        span {{ relativeTimFromNow(user.updated_at  ) }}
+        span( :title='formatDate(user.updated_at)' ) {{ relativeTimFromNow(user.updated_at  ) }}
 </template>
 
 <script>
@@ -123,6 +123,10 @@ export default {
   methods: {
     getTagTypeFromRole (role) {
       return role === 'admin' ? 'danger' : 'success'
+    },
+
+    formatDate (date) {
+      return moment(date).format()
     },
 
     relativeTimFromNow (date) {
@@ -222,7 +226,7 @@ export default {
       }
     }
 
-    @media screen and (min-width: 1100px) {
+    @media screen and (min-width: 1250px) {
       &.full-name { width: 26%; }
       &.email { width: 41%; }
       &.role { width: 8%; }
@@ -266,10 +270,15 @@ export default {
 
   >.full-name {
     font-weight: 500;
+
+    > .lastname {
+      font-weight: 600;
+    }
   }
 
   > .profil-picture {
     justify-content: center;
+    user-select: none;
 
     > .BaseImage {
       $size: 24px;
