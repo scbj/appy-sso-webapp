@@ -5,13 +5,14 @@
   el-pagination.AdministrationPanel__pagination(
     background
     layout='prev, pager, next'
-    :total='40'
-    :current-page='1'
-    :page-size='10'
+    :total='totalUsers'
+    :page-size='pageSize'
     @current-change='changePage' )
 </template>
 
 <script>
+import { get, sync } from 'vuex-pathify'
+
 import AdministrationPanelHeader from './AdministrationPanelHeader'
 import AdministrationPanelTable from './AdministrationPanelTable'
 
@@ -19,6 +20,38 @@ export default {
   components: {
     AdministrationPanelHeader,
     AdministrationPanelTable
+  },
+
+  computed: {
+    activeGroupId: get('dashboardAdministration/activeGroupId'),
+    currentPage: sync('dashboardAdministration/currentPage'),
+    pageSize: get('dashboardAdministration/pageSize'),
+    pending: sync('dashboardAdministration/pending'),
+    totalUsers: get('dashboardAdministration/totalUsers')
+  },
+
+  watch: {
+    activeGroupId () {
+      console.log('ICI 1')
+      this.updateUserList()
+    }
+  },
+
+  methods: {
+    changePage (page) {
+      this.currentPage = page
+      console.log('ICI 3')
+      this.updateUserList()
+    },
+
+    async updateUserList () {
+      this.pending = true
+      await this.$store.dispatch('group/listUsers', {
+        groupId: this.activeGroupId,
+        page: this.currentPage
+      })
+      this.pending = false
+    }
   }
 }
 </script>

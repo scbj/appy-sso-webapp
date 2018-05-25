@@ -15,16 +15,16 @@
     el-dropdown-menu( slot='dropdown' )
       el-dropdown-item( v-show='groups && groups.length === 1' disabled ) {{ $t('noGroup') }}
       el-dropdown-item(
-        v-for='group in groupsWithoutDefault'
+        v-for='group in groups'
         :key='group.id'
         :command='group.id'
         class='group'
         :class='{ active: isActive(group.id) }') {{ group.name }}
       el-dropdown-item(
-        :command='defaultGroup.id'
+        :command='defaultGroupId'
         class='group'
-        :class='{ active: isActive(defaultGroup.id) }'
-        divided) {{ defaultGroup.name }}
+        :class='{ active: isActive(defaultGroupId) }'
+        divided) {{ $t('byDefault') }}
       el-dropdown-item( divided )
         el-button(
           type='text'
@@ -35,20 +35,14 @@
 </template>
 
 <script>
-import { get } from 'vuex-pathify'
-// import { createNamespacedHelpers } from 'vuex'
-
-// const { mapState } = createNamespacedHelpers('group')
+import { get, sync } from 'vuex-pathify'
 
 export default {
-  data () {
-    return {
-      activeGroupId: -1
-    }
-  },
-
   computed: {
     groups: get('group/groups'),
+    activeGroupId: sync('dashboardAdministration/activeGroupId'),
+    defaultGroupId: get('dashboardAdministration/defaultGroupId'),
+    pending: sync('dashboardAdministration/pending'),
 
     /**
      * Returns true if the group number is too big for the
@@ -58,43 +52,25 @@ export default {
       return this.groups && this.groups.length > 12
     },
 
-    /** Returns the default group. */
-    defaultGroup () {
-      return {
-        id: -1,
-        name: this.$t('byDefault')
-      }
+    isDefaultGroupActive () {
+      return this.activeGroupId === this.defaultGroupId
     },
 
     /** Returns the name of the selected group. */
     activeGroupName () {
-      if (this.activeGroupId === this.defaultGroup.id) {
-        return this.defaultGroup.name
+      if (this.isDefaultGroupActive || this.activeGroupId === -1) {
+        return this.$t('byDefault')
       }
       const group = this.groups.find(group => group.id === this.activeGroupId)
       return group.name
-    },
+    }
+  },
 
-    groupsWithoutDefault () {
-      if (this.groups === undefined) {
-        console.log('Oups... groups is undefined')
+  watch: {
+    defaultGroupId (newValue) {
+      if (this.activeGroupId === -1) {
+        this.activeGroupId = newValue
       }
-
-      /** Compare function by name attribute. */
-      const byName = (first, second) => {
-        const firstName = first.name && first.name.toLowerCase()
-        const secondName = second.name && second.name.toLowerCase()
-        if (firstName > secondName) return 1
-        else if (firstName < secondName) return -1
-        return 0
-      }
-
-      /** Filter function without default group. */
-      const withoutDefault = group => group.name !== 'default'
-
-      return this.groups
-        .filter(withoutDefault)
-        .sort(byName)
     }
   },
 
@@ -106,6 +82,7 @@ export default {
     isActive (id) {
       return this.activeGroupId === id
     },
+
     setActive (id) {
       if (typeof id === 'number') {
         this.activeGroupId = id
