@@ -1,39 +1,40 @@
 <template lang="pug">
 .AdministrationPanelTableList
   header.AdministrationPanelTableList__header
-    div.cell.actions
+    div.AdministrationPanelTableList__cell.actions
       el-checkbox( style='visibility:hidden' )
-    div.cell.profil-picture
-    div.cell.full-name
-      span PRÉNOM ET NOM
-    div.cell.email
-      span EMAIL
-    div.cell.role
-      span RÔLE
-    div.cell.creation-time
-      span CRÉÉ IL Y A
-    div.cell.modification-time
-      span MODIFIÉ IL Y A
+    div.AdministrationPanelTableList__cell.profil-picture
+    div.AdministrationPanelTableList__cell.full-name
+      span {{ $t('header.fullName') }}
+    div.AdministrationPanelTableList__cell.email
+      span {{ $t('header.email') }}
+    div.AdministrationPanelTableList__cell.role
+      span {{ $t('header.role') }}
+    div.AdministrationPanelTableList__cell.created-at
+      span {{ $t('header.createdAt') }}
+    div.AdministrationPanelTableList__cell.modified-at
+      span {{ $t('header.modifiedAt') }}
   ul( v-loading='pending' )
     li.AdministrationPanelTableList__row(
       v-for='user in users'
       :key='user.id'
       :class="{ 'super-admin': isSuperAdmin(user) }" )
-      div.cell.actions
+      div.AdministrationPanelTableList__cell.actions
         el-checkbox( :checked='isSelected(user.id)' @change='changeSelection(user, $event)' )
-      div.cell.profil-picture
+      div.AdministrationPanelTableList__cell.profil-picture
         BaseImage( src='/static/img/default-user-picture.png' )
-      div.cell.full-name
+      div.AdministrationPanelTableList__cell.full-name
         span {{ user.firstname }}&nbsp;
           span.lastname {{ user.lastname }}
-      div.cell.email
+      div.AdministrationPanelTableList__cell.email
         span {{ user.email }}
-      div.cell.role
+      div.AdministrationPanelTableList__cell.role
         el-tag.tag( size='mini' :type='getTagTypeFromRole(user.role_name)' ) {{ user.role_name }}
-      div.cell.creation-time
+      div.AdministrationPanelTableList__cell.created-at
         span( :title='formatDate(user.created_at)' ) {{ relativeTimFromNow(user.created_at) }}
-      div.cell.modification-time
+      div.AdministrationPanelTableList__cell.modified-at
         span( :title='formatDate(user.updated_at)' ) {{ relativeTimFromNow(user.updated_at  ) }}
+  p.selection-info( v-if='selectionModeEnabled' ) {{ selectionInfoText }}
 </template>
 
 <script>
@@ -44,7 +45,17 @@ export default {
   computed: {
     users: get('dashboardAdministration/users'),
     selectedUsers: sync('dashboardAdministration/selectedUsers'),
-    pending: get('dashboardAdministration/pending')
+    pending: get('dashboardAdministration/pending'),
+
+    selectionModeEnabled () {
+      return this.selectedUsers.length > 0
+    },
+
+    selectionInfoText () {
+      // The user must be informed of the state of his selection
+      const count = this.selectedUsers.length
+      return this.$tc('message.selectionCount', count, { count })
+    }
   },
 
   methods: {
@@ -102,123 +113,142 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../assets/scss/colors';
-@import '../../../assets/scss/vars.scss';
 
-.AdministrationPanelTableList {
-  .cell {
-    min-width: 0;
-    padding: 0 .8rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    height: 3.2rem;
+$color-highlight: $primaryColor;
+$background-highlight: rgba($color-highlight, 0.1);
+
+@mixin transition-enter ($transition-property) {
+  transition: $transition-property .05s ease-in;
+}
+
+@mixin transition-leave ($transition-property) {
+  transition: $transition-property .1s ease-in-out;
+}
+
+@mixin set-columns-weight (
+  $profil-picture,
+  $full-name,
+  $email,
+  $role,
+  $created-at,
+  $modified-at) {
+  &.profil-picture { flex: $profil-picture }
+  &.full-name { flex: $full-name }
+  &.email { flex: $email }
+  &.role { flex: $role }
+  &.created-at { flex: $created-at }
+  &.modified-at { flex: $modified-at }
+}
+
+.AdministrationPanelTableList__cell {
+  @include set-columns-weight(0, 2, 3, 1, 0, 0);
+  min-width: 0;
+  padding: 0 .8rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 3.2rem;
+  overflow: hidden;
+
+  > span {
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    > span {
+  &.profil-picture,
+  &.created-at,
+  &.modified-at {
+    display: none;
+  }
 
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  // The wider the width allows, the more we need
+  // to display user information about the user
+  @media screen and (min-width: 850px) {
+    @include set-columns-weight(1, 3.3, 4.3, 1.4, 0, 0);
+    &.profil-picture { display: flex; }
+  }
 
-    &.full-name { flex: 2 }
-    &.email { flex: 3 }
-    &.role { flex: 1 }
+  @media screen and (min-width: 1100px) {
+    @include set-columns-weight(.8, 3, 4.2, 1, 0, 1);
+    &.modified-at { display: flex; }
+  }
 
-    &.profil-picture,
-    &.creation-time,
-    &.modification-time {
-      display: none;
-    }
-
-    @media screen and (min-width: 850px) {
-      &.full-name { flex: 3.3 }
-      &.email { flex: 4.3 }
-      &.role { flex: 1.4 }
-
-      &.profil-picture {
-        display: flex;
-        flex: 1;
-      }
-    }
-
-    @media screen and (min-width: 1100px) {
-      &.full-name { flex: 3 }
-      &.email { flex: 4.2 }
-      &.role { flex: 1 }
-      &.profil-picture { flex: 0.8 }
-
-      &.modification-time {
-        display: flex;
-        flex: 1;
-      }
-    }
-
-    @media screen and (min-width: 1250px) {
-      &.full-name { flex: 2.5 }
-      &.email { flex: 4 }
-      &.role { flex: 0.8 }
-      &.profil-picture { flex: 0.5 }
-      &.modification-time { flex: 1 }
-
-      &.creation-time {
-        display: flex;
-        flex: 1;
-      }
-    }
+  @media screen and (min-width: 1250px) {
+    @include set-columns-weight(.5, 2.5, 4, .8, 1, 1);
+    &.created-at { display: flex; }
   }
 }
 
 .AdministrationPanelTableList__header {
-  color: #A250E5;
+  color: $color-highlight;
   font-size: .8em;
   font-weight: 400;
   display: flex;
   width: 100%;
   user-select: none;
 
-  > .cell {
+  .AdministrationPanelTableList__cell {
     height: 4rem;
   }
 }
 
 .AdministrationPanelTableList__row {
+  @include transition-leave(all);
   background-color: transparent;
   border-radius: 6px;
   display: flex;
   width: 100%;
-  transition: all .2s ease-in-out;
 
-  &.super-admin {
-    color: red;
-  }
+  // We must highlight the super administrator in the list
+  &.super-admin { color: red; }
 
+  // When the mouse is over a user, we must reveal the
+  // checkbox and highlight the corresponding line
   &:hover {
-    color: #A250E5;
-    background-color: rgba(162, 80, 229, 0.1);
-    transition: all .1s ease-in;
+    color: $color-highlight;
+    background-color: $background-highlight;
+    @include transition-enter(all);
 
-    &.super-admin {
-      color: red;
+    &.super-admin { color: red; }
+
+    .AdministrationPanelTableList__cell.actions > .el-checkbox {
+      opacity: 1;
+      @include transition-enter(opacity);
     }
   }
+}
 
-  > .full-name > span {
+// The columns. Represented by cells
+.AdministrationPanelTableList__row > .AdministrationPanelTableList__cell {
+  // When a user is not selected, we must shown
+  // to the user the checkbox when the mouse is
+  // over the corresponding line
+  &.actions .el-checkbox {
+    @include transition-leave(opacity);
+    opacity: 0;
+
+    &.is-checked { opacity: 1 }
+  }
+
+  // This cell must display the full name, ie
+  // the first name followed by the last name
+  &.full-name > span {
     &:hover {
       text-decoration: underline;
       cursor: pointer;
     }
 
-    > .lastname {
-      font-weight: 600
-    }
+    .lastname { font-weight: 600 }
   }
 
-  > .profil-picture {
+  // Each user must be easily identifiable
+  // thanks to his profile picture
+  &.profil-picture {
     justify-content: center;
     user-select: none;
 
-    > .BaseImage {
+    .BaseImage {
       $size: 24px;
       border-radius: 50%;
       width: $size;
@@ -226,4 +256,13 @@ export default {
     }
   }
 }
+
+.AdministrationPanelTableList__button {
+  color: $primaryColor;
+}
+
+.selection-info {
+  margin: 1rem 0 1rem 2rem;
+}
+
 </style>

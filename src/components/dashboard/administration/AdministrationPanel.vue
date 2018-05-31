@@ -32,7 +32,6 @@ export default {
 
   watch: {
     activeGroupId () {
-      console.log('ICI 1')
       this.updateUserList()
     }
   },
@@ -40,7 +39,6 @@ export default {
   methods: {
     changePage (page) {
       this.currentPage = page
-      console.log('ICI 3')
       this.updateUserList()
     },
 

@@ -1,6 +1,6 @@
 <template lang="pug">
 .AdministrationPanelTableInfos
-  h2 <span class='number'>{{ totalUsers }}</span> utilisateurs dans le groupe
+  h2 <span class='number'>{{ totalUsers }}</span> {{ $tc('infos.userInGroup', totalUsers) }}
   h3
     | dont&nbsp;
     el-tooltip

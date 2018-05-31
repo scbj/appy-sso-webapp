@@ -74,11 +74,22 @@ export default {
     tooCramped: "Un peu trop à l'étroit ici !",
     tooCrampedInstructions: "Utilisez un ordinateur et agrandissez la fenêtre jusqu'à ce qu'on soit plus à l'aise",
     tooCrampedWhy: "L'activation de la licence sur mobile est en développement ! Vous pourrez bientôt utiliser 100% d'Appy sur votre mobile.",
-    groupCreatedSuccess: 'Nouveau groupe créé avec succès !'
+    groupCreatedSuccess: 'Nouveau groupe créé avec succès !',
+    selectionCount: 'Vous avez sélectionné un utilisateur | Vous avez sélectionné {count} utilisateurs'
   },
   placeholder: {
     fullName: 'Nom complet (prénom et nom)',
     email: 'Adresse mail',
     search: 'Rechercher un nom, prénom ou email'
+  },
+  header: {
+    fullName: 'PRÉNOM ET NOM',
+    email: 'EMAIL',
+    role: 'RÔLE',
+    createdAt: 'CRÉÉ IL Y A',
+    modifiedAt: 'MODIFIÉ IL Y A'
+  },
+  infos: {
+    userInGroup: 'utilisateur dans le groupe | utilisateurs dans le groupe'
   }
 }
