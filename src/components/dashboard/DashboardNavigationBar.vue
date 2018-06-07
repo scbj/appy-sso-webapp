@@ -1,15 +1,17 @@
 <template lang="pug">
-.dashboard-navigation-bar
+.DashboardNavigationBar( :class='{ minimize: !shouldDisplayLabel }' )
   .item(
     v-for='item in items'
     :key='item.label'
     @click='setActive(item)'
     :class='{ active: isActive(item) }')
-    i( class='icon' :class='item.icon' )
+    BaseIcon( :name='item.icon' )
     span.label( v-text='item.label' )
 </template>
 
 <script>
+let timeoutBeforeHideLabel = null
+
 export default {
   props: {
     value: {
@@ -22,21 +24,27 @@ export default {
     items () {
       return [
         {
-          icon: 'ion-ios-browsers-outline',
+          icon: 'ios-apps',
           label: this.$t('apps'),
           name: 'apps'
         },
         {
-          icon: 'ion-ios-paper-outline',
+          icon: 'ios-paper',
           label: this.$t('news'),
           name: 'news'
         },
         {
-          icon: 'ion-ios-gear-outline',
+          icon: 'md-settings',
           label: this.$t('settings'),
           name: 'settings'
         }
       ]
+    }
+  },
+
+  data () {
+    return {
+      shouldDisplayLabel: false
     }
   },
 
@@ -45,16 +53,29 @@ export default {
       return this.value === item.name
     },
     setActive (item) {
+      this.showLabels()
       if (this.value !== item.name) {
         this.$emit('input', item.name)
       }
+    },
+
+    showLabels () {
+      // 2 seconds, 2000 milliseconds
+      const delay = 2000
+      if (timeoutBeforeHideLabel) {
+        clearInterval(timeoutBeforeHideLabel)
+      }
+      this.shouldDisplayLabel = true
+      timeoutBeforeHideLabel = setTimeout(() => {
+        this.shouldDisplayLabel = false
+      }, delay)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.dashboard-navigation-bar {
+.DashboardNavigationBar {
   z-index: 1000;
   user-select: none;
   background-color: white;
@@ -64,7 +85,13 @@ export default {
   display: flex;
   justify-content: space-around;
   padding: .4rem;
-  box-shadow: 0 4px 16px rgba(black, .1)
+  box-shadow: 0 4px 16px rgba(black, .1);
+  transition: transform .2s cubic-bezier(.25,.87,.39,.99);
+
+  &.minimize {
+    transition: transform .2s ease-in-out;
+    transform: translateY(1.5em);
+  }
 }
 
 .item {
@@ -82,7 +109,7 @@ export default {
     color: #A250E5;
     transition: color 0s;
 
-    .icon {
+    .BaseIcon {
       animation: pop .3s ease-in-out;
 
       @keyframes pop {
@@ -95,7 +122,7 @@ export default {
     }
   }
 
-  .icon {
+  .BaseIcon {
     font-size: 2rem;
     display: block;
   }

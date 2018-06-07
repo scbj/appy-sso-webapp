@@ -1,15 +1,15 @@
 <template lang="pug">
-.application-list
+.ApplicationList
   DashboardGreeting( v-show="$mq === 'mobile'" )
-  ul.apps( v-if='apps.length' )
+  ul.ApplicationList__apps( v-if='apps.length' )
     ApplicationItem(
       v-for='app in apps'
       :key='app.name'
       :name='app.name'
       :logo='app.pictureUrl'
       :isNew='app.created_at | isNew')
-  .no-data( v-else )
-    i( class='icon ion-ios-albums-outline' )
+  .ApplicationList__no-data( v-else )
+    BaseIcon( name='ios-albums' )
     span.label( v-text="$t('message.noData.applications')" )
 </template>
 
@@ -52,7 +52,7 @@ export default {
 <style lang="scss">
 @import '../../../assets/scss/vars.scss';
 
-.apps {
+.ApplicationList__apps {
   display: flex;
   flex-direction: column;
 
@@ -62,7 +62,7 @@ export default {
   }
 }
 
-.no-data {
+.ApplicationList__no-data {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,8 +71,8 @@ export default {
   color: #C0C4CC;
   font-size: 2rem;
 
-  .icon {
-    opacity: .6;
+  .BaseIcon {
+    opacity: .3;
     font-size: 3em;
   }
 

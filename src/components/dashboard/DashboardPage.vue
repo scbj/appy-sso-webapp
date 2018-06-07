@@ -1,5 +1,5 @@
 <template lang="pug">
-.dashboard-page
+.DashboardPage
   DashboardHeader
   .main
     DashboardGreeting( v-show="$mq !== 'mobile'" )
@@ -18,8 +18,8 @@
           AdministrationPanel
   DashboardFooter( v-show="$mq !== 'mobile'" )
   DashboardNavigationBar( v-show="$mq === 'mobile'" v-model='activeName' )
-  ModalGroupCreate( :open='shouldOpenModalGroupCreate' @close="$store.dispatch('ui/closeModalGroupCreate')" )
-  ModalGroupCreate( :open='shouldOpenModalUserCreate' @close="$store.dispatch('ui/closeModalUserCreate')" )
+  ModalGroupCreate( :opened='shouldOpenModalGroupCreate' @closed="$store.dispatch('ui/closeModalGroupCreate')" )
+  ModalGroupCreate( :opened='shouldOpenModalUserCreate' @closed="$store.dispatch('ui/closeModalUserCreate')" )
 </template>
 
 <script>
@@ -81,7 +81,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/vars.scss';
 
-.dashboard-page {
+.DashboardPage {
   background-color: #fbfbfb;
   display: grid;
   grid-template-rows: auto 1fr auto;

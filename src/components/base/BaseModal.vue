@@ -1,6 +1,6 @@
 <template lang="pug">
-.BaseModal( v-if='open' @click='close' )
-  .BaseModal__container( @click.stop='' )
+.BaseModal( v-if='opened' @click='close' )
+  .BaseModal__container( @click.stop='' class='{ opened }' )
     slot
 </template>
 
@@ -9,14 +9,14 @@ export default {
   name: 'BaseModal',
 
   props: {
-    open: {
+    opened: {
       type: Boolean,
       required: true
     }
   },
 
   watch: {
-    open: {
+    opened: {
       immediate: true,
       handler: 'changeScrollBehavior'
     }
@@ -33,13 +33,13 @@ export default {
   methods: {
     /** @param {KeyboardEvent} e */
     handleEscapeKey (e) {
-      if (this.open && e.keyCode === 27) {
+      if (this.opened && e.keyCode === 27) {
         this.close()
       }
     },
 
     close () {
-      this.$emit('close')
+      this.$emit('closed')
     },
 
     changeScrollBehavior (shouldDisable) {
@@ -66,6 +66,12 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: test .2s ease-in-out forwards;
+
+  @keyframes test {
+    0% { backdrop-filter: blur(0) }
+    100% { backdrop-filter: blur(10px) }
+  }
 }
 
 .BaseModal__container {
@@ -75,10 +81,26 @@ export default {
   height: 100%;
 
   @media screen and (min-width: $mobile) {
+    opacity: 0;
     width: 460px;
     height: auto;
     border-radius: 6px;
     box-shadow: 0 6px 22px -2px rgba(black, .1);
+
+    &.opened {
+      animation: slide-up .4s cubic-bezier(.25,.87,.39,.99) forwards;
+
+      @keyframes slide-up {
+        0% {
+          opacity: 0;
+          transform: translateY(50px) scale(1.1);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+    }
   }
 
   > .title {

@@ -1,7 +1,7 @@
 <template lang="pug">
-el-dropdown.base-language-switch( v-show='currentLanguage' @command='changeLanguage' )
+el-dropdown.BaseLanguageSwitch( v-show='currentLanguage' @command='changeLanguage' )
     span.el-dropdown-link
-      i( class='icon ion-ios-world-outline' )
+      BaseIcon( name='md-globe' )
       span( v-text='currentLanguage' )
       i.el-icon-arrow-down.el-icon--right
     el-dropdown-menu( slot='dropdown' )
@@ -41,10 +41,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.base-language-switch {
+.BaseLanguageSwitch {
   color: #909399;
 
-  .icon {
+  .BaseIcon {
+    opacity: .7;
     font-size: 1.8rem;
     margin-right: .3em;
   }

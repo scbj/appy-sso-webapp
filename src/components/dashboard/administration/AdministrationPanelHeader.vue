@@ -2,7 +2,8 @@
 .AdministrationPanelHeader
   HeaderGroupSelection
   HeaderRadioButtons
-  el-button.AdministrationPanelHeader__button-edit( type='text' ) {{ $t('button.edit') }}
+  el-button.AdministrationPanelHeader__button-settings( type='text' )
+    BaseIcon( name='ios-settings' )
 </template>
 
 <script>
@@ -30,5 +31,11 @@ export default {
 
 .HeaderRadioButtons {
   margin-left: 3rem;
+}
+
+.AdministrationPanelHeader__button-settings {
+  font-size: 2rem;
+  color: #A250E5;
+  margin-left: 1.5rem;
 }
 </style>
