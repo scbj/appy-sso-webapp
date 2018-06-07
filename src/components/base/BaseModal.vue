@@ -56,7 +56,7 @@ export default {
 @import '../../assets/scss/vars.scss';
 
 .BaseModal {
-  z-index: 9998;
+  z-index: $z-index-modal;
   background-color: rgba(black, .2);
   position: fixed;
   top: 0;

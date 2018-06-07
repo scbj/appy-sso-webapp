@@ -1,15 +1,34 @@
-<template>
-  <div id="app">
-    <router-view/>
-  </div>
+<template lang="pug">
+#app
+  router-view
+  TheModal
 </template>
 
 <script>
+import { get } from 'vuex-pathify'
+
+import TheModal from '@/components/TheModal'
 import { changeLocale } from './i18n/index'
 import { setAuthorizationHeader } from './http-common'
 
 export default {
   name: 'App',
+
+  components: {
+    TheModal
+  },
+
+  computed: {
+    shouldBodyScrollable: get('modal/shouldBodyScrollable')
+  },
+
+  watch: {
+    shouldBodyScrollable (value) {
+      document.body.style.overflowY = value
+        ? ''
+        : 'hidden'
+    }
+  },
 
   created () {
     this.chooseLanguage({

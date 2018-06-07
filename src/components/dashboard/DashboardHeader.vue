@@ -40,7 +40,7 @@ export default {
 @import '../../assets/scss/vars';
 
 .dashboard-header {
-  z-index: 1000;
+  z-index: $z-index-dashboard-header;
   user-select: none;
   background-color: rgba(white, .95);
   padding: 1.5rem;

@@ -75,8 +75,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/vars.scss';
+
 .DashboardNavigationBar {
-  z-index: 1000;
+  z-index: $z-index-dashboard-navigation-bar;
   user-select: none;
   background-color: white;
   position: fixed;
