@@ -43,6 +43,7 @@ export default {
   computed: {
     groups: get('group/groups'),
     activeGroupId: sync('dashboardAdministration/activeGroupId'),
+    activeGroupName: get('dashboardAdministration/activeGroupName'),
     defaultGroupId: get('dashboardAdministration/defaultGroupId'),
     pending: sync('dashboardAdministration/pending'),
 
@@ -52,19 +53,6 @@ export default {
      */
     shouldShowSeparateButton () {
       return this.groups && this.groups.length > 12
-    },
-
-    isDefaultGroupActive () {
-      return this.activeGroupId === this.defaultGroupId
-    },
-
-    /** Returns the name of the selected group. */
-    activeGroupName () {
-      if (this.isDefaultGroupActive || this.activeGroupId === -1) {
-        return this.$t('byDefault')
-      }
-      const group = this.groups.find(group => group.id === this.activeGroupId)
-      return group.name
     }
   },
 

@@ -1,5 +1,7 @@
 import { make } from 'vuex-pathify'
 
+import { i18n } from '@/i18n'
+
 export const state = {
   pending: false,
   activeGroupId: -1,
@@ -85,9 +87,25 @@ export const state = {
   selectedUsers: []
 }
 
-export const mutations = make.mutations(state)
+export const getters = {
+  ...make.getters(state),
 
-export const getters = make.getters(state)
+  isDefaultGroupActive (state) {
+    return state.activeGroupId === state.defaultGroupId
+  },
+
+  /** Returns the name of the selected group. */
+  activeGroupName (state, getters, rootState) {
+    if (getters.isDefaultGroupActive || state.activeGroupId === -1) {
+      return i18n.t('byDefault')
+    }
+    const group = rootState.group.groups.find(group =>
+      group.id === state.activeGroupId)
+    return group.name
+  }
+}
+
+export const mutations = make.mutations(state)
 
 export default {
   namespaced: true,
