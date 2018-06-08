@@ -1,8 +1,6 @@
 <template lang="pug">
-BaseModal.modal-group-create(
-  v-on='$listeners'
-  v-bind='$attrs' )
-  h2.title {{ $t('title.createGroup') }}
+.ModalGroupCreate
+  h2.ModalGroupCreate__title {{ $t('title.createGroup') }}
   ModalGroupCreateChooseName(
     v-if='!groupName'
     @nameChosen='nameChosen'
@@ -19,8 +17,6 @@ import ModalGroupCreateChooseName from './ModalGroupCreateChooseName'
 import ModalGroupCreateAddUsers from './ModalGroupCreateAddUsers'
 
 export default {
-  inheritAttrs: false,
-
   components: {
     ModalGroupCreateChooseName,
     ModalGroupCreateAddUsers
@@ -70,9 +66,17 @@ export default {
     close () {
       this.groupName = ''
       this.users = ''
-      this.$store.dispatch('ui/closeModalGroupCreate')
-      this.$store.dispatch('user/cleanList')
+      this.$store.dispatch('modal/close')
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.ModalGroupCreate__title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #373737;
+  margin-bottom: 1rem;
+}
+</style>

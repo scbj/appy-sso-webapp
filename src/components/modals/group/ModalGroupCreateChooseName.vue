@@ -1,20 +1,23 @@
 <template lang="pug">
-el-form.modal-group-create-choose-name(
-  @submit.native.prevent=''
+ModalForm.ModalGroupCreateChooseName(
   ref='form'
   :model='form'
-  :rules='rules' status-icon )
+  :rules='rules'
+  :primaryButtonText="$t('button.validate')"
+  @validated='formValidated' )
   el-form-item( prop='name' :label="$t('chooseGroupName')" )
-    el-input( v-model='form.name' @keyup.enter.native='validate' )
-  el-form-item.buttons
-    el-button( type='text' @click="$emit('requestClose')" ) {{ $t('cancel') }}
-    el-button( type='primary' @click='validate' )  {{ $t('button.validate') }}
+    el-input( v-model='form.name' @keyup.enter.native='$refs.form.validate' )
 </template>
 
 <script>
+import ModalForm from '@/components/modals/ModalForm'
 import { cleanWhitespaces } from '@/utils/string-helpers'
 
 export default {
+  components: {
+    ModalForm
+  },
+
   data () {
     return {
       form: {
@@ -37,24 +40,10 @@ export default {
         callback()
       }
     },
-    validate (e) {
-      this.$refs.form.validate(valid => {
-        if (!valid) return false
-        this.$emit('nameChosen', this.form.name)
-      })
+
+    formValidated () {
+      this.$emit('nameChosen', this.form.name)
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.buttons {
-  margin-top: 2rem;
-  margin-bottom: 0;
-  text-align: right;
-
-  button {
-    margin-bottom: 10px;
-  }
-}
-</style>

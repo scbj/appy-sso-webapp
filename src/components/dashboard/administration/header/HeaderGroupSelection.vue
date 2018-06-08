@@ -5,7 +5,7 @@
       el-button(
         type='text'
         class='button-group-add button-standalone'
-        @click="$store.dispatch('ui/openModalGroupCreate')")
+        @click='createGroup')
         i( class='el-icon-plus el-icon--left' )
     el-tooltip( :content="$t('button.switchGroup')" :open-delay=500 )
       el-button {{ activeGroupName }}...
@@ -29,13 +29,15 @@
         el-button(
           type='text'
           class='button-group-add'
-          @click="$store.dispatch('ui/openModalGroupCreate')")
+          @click='createGroup' )
           i( class='el-icon-plus el-icon--left' )
           | {{ $t('button.createGroup') }}
 </template>
 
 <script>
 import { get, sync } from 'vuex-pathify'
+
+import ModalGroupCreate from '@/components/modals/group/ModalGroupCreate'
 
 export default {
   computed: {
@@ -87,6 +89,12 @@ export default {
       if (typeof id === 'number') {
         this.activeGroupId = id
       }
+    },
+
+    createGroup () {
+      this.$store.dispatch('modal/open', {
+        content: ModalGroupCreate
+      })
     }
   }
 }

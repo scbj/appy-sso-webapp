@@ -1,11 +1,11 @@
 <template lang="pug">
-ul.modal-group-create-add-users-list
-  li.list-item(
+ul.ModalGroupCreateAddUsersList
+  li.ModalGroupCreateAddUsersList__users(
     v-for='user in users'
     :key='user.id'
   )
     el-checkbox( :checked='isSelected(user.id)' @change='changeSelection(user, $event)') {{ user.firstname }} {{ user.lastname }}
-    span.email {{ user.email }}
+    span.ModalGroupCreateAddUsersList__email {{ user.email }}
 </template>
 
 <script>
@@ -35,14 +35,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.list-item {
+.ModalGroupCreateAddUsersList__users {
   margin-bottom: .5em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.email {
+.ModalGroupCreateAddUsersList__email {
   margin-left: 1em;
   font-size: 14px;
   color: #A250E5;

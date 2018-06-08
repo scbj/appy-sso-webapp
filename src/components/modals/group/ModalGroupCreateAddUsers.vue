@@ -1,16 +1,15 @@
 <template lang="pug">
-  el-form.modal-group-create-choose-name(
-    @submit.native.prevent=''
-    ref='form'
-    :model='form'
-    status-icon )
+ModalForm.ModalGroupCreateAddUsers(
+  :model='form'
+  :primaryButtonText='createGroupLabel'
+  @validated='formValidated' )
     el-form-item( prop='query' :label="$t('addPeople')" )
       el-input(
         ref='searchInput'
         v-model='form.query'
         prefix-icon="el-icon-search"
         :placeholder="$t('placeholder.search')" )
-    ModalGroupCreateAddUsersList.user-list(
+    ModalGroupCreateAddUsersList(
       v-loading='searching'
       v-show='hasUsers'
       :users='users'
@@ -26,19 +25,19 @@
       :page-size='perPage'
       @current-change='changePage' )
     span.no-data( v-show='!hasUsers && !searching' ) {{ $t('message.noData.search') }}
-    el-form-item.buttons
-      el-button( type='text' @click="$emit('requestClose')" ) {{ $t('cancel') }}
-      el-button( type='primary' @click='createGroup' ) {{ createGroupLabel }}
 </template>
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
+
+import ModalForm from '@/components/modals/ModalForm'
 import ModalGroupCreateAddUsersList from './ModalGroupCreateAddUsersList'
 
 const { mapGetters } = createNamespacedHelpers('user')
 
 export default {
   components: {
+    ModalForm,
     ModalGroupCreateAddUsersList
   },
 
@@ -70,7 +69,7 @@ export default {
 
   watch: {
     async 'form.query' (newValue) {
-      if (newValue.length > 2) {
+      if (newValue.length >= 2) {
         this.searching = true
         await this.$store.dispatch('user/search', { page: 1, query: newValue })
         this.searching = false
@@ -114,7 +113,7 @@ export default {
       this.searching = false
     },
 
-    createGroup () {
+    formValidated () {
       this.$emit('usersAdded', this.selectedUsers)
     }
   }
@@ -122,17 +121,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.buttons {
-  margin-top: 2rem;
-  margin-bottom: 0;
-  text-align: right;
-
-  button {
-    margin-bottom: 10px;
-  }
-}
-
-.user-list {
+.ModalGroupCreateAddUsersList {
   margin-bottom: 2em;
   min-height: 50px;
 }

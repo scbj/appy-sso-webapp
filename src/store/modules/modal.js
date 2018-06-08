@@ -2,7 +2,9 @@ import { make } from 'vuex-pathify'
 
 export const state = {
   opened: false,
-  content: null
+  content: null,
+  /** If it's true the modal can be closed during a click outside of it  */
+  easyCloseEnabled: true
 }
 
 export const getters = {
@@ -13,11 +15,11 @@ export const getters = {
 
 export const actions = {
   open ({ commit }, payload) {
-    const component = payload && payload.component
+    const content = payload && payload.content
 
     // The component must be loaded if specified
-    if (component) {
-      commit('SET_CONTENT', component)
+    if (content) {
+      commit('SET_CONTENT', content)
     }
     commit('SET_OPENED', true)
   },

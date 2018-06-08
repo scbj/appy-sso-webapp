@@ -1,6 +1,6 @@
 <template lang="pug">
-transition( name='isolement' )
-  .TheModal( v-show='opened' @click='close' )
+transition( name='isolement' @after-leave="afterLeave" )
+  .TheModal( v-show='opened' @click='handleOutsideClick' )
     transition( name='landing' )
       .TheModal__container( v-show='opened' @click.stop='' )
         component( :is='content' )
@@ -12,7 +12,8 @@ import { get, sync } from 'vuex-pathify'
 export default {
   computed: {
     opened: sync('modal/opened'),
-    content: get('modal/content')
+    content: sync('modal/content'),
+    easyCloseEnabled: get('modal/easyCloseEnabled')
   },
 
   mounted () {
@@ -34,13 +35,20 @@ export default {
     handleEscapeKey (e) {
       const isEscapeKey = () => e.keyCode === 27
       if (this.opened && isEscapeKey()) {
-        this.close()
+        this.opened = false
       }
     },
 
-    /** Close the modal. */
-    close () {
-      this.opened = false
+    handleOutsideClick () {
+      // We should close the modal if easy close it's enabled
+      if (this.easyCloseEnabled) {
+        this.opened = false
+      }
+    },
+
+    afterLeave () {
+      // Clear content component
+      this.content = null
     }
   }
 }
@@ -57,6 +65,7 @@ $content-background-color: white;
 .TheModal {
   z-index: $z-index-modal;
   background-color: $background-color;
+  // backdrop-filter: blur(2px);
   @include flex-center;
   position: fixed;
   top: 0;
@@ -80,7 +89,7 @@ $content-background-color: white;
 }
 
 .isolement-enter-active {
-  transition: background .2s ease-in-out
+  transition: all .2s ease-in-out
 }
 
 .landing-enter-active {
@@ -99,6 +108,7 @@ $content-background-color: white;
 .isolement-enter,
 .isolement-leave-to {
   background: $enter-background-color;
+  // backdrop-filter: blur(0);
 }
 
 .landing-enter {
