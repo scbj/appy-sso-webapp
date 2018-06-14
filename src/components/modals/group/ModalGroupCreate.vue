@@ -3,18 +3,17 @@
   h2.ModalGroupCreate__title {{ $t('title.createGroup') }}
   ModalGroupCreateChooseName(
     v-if='!groupName'
-    @nameChosen='nameChosen'
-    @requestClose='close' )
+    @nameChosen='nameChosen' )
   ModalGroupCreateAddUsers(
     v-loading='creating'
     v-else
-    @usersAdded='usersAdded'
-    @requestClose='close' )
+    @usersAdded='usersAdded' )
 </template>
 
 <script>
 import ModalGroupCreateChooseName from './ModalGroupCreateChooseName'
 import ModalGroupCreateAddUsers from './ModalGroupCreateAddUsers'
+import { buildMessage } from '@/components/message'
 
 export default {
   components: {
@@ -50,22 +49,17 @@ export default {
 
       this.notifyUser(success)
 
-      this.creating = false
-      this.close()
+      this.$store.dispatch('modal/close')
     },
 
     notifyUser (success) {
-      if (success) {
-        this.$message({
-          message: this.$t('message.groupCreatedSuccess'),
-          type: 'success'
-        })
-      }
+      const message = buildMessage(success
+        ? 'groupCreateSuccess'
+        : 'groupCreateError')
+      this.$message(message)
     },
 
     close () {
-      this.groupName = ''
-      this.users = ''
       this.$store.dispatch('modal/close')
     }
   }

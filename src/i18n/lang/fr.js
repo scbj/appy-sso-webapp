@@ -26,9 +26,7 @@ export default {
     invalidFullName: 'Nom complet invalide',
     invalidEmail: 'Email invalide',
     invalidFields: 'Champs invalides',
-    unknownField: 'Champ inconnu',
-    atLeastOneCharacter: 'Doit contenir au moins 1 caractère',
-    atMostSixtyCharacters: 'Ne doit pas dépasser 60 caractères'
+    unknownField: 'Champ inconnu'
   },
   button: {
     logIn: 'Se connecter',
@@ -43,7 +41,10 @@ export default {
     next: 'Suivant',
     create: 'Créer',
     createGroupWithPeoples: 'Créer maintenant | Créer et ajouter 1 personne | Créer et ajouter {count} personnes',
-    edit: 'Modifier le groupe...'
+    edit: 'Modifier le groupe...',
+    rename: 'Renommer',
+    delete: 'Supprimer',
+    deleteGroup: 'Supprimer le groupe'
   },
   check: { rememberMe: 'Se souvenir de moi' },
   alt: { profilPicture: 'Photo de profil' },
@@ -55,7 +56,8 @@ export default {
     ownerInfos: "Créez l'utilisateur propriétaire de la licence",
     completed: "Félicitations ! Vous venez d'activer votre licence !",
     createGroup: 'Créer un groupe',
-    createUser: 'Créer un utilisateur'
+    createUser: 'Créer un utilisateur',
+    deleteGroup: 'Suppression de {groupName}'
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',
@@ -74,7 +76,11 @@ export default {
     tooCramped: "Un peu trop à l'étroit ici !",
     tooCrampedInstructions: "Utilisez un ordinateur et agrandissez la fenêtre jusqu'à ce qu'on soit plus à l'aise",
     tooCrampedWhy: "L'activation de la licence sur mobile est en développement ! Vous pourrez bientôt utiliser 100% d'Appy sur votre mobile.",
-    groupCreatedSuccess: 'Nouveau groupe créé avec succès !',
+    groupCreateSuccess: 'Nouveau groupe créé avec succès !',
+    groupCreateError: "Nous avons rencontré un problème. Le groupe n'a pas pu être créé.",
+    groupRenameError: "Nous avons rencontré un problème. Le groupe n'a pas pu être renommé.",
+    groupDeleteSuccess: '{groupName} a été supprimé.',
+    groupDeleteError: "Nous avons rencontré un problème. Le groupe n'a pas pu être supprimé",
     selectionCount: 'Vous avez sélectionné un utilisateur | Vous avez sélectionné {count} utilisateurs'
   },
   placeholder: {
@@ -91,5 +97,12 @@ export default {
   },
   infos: {
     userInGroup: 'utilisateur dans le groupe | utilisateurs dans le groupe'
+  },
+  error: {
+    atLeastOneCharacter: 'Doit contenir au moins 1 caractère',
+    atMostSixtyCharacters: 'Ne doit pas dépasser 60 caractères'
+  },
+  question: {
+    deleteGroup: 'Cela va définitivement supprimer le groupe (les utilisateurs du groupe seront assignés au groupe par défaut). Continuer ?'
   }
 }

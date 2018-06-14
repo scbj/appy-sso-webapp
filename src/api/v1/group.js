@@ -1,4 +1,9 @@
-import { getAsync, postAsync } from '@/http-common'
+import {
+  getAsync,
+  postAsync,
+  deleteAsync,
+  putAsync
+} from '@/http-common'
 
 const base = 'api/v1/group'
 
@@ -15,7 +20,6 @@ const base = 'api/v1/group'
  * @method GET
  * @returns {Promise<ApiResponse>}
  */
-
 export function list () {
   return getAsync(base)
 }
@@ -64,4 +68,24 @@ export function listUsers ({
 }) {
   const url = `${base}/${groupId}/user?fields=${fields.join(',')}&paginate=${paginate}&page=${page}`
   return getAsync(url)
+}
+
+/**
+ * Update the specified group with the specified data.
+ * @method PUT
+ * @returns {Promise<ApiResponse>}
+ */
+export function update ({ groupId, ...data }) {
+  const url = `${base}/${groupId}`
+  return putAsync(url, data)
+}
+
+/**
+ * Delete the group corresponding with the specified id.
+ * @method POST
+ * @returns {Promise<ApiResponse>}
+ */
+export function remove ({ groupId }) {
+  const url = `${base}/${groupId}`
+  return deleteAsync(url)
 }

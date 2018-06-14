@@ -26,9 +26,7 @@ export default {
     invalidFullName: 'Invalid name',
     invalidEmail: 'Invaild email',
     invalidFields: 'Invalid fields',
-    unknownField: 'Unknown field',
-    atLeastOneCharacter: 'Must contain at least 1 character',
-    atMostSixtyCharacters: 'Must not exceed 60 characters'
+    unknownField: 'Unknown field'
   },
   button: {
     logIn: 'Sign in',
@@ -43,7 +41,10 @@ export default {
     next: 'Next',
     create: 'Create',
     createGroupWithPeoples: 'Create now | Create and add 1 person | Create and add {count} people',
-    edit: 'Edit group...'
+    edit: 'Edit group...',
+    rename: 'Rename',
+    delete: 'Delete',
+    deleteGroup: 'Delete group'
   },
   check: { rememberMe: 'Remember me' },
   alt: { profilPicture: 'Profile picture' },
@@ -55,7 +56,8 @@ export default {
     ownerInfos: 'Create the user who owns the license',
     completed: 'Congratulations! You have activated your license!',
     createGroup: 'Create a group',
-    createUser: 'Create a user'
+    createUser: 'Create a user',
+    deleteGroup: 'Deleting {groupName}'
   },
   message: {
     alreadyLogged: 'You are already logged in, you can change to another account at any time.',
@@ -74,7 +76,11 @@ export default {
     tooCramped: 'A little too cramped here!',
     tooCrampedInstructions: 'Use a computer and resize the window until you are more comfortable',
     tooCrampedWhy: 'Activation of the license on mobile is under development! You will soon be able to use 100% of Appy on your mobile.',
-    groupCreatedSuccess: 'New group created successfully!',
+    groupCreateSuccess: 'New group created successfully!',
+    groupCreateError: 'We encountered a problem. The group could not be created.',
+    groupRenameError: 'We encountered a problem. The group could not be renamed.',
+    groupDeleteSuccess: '{groupName} has been removed.',
+    groupDeleteError: 'We encountered a problem. The group could not be deleted.',
     selectionCount: 'You have selected a single user | You have selected {count} users'
   },
   placeholder: {
@@ -91,5 +97,12 @@ export default {
   },
   infos: {
     userInGroup: 'user in the group | users in group'
+  },
+  error: {
+    atLeastOneCharacter: 'Must contain at least 1 character',
+    atMostSixtyCharacters: 'Must not exceed 60 characters'
+  },
+  question: {
+    deleteGroup: 'This will permanently delete the group (group users will be assigned to the default group). Continue?'
   }
 }

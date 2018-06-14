@@ -24,7 +24,7 @@ export async function list ({ commit }) {
   commit('SET_GROUPS', groups)
 }
 
-export async function createAndAddUsers ({ commit, dispatch }, payload) {
+export async function createAndAddUsers ({ dispatch }, payload) {
   // Send the create group request
   const createResponse = await api.group.create(payload.name)
   if (!createResponse.data) {
@@ -60,4 +60,35 @@ export async function listUsers ({ commit }, payload) {
     commitOnDashboardAdministration('SET_PAGE_SIZE', +data.per_page)
     commitOnDashboardAdministration('SET_USERS', data.data)
   }
+}
+
+export async function rename ({ dispatch }, payload) {
+  const { status } = await api.group.update(payload)
+  if (status !== 201) {
+    return false
+  }
+
+  // update the groups list
+  dispatch('list')
+  return true
+}
+
+export async function remove ({ commit, dispatch, rootState }, payload) {
+  const commitOnDashboardAdministration = (name, value) => commit(
+    `dashboardAdministration/${name}`,
+    value,
+    { root: true }
+  )
+
+  const { status } = await api.group.remove(payload)
+  if (status !== 200) {
+    return false
+  }
+  const { defaultGroupId } = rootState.dashboardAdministration
+  commitOnDashboardAdministration('SET_ACTIVE_GROUP_ID', defaultGroupId)
+
+  // update the groups list
+  dispatch('list')
+
+  return true
 }

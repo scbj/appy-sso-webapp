@@ -11,7 +11,7 @@ ModalForm.ModalGroupCreateChooseName(
 
 <script>
 import ModalForm from '@/components/modals/ModalForm'
-import { cleanWhitespaces } from '@/utils/string-helpers'
+import validator from '@/validators/validator'
 
 export default {
   components: {
@@ -31,14 +31,8 @@ export default {
 
   methods: {
     validateGroupName (rule, value, callback) {
-      const clean = cleanWhitespaces(value) || ''
-      if (clean.length < 1) {
-        callback(new Error(this.$t('alert.atLeastOneCharacter')))
-      } else if (clean.length > 60) {
-        callback(new Error(this.$t('alert.atMostSixtyCharacters')))
-      } else {
-        callback()
-      }
+      const { success, error } = validator.group.name.validate(value)
+      callback(success ? undefined : error)
     },
 
     formValidated () {
