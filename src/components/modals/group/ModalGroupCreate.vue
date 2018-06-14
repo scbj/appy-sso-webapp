@@ -42,14 +42,14 @@ export default {
     async createGroup () {
       this.creating = true
 
-      const success = await this.$store.dispatch('group/createAndAddUsers', {
+      const group = await this.$store.dispatch('group/createAndAddUsers', {
         name: this.groupName,
         users: this.users
       })
 
-      this.notifyUser(success)
+      this.notifyUser(!!group)
 
-      this.$store.dispatch('modal/close')
+      this.close()
     },
 
     notifyUser (success) {

@@ -1,3 +1,5 @@
+// TODO: Refactoriser ce code qui se répète  (commitOnDashboardAdministration)
+
 import api from '@/api/v1/index'
 
 export async function list ({ commit }) {
@@ -26,8 +28,8 @@ export async function list ({ commit }) {
 
 export async function createAndAddUsers ({ dispatch }, payload) {
   // Send the create group request
-  const createResponse = await api.group.create(payload.name)
-  if (!createResponse.data) {
+  const { data: group } = await api.group.create(payload.name)
+  if (!group) {
     return false
   }
 
@@ -35,13 +37,12 @@ export async function createAndAddUsers ({ dispatch }, payload) {
   dispatch('list')
 
   if (payload.users.length === 0) {
-    return true
+    return group
   }
-
-  // We must retrieve the id
-  const { id } = createResponse.data
-  const addUsersResponse = await api.group.addUsers(id, payload.users)
+  const addUsersResponse = await api.group.addUsers(group.id, payload.users)
   return addUsersResponse.status === 200
+    ? group
+    : null
 }
 
 export async function listUsers ({ commit }, payload) {

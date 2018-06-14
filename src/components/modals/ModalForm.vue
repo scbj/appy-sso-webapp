@@ -8,7 +8,7 @@ el-form.ModalForm(
   slot
   el-form-item.ModalForm__buttons
     el-button( v-if='canCancel' type='text' @click='closeModal' ) {{ $t('cancel') }}
-    el-button( type='primary' @click='validate' ) {{ primaryButtonText }}
+    el-button( type='primary' @click='validate' :disabled='primaryButtonDisabled' ) {{ primaryButtonText }}
 </template>
 
 <script>
@@ -17,6 +17,10 @@ export default {
     primaryButtonText: {
       type: String,
       required: true
+    },
+    primaryButtonDisabled: {
+      type: Boolean,
+      default: false
     },
     model: {
       type: Object,

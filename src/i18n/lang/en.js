@@ -57,6 +57,7 @@ export default {
     completed: 'Congratulations! You have activated your license!',
     createGroup: 'Create a group',
     createUser: 'Create a user',
+    renameGroup: 'Rename the group',
     deleteGroup: 'Deleting {groupName}'
   },
   message: {
@@ -100,7 +101,9 @@ export default {
   },
   error: {
     atLeastOneCharacter: 'Must contain at least 1 character',
-    atMostSixtyCharacters: 'Must not exceed 60 characters'
+    atMostSixtyCharacters: 'Must not exceed 60 characters',
+    invalidEmail: 'Invaild email',
+    groupNameUnchanged: 'Hmm 🤔 No need to rename this group, it already bears that name!'
   },
   question: {
     deleteGroup: 'This will permanently delete the group (group users will be assigned to the default group). Continue?'

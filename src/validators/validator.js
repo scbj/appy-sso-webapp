@@ -8,15 +8,28 @@ import { cleanWhitespaces } from '@/utils/string-helpers'
  */
 
 /**
- * Create validation error object with the value of the specified resource.
+ * Create an Error object with the value of the specified resource.
  * @param {String} resourceName
- * @returns {ValidationResponse}
+ * @returns {Error}
  */
-function createValidationError (resourceName) {
+function createError (resourceName) {
   const message = i18n.t(`error.${resourceName}`)
+  return new Error(message)
+}
+
+/**
+ * Create validation response object with the value of the specified resource.
+ * @param {Object} properties
+ * @param {Boolean} properties.success
+ * @param {String} properties.errorResourceName
+ */
+function createValidationResponse ({ success, errorResourceName }) {
+  if (success) {
+    return { success: true }
+  }
   return {
     success: false,
-    error: new Error(message)
+    error: createError(errorResourceName)
   }
 }
 
@@ -31,9 +44,9 @@ export const group = {
       groupName = cleanWhitespaces(groupName)
 
       if (!groupName) {
-        return createValidationError('atLeastOneCharacter')
+        return createValidationResponse({ errorResourceName: 'atLeastOneCharacter' })
       } else if (groupName.length > 60) {
-        return createValidationError('atMostSixtyCharacters')
+        return createValidationResponse({ errorResourceName: 'atMostSixtyCharacters' })
       }
 
       return { success: true }
@@ -41,6 +54,19 @@ export const group = {
   }
 }
 
+export const user = {
+  email: {
+    validate (email) {
+      const match = /^[\w.-]+@[\w-]+\.+[a-zA-Z]{2,16}$/.test(email)
+      return createValidationResponse({
+        success: match,
+        errorResourceName: 'invalidEmail'
+      })
+    }
+  }
+}
+
 export default {
-  group
+  group,
+  user
 }

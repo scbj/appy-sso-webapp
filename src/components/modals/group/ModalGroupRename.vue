@@ -7,6 +7,7 @@
     :model='form'
     :rules='rules'
     :primaryButtonText="$t('button.rename')"
+    :primaryButtonDisabled='activeGroupName === form.name'
     @validated='renameGroup' )
     el-form-item( prop='name' :label="$t('chooseGroupName')" )
       el-input( v-model='form.name' @keyup.enter.native='$refs.form.validate' )
@@ -49,6 +50,11 @@ export default {
 
   methods: {
     validateGroupName (rule, value, callback) {
+      // The user must be informed if the name has not changed
+      if (this.activeGroupName === this.form.name) {
+        const error = new Error(this.$t('error.groupNameUnchanged'))
+        return callback(error)
+      }
       const { success, error } = validator.group.name.validate(value)
       callback(success ? undefined : error)
     },

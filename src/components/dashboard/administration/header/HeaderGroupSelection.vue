@@ -15,7 +15,7 @@
     el-dropdown-menu( slot='dropdown' )
       el-dropdown-item( v-show='groups && groups.length === 1' disabled ) {{ $t('noGroup') }}
       el-dropdown-item(
-        v-for='group in groups'
+        v-for='group in sortedGroup'
         :key='group.id'
         :command='group.id'
         class='group'
@@ -53,6 +53,20 @@ export default {
      */
     shouldShowSeparateButton () {
       return this.groups && this.groups.length > 12
+    },
+
+    sortedGroup () {
+      const compare = (a, b) => {
+        const nameA = a.name && a.name.toLowerCase()
+        const nameB = b.name && b.name.toLowerCase()
+        if (nameA > nameB) return 1
+        else if (nameA < nameB) return -1
+
+        // No difference between the two
+        return 0
+      }
+      const groups = [...this.groups]
+      return groups.sort(compare)
     }
   },
 
