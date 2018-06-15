@@ -41,6 +41,7 @@ export default {
     next: 'Suivant',
     create: 'Créer',
     createGroupWithPeoples: 'Créer maintenant | Créer et ajouter 1 personne | Créer et ajouter {count} personnes',
+    createUsers: "Envoyer l'email | Envoyer les {count} emails",
     edit: 'Modifier le groupe...',
     rename: 'Renommer',
     delete: 'Supprimer',
@@ -56,7 +57,7 @@ export default {
     ownerInfos: "Créez l'utilisateur propriétaire de la licence",
     completed: "Félicitations ! Vous venez d'activer votre licence !",
     createGroup: 'Créer un groupe',
-    createUser: 'Créer un utilisateur',
+    createUsers: 'Créer des utilisateurs',
     renameGroup: 'Renommer le groupe',
     deleteGroup: 'Suppression de {groupName}'
   },
@@ -82,6 +83,8 @@ export default {
     groupRenameError: "Nous avons rencontré un problème. Le groupe n'a pas pu être renommé.",
     groupDeleteSuccess: '{groupName} a été supprimé.',
     groupDeleteError: "Nous avons rencontré un problème. Le groupe n'a pas pu être supprimé",
+    userCreateSuccess: 'Emails envoyés avec succès !',
+    userCreateError: 'Nous avons rencontré un problème. Veuillez réessayer plus tard.',
     selectionCount: 'Vous avez sélectionné un utilisateur | Vous avez sélectionné {count} utilisateurs'
   },
   placeholder: {
@@ -103,9 +106,17 @@ export default {
     atLeastOneCharacter: 'Doit contenir au moins 1 caractère',
     atMostSixtyCharacters: 'Ne doit pas dépasser 60 caractères',
     invalidEmail: 'Email invalide',
-    groupNameUnchanged: 'Hmm 🤔 Pas besoin de renommer ce groupe, il porte déjà ce nom !'
+    groupNameUnchanged: 'Hmm 🤔 Pas besoin de renommer ce groupe, il porte déjà ce nom !',
+    noEmailAddressFilled: "Encore un peu d'effort, au moins une adresse email 🙏🏻",
+    unknowEmailFormat: "Une adresse email n'est pas au format connu : {email}"
   },
   question: {
     deleteGroup: 'Cela va définitivement supprimer le groupe (les utilisateurs du groupe seront assignés au groupe par défaut). Continuer ?'
+  },
+  label: {
+    emailList: 'Liste des adresses email'
+  },
+  description: {
+    emailList: 'Un email de création de compte sera envoyé à chaque adresse renseigné.'
   }
 }

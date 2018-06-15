@@ -1,4 +1,4 @@
-import { getAsync, putAsync } from '../../http-common'
+import { getAsync, putAsync, postAsync } from '../../http-common'
 
 const base = 'api/v1/user'
 
@@ -11,7 +11,7 @@ const base = 'api/v1/user'
  */
 
 /**
- * Return the authenticated user infos.
+ * Returns the authenticated user infos.
  * @method GET
  * @returns {Promise<Response>}
  */
@@ -20,7 +20,16 @@ export function self () {
 }
 
 /**
- * Update the user's profile with the specified data.
+ * Creates multiple users from their email addresses.
+ * @param {Array<String>} emails
+ * @returns {Promise<Response>}
+ */
+export function createMultiple (emails) {
+  return postAsync(`${base}/multiple`, emails)
+}
+
+/**
+ * Updates the user's profile with the specified data.
  * @param {Number} id The user id
  * @param {Object} data The properties to update
  * @method POST
@@ -31,7 +40,7 @@ export function update (id, data) {
 }
 
 /**
- * Return the list of the users.
+ * Returns the list of the users.
  * @method GET
  * @returns {Promise<ApiResponse>}
  */

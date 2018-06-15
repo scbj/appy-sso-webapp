@@ -1,11 +1,9 @@
 import * as types from '@/store/mutation-types'
 import { changeLocale as i18nChangeLocale, i18n } from '@/i18n/index'
-import api from '@/api/v1/'
+import api from '@/api/v1/index'
 
 export async function changeLanguage ({ commit, state, rootGetters }, payload) {
-  if (!payload) {
-    return false
-  }
+  if (!payload) return false
 
   i18nChangeLocale(payload.locale)
 
@@ -21,6 +19,14 @@ export async function changeLanguage ({ commit, state, rootGetters }, payload) {
 
   // Mutate the state
   commit(types.CHANGE_LANGUAGE, payload)
+}
+
+export async function createMultiple (context, payload) {
+  const emails = payload && payload.emails
+  if (!emails) return false
+
+  const response = await api.user.createMultiple(emails)
+  return response.status === 200
 }
 
 export async function fetch ({ commit }) {
