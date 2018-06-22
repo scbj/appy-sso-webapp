@@ -2,7 +2,7 @@
 el-dropdown.BaseLanguageSwitch( v-show='currentLanguage' @command='changeLanguage' )
     span.el-dropdown-link
       BaseIcon( name='md-globe' )
-      span( v-text='currentLanguage' )
+      span.BaseLanguageSwitch__current-language( v-text='currentLanguage' )
       i.el-icon-arrow-down.el-icon--right
     el-dropdown-menu( slot='dropdown' )
       el-dropdown-item(
@@ -51,7 +51,6 @@ export default {
   }
 
   span.el-dropdown-link {
-    user-select: none;
     display: flex;
     align-items: center;
     font-size: 1rem;
@@ -60,5 +59,9 @@ export default {
   i {
     align-self: center;
   }
+}
+
+.BaseLanguageSwitch__current-language {
+  font-size: 1rem;
 }
 </style>

@@ -1,6 +1,5 @@
 <template lang="pug">
 .ApplicationList
-  DashboardGreeting( v-show="$mq === 'mobile'" )
   ul.ApplicationList__apps( v-if='apps.length' )
     ApplicationItem(
       v-for='app in apps'
@@ -17,13 +16,11 @@
 import { get } from 'vuex-pathify'
 import moment from 'moment'
 
-import DashboardGreeting from '@/components/Dashboard/DashboardGreeting'
 import ApplicationItem from './ApplicationItem'
 import { uppercase } from '@/utils/filters'
 
 export default {
   components: {
-    DashboardGreeting,
     ApplicationItem
   },
 
@@ -50,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../assets/scss/vars.scss';
+@import '../../assets/scss/vars.scss';
 
 .ApplicationList__apps {
   display: flex;

@@ -1,26 +1,25 @@
 <template lang="pug">
-.drag-drop-zone(
+.DragDropZone(
   :class='{ highlight: isDragging }'
   @dragenter.stop.prevent='onDrag'
   @dragover.stop.prevent='onDragOver'
   @dragleave.stop.prevent='onDragLeave'
   @drop.stop.prevent='onDrop'
 )
-  span.label( v-show='!hasImage' ) {{ $t('message.dragAndDropHere') }}
-  input(
+  span.DragDropZon__label( v-show='!hasImage' ) {{ $t('message.dragAndDropHere') }}
+  input.DragDropZon__file-explorer(
     ref='fileExplorerInput'
     type='file'
-    class='file-explorer'
     accept='image/*'
     @change='onFileSelected'
   )
-  BaseImage.preview(
+  BaseImage.DragDropZon__preview(
     v-if='hasImage'
     :src='preview'
     draggable='false'
   )
-  button.open-remove-button( @click='onClick' :class="{ 'has-image': hasImage }"  )
-    i( v-show='hasImage' class='icon ion-ios-trash-outline' )
+  button.DragDropZon__open-remove-button( @click='onClick' :class="{ 'has-image': hasImage }"  )
+    BaseIcon( v-show='hasImage' name='ios-trash' )
 </template>
 
 <script>
@@ -90,7 +89,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.drag-drop-zone {
+.DragDropZone {
   $color: #c3bbc1;
   color: $color;
   border: 3px dashed $color;
@@ -108,15 +107,15 @@ export default {
     border-color: $color;
   }
 
-  > .preview,
-  > .open-remove-button {
+  > .DragDropZon__preview,
+  > .DragDropZon__open-remove-button {
     border-radius: 5px;
     grid-area: 1 / 1 / 2 / 2;
     width: 100%;
     height: 100%;
   }
 
-  > .label {
+  > .DragDropZon__label {
     pointer-events: none;
     user-select: none;
     grid-area: 1 / 1 / 2 / 2;
@@ -126,13 +125,13 @@ export default {
     line-height: 2rem;
   }
 
-  > .preview {
+  > .DragDropZon__preview {
     pointer-events: none;
     object-fit: cover;
     box-shadow: 0 3px 10px -2px rgba(black, .6);
   }
 
-  > .open-remove-button {
+  > .DragDropZon__open-remove-button {
     cursor: pointer;
     background-color: transparent;
     display : flex;
@@ -158,7 +157,7 @@ export default {
       transition: opacity .2s ease-in-out;
     }
   }
-  > .file-explorer { display: none; }
+  > .DragDropZon__file-explorer { display: none; }
 }
 
 </style>

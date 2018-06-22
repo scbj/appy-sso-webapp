@@ -1,5 +1,5 @@
 <template lang="pug">
-ActivateLicenceBaseStep.activate-licence-key(
+ActivateLicenceBaseStep.ActivateLicenceKey(
   :title="$t('title.licenceKey')",
   :button="$t('button.validate')"
   @next='next'
@@ -106,7 +106,7 @@ export default {
       const step = this.$route.meta.step
       this.$store.dispatch('licence/updateKey', { key: this.licenceKey })
       this.$store.dispatch('licence/completeStep', { step })
-      this.$router.push({ name: 'activateCompany' })
+      this.$router.push({ name: 'activateLicenceCompany' })
     }
   }
 }

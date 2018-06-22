@@ -7,7 +7,7 @@
 <script>
 import { get } from 'vuex-pathify'
 
-import TheModal from '@/components/TheModal'
+import TheModal from '@/components/app/TheModal'
 import { changeLocale } from './i18n/index'
 import { setAuthorizationHeader } from './http-common'
 

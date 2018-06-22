@@ -1,42 +1,35 @@
 <template lang="pug">
-.DashboardNavigationBar( :class='{ minimize: !shouldDisplayLabel }' )
-  .item(
-    v-for='item in items'
-    :key='item.label'
-    @click='setActive(item)'
-    :class='{ active: isActive(item) }')
-    BaseIcon( :name='item.icon' )
-    span.label( v-text='item.label' )
+ul.MobileMainNavigationBar( :class='{ minimize: !shouldDisplayLabel }' @click='showLabels' )
+  router-link.MobileMainNavigationBar__navigation-link(
+    v-for='link in links'
+    :key='link.label'
+    :to='link.routeName'
+    tag="li" )
+    BaseIcon.MobileMainNavigationBar__BaseIcon( :name='link.icon' )
+    span.MobileMainNavigationBar__label( v-text='link.label' )
 </template>
 
 <script>
 let timeoutBeforeHideLabel = null
 
 export default {
-  props: {
-    value: {
-      type: String,
-      required: true
-    }
-  },
-
   computed: {
-    items () {
+    links () {
       return [
         {
           icon: 'ios-apps',
           label: this.$t('apps'),
-          name: 'apps'
+          routeName: 'home'
         },
         {
           icon: 'ios-paper',
           label: this.$t('news'),
-          name: 'news'
+          routeName: 'news'
         },
         {
           icon: 'md-settings',
           label: this.$t('settings'),
-          name: 'settings'
+          routeName: 'dashboard'
         }
       ]
     }
@@ -49,16 +42,6 @@ export default {
   },
 
   methods: {
-    isActive (item) {
-      return this.value === item.name
-    },
-    setActive (item) {
-      this.showLabels()
-      if (this.value !== item.name) {
-        this.$emit('input', item.name)
-      }
-    },
-
     showLabels () {
       // 2 seconds, 2000 milliseconds
       const delay = 2000
@@ -77,7 +60,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/vars.scss';
 
-.DashboardNavigationBar {
+.MobileMainNavigationBar {
   z-index: $z-index-dashboard-navigation-bar;
   user-select: none;
   background-color: white;
@@ -96,7 +79,8 @@ export default {
   }
 }
 
-.item {
+.MobileMainNavigationBar__navigation-link {
+  color: lighten(#303133, 16%);
   flex-grow: 1;
   flex-basis: 0;
   display: flex;
@@ -111,7 +95,7 @@ export default {
     color: #A250E5;
     transition: color 0s;
 
-    .BaseIcon {
+    .MobileMainNavigationBar__BaseIcon {
       animation: pop .3s ease-in-out;
 
       @keyframes pop {
@@ -124,12 +108,12 @@ export default {
     }
   }
 
-  .BaseIcon {
+  .MobileMainNavigationBar__BaseIcon {
     font-size: 2rem;
     display: block;
   }
 
-  .label {
+  .MobileMainNavigationBar__label {
     white-space: nowrap;
   }
 }

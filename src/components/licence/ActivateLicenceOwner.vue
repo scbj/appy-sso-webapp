@@ -1,5 +1,5 @@
 <template lang="pug">
-ActivateLicenceBaseStep.activate-licence-owner(
+ActivateLicenceBaseStep.ActivateLicenceOwner(
   :title="$t('title.ownerInfos')",
   :button="$t('button.create')"
   @next='next'
@@ -100,7 +100,7 @@ export default {
         email: this.email
       })
       this.$store.dispatch('licence/completeStep', { step })
-      this.$router.push({ name: 'activateCompleted' })
+      this.$router.push({ name: 'activateLicenceCompleted' })
     },
 
     /** @returns {Promise<Boolean>} */
@@ -132,7 +132,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/activate-licence.scss';
 
-.activate-licence-owner > .layout {
+.ActivateLicenceOwner > .layout {
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
@@ -140,7 +140,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  > .drag-drop-zone {
+  > .DragDropZone {
     grid-area: 1 / 1 / 3 / 2;
   }
 }

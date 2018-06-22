@@ -1,11 +1,11 @@
 <template lang="pug">
-li.application-item
-  BaseImage.logo(
+li.ApplicationItem
+  BaseImage.ApplicationItem__logo(
     :src='logo'
     fallbackSrc='/static/img/logo-default.png'
     draggable='false')
-  span.name {{ name }}
-  span.new( v-show='isNew' ) {{ $t('new') | uppercase }}
+  span.ApplicationItem__name {{ name }}
+  span.ApplicationItem__new( v-show='isNew' ) {{ $t('new') | uppercase }}
 </template>
 
 <script>
@@ -34,20 +34,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../assets/scss/vars.scss';
+@import '../../assets/scss/vars.scss';
 
-.application-item {
+.ApplicationItem {
   -webkit-tap-highlight-color: transparent;
-  user-select: none;
-  cursor: pointer;
-  position: relative;
   padding: 1rem;
   display: flex;
   align-items: center;
+  position: relative;
+  cursor: pointer;
   transition: background-color .2s ease-in-out,
               box-shadow .2s ease-in-out;
 
   @media screen and (min-width: $mobile) {
+    border-radius: 12px;
     align-items: center;
     flex-direction: column;
     margin: 1rem;
@@ -63,7 +63,8 @@ export default {
 
     @media screen and (min-width: $mobile) {
       background-color: white;
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,.1);
+      // box-shadow: 0 8px 16px 0 rgba(0,0,0,.1);
+      box-shadow: 0 10px 40px -8px rgba(black,0.2);
 
       span.new {
         box-shadow: 0 0px 5px 0 rgba(0,0,0,.0);
@@ -76,7 +77,7 @@ export default {
   &:focus { text-decoration: underline; }
 }
 
-.logo {
+.ApplicationItem__logo {
   user-select: none;
   width: 80px;
   height: 80px;
@@ -93,7 +94,7 @@ export default {
 }
 
 span {
-  &.name {
+  &.ApplicationItem__name {
     font-family: "source-sans-pro";
     font-size: 1.4rem;
 
@@ -104,7 +105,7 @@ span {
     }
   }
 
-  &.new {
+  &.ApplicationItem__new {
     --color: #DA3610;
     right: 1rem;
     position: absolute;

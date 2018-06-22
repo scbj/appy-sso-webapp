@@ -1,12 +1,10 @@
 <template lang="pug">
-.login-page( :class="$mq" )
+.PageLogin( :class="$mq" )
   .app-title( v-show="$mq === 'mobile'" )
-    h1
-      | appy
-      span.secondary pack
+    BaseImage.PageLogin__logo( src='/static/img/title-gradient.svg' )
   el-card( v-loading='loading' )
     div( slot='header' )
-      h2( v-text='cardHeader' )
+      h4( v-text='cardHeader' )
     //- User already connected
     LoginContinue( v-if='isLoggedIn' )
     //- User not connected
@@ -26,8 +24,8 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-import LoginForm from './LoginForm'
-import LoginContinue from './LoginContinue'
+import LoginForm from '@/components/login/LoginForm'
+import LoginContinue from '@/components/login/LoginContinue'
 
 const { mapState, mapGetters } = createNamespacedHelpers('auth')
 
@@ -55,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login-page {
+.PageLogin {
   background-image: url(/static/img/low-poly.svg);
   background-size: cover;
   background-position: center;
@@ -88,7 +86,11 @@ export default {
   margin: 4rem 0
 }
 
-h2 {
+.PageLogin__logo {
+  width: 12rem;
+}
+
+h4 {
   text-align: center;
 }
 </style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-.activate-licence-mobile
+.MobileActivateLicenceNotAvailable
   .container
     span.feeling {{ $t('message.tooCramped') }}
     span.instructions {{ $t('message.tooCrampedInstructions') }}
@@ -10,11 +10,10 @@
 </template>
 
 <style lang="scss" scoped>
-.activate-licence-mobile {
+.MobileActivateLicenceNotAvailable {
   user-select: none;
   background-color: white;
   padding: 3rem;
-  display: flex;
   flex-direction: column;
   justify-content: center;
 }

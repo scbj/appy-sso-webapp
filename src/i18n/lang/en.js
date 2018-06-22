@@ -5,9 +5,9 @@ export default {
   username: 'Username',
   password: 'Password',
   settings: 'Settings',
-  administration: 'Administration',
+  dashboard: 'Dashboard',
   news: 'News',
-  apps: 'My apps',
+  apps: 'Applications',
   new: 'New',
   noGroup: 'No group',
   byDefault: 'By default',
@@ -48,7 +48,6 @@ export default {
     deleteGroup: 'Delete group'
   },
   check: { rememberMe: 'Remember me' },
-  alt: { profilPicture: 'Profile picture' },
   title: {
     login: 'Login',
     alreadyLogged: 'Already logged in!',

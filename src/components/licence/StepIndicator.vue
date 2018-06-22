@@ -1,5 +1,5 @@
 <template lang="pug">
-.step-indicator
+.StepIndicator
   .progress
     .placeholder-line
     .line( :style='{ width: progression }' )
@@ -27,13 +27,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.step-indicator {
+.StepIndicator {
   --active-color: #9E3AA6;
   --inactive-color: #EBEBEB;
   --circle-size: 34px;
   --progress-height: 4px;
 
-  display: flex;
+  // display: flex;
   justify-content: space-between;
   position: relative;
   width: 100%;

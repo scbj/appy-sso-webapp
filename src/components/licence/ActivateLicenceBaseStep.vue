@@ -1,5 +1,5 @@
 <template lang="pug">
-.activate-licence-base-step
+.ActivateLicenceBaseStep
   h1 {{ title }}
   slot
   button(
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.activate-licence-base-step {
+.ActivateLicenceBaseStep {
   display: flex;
   flex-direction: column;
   align-items: center;

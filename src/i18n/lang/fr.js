@@ -5,9 +5,9 @@ export default {
   username: "Nom d'utilisateur",
   password: 'Mot de passe',
   settings: 'Paramètres',
-  administration: 'Administration',
+  dashboard: 'Tableau de bord',
   news: 'Actualités',
-  apps: 'Mes applications',
+  apps: 'Applications',
   new: 'Nouveau',
   noGroup: 'Aucun groupe',
   byDefault: 'Par défaut',
@@ -48,7 +48,6 @@ export default {
     deleteGroup: 'Supprimer le groupe'
   },
   check: { rememberMe: 'Se souvenir de moi' },
-  alt: { profilPicture: 'Photo de profil' },
   title: {
     login: 'Connexion',
     alreadyLogged: 'Déjà connecté !',

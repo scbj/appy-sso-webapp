@@ -1,5 +1,5 @@
 <template lang="pug">
-.article-list
+.ArticleList
   ArticleItem(
     v-for='article in articles'
     :key='article.id'
@@ -27,10 +27,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../../assets/scss/vars.scss';
+@import '../../assets/scss/vars.scss';
 
-.article-list {
+.ArticleList {
   padding: 1rem 1rem;
+  margin: 0 auto;
+  max-width: 800px;
 
   @media screen and (min-width: $mobile) {
     padding: 1rem 0;

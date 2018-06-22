@@ -1,5 +1,5 @@
 <template lang="pug">
-ActivateLicenceBaseStep.activate-licence-completed(
+ActivateLicenceBaseStep.ActivateLicenceCompleted(
   :title="$t('title.completed')"
   :button="$t('button.logIn')"
   :showButton='false' )

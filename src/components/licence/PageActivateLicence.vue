@@ -1,27 +1,26 @@
 <template lang="pug">
-.activate-licence-page
-  StepIndicator(
+.PageActivateLicence
+  StepIndicator.PageActivateLicence__StepIndicator(
     :active='currentStep'
     :count='maxStep'
-    v-show='shouldShowStepIndicator'
-    class='step-indicator-licence-page' )
+    v-show='shouldShowStepIndicator' )
   .steps
     router-view
-  ActivateLicenceMobile
+  MobileActivateLicenceNotAvailable
   BaseLanguageSwitch.language
 </template>
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
 
-import ActivateLicenceMobile from './ActivateLicenceMobile'
+import MobileActivateLicenceNotAvailable from './MobileActivateLicenceNotAvailable'
 import StepIndicator from './StepIndicator'
 
 const { mapState } = createNamespacedHelpers('licence')
 
 export default {
   components: {
-    ActivateLicenceMobile,
+    MobileActivateLicenceNotAvailable,
     StepIndicator
   },
 
@@ -62,7 +61,7 @@ export default {
 // telling them to activate the license on a computer.
 $width-breakpoint-mobile: 660px;
 
-.activate-licence-page {
+.PageActivateLicence {
   background-size: cover;
   background-position: center;
   display: flex;
@@ -78,11 +77,11 @@ $width-breakpoint-mobile: 660px;
     align-items: center;
     justify-content: flex-start;
 
-    .activate-licence-mobile {
+    .MobileActivateLicenceNotAvailable {
       display: none;
     }
 
-    .step-indicator.step-indicator-licence-page {
+    .PageActivateLicence__StepIndicator {
       display: flex;
     }
 
@@ -92,7 +91,7 @@ $width-breakpoint-mobile: 660px;
   }
 }
 
-.step-indicator.step-indicator-licence-page {
+.PageActivateLicence__StepIndicator {
   display: none;
   margin-bottom: 4.2rem;
 }
@@ -108,7 +107,7 @@ $width-breakpoint-mobile: 660px;
   margin: 2rem;
 }
 
-.activate-licence-mobile {
+.MobileActivateLicenceNotAvailable {
   min-height: 100%;
 }
 </style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-.login-continue
+.LoginContinue
   p( v-html="$t('message.alreadyLogged')" )
   el-button(
     type='primary'
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login-continue {
+.LoginContinue {
   text-align: center;
   display: flex;
   flex-direction: column;

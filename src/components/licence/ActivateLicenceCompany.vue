@@ -1,5 +1,5 @@
 <template lang="pug">
-ActivateLicenceBaseStep.activate-licence-company(
+ActivateLicenceBaseStep.ActivateLicenceCompany(
   :title="$t('title.companyName')"
   :button="$t('button.next')"
   @next='next' )
@@ -41,7 +41,7 @@ export default {
         const step = this.$route.meta.step
         this.$store.dispatch('licence/updateCompanyName', { companyName: this.companyName })
         this.$store.dispatch('licence/completeStep', { step })
-        this.$router.push({ name: 'activateOwner' })
+        this.$router.push({ name: 'activateLicenceOwner' })
       }
     }
   }

@@ -1,5 +1,7 @@
 @import './fonts';
 @import './vars';
+@import './colors';
+@import './mixins';
 
 *, *::before, *::after {
   padding: 0;
@@ -12,21 +14,23 @@
 }
 
 html {
-  font-size: 12px;
+  $min_width: 320px;
+  $max_width: 1200px;
+  $min_font: 12px;
+  $max_font: 13px;
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
   line-height: 1.5;
   height: 100%;
 }
 
 body {
+  user-select: none;
   color: #303133;
   font-family: "source-sans-pro",sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   min-height: 100%;
-}
-
-body {
   line-height: 1.5;
 }
 
@@ -43,14 +47,24 @@ body {
   box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 
-h2 {
-  font-size: 1.5rem;
-}
+h3 { font-weight: normal }
 
-p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
+h1,
+h2,
+h3 > b,
+h4,
+h5 { font-weight: bold }
+
+h1 { font-size: 5.6rem }
+h2 { font-size: 4rem }
+h3 { font-size: 2.4rem }
+h4 { font-size: 1.6rem }
+h5 { font-size: 1.5rem }
+
+p,
+span,
+ul,
+li { font-size: 1.3rem }
 
 a, a:visited, a:active {
   color: inherit;
@@ -92,84 +106,77 @@ button {
 }
 
 // scoped style in single-file .vue doesn't work with v-html
-.article-list .html-content {
-  font-size: .8rem;
-
-  @media screen and (min-width: $mobile) {
-    h3 {
-      font-size: 2.8em;
-    }
-
-    h4, p, ul {
-      font-size: 1.5em;
-    }
-  }
-
-  h3 {
-    font-family: "orator-std";
-    font-size: 2.4em;
-    font-weight: 100;
-    line-height: 1.8;
-    padding-bottom: .2em;
-  }
-
-  h4, p, ul {
-    font-size: 1.75em;
-  }
-
-  h4 {
-    font-family: 'source-sans-pro';
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .1em;
+// TODO: Revoir les headings
+.ArticleList .html-content {
+  h2 ~ h3 {
     margin-top: .3em;
-    margin-bottom: 1.8em;
+  }
+
+  h3 ~ h4 {
+    margin-top: .3em;
+  }
+
+  p {
+    margin-top: .5em;
+  }
+
+  ul {
+    margin: 2em 0;
   }
 
   p {
     text-align: justify;
-    line-height: 1.8;
-    margin-top: 1.5em;
-    margin-bottom: 1em;
-
-    & ~ ul {
-      margin-bottom: 2em;
-    }
   }
 
-  ul {
-    list-style: none;
-    // padding-top: 1em;
-    
+  ul {    
     li {
-      line-height: 2.4;
       margin-left: 2.5em;
       position: relative;
+      line-height: 2em;
 
       &::before {
         content: '';
-        background-color: #384759;
+        background-color: #cacaca;
         border-radius: 50%;
         position: absolute;
-        top: 1.15em;
+        top: 50%;
         left: -1em;
         width: 4px;
         height: 4px;
+        transform: translateY(-50%);
       }
     }
   }
 
   a {
-    --color: #A250E5;
-    color: var(--color);
-    background-color: rgba(#A250E5 , .1);
-    border-bottom: 1px solid transparent;
+    color: $primaryColor;
+    border-bottom: 1px solid $primaryColor;
     padding: 0 .4em;
+    position: relative;
     transition: border .11s ease-in-out;
 
+    &::after {
+      content: '';
+      background: rgba($primaryColor, .1);
+      border-radius: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include size(100%);
+      transform-origin: 50% 100%;
+      transform: scaleY(0);
+      transition: all .11s ease-in-out;
+    }
+
     &:hover {
-      border-bottom: 1px solid var(--color);
-      transition: border 0s ease-in-out;
+      // border-bottom: 1px solid var(--color);
+      // transition: border 0s ease-in-out;
+
+      &::after {
+        border-radius: 6px 6px 0 0;
+        transform: scaleY(1);
+        transition: border 0s ease-in-out;
+      }
     }
   }
 }

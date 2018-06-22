@@ -1,95 +1,45 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ActivateLicencePage from '@/components/activateLicence/ActivateLicencePage'
-import ActivateLicenceKey from '@/components/activateLicence/ActivateLicenceKey'
-import ActivateLicenceCompany from '@/components/activateLicence/ActivateLicenceCompany'
-import ActivateLicenceOwner from '@/components/activateLicence/ActivateLicenceOwner'
-import ActivateLicenceCompleted from '@/components/activateLicence/ActivateLicenceCompleted'
-import LoginPage from '@/components/login/LoginPage'
-import DashboardPage from '@/components/Dashboard/DashboardPage'
-import PageNotFound from '@/components/error/NotFound'
-import store from '@/store'
 
-/**
- * Middleware for activate/ routes. Check that the step can be loaded.
- */
-function beforeEnter (to, from, next) {
-  const completedStepCount = store.state.licence.completedStepCount
-  const step = to.meta.step
-  if (step > completedStepCount + 1) {
-    return next({ name: 'activate' })
-  }
-  next()
-}
+// Components
+import PageLogin from '@/components/login/PageLogin'
+import Page404 from '@/components/app/Page404'
+
+// Routes and middlewares
+import activateLicenceRoute from './activate-licence'
+import mainRoute from './main'
+import { requiresAuth } from './middlewares'
 
 Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'exact-active',
   routes: [
     {
       path: '/activate',
-      component: ActivateLicencePage,
-      children: [
-        {
-          path: '/',
-          name: 'activate',
-          component: ActivateLicenceKey,
-          meta: { step: 1 },
-          beforeEnter
-        },
-        {
-          path: 'company',
-          name: 'activateCompany',
-          component: ActivateLicenceCompany,
-          meta: { step: 2 },
-          beforeEnter
-        },
-        {
-          path: 'owner',
-          name: 'activateOwner',
-          component: ActivateLicenceOwner,
-          meta: { step: 3 },
-          beforeEnter
-        },
-        {
-          path: 'completed',
-          name: 'activateCompleted',
-          component: ActivateLicenceCompleted,
-          meta: { step: 4 },
-          beforeEnter
-        }
-      ]
+      ...activateLicenceRoute
     },
     {
       path: '/login',
       name: 'login',
-      component: LoginPage
+      component: PageLogin
     },
     {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: DashboardPage
+      path: '/',
+      ...mainRoute,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '*',
-      component: PageNotFound
+      component: Page404
     }
   ]
 })
 
-router.beforeEach(({ name, path }, from, next) => {
-  const isLoggedIn = store.getters['auth/isLoggedIn'] === true
-  if (path === '/') {
-    return next({
-      name: isLoggedIn ? 'dashboard' : 'login'
-    })
-  }
-  // redirects the user to the login page if it's not authenticated
-  if (name === 'dashboard' && !isLoggedIn) {
-    return next({ name: 'login' })
-  }
-  next()
-})
+router.beforeEach(requiresAuth)
 
 export default router
