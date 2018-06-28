@@ -45,11 +45,16 @@ export function update (id, data) {
  * @returns {Promise<ApiResponse>}
  */
 
-export function list (page) {
-  return getAsync(base + '?fields=id,firstname,lastname,email&orderBy=firstname,asc&paginate=8&page=' + page)
+export function list ({ fields, orderBy, pageSize, page }) {
+  const pagination = `paginate=${pageSize}&page=${page}`
+  const fieldList = fields.join(',')
+  const url = `${base}?fields=${fieldList}&orderBy=${orderBy},asc&${pagination}`
+  return getAsync(url)
 }
 
-export function search ({ query, page }) {
-  const url = `/search/${query}?fields=id,firstname,lastname,email&paginate=8&page=${page}`
-  return getAsync(base + url)
+export function search ({ query, fields, orderBy, pageSize, page }) {
+  const pagination = `paginate=${pageSize}$page=${page}`
+  const fieldList = fields.join(',')
+  const url = `${base}/search/${query}?orderBy=${orderBy},asc&fields=${fieldList}&${pagination}`
+  return getAsync(url)
 }

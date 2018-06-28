@@ -16,8 +16,8 @@ z<template lang="pug">
 </template>
 
 <script>
-import ModalForm from '@/components/modals/ModalForm'
-import { buildMessage } from '@/components/message'
+import ModalForm from '@/hold-components/modals/ModalForm'
+import { buildMessage } from '@/hold-components/message'
 import validator from '@/validators/validator'
 
 export default {

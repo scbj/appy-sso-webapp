@@ -150,25 +150,6 @@ export default {
         }
       }
     }
-
-    // &::after {
-    //   animation-delay: .8s;
-    // }
-
-    // $background-color: rgba(white, .3);
-    // @keyframes pop {
-    //   0% {
-    //     background-color: $background-color;
-    //     transform: translateX(-50%) translateY(-50%) scale(1);
-    //   }
-    //   50% {
-    //     transform: translateX(-50%) translateY(-50%) scale(.1);
-    //   }
-    //   100% {
-    //     background-color: $background-color;
-    //     transform: translateX(-50%) translateY(-50%) scale(1);
-    //   }
-    // }
   }
 }
 

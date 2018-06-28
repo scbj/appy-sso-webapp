@@ -1,4 +1,4 @@
-import { postAsync } from '../http-common'
+import { postAsync } from '@/http-common'
 
 /**
  * @typedef {Object} ApiResponse

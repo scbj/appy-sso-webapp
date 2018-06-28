@@ -23,10 +23,6 @@ export default {
   // box-shadow: 0 16px 40px -2px rgba(0,0,0,.04);
   transition: box-shadow .2s ease-in-out;
 
-  &:hover {
-    // box-shadow: 0 16px 40px -2px rgba(0,0,0,.06);
-  }
-
   &:first-of-type {
     margin-top: 0;
   }

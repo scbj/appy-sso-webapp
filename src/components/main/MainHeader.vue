@@ -2,16 +2,15 @@
 .MainHeader
   BaseImage.MainHeader__logo( src='/static/img/title-gradient.svg' )
   .MainHeader__navigation
-    router-link.MainHeader__navigation-link( to='home' )
+    router-link.MainHeader__navigation-link( :to="{ name: 'home' }" )
       p {{ $t('apps') }}
-    router-link.MainHeader__navigation-link( to='news' )
+    router-link.MainHeader__navigation-link( :to="{ name: 'news' }" )
       p {{ $t('news') }}
-    router-link.MainHeader__navigation-link( to='dashboard' )
+    router-link.MainHeader__navigation-link( :to="{ name: 'dashboard' }" )
       p {{ $t('dashboard') }}
   .MainHeader__profil
     BaseImage( :src='pictureUrl' fallbackSrc='/static/img/default-user-picture.png' )
     span {{ username }}
-
 </template>
 
 <script>

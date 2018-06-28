@@ -129,4 +129,11 @@ span {
     .key { font-family: 'Consolas' }
   }
 }
+
+span.full-name,
+span.company-name,
+span.email,
+span.key {
+  user-select: text;
+}
 </style>
