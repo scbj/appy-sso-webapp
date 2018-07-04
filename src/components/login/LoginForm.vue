@@ -82,7 +82,7 @@ export default {
       }
 
       // login successfully, navigate to the Dashboard
-      this.$router.push({ name: 'dashboard' })
+      this.$router.push({ name: 'home' })
     },
     /**
      * Defines the message and type of error for the alert component.

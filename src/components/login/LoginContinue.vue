@@ -40,7 +40,7 @@ export default {
   methods: {
     continueLoggedIn () {
       // stay connected and redirect the user to the dashboard
-      this.$router.push({ name: 'dashboard' })
+      this.$router.push({ name: 'home' })
     },
     logout () {
       this.$store.dispatch('auth/logout')

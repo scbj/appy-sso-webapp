@@ -30,7 +30,7 @@ ModalForm.ModalGroupCreateAddUsers(
 <script>
 import { createNamespacedHelpers } from 'vuex'
 
-import ModalForm from '@/components/modals/ModalForm'
+import ModalForm from '@/hold-components/modals/ModalForm'
 import ModalGroupCreateAddUsersList from './ModalGroupCreateAddUsersList'
 
 const { mapGetters } = createNamespacedHelpers('user')

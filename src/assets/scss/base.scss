@@ -64,7 +64,7 @@ h5 { font-size: 1.5rem }
 p,
 span,
 ul,
-li { font-size: 1.3rem }
+li { font-size: 1.2rem }
 
 a, a:visited, a:active {
   color: inherit;
@@ -169,8 +169,8 @@ button {
     }
 
     &:hover {
-      // border-bottom: 1px solid var(--color);
-      // transition: border 0s ease-in-out;
+      border: transparent;
+      transition: border 0s ease-in-out;
 
       &::after {
         border-radius: 6px 6px 0 0;
