@@ -50,21 +50,6 @@ export async function fetch ({ commit }) {
   }
 }
 
-export async function list ({ commit }, payload) {
-  const res = await api.user.list(payload.page)
-  const data = res.data
-
-  if (data) {
-    commit(types.USER_LIST, {
-      total: data.total,
-      perPage: +data.per_page,
-      currentPage: data.current_page,
-      lastPage: data.last_page,
-      users: data.data
-    })
-  }
-}
-
 export async function search ({ commit }, payload) {
   const res = await api.user.search(payload)
   const data = res.data
@@ -81,4 +66,8 @@ export async function search ({ commit }, payload) {
 
 export function cleanList ({ commit }) {
   commit(types.USER_CLEAN_LIST)
+}
+
+export async function remove (_, payload) {
+  return api.user.remove(...payload.ids)
 }

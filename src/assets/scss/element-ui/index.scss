@@ -12,9 +12,18 @@ $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 .el-button {
   margin-bottom: 1rem;
+  line-height: normal;
+  padding: .7rem 1rem;
+  border-radius: 5px;
 
   &:last-of-type {
     margin-bottom: 0
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    outline: none;
   }
 }
 

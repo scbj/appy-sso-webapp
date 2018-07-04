@@ -173,7 +173,7 @@ button {
       transition: border 0s ease-in-out;
 
       &::after {
-        border-radius: 6px 6px 0 0;
+        border-radius: 3px;
         transform: scaleY(1);
         transition: border 0s ease-in-out;
       }

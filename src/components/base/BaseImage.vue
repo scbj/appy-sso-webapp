@@ -10,6 +10,9 @@ img.BaseImage( v-else :src='source' )
  */
 function isImageAvailable (src) {
   return new Promise(resolve => {
+    if (!src) {
+      return resolve(false)
+    }
     const image = new Image()
     image.onload = () => resolve(true)
     image.onerror = () => resolve(false)

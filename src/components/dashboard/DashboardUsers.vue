@@ -1,0 +1,225 @@
+<template>
+  <BaseCard class='DashboardUsers'>
+    <h2>Utilisateurs</h2>
+    <h3 v-if="totalUserCount" class='DashboardUsers__total-user'>{{ totalUserCount }}</h3>
+    <el-input
+      v-if="totalUserCount"
+      class='DashboardUsers__search-bar'
+      placeholder='Rechercher un utilisateur'
+      prefix-icon='el-icon-search'/>
+
+    <UserList
+      ref="userList"
+      v-loading="pending"
+      class="DashboardUsers__user-list"
+      :columns="columns"
+      :users="users"
+      :selected-users.sync="selectedUsers"
+      :total="totalUserCount"
+      @page-changed="onPageChanged">
+      <template slot='full-name' slot-scope="row" >
+        <span class="DashboardUsers__user-full-name">
+          {{ row.item.firstname }}
+          <span class="DashboardUsers__user-lastname">{{ row.item.lastname }}</span>
+        </span>
+      </template>
+      <template slot='profil-picture' slot-scope='row'>
+        <BaseImage
+          class='DashboardUsers__user-profil-picture'
+          :src='row.item.pictureUrl'
+          fallback-src='/static/img/default-user-picture.png'/>
+      </template>
+    </UserList>
+    <div class='DashboardUsers__buttons'>
+      <el-button
+        v-show='selectionStateEnabled'
+        @click="deleteSelectedUsers"
+        type='danger'>
+        Supprimer ({{ selectedUsers.length }})
+      </el-button>
+      <el-button type='primary' @click='createUsers'>Créer des utilisateurs</el-button>
+    </div>
+  </BaseCard>
+</template>
+
+<script>
+import UserList from '@/components/user/UserList'
+import UserProvider from '../../services/UserProvider'
+import ModalUserCreate from '../../hold-components/modals/user/ModalUserCreate'
+
+const userProvider = new UserProvider({
+  fields: [ 'id', 'firstname', 'lastname', 'email', 'pictureUrl', 'created_at', 'updated_at' ],
+  orderBy: 'firstname',
+  pageSize: 8
+})
+
+export default {
+  components: {
+    UserList
+  },
+
+  computed: {
+    /**
+     * Returns true when at least one user is selected
+     * from the list, otherwise returns false.
+     * @returns {Boolean}
+     */
+    selectionStateEnabled () {
+      return this.selectedUsers.length > 0
+    }
+  },
+
+  data () {
+    return {
+      users: [],
+      currentPage: 1,
+      selectedUsers: [],
+      totalUserCount: 0,
+      pending: false,
+      columns: [
+        {
+          grow: 1,
+          breakpointWidth: 660,
+          slot: 'profil-picture'
+        },
+        {
+          label: this.$t('header.fullName'),
+          grow: 5,
+          slot: 'full-name'
+        },
+        {
+          label: this.$t('header.email'),
+          grow: 8,
+          prop: 'email',
+          breakpointWidth: 600
+        },
+        {
+          label: this.$t('header.role'),
+          grow: 1.6,
+          prop: 'role_name',
+          slot: 'role',
+          breakpointWidth: 0
+        },
+        {
+          label: this.$t('header.createdAt'),
+          grow: 2,
+          prop: 'created_at',
+          slot: 'date',
+          breakpointWidth: 1070
+        },
+        {
+          label: this.$t('header.modifiedAt'),
+          grow: 2,
+          prop: 'updated_at',
+          slot: 'date',
+          breakpointWidth: 920
+        }
+      ]
+    }
+  },
+
+  mounted () {
+    this.fetchUsers()
+  },
+
+  methods: {
+    async fetchUsers () {
+      this.pending = true
+      const { data: response } = await userProvider.list({ page: this.currentPage })
+      if (response && response.data) {
+        this.users = response.data
+        this.totalUserCount = response.total
+      }
+      this.pending = false
+    },
+
+    onPageChanged (page) {
+      this.currentPage = page
+      this.fetchUsers()
+    },
+
+    createUsers () {
+      this.$store.dispatch('modal/open', {
+        content: ModalUserCreate
+      })
+    },
+
+    async deleteSelectedUsers () {
+      const response = await this.$store.dispatch('user/remove', { ids: this.selectedUsers })
+      if (response.status === 200) {
+        this.selectedUsers = []
+        this.fetchUsers()
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import '../../assets/scss/colors.scss';
+@import '../../assets/scss/mixins.scss';
+
+.DashboardUsers {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.DashboardUsers__total-user {
+  color: $primaryColor;
+  margin-left: 2rem;
+  flex-grow: 1;
+}
+
+.DashboardUsers__search-bar {
+  width: 300px;
+}
+
+.DashboardUsers__user-list {
+  flex-basis: 100%;
+  flex-grow: 1;
+  font-size: 1.2rem;
+}
+
+.DashboardUsers__buttons {
+  flex-basis: 100%;
+  flex-grow: 1;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  button {
+    margin: 0;
+    margin-left: 1rem;
+  }
+}
+
+.DashboardUsers__user-profil-picture {
+  @include size(24px);
+  border-radius: 50%;
+  justify-self: center;
+}
+
+.DashboardUsers__user-full-name:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.DashboardUsers__user-lastname {
+  font-weight: 600;
+}
+
+.user-list__item {
+  display: flex;
+
+  .item__fullname {
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .item__lastname { font-weight: 600 }
+  }
+}
+</style>

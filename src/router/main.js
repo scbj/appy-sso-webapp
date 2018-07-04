@@ -2,6 +2,8 @@ const PageMain = () => import('@/components/main/PageMain')
 const ViewHome = () => import('@/components/home/ViewHome')
 const ViewNews = () => import('@/components/news/ViewNews')
 const ViewDashboard = () => import('@/components/dashboard/ViewDashboard')
+const DashboardUsers = () => import('@/components/dashboard/DashboardUsers')
+const DashboardGroups = () => import('@/components/dashboard/DashboardGroups')
 
 const stepRoutes = [
   {
@@ -11,11 +13,25 @@ const stepRoutes = [
   },
   {
     path: '/news',
+    name: 'news',
     component: ViewNews
   },
   {
     path: '/dashboard',
-    component: ViewDashboard
+    name: 'dashboard',
+    component: ViewDashboard,
+    children: [
+      {
+        path: 'users',
+        name: 'dashboardUsers',
+        component: DashboardUsers
+      },
+      {
+        path: 'groups',
+        name: 'dashboardGroups',
+        component: DashboardGroups
+      }
+    ]
   }
 ]
 

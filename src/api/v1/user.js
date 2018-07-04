@@ -1,4 +1,4 @@
-import { getAsync, putAsync, postAsync } from '../../http-common'
+import { getAsync, putAsync, postAsync, deleteAsync } from '../../http-common'
 
 const base = 'api/v1/user'
 
@@ -57,4 +57,10 @@ export function search ({ query, fields, orderBy, pageSize, page }) {
   const fieldList = fields.join(',')
   const url = `${base}/search/${query}?orderBy=${orderBy},asc&fields=${fieldList}&${pagination}`
   return getAsync(url)
+}
+
+export function remove (...ids) {
+  const query = ids.join(',')
+  const url = `${base}/${query}`
+  return deleteAsync(url)
 }
