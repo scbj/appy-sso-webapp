@@ -45,7 +45,8 @@ export default {
     edit: 'Modifier le groupe...',
     rename: 'Renommer',
     delete: 'Supprimer',
-    deleteGroup: 'Supprimer le groupe'
+    deleteGroup: 'Supprimer le groupe',
+    deleteUser: "Supprimer l'utilisateur | Supprimer les utilisateurs"
   },
   check: { rememberMe: 'Se souvenir de moi' },
   title: {
@@ -58,7 +59,8 @@ export default {
     createGroup: 'Créer un groupe',
     createUsers: 'Créer des utilisateurs',
     renameGroup: 'Renommer le groupe',
-    deleteGroup: 'Suppression de {groupName}'
+    deleteGroup: 'Suppression de {groupName}',
+    deleteUser: "Suppression d'un utilisateur | Suppression des utilisateurs"
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',
@@ -110,7 +112,8 @@ export default {
     unknowEmailFormat: "Une adresse email n'est pas au format connu : {email}"
   },
   question: {
-    deleteGroup: 'Cela va définitivement supprimer le groupe (les utilisateurs du groupe seront assignés au groupe par défaut). Continuer ?'
+    deleteGroup: 'Cela va définitivement supprimer le groupe (les utilisateurs du groupe seront assignés au groupe par défaut). Continuer ?',
+    deleteUser: 'Cela va définitivement supprimer les utilisateurs sélectionnés. Cette action est irréversible. Continuer ?'
   },
   label: {
     emailList: 'Liste des adresses email'

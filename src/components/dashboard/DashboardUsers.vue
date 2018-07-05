@@ -145,10 +145,30 @@ export default {
     },
 
     async deleteSelectedUsers () {
+      const confident = await this.requestDeleteConfirmation()
+      if (!confident) return
+
       const response = await this.$store.dispatch('user/remove', { ids: this.selectedUsers })
       if (response.status === 200) {
         this.selectedUsers = []
         this.fetchUsers()
+      }
+    },
+
+    async requestDeleteConfirmation () {
+      const message = this.$t('question.deleteUser')
+      const title = this.$tc('title.deleteUser', this.selectedUsers.length)
+      const options = {
+        confirmButtonText: this.$tc('button.deleteUser', this.selectedUsers.length),
+        cancelButtonText: this.$t('cancel'),
+        type: 'warning'
+      }
+
+      try {
+        await this.$confirm(message, title, options)
+        return true
+      } catch (error) {
+        return false
       }
     }
   }

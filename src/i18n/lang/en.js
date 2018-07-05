@@ -45,7 +45,8 @@ export default {
     edit: 'Edit group...',
     rename: 'Rename',
     delete: 'Delete',
-    deleteGroup: 'Delete group'
+    deleteGroup: 'Delete group',
+    deleteUser: 'Delete user | Delete users'
   },
   check: { rememberMe: 'Remember me' },
   title: {
@@ -58,7 +59,8 @@ export default {
     createGroup: 'Create a group',
     createUsers: 'Create users',
     renameGroup: 'Rename the group',
-    deleteGroup: 'Deleting {groupName}'
+    deleteGroup: 'Deleting {groupName}',
+    deleteUser: 'Deleting user | Deleting users'
   },
   message: {
     alreadyLogged: 'You are already logged in, you can change to another account at any time.',
@@ -110,7 +112,8 @@ export default {
     unknowEmailFormat: 'An email address is not in a known format : {email}'
   },
   question: {
-    deleteGroup: 'This will permanently delete the group (group users will be assigned to the default group). Continue?'
+    deleteGroup: 'This will permanently delete the group (group users will be assigned to the default group). Continue?',
+    deleteUser: 'This will permanently delete the selected users. This action is irreversible. Continue?'
   },
   label: {
     emailList: 'List of email addresses'
