@@ -80,6 +80,7 @@ export default {
 }
 
 .MobileMainNavigationBar__navigation-link {
+  cursor: pointer;
   color: lighten(#303133, 16%);
   flex-grow: 1;
   flex-basis: 0;

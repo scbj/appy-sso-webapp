@@ -10,7 +10,7 @@
       p {{ $t('dashboard') }}
   .MainHeader__profil
     BaseImage( :src='pictureUrl' fallbackSrc='/static/img/default-user-picture.png' )
-    span {{ username }}
+    span.MainHeader__username {{ username }}
 </template>
 
 <script>
@@ -34,6 +34,7 @@ export default {
   box-shadow: 0 4px 30px -6px rgba(black,0.1);
   padding: 1.5rem;
   display: flex;
+  align-items: center;
   position: fixed;
   top: 0;
   width: 100%;
@@ -41,7 +42,7 @@ export default {
 }
 
 .MainHeader__logo {
-  width: 12rem;
+  height: 2.5rem;
   display: none;
 }
 
@@ -78,13 +79,25 @@ export default {
   }
 }
 
+.MainHeader__username {
+  display: none;
+}
+
 @media screen and (min-width: 850px) {
+  .MainHeader {
+    padding: 2.4rem 1.5rem;
+  }
+
   .MainHeader__logo {
     display: block;
   }
 
   .MainHeader__navigation {
     margin-left: 6rem;
+  }
+
+  .MainHeader__username {
+    display: block;
   }
 }
 </style>
