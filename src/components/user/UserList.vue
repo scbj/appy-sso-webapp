@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import throttle from 'lodash/throttle'
+import throttle from 'lodash.throttle'
 
 import UserListHeader from './UserListHeader'
 import UserListRow from './UserListRow'

@@ -21,6 +21,7 @@ export default {
 .MainFooter {
   background: #fbfbfb;
   color: #909399;
+  font-size: 1rem;
   padding: 2rem;
   display: flex;
   align-items: center;
