@@ -1,6 +1,6 @@
 <template>
   <BaseCard class='DashboardUsers'>
-    <h2>Utilisateurs</h2>
+    <h2>{{ $t('users') }}</h2>
     <h3 v-if="totalUserCount" class='DashboardUsers__total-user'>{{ totalUserCount }}</h3>
     <el-input
       v-if="totalUserCount"
@@ -9,11 +9,10 @@
       prefix-icon='el-icon-search'/>
 
     <UserList
-      ref="userList"
       v-loading="pending"
       class="DashboardUsers__user-list"
       :columns="columns"
-      :users="users"
+      :users="sortedUsers"
       :selected-users.sync="selectedUsers"
       :total="totalUserCount"
       @page-changed="onPageChanged">
@@ -31,13 +30,13 @@
       </template>
     </UserList>
     <div class='DashboardUsers__buttons'>
-      <el-button
-        v-show='selectionStateEnabled'
+      <BaseButton
+        v-if="selectionStateEnabled"
         @click="deleteSelectedUsers"
-        type='danger'>
-        Supprimer ({{ selectedUsers.length }})
-      </el-button>
-      <el-button type='primary' @click='createUsers'>Créer des utilisateurs</el-button>
+        type="secondary">
+        {{ deleteUserText }}
+      </BaseButton>
+      <BaseButton @click='createUsers'>{{ $t('button.createMultipleUser') }}</BaseButton>
     </div>
   </BaseCard>
 </template>
@@ -46,6 +45,8 @@
 import UserList from '@/components/user/UserList'
 import UserProvider from '../../services/UserProvider'
 import ModalUserCreate from '../../hold-components/modals/user/ModalUserCreate'
+
+import { sortAlphabetically } from '@/utils/array'
 
 const userProvider = new UserProvider({
   fields: [ 'id', 'firstname', 'lastname', 'email', 'pictureUrl', 'created_at', 'updated_at' ],
@@ -59,6 +60,10 @@ export default {
   },
 
   computed: {
+    sortedUsers () {
+      return sortAlphabetically(this.users, 'firstname')
+    },
+
     /**
      * Returns true when at least one user is selected
      * from the list, otherwise returns false.
@@ -66,6 +71,12 @@ export default {
      */
     selectionStateEnabled () {
       return this.selectedUsers.length > 0
+    },
+
+    deleteUserText () {
+      // The user must be informed of the state of his selection
+      const count = this.selectedUsers.length
+      return this.$tc('button.deleteUser', count, { count })
     }
   },
 
@@ -208,11 +219,6 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
-  button {
-    margin: 0;
-    margin-left: 1rem;
-  }
 }
 
 .DashboardUsers__user-profil-picture {

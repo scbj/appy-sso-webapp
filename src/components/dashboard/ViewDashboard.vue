@@ -7,10 +7,10 @@
   BaseCard.ViewDashboard__actions
     .ViewDashboard__manage-users
       router-link( :to="{ name: 'dashboardUsers' }" )
-        button Gérer les utilisateurs
+        BaseButton {{ $t('button.manageUsers') }}
     .ViewDashboard__manage-groups
       router-link( :to="{ name: 'dashboardGroups' }" )
-        button Gérer les groupes
+        BaseButton {{ $t('button.manageGroups') }}
   router-view
 </template>
 
