@@ -90,14 +90,23 @@ $offset-x: 0;
   letter-spacing: .02em;
   color: white;
   background: $color;
+  background: linear-gradient(
+    135deg,
+    #A250E5 0%,
+    #7C4BFC 100%
+  );
   border-radius: .3em;
   padding: .6em 1em;
+  margin: 0 .5em;
   cursor: pointer;
   @include box-shadow-normal;
   transition: box-shadow .2s ease-out;
 
   &:hover { @include box-shadow-hover }
   &:active { @include box-shadow-active }
+
+  &:first-of-type { margin-left: 0; }
+  &:last-of-type { margin-right: 0; }
 }
 
 .BaseButton_secondary {

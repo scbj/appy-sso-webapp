@@ -7,8 +7,8 @@ el-form.ModalForm(
   @submit.native.prevent='' )
   slot
   el-form-item.ModalForm__buttons
-    el-button( v-if='canCancel' type='text' @click='closeModal' ) {{ $t('cancel') }}
-    el-button( type='primary' @click='validate' :disabled='primaryButtonDisabled' ) {{ primaryButtonText }}
+    BaseButton( v-if='canCancel' type='secondary' @click='closeModal' ) {{ $t('cancel') }}
+    BaseButton( @click='validate' :disabled='primaryButtonDisabled' ) {{ primaryButtonText}}
 </template>
 
 <script>

@@ -24,6 +24,9 @@ export default {
 
   watch: {
     shouldBodyScrollable (value) {
+      document.body.style.paddingRight = value
+        ? ''
+        : '6px'
       document.body.style.overflowY = value
         ? ''
         : 'hidden'
