@@ -41,12 +41,13 @@ export default {
     next: 'Suivant',
     create: 'Créer',
     createGroupWithPeoples: 'Créer maintenant | Créer et ajouter 1 personne | Créer et ajouter {count} personnes',
-    createUsers: "Envoyer l'email | Envoyer les {count} emails",
+    createUsers: 'Créer un utilisateur | Créer des utilisateurs ({count})',
     edit: 'Modifier le groupe...',
     rename: 'Renommer',
     delete: 'Supprimer',
     deleteGroup: 'Supprimer le groupe',
-    deleteUser: "Supprimer l'utilisateur | Supprimer les utilisateurs"
+    deleteUser: 'Supprimer ❌ | Supprimer ❌ ({count})',
+    removeFromGroup: 'Retirer du groupe 💨 | Retirer du groupe 💨 ({count})'
   },
   check: { rememberMe: 'Se souvenir de moi' },
   title: {

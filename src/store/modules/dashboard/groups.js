@@ -1,5 +1,6 @@
 import { make } from 'vuex-pathify'
 import api from '@/api/v1/index'
+import { sortAlphabetically } from '@/utils/array'
 
 export const state = {
   pending: false,
@@ -12,17 +13,8 @@ export const getters = {
   ...make.getters(state),
 
   sortedList (state) {
-    const compare = (a, b) => {
-      const nameA = a.name && a.name.toLowerCase()
-      const nameB = b.name && b.name.toLowerCase()
-      if (nameA > nameB) return 1
-      else if (nameA < nameB) return -1
-
-      // No difference between the two
-      return 0
-    }
-    const groups = [...state.list]
-    return groups.sort(compare)
+    const groups = state.list
+    return sortAlphabetically(groups, 'name')
   }
 }
 

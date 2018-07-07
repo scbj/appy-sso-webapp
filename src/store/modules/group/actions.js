@@ -35,6 +35,7 @@ export async function createAndAddUsers ({ dispatch }, payload) {
 
   // update the groups list
   dispatch('list')
+  dispatch('dashboard/groups/list', {}, { root: true })
 
   if (payload.users.length === 0) {
     return group

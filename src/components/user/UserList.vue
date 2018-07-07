@@ -30,7 +30,7 @@
         </template>
       </UserListRow>
     </ul>
-    <UserListPagination :total="total" />
+    <UserListPagination :total="total" v-if="total > users.length" />
   </div>
 </template>
 

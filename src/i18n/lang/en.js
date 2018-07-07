@@ -41,12 +41,13 @@ export default {
     next: 'Next',
     create: 'Create',
     createGroupWithPeoples: 'Create now | Create and add 1 person | Create and add {count} people',
-    createUsers: 'Send email | Send the {count} emails',
+    createUsers: 'Create a user | Create users ({count})',
     edit: 'Edit group...',
     rename: 'Rename',
     delete: 'Delete',
     deleteGroup: 'Delete group',
-    deleteUser: 'Delete user | Delete users'
+    deleteUser: 'Delete ❌ | Delete ❌ ({count})',
+    removeFromGroup: 'Remove from the group 💨 | Remove from the group 💨 ({count})'
   },
   check: { rememberMe: 'Remember me' },
   title: {
