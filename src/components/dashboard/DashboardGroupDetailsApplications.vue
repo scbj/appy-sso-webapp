@@ -56,18 +56,26 @@ export default {
   },
 
   mounted () {
-    this.$store.dispatch('dashboard/applications/list', {
-      groupId: this.group.id
-    })
+    this.fetchApplications()
   },
 
   methods: {
     fetchApplications () {
-      this.$store.dispatch('dashboard/applications/list')
+      this.$store.dispatch('dashboard/applications/list', {
+        groupId: this.group.id
+      })
     },
 
-    deleteApplications () {
+    async deleteApplications () {
+      const success = await this.$store.dispatch('dashboard/applications/remove', {
+        groupId: this.group.id,
+        appIds: this.selectedApps
+      })
 
+      if (success) {
+        this.selectedApps = []
+        this.fetchApplications()
+      }
     },
 
     isSelected (app) {

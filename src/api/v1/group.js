@@ -48,12 +48,24 @@ export function addUsers (groupId, usersIds) {
 /**
  * Removes users to the specified group.
  * @param {Number} groupId The id of the group to update
- * @param {Array<Number>} usersIds TThe user IDs to remove from the group
+ * @param {Array<Number>} usersIds The user IDs to remove from the group
  * @method POST
  * @returns {Promise<ApiResponse>}
  */
 export function removeUsers (groupId, usersIds) {
   const url = `${base}/${groupId}/user/${usersIds.join('+')}`
+  return deleteAsync(url)
+}
+
+/**
+ * Removes applications to the specified group.
+ * @param {Number} groupId The id of the group to update
+ * @param {Array<Number>} usersIds The app IDs to remove from the group
+ * @method POST
+ * @returns {Promise<ApiResponse>}
+ */
+export function removeApps (groupId, appIds) {
+  const url = `${base}/${groupId}/application/${appIds.join(',')}`
   return deleteAsync(url)
 }
 

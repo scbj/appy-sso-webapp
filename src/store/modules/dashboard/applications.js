@@ -31,6 +31,14 @@ export const actions = {
     commit('SET_LIST', applications)
 
     commit('SET_PENDING', false)
+  },
+
+  async remove ({ commit }, payload) {
+    commit('SET_PENDING', true)
+    const { groupId, appIds } = payload
+    const response = await api.group.removeApps(groupId, appIds)
+    commit('SET_PENDING', false)
+    return response.status === 200
   }
 }
 
