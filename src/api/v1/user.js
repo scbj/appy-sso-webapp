@@ -20,12 +20,11 @@ export function self () {
 }
 
 /**
- * Creates multiple users from their email addresses.
- * @param {Array<String>} emails
+ * Creates multiple users from their email addresses and associate with a group.
  * @returns {Promise<Response>}
  */
-export function createMultiple (emails) {
-  return postAsync(`${base}/multiple`, emails)
+export function create ({ emails, groupId }) {
+  return postAsync(`${base}`, { emails, groupId })
 }
 
 /**
@@ -44,7 +43,6 @@ export function update (id, data) {
  * @method GET
  * @returns {Promise<ApiResponse>}
  */
-
 export function list ({ fields, orderBy, pageSize, page }) {
   const pagination = `paginate=${pageSize}&page=${page}`
   const fieldList = fields.join(',')

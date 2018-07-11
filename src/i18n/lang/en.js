@@ -121,7 +121,8 @@ export default {
     deleteUser: 'This will permanently delete the selected users. This action is irreversible. Continue?'
   },
   label: {
-    emailList: 'List of email addresses'
+    emailList: 'List of email addresses',
+    addUsers: 'Add users'
   },
   description: {
     emailList: 'An account creation email will be sent to each filled-in address.'

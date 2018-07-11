@@ -21,11 +21,8 @@ export async function changeLanguage ({ commit, state, rootGetters }, payload) {
   commit(types.CHANGE_LANGUAGE, payload)
 }
 
-export async function createMultiple (context, payload) {
-  const emails = payload && payload.emails
-  if (!emails) return false
-
-  const response = await api.user.createMultiple(emails)
+export async function create (context, payload) {
+  const response = await api.user.create(payload)
   return response.status === 200
 }
 

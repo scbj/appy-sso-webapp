@@ -24,6 +24,16 @@ export default class UserProvider {
     })
   }
 
+  listFromGroup ({ page = 1, groupId } = {}) {
+    return api.group.listUsers({
+      page,
+      groupId,
+      fields: this.fields,
+      orderBy: this.orderBy,
+      pageSize: this.pageSize
+    })
+  }
+
   search ({ query, page = 1 }) {
     return api.user.search({
       query,

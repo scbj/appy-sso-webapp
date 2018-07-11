@@ -13,8 +13,8 @@ export async function list ({ commit }) {
   const defaultGroup = groups.find(group => group.name === 'default')
   if (defaultGroup) {
     commit(
-      'dashboardAdministration/SET_DEFAULT_GROUP_ID',
-      defaultGroup.id,
+      'dashboard/groups/SET_DEFAULT_GROUP',
+      defaultGroup,
       { root: true }
     )
 
@@ -44,24 +44,6 @@ export async function createAndAddUsers ({ dispatch }, payload) {
   return addUsersResponse.status === 200
     ? group
     : null
-}
-
-export async function listUsers ({ commit }, payload) {
-  const commitOnDashboardAdministration = (name, value) => commit(
-    `dashboardAdministration/${name}`,
-    value,
-    { root: true }
-  )
-
-  const res = await api.group.listUsers(payload)
-  const data = res.data
-  if (data) {
-    commitOnDashboardAdministration('SET_TOTAL_USERS', data.total)
-
-    // Convert 'per_page' string data to number with + sign
-    commitOnDashboardAdministration('SET_PAGE_SIZE', +data.per_page)
-    commitOnDashboardAdministration('SET_USERS', data.data)
-  }
 }
 
 export async function rename ({ dispatch }, payload) {

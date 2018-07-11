@@ -57,28 +57,15 @@ export function removeUsers (groupId, usersIds) {
   return deleteAsync(url)
 }
 
-const defaultFields = [
-  'id',
-  'firstname',
-  'lastname',
-  'email',
-  'pictureUrl',
-  'created_at',
-  'updated_at'
-]
-
 /**
  * Return the list of the users in the specified group.
  * @method GET
  * @returns {Promise<ApiResponse>}
  */
-export function listUsers ({
-  groupId,
-  page = 1,
-  paginate = 8,
-  fields = defaultFields
-}) {
-  const url = `${base}/${groupId}/user?fields=${fields.join(',')}&paginate=${paginate}&page=${page}`
+export function listUsers ({ groupId, fields, orderBy, pageSize, page }) {
+  const pagination = `paginate=${pageSize}&page=${page}`
+  const fieldList = fields.join(',')
+  const url = `${base}/${groupId}/user?fields=${fieldList}&orderBy=${orderBy},asc&${pagination}`
   return getAsync(url)
 }
 

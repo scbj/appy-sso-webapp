@@ -78,9 +78,10 @@ $content-background-color: white;
   background: $content-background-color;
   padding: 2rem;
   opacity: 1;
-  max-height: 70vh;
+  max-height: 85vh;
   @include size(100%, 100%);
   transform: translateY(0) scale(1);
+  overflow-y: auto;
 
   @media screen and (min-width: $mobile) {
     border-radius: 6px;

@@ -2,26 +2,12 @@
   <div class="DashboardGroupDetailsUser">
     <UserList
       v-loading="pending"
-      ref="userList"
       class="DashboardGroupDetails__user-list"
       :columns="columns"
       :users="sortedUsers"
       :selected-users.sync="selectedUsers"
       :total="totalUserCount"
-      @page-changed="onPageChanged">
-      <template slot='full-name' slot-scope="row" >
-        <span class="DashboardUsers__user-full-name">
-          {{ row.item.firstname }}
-          <span class="DashboardUsers__user-lastname">{{ row.item.lastname }}</span>
-        </span>
-      </template>
-      <template slot='profil-picture' slot-scope='row'>
-        <BaseImage
-          class='DashboardUsers__user-profil-picture'
-          :src='row.item.pictureUrl'
-          fallback-src='/static/img/default-user-picture.png'/>
-      </template>
-    </UserList>
+      @page-changed="onPageChanged"/>
 
     <div class='DashboardGroupDetailsUser__buttons'>
       <BaseButton
@@ -39,8 +25,20 @@
 import { get } from 'vuex-pathify'
 
 import UserList from '../user/UserList'
-import api from '../../api/v1/index'
+import UserProvider from '../../services/UserProvider'
 import { sortAlphabetically } from '@/utils/array'
+
+const userProvider = new UserProvider({
+  fields: [
+    'id',
+    'firstname',
+    'lastname',
+    'email',
+    'pictureUrl'
+  ],
+  orderBy: 'firstname',
+  pageSize: 8
+})
 
 export default {
   components: {
@@ -57,10 +55,6 @@ export default {
       return sortAlphabetically(this.users, 'firstname')
     },
 
-    totalUserCount () {
-      return this.group.user_count
-    },
-
     removeFromGroupText () {
       // The user must be informed of the state of his selection
       const count = this.selectedUsers.length
@@ -74,6 +68,7 @@ export default {
       users: [],
       selectedUsers: [],
       currentPage: 1,
+      totalUserCount: 0,
       columns: [
         {
           grow: 1,
@@ -112,12 +107,13 @@ export default {
   methods: {
     async fetchUsers () {
       this.pending = true
-      const { data: response } = await api.group.listUsers({
+      const { data: response } = await userProvider.listFromGroup({
         page: this.currentPage,
         groupId: this.group.id
       })
-      if (response && response.data) {
+      if (response) {
         this.users = response.data
+        this.totalUserCount = response.total
       }
       this.pending = false
     },
@@ -135,6 +131,7 @@ export default {
       if (response.status === 200) {
         this.selectedUsers = []
         this.fetchUsers()
+        this.$store.dispatch('dashboard/groups/list')
       }
     }
   },

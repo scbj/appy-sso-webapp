@@ -30,7 +30,7 @@
         </template>
       </UserListRow>
     </ul>
-    <UserListPagination :total="total" v-if="total > users.length" />
+    <UserListPagination :total="total" v-if="shouldAllowPagination" />
   </div>
 </template>
 
@@ -80,6 +80,10 @@ export default {
       // TODO: A voir si cette fonctionnalité peut être implémenté sans être confuse (est-ce que ça sélectionne tout les utilisateurs ou les utilisateurs visible dans la liste, la page).
       return false
       // return this.selectedUsers.length > 0
+    },
+
+    shouldAllowPagination () {
+      return this.total && this.total > this.users.length
     }
   },
 
@@ -163,12 +167,14 @@ export default {
 @import '../../assets/scss/mixins.scss';
 
 .UserListRow__profil-picture {
-    border-radius: 50%;
-    margin: auto;
-    @include size(24px)
+  border-radius: 50%;
+  margin: auto;
+  @include size(24px)
 }
 
 .UserListRow__full-name {
+  user-select: text;
+
   &:hover {
     text-decoration: underline;
     cursor: pointer;

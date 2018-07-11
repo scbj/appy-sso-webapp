@@ -12,23 +12,10 @@
       v-loading="pending"
       class="DashboardUsers__user-list"
       :columns="columns"
-      :users="sortedUsers"
+      :users="users"
       :selected-users.sync="selectedUsers"
       :total="totalUserCount"
-      @page-changed="onPageChanged">
-      <template slot='full-name' slot-scope="row" >
-        <span class="DashboardUsers__user-full-name">
-          {{ row.item.firstname }}
-          <span class="DashboardUsers__user-lastname">{{ row.item.lastname }}</span>
-        </span>
-      </template>
-      <template slot='profil-picture' slot-scope='row'>
-        <BaseImage
-          class='DashboardUsers__user-profil-picture'
-          :src='row.item.pictureUrl'
-          fallback-src='/static/img/default-user-picture.png'/>
-      </template>
-    </UserList>
+      @page-changed="onPageChanged"/>
     <div class='DashboardUsers__buttons'>
       <BaseButton
         v-if="selectionStateEnabled"
@@ -46,8 +33,6 @@ import UserList from '@/components/user/UserList'
 import UserProvider from '../../services/UserProvider'
 import ModalUserCreate from '../../hold-components/modals/user/ModalUserCreate'
 
-import { sortAlphabetically } from '@/utils/array'
-
 const userProvider = new UserProvider({
   fields: [ 'id', 'firstname', 'lastname', 'email', 'pictureUrl', 'created_at', 'updated_at' ],
   orderBy: 'firstname',
@@ -60,10 +45,6 @@ export default {
   },
 
   computed: {
-    sortedUsers () {
-      return sortAlphabetically(this.users, 'firstname')
-    },
-
     /**
      * Returns true when at least one user is selected
      * from the list, otherwise returns false.
@@ -151,7 +132,8 @@ export default {
 
     createUsers () {
       this.$store.dispatch('modal/open', {
-        content: ModalUserCreate
+        content: ModalUserCreate,
+        onClosed: this.fetchUsers
       })
     },
 

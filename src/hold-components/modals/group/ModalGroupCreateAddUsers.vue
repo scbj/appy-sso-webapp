@@ -1,53 +1,52 @@
-<template lang="pug">
-ModalForm.ModalGroupCreateAddUsers(
-  :model='form'
-  :primaryButtonText='createGroupLabel'
-  @validated='formValidated' )
-    el-form-item( prop='query' :label="$t('addPeople')" )
-      el-input(
-        ref='searchInput'
-        v-model='form.query'
-        prefix-icon="el-icon-search"
-        :placeholder="$t('placeholder.search')" )
-    ModalGroupCreateAddUsersList(
-      v-loading='searching'
-      v-show='hasUsers'
-      :users='users'
-      :selected-users='selectedUsers'
-      @userSelected='onUserSelected'
-      @userUnselected='onUserUnselected' )
-    el-pagination(
-      v-show='hasUsers'
-      background
-      layout='prev, pager, next'
-      :total='total'
-      :current-page='currentPage'
-      :page-size='perPage'
-      @current-change='changePage' )
-    span.no-data( v-show='!hasUsers && !searching' ) {{ $t('message.noData.search') }}
+<template>
+  <ModalForm
+    :model="form"
+    :primary-button-text="createGroupLabel"
+    @validated="formValidated"
+    class="ModalGroupCreateAddUsers">
+    <el-form-item prop="query" :label="$t('label.addUsers')">
+      <el-input
+        ref="searchInput"
+        v-model="form.query"
+        :placeholder="$t('placeholder.search')"
+        prefix-icon="el-icon-search" />
+    </el-form-item>
+    <UserList
+      v-loading="pending"
+      class="ModalGroupCreateAddUsers__user-list"
+      :header-visible="false"
+      :columns="columns"
+      :users="users"
+      :selected-users.sync="selectedUsers"
+      :total="totalUserCount"
+      @page-changed="onPageChanged" />
+    <span class="no-data" v-show="!hasUsers && !pending">{{ $t('message.noData.search') }}</span>
+  </ModalForm>
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-
 import ModalForm from '@/hold-components/modals/ModalForm'
-import ModalGroupCreateAddUsersList from './ModalGroupCreateAddUsersList'
+import UserProvider from '../../../services/UserProvider'
+import UserList from '../../../components/user/UserList'
 
-const { mapGetters } = createNamespacedHelpers('user')
+const userProvider = new UserProvider({
+  fields: [
+    'id',
+    'firstname',
+    'lastname',
+    'email'
+  ],
+  orderBy: 'firstname',
+  pageSize: 5
+})
 
 export default {
   components: {
     ModalForm,
-    ModalGroupCreateAddUsersList
+    UserList
   },
 
   computed: {
-    ...mapGetters([
-      'currentPage',
-      'total',
-      'perPage',
-      'users'
-    ]),
     hasUsers () {
       return this.users.length
     },
@@ -59,11 +58,24 @@ export default {
 
   data () {
     return {
-      searching: false,
+      pending: false,
+      users: [],
+      selectedUsers: [],
+      currentPage: 1,
+      totalUserCount: 0,
       form: {
         query: ''
       },
-      selectedUsers: []
+      columns: [
+        {
+          slot: 'full-name',
+          grow: 5
+        },
+        {
+          prop: 'email',
+          grow: 8
+        }
+      ]
     }
   },
 
@@ -82,12 +94,22 @@ export default {
   },
 
   async mounted () {
-    this.searching = true
-    await this.$store.dispatch('user/list', { page: this.currentPage })
-    this.searching = false
+    this.fetchUsers()
   },
 
   methods: {
+    async fetchUsers () {
+      this.pending = true
+      const { data: response } = await userProvider.list({
+        page: this.currentPage
+      })
+      if (response) {
+        this.users = response.data
+        this.totalUserCount = response.total
+      }
+      this.pending = false
+    },
+
     onUserSelected (user) {
       const id = user && user.id
       if (id && !this.selectedUsers.includes(id)) {
@@ -107,10 +129,9 @@ export default {
       }
     },
 
-    async changePage (page) {
-      this.searching = true
-      await this.$store.dispatch('user/list', { page })
-      this.searching = false
+    async onPageChanged (page) {
+      this.currentPage = page
+      this.fetchUsers()
     },
 
     formValidated () {
