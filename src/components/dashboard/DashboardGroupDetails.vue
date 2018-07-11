@@ -2,7 +2,10 @@
   <div class="DashboardGroupDetails">
     <div class="DashboardGroupDetails__header">
       <h2>{{ groupName }}</h2>
-      <el-dropdown @command="handleCommand" trigger="click">
+      <el-dropdown
+        v-if="!isDefaultGroup"
+        @command="handleCommand"
+        trigger="click">
         <BaseIconButton name="ios-more" />
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="rename">Renommer</el-dropdown-item>
@@ -27,19 +30,19 @@
 import { get } from 'vuex-pathify'
 
 import DashboardGroupDetailsUser from './DashboardGroupDetailsUser'
+import DashboardGroupDetailsApplications from './DashboardGroupDetailsApplications'
+import ModalGroupRename from '../../hold-components/modals/group/ModalGroupRename'
 import api from '../../api/v1/index'
 
 export default {
   components: {
-    DashboardGroupDetailsUser
+    DashboardGroupDetailsUser,
+    DashboardGroupDetailsApplications
   },
 
   computed: {
     group: get('dashboard/groups/activeGroup'),
-
-    isDefaultGroup () {
-      return this.group.name === 'default'
-    },
+    isDefaultGroup: get('dashboard/groups/isDefaultGroup'),
 
     groupName () {
       return this.isDefaultGroup
@@ -63,7 +66,9 @@ export default {
     },
 
     renameGroup () {
-      alert('Not implemented yet 😴')
+      this.$store.dispatch('modal/open', {
+        content: ModalGroupRename
+      })
     },
 
     async deleteGroup () {

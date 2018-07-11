@@ -26,16 +26,12 @@ export async function list ({ commit }) {
   commit('SET_GROUPS', groups)
 }
 
-export async function createAndAddUsers ({ dispatch }, payload) {
+export async function createAndAddUsers (_, payload) {
   // Send the create group request
   const { data: group } = await api.group.create(payload.name)
   if (!group) {
     return false
   }
-
-  // update the groups list
-  dispatch('list')
-  dispatch('dashboard/groups/list', {}, { root: true })
 
   if (payload.users.length === 0) {
     return group
@@ -48,13 +44,7 @@ export async function createAndAddUsers ({ dispatch }, payload) {
 
 export async function rename ({ dispatch }, payload) {
   const { status } = await api.group.update(payload)
-  if (status !== 201) {
-    return false
-  }
-
-  // update the groups list
-  dispatch('list')
-  return true
+  return status === 200
 }
 
 export async function remove ({ commit, dispatch, rootState }, payload) {

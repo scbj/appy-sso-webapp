@@ -46,10 +46,7 @@ export default {
   },
   computed: {
     group: get('dashboard/groups/activeGroup'),
-
-    isDefaultGroup () {
-      return this.group.name === 'default'
-    },
+    isDefaultGroup: get('dashboard/groups/isDefaultGroup'),
 
     sortedUsers () {
       return sortAlphabetically(this.users, 'firstname')

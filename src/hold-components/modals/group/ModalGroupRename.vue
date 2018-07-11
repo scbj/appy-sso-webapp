@@ -16,8 +16,8 @@
 <script>
 import { get } from 'vuex-pathify'
 
-import ModalForm from '@/components/modals/ModalForm'
-import { buildMessage } from '@/components/message'
+import ModalForm from '@/hold-components/modals/ModalForm'
+import { buildMessage } from '@/hold-components/message'
 import validator from '@/validators/validator'
 
 export default {
@@ -26,7 +26,11 @@ export default {
   },
 
   computed: {
-    activeGroupName: get('dashboardAdministration/activeGroupName')
+    activeGroup: get('dashboard/groups/activeGroup'),
+
+    activeGroupName () {
+      return this.activeGroup.name
+    }
   },
 
   data () {
@@ -60,21 +64,24 @@ export default {
     },
 
     async renameGroup () {
-      // this.$emit('nameChosen', this.form.name)
       this.pending = true
 
       const success = await this.$store.dispatch('group/rename', {
-        groupId: this.$store.state.dashboardAdministration.activeGroupId,
+        groupId: this.activeGroup.id,
         name: this.form.name
       })
 
       // We must inform the user if the operation failed
-      if (!success) {
-        const message = buildMessage('groupRenameError')
-        this.$messsage(message)
-      }
+      this.notifyUser(success)
 
       this.$store.dispatch('modal/close')
+      this.$store.dispatch('dashboard/groups/list')
+    },
+
+    notifyUser (success) {
+      if (success) return
+      const message = buildMessage('groupRenameError')
+      this.$message(message)
     }
   }
 }

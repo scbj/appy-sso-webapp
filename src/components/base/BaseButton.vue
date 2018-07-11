@@ -110,6 +110,16 @@ $offset-x: 0;
 
   &:first-of-type { margin-left: 0; }
   &:last-of-type { margin-right: 0; }
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active,
+  &:disabled:focus {
+    box-shadow: none;
+    filter: grayscale(10%);
+    opacity: .5;
+    cursor: default;
+  }
 }
 
 .BaseButton_secondary {

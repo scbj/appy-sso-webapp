@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { sync } from 'vuex-pathify'
+import { get } from 'vuex-pathify'
 
 export default {
   props: {
@@ -32,7 +32,7 @@ export default {
   },
 
   computed: {
-    activeGroup: sync('dashboard/groups/activeGroup'),
+    activeGroupId: get('dashboard/groups/activeGroupId'),
 
     name () {
       const { name } = this.group
@@ -48,7 +48,7 @@ export default {
     },
 
     isActive () {
-      return this.group.id === this.activeGroup.id
+      return this.group.id === this.activeGroupId
     }
   }
 }
