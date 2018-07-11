@@ -61,12 +61,9 @@ export default {
   padding: .3em 0;
   margin: .2em 0;
   position: relative;
+  user-select: none;
 
-  &:hover {
-    color: $primaryColor;
-
-    &::after { opacity: 1 }
-  }
+  &:hover::after { opacity: 1 }
 
   &.DashboardGroupListItem_read-only {
     .DashboardGroupListItem__name {
@@ -78,8 +75,12 @@ export default {
     .DashboardGroupListItem__name {
       opacity: .6;
     }
+  }
 
-    &:hover .DashboardGroupListItem__name { opacity: 1 }
+  &.DashboardGroupListItem_active {
+    color: $primaryColor;
+
+    .DashboardGroupListItem__name { opacity: 1 }
   }
 
   &.DashboardGroupListItem_active::before {
@@ -107,7 +108,8 @@ export default {
   $side-padding: -0.6em;
 
   content: '';
-  background: rgba($primaryColor, .1);
+  // background: rgba($primaryColor, .1);
+  background: rgba(black, .04);
   border-radius: 6px;
   opacity: 0;
   position: absolute;

@@ -100,10 +100,13 @@ $offset-x: 0;
   margin: 0 .5em;
   cursor: pointer;
   @include box-shadow-normal;
-  transition: box-shadow .2s ease-out;
+  transition: all .2s ease-out;
 
   &:hover { @include box-shadow-hover }
-  &:active { @include box-shadow-active }
+  &:active {
+    @include box-shadow-active;
+    transform: scale(.985)
+  }
 
   &:first-of-type { margin-left: 0; }
   &:last-of-type { margin-right: 0; }

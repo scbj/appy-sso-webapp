@@ -36,5 +36,6 @@ export default {
   font-size: .8em;
   font-weight: 400;
   height: 4rem;
+  user-select: none;
 }
 </style>

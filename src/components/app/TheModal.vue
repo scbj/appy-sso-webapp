@@ -75,9 +75,10 @@ $content-background-color: white;
 }
 
 .TheModal__container {
-  opacity: 1;
   background: $content-background-color;
   padding: 2rem;
+  opacity: 1;
+  max-height: 70vh;
   @include size(100%, 100%);
   transform: translateY(0) scale(1);
 

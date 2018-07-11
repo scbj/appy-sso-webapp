@@ -47,7 +47,7 @@ export default {
               box-shadow .2s ease-in-out;
 
   @media screen and (min-width: $mobile) {
-    border-radius: 12px;
+    border-radius: .3em;
     align-items: center;
     flex-direction: column;
     margin: 1rem;
@@ -58,13 +58,14 @@ export default {
   }
 
   &:hover {
-    transition: background-color .1s ease-in-out,
-                box-shadow .1s ease-in-out;
+    transition: background-color .08s ease-in-out,
+                box-shadow .08s ease-in-out;
 
     @media screen and (min-width: $mobile) {
       background-color: white;
-      // box-shadow: 0 8px 16px 0 rgba(0,0,0,.1);
-      box-shadow: 0 10px 40px -8px rgba(black,0.2);
+      $color: darken(#A250E5, 60%);
+      box-shadow: 0 16px 40px -2px rgba($color,.04),
+              0 2px 20px rgba($color,0.02);
 
       span.new {
         box-shadow: 0 0px 5px 0 rgba(0,0,0,.0);

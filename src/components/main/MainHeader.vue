@@ -38,6 +38,7 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
+  user-select: none;
   z-index: $z-index-dashboard-header;
 }
 

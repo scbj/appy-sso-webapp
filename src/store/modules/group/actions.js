@@ -94,3 +94,8 @@ export async function remove ({ commit, dispatch, rootState }, payload) {
 
   return true
 }
+
+export async function removeUsers (_, payload) {
+  const { groupId, ids } = payload
+  return api.group.removeUsers(groupId, ids)
+}

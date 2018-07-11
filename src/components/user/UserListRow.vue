@@ -60,8 +60,7 @@ export default {
   transition: all .1s ease-in-out;
 
   &:hover {
-    color: $primaryColor;
-    background-color: rgba($primaryColor, 0.1);
+    background: rgba(black, .04);
     transition: all .05s ease-in;
   }
 }

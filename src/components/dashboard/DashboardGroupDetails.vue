@@ -47,6 +47,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/colors.scss';
+
 .DashboardGroupDetails {
   display: flex;
   flex-direction: column;
@@ -55,5 +57,10 @@ export default {
 .DashboardGroupDetails__tabs {
   flex-grow: 1;
   margin-top: 1rem;
+}
+
+h2::selection {
+  color: white;
+  background: rgba($primaryColor, .8);
 }
 </style>

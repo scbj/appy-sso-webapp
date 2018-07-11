@@ -73,6 +73,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  user-select: none;
 }
 
 .DashboardGroupList__create-group-button {

@@ -45,6 +45,18 @@ export function addUsers (groupId, usersIds) {
   return postAsync(url)
 }
 
+/**
+ * Removes users to the specified group.
+ * @param {Number} groupId The id of the group to update
+ * @param {Array<Number>} usersIds TThe user IDs to remove from the group
+ * @method POST
+ * @returns {Promise<ApiResponse>}
+ */
+export function removeUsers (groupId, usersIds) {
+  const url = `${base}/${groupId}/user/${usersIds.join('+')}`
+  return deleteAsync(url)
+}
+
 const defaultFields = [
   'id',
   'firstname',

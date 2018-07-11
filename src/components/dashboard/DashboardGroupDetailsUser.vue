@@ -24,7 +24,12 @@
     </UserList>
 
     <div class='DashboardGroupDetailsUser__buttons'>
-      <BaseButton v-if="selectedUsers.length" type="secondary">{{ removeFromGroupText }}</BaseButton>
+      <BaseButton
+        v-if="!isDefaultGroup && selectedUsers.length"
+        @click="removeSelectedUsers"
+        type="secondary">
+        {{ removeFromGroupText }}
+      </BaseButton>
       <BaseButton>{{ $t('button.addUsers') }}</BaseButton>
     </div>
   </div>
@@ -43,6 +48,10 @@ export default {
   },
   computed: {
     group: get('dashboard/groups/activeGroup'),
+
+    isDefaultGroup () {
+      return this.group.name === 'default'
+    },
 
     sortedUsers () {
       return sortAlphabetically(this.users, 'firstname')
@@ -95,6 +104,7 @@ export default {
 
   watch: {
     group () {
+      this.selectedUsers = []
       this.fetchUsers()
     }
   },
@@ -115,6 +125,17 @@ export default {
     onPageChanged (page) {
       this.currentPage = page
       this.fetchUsers()
+    },
+
+    async removeSelectedUsers () {
+      const response = await this.$store.dispatch('group/removeUsers', {
+        ids: this.selectedUsers,
+        groupId: this.group.id
+      })
+      if (response.status === 200) {
+        this.selectedUsers = []
+        this.fetchUsers()
+      }
     }
   },
 
@@ -136,10 +157,5 @@ export default {
   flex-direction: row;
   align-items: center;
   margin-top: 2rem;
-
-  // button {
-  //   margin: 0;
-  //   margin-left: 1rem;
-  // }
 }
 </style>
