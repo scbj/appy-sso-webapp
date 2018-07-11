@@ -70,6 +70,16 @@ export function listUsers ({ groupId, fields, orderBy, pageSize, page }) {
 }
 
 /**
+ * Return the list of the applications in the specified group.
+ * @method GET
+ * @returns {Promise<ApiResponse>}
+ */
+export function listApplications ({ groupId }) {
+  const url = `${base}/${groupId}/application`
+  return getAsync(url)
+}
+
+/**
  * Update the specified group with the specified data.
  * @method PUT
  * @returns {Promise<ApiResponse>}

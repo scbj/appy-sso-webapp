@@ -51,7 +51,8 @@ export default {
     removeFromGroup: 'Remove from the group 💨 | Remove from the group 💨 ({count})',
     manageUsers: 'Manage users',
     manageGroups: 'Manage groups',
-    addUsers: 'Add users'
+    addUsers: 'Add users',
+    addApplications: 'Add applications'
   },
   check: { rememberMe: 'Remember me' },
   title: {

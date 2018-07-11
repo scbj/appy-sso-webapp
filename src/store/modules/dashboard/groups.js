@@ -4,7 +4,6 @@ import { sortAlphabetically } from '@/utils/array'
 
 export const state = {
   pending: false,
-  // activeGroup: null,
   activeGroupId: -1,
   defaultGroup: null,
   list: []
@@ -37,6 +36,7 @@ export const actions = {
     const { data: groups } = await api.group.list()
 
     if (!groups) {
+      commit('SET_PENDING', false)
       return false
     }
 
