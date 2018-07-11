@@ -1,6 +1,15 @@
 <template>
   <div class="DashboardGroupDetails">
-    <h2>{{ groupName }}</h2>
+    <div class="DashboardGroupDetails__header">
+      <h2>{{ groupName }}</h2>
+      <el-dropdown @command="handleCommand" trigger="click">
+        <BaseIconButton name="ios-more" />
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="rename">Renommer</el-dropdown-item>
+          <el-dropdown-item command="delete">Supprimer</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
     <el-tabs
       v-model="activeTabName"
       class="DashboardGroupDetails__tabs">
@@ -18,6 +27,7 @@
 import { get } from 'vuex-pathify'
 
 import DashboardGroupDetailsUser from './DashboardGroupDetailsUser'
+import api from '../../api/v1/index'
 
 export default {
   components: {
@@ -42,6 +52,28 @@ export default {
     return {
       activeTabName: 'users'
     }
+  },
+
+  methods: {
+    handleCommand (command) {
+      switch (command) {
+        case 'rename': return this.renameGroup()
+        case 'delete': return this.deleteGroup()
+      }
+    },
+
+    renameGroup () {
+      alert('Not implemented yet 😴')
+    },
+
+    async deleteGroup () {
+      const response = await api.group.remove({
+        groupId: this.group.id
+      })
+      if (response.status === 200) {
+        this.$store.dispatch('dashboard/groups/list')
+      }
+    }
   }
 }
 </script>
@@ -52,6 +84,13 @@ export default {
 .DashboardGroupDetails {
   display: flex;
   flex-direction: column;
+}
+
+.DashboardGroupDetails__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .DashboardGroupDetails__tabs {

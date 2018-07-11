@@ -31,7 +31,8 @@ export const actions = {
     const defaultGroup = groups.find(group => group.name === 'default')
     if (defaultGroup) {
       commit('SET_DEFAULT_GROUP', defaultGroup)
-      if (state.activeGroup === null) {
+      const keepActiveGroup = state.activeGroup && !!groups.find(group => group.id === state.activeGroup.id)
+      if (!keepActiveGroup) {
         commit('SET_ACTIVE_GROUP', defaultGroup)
       }
     }
