@@ -16,7 +16,7 @@
         type="secondary">
         {{ removeFromGroupText }}
       </BaseButton>
-      <BaseButton>{{ $t('button.addUsers') }}</BaseButton>
+      <BaseButton @click="addUsers">{{ $t('button.addUsers') }}</BaseButton>
     </div>
   </div>
 </template>
@@ -24,6 +24,7 @@
 <script>
 import { get } from 'vuex-pathify'
 
+import ModalGroupAddUsers from '../../hold-components/modals/group/ModalGroupAddUsers'
 import UserList from '../user/UserList'
 import UserProvider from '../../services/UserProvider'
 import { sortAlphabetically } from '@/utils/array'
@@ -42,7 +43,8 @@ const userProvider = new UserProvider({
 
 export default {
   components: {
-    UserList
+    UserList,
+    ModalGroupAddUsers
   },
   computed: {
     group: get('dashboard/groups/activeGroup'),
@@ -118,6 +120,13 @@ export default {
     onPageChanged (page) {
       this.currentPage = page
       this.fetchUsers()
+    },
+
+    addUsers () {
+      this.$store.dispatch('modal/open', {
+        content: ModalGroupAddUsers,
+        onClosed: () => this.fetchUsers()
+      })
     },
 
     async removeSelectedUsers () {

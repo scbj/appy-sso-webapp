@@ -58,6 +58,14 @@ export const actions = {
     commit('SET_PENDING', false)
 
     return true
+  },
+
+  async addUsers ({ commit }, payload) {
+    commit('SET_PENDING', true)
+    const { groupId, userIds } = payload
+    const response = await api.group.addUsers(groupId, userIds)
+    commit('SET_PENDING', false)
+    return response.status === 200
   }
 }
 

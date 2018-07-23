@@ -41,7 +41,7 @@ export function create (name) {
  * @returns {Promise<ApiResponse>}
  */
 export function addUsers (groupId, usersIds) {
-  const url = `${base}/${groupId}/user/${usersIds.join('+')}`
+  const url = `${base}/${groupId}/user/${usersIds.join(',')}`
   return postAsync(url)
 }
 
@@ -53,7 +53,7 @@ export function addUsers (groupId, usersIds) {
  * @returns {Promise<ApiResponse>}
  */
 export function removeUsers (groupId, usersIds) {
-  const url = `${base}/${groupId}/user/${usersIds.join('+')}`
+  const url = `${base}/${groupId}/user/${usersIds.join(',')}`
   return deleteAsync(url)
 }
 
