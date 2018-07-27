@@ -130,7 +130,7 @@ export default {
     },
 
     async removeSelectedUsers () {
-      const response = await this.$store.dispatch('group/removeUsers', {
+      const response = await this.$store.dispatch('dashboard/group/removeUsers', {
         ids: this.selectedUsers,
         groupId: this.group.id
       })
