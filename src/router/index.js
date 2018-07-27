@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// Components
-import PageLogin from '@/components/login/PageLogin'
-import Page404 from '@/components/app/Page404'
-
 // Routes and middlewares
 import activateLicenceRoute from './activate-licence'
 import mainRoute from './main'
 import { requiresAuth } from './middlewares'
+
+// Components
+const PageLogin = () => import('@/components/login/PageLogin')
+const Page404 = () => import('@/components/app/Page404')
 
 Vue.use(Router)
 

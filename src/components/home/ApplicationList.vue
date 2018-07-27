@@ -75,7 +75,6 @@ export default {
 
   .label {
     font-size: .8em;
-    font-family: 'orator-std';
     text-align: center;
   }
 }

@@ -1,3 +1,5 @@
+import { requiresAdmin } from '@/router/middlewares'
+
 const PageMain = () => import('@/components/main/PageMain')
 const ViewHome = () => import('@/components/home/ViewHome')
 const ViewNews = () => import('@/components/news/ViewNews')
@@ -20,6 +22,7 @@ const stepRoutes = [
     path: '/dashboard',
     name: 'dashboard',
     component: ViewDashboard,
+    beforeEnter: requiresAdmin,
     children: [
       {
         path: 'users',

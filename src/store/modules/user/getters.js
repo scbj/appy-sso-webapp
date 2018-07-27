@@ -17,3 +17,7 @@ export function perPage (state) {
 export function users (state) {
   return state.all.list
 }
+
+export function isAdmin (state) {
+  return state.roleName === 'admin'
+}

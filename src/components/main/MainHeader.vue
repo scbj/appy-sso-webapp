@@ -6,7 +6,7 @@
       p {{ $t('apps') }}
     router-link.MainHeader__navigation-link( :to="{ name: 'news' }" )
       p {{ $t('news') }}
-    router-link.MainHeader__navigation-link( :to="{ name: 'dashboard' }" )
+    router-link.MainHeader__navigation-link( v-if="isAdmin" :to="{ name: 'dashboard' }" )
       p {{ $t('dashboard') }}
   .MainHeader__profil
     BaseImage( :src='pictureUrl' fallbackSrc='/static/img/default-user-picture.png' )
@@ -19,7 +19,8 @@ import { get } from 'vuex-pathify'
 export default {
   computed: {
     username: get('user/username'),
-    pictureUrl: get('user/pictureUrl')
+    pictureUrl: get('user/pictureUrl'),
+    isAdmin: get('user/isAdmin')
   }
 }
 </script>

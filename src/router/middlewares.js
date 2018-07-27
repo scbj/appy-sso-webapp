@@ -1,6 +1,6 @@
 import store from '@/store'
 
-export function requiresAuth (to, from, next) {
+export function requiresAuth (to, _, next) {
   // We must redirect users to the homepage if they try to
   // access the root of the domain name.
   if (to.path === '/') {
@@ -12,6 +12,15 @@ export function requiresAuth (to, from, next) {
   // Redirects the user to the login page if it's not authenticated
   if (requiresAuth && !isLoggedIn) {
     return next({ name: 'login' })
+  }
+  next()
+}
+
+export function requiresAdmin (to, from, next) {
+  const admin = store.get('user/isAdmin')
+  console.log('is admin', admin)
+  if (!admin) {
+    return next({ name: 'home' })
   }
   next()
 }
