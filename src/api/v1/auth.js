@@ -12,7 +12,7 @@ import { postAsync } from '@/http-common'
  * Login the user.
  * @param {String} username The username of the user
  * @param {String} password The password of the user
- * @method GET
+ * @method POST
  * @returns {Promise<ApiResponse>}
  */
 export function login ({ username, password }) {
@@ -20,6 +20,21 @@ export function login ({ username, password }) {
     username,
     password,
     grant_type: 'password',
+    client_id: '1',
+    client_secret: 'KLJu9fBeBZDXKxZCan8Wyy4aODVsAaM28uiWdl56'
+  }
+  return postAsync('oauth/token', data)
+}
+
+/**
+ * Refresh the token.
+ * @method POST
+ * @returns {Promise<ApiResponse>}
+ */
+export function refreshToken ({ refreshToken }) {
+  const data = {
+    refresh_token: refreshToken,
+    grant_type: 'refresh_token',
     client_id: '1',
     client_secret: 'KLJu9fBeBZDXKxZCan8Wyy4aODVsAaM28uiWdl56'
   }

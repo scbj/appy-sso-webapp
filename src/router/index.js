@@ -8,7 +8,7 @@ import { requiresAuth } from './middlewares'
 
 // Components
 const PageLogin = () => import('@/components/login/PageLogin')
-const Page404 = () => import('@/components/app/Page404')
+const Page404 = () => import('@/components/error/Page404')
 
 Vue.use(Router)
 
