@@ -92,7 +92,8 @@ export default {
     groupDeleteError: "Nous avons rencontré un problème. Le groupe n'a pas pu être supprimé",
     userCreateSuccess: 'Emails envoyés avec succès !',
     userCreateError: 'Nous avons rencontré un problème. Veuillez réessayer plus tard.',
-    selectionCount: 'Vous avez sélectionné un utilisateur | Vous avez sélectionné {count} utilisateurs'
+    selectionCount: 'Vous avez sélectionné un utilisateur | Vous avez sélectionné {count} utilisateurs',
+    updatingAuthentication: "Mise à jour de l'authentification..."
   },
   placeholder: {
     fullName: 'Nom complet (prénom et nom)',

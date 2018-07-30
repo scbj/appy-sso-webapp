@@ -25,3 +25,22 @@ export async function login ({ commit }, credentials) {
 export function logout ({ commit }) {
   commit(types.LOGOUT)
 }
+
+export async function refreshAccessToken ({ commit, state }) {
+  const { status, data } = await api.auth.refreshAccessToken({
+    refreshToken: state.refreshToken
+  })
+
+  const success = status === 200
+  const token = data && data.access_token
+  const refreshToken = data && data.refresh_token
+
+  if (success) {
+    setAuthorizationHeader(token)
+  }
+
+  commit('SET_TOKEN', success ? token : '')
+  commit('SET_REFRESH_TOKEN', success ? refreshToken : '')
+
+  return success
+}

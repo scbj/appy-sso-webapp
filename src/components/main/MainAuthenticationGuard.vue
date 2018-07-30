@@ -3,27 +3,16 @@
     <div v-show="requiresTokenRefreshing" class="MainAuthenticationGuard">
       <BaseImage class="MainAuthenticationGuard__logo" src="/static/img/title-gradient.svg" />
       <span class="MainAuthenticationGuard__state">
-        {{ state }}
+        🔑&nbsp; {{ $t('message.updatingAuthentication') }}
       </span>
     </div>
   </transition>
 </template>
 
 <script>
-import { sync } from 'vuex-pathify'
-
-import api from '@/api/v1'
-import { setAuthorizationHeader } from '@/http-common'
-
 export default {
-  computed: {
-    token: sync('auth/token'),
-    refreshToken: sync('auth/refreshToken')
-  },
-
   data () {
     return {
-      state: 'Chargement du composant...',
       requiresTokenRefreshing: true
     }
   },
@@ -31,10 +20,10 @@ export default {
   watch: {
     requiresTokenRefreshing: {
       immediate: true,
-      handler () {
-        // A new token request must be issued each time the variable is changed.
+      handler (newValue) {
+        // A new token request must be issued each time the variable passed to true.
         // And also when first loading the component.
-        this.requestNewToken()
+        newValue && this.requestNewToken()
       }
     }
   },
@@ -45,22 +34,15 @@ export default {
 
   methods: {
     async requestNewToken () {
-      this.state = "Mise à jour de l'authentification en cours..."
-      const { status, data } = await api.auth.refreshToken({
-        refreshToken: this.refreshToken
-      })
-      if (status === 200) {
-        this.state = 'Enregistrement des préfèrences...'
+      const success = await this.$store.dispatch('auth/refreshAccessToken')
 
-        this.token = data.access_token
-
-        // Updates HTTP request authentication token
-        setAuthorizationHeader(this.token)
-
-        this.refreshToken = data.refresh_token
-        this.requiresTokenRefreshing = false
-        this.$emit('token-refreshed')
+      // If the refreshing of the token is a failure we must ask the user to reconnect
+      if (!success) {
+        return this.$router.push({ name: 'login' })
       }
+
+      this.requiresTokenRefreshing = false
+      this.$emit('token-refreshed')
     },
 
     initializeAutomaticRefresh () {

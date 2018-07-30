@@ -92,7 +92,8 @@ export default {
     groupDeleteError: 'We encountered a problem. The group could not be deleted.',
     userCreateSuccess: 'Emails sent successfully!',
     userCreateError: 'We encountered a problem. Please try again later.',
-    selectionCount: 'You have selected a single user | You have selected {count} users'
+    selectionCount: 'You have selected a single user | You have selected {count} users',
+    updatingAuthentication: 'Updating authentication...'
   },
   placeholder: {
     fullName: 'Full name (first and last name)',

@@ -31,7 +31,7 @@ export function login ({ username, password }) {
  * @method POST
  * @returns {Promise<ApiResponse>}
  */
-export function refreshToken ({ refreshToken }) {
+export function refreshAccessToken ({ refreshToken }) {
   const data = {
     refresh_token: refreshToken,
     grant_type: 'refresh_token',
