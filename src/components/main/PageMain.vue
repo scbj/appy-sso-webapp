@@ -1,26 +1,42 @@
-<template lang="pug">
-.PageMain
-  MainHeader( v-if="$mq !== 'mobile'" )
-  transition( name='fade' mode='out-in' )
-    router-view.PageMain__router-view
-  MobileMainNavigationBar( v-if="$mq === 'mobile'" )
-  MainFooter.PageMain__MainFooter( v-else )
+<template>
+  <div class="PageMain">
+    <template v-if="ready">
+      <MainHeader v-if="$mq !== 'mobile'" />
+      <transition name="fade" mode="out-in">
+        <router-view class="PageMain__router-view" />
+      </transition>
+      <MobileMainNavigationBar v-if="$mq === 'mobile'" />
+      <MainFooter class="PageMain__MainFooter" />
+    </template>
+    <MainAuthenticationGuard @token-refreshed="onTokenRefreshed" />
+  </div>
 </template>
 
 <script>
 import MainHeader from '@/components/main/MainHeader'
 import MainFooter from '@/components/main/MainFooter'
 import MobileMainNavigationBar from '@/components/main/MobileMainNavigationBar'
+import MainAuthenticationGuard from '@/components/main/MainAuthenticationGuard'
 
 export default {
   components: {
     MainHeader,
     MainFooter,
-    MobileMainNavigationBar
+    MobileMainNavigationBar,
+    MainAuthenticationGuard
   },
 
-  mounted () {
-    this.$store.dispatch('user/fetch')
+  data () {
+    return {
+      ready: false
+    }
+  },
+
+  methods: {
+    onTokenRefreshed () {
+      this.$store.dispatch('user/fetch')
+      this.ready = true
+    }
   }
 }
 </script>
