@@ -31,8 +31,8 @@ import { get } from 'vuex-pathify'
 
 import DashboardGroupDetailsUser from './DashboardGroupDetailsUser'
 import DashboardGroupDetailsApplications from './DashboardGroupDetailsApplications'
-import ModalGroupRename from '../../hold-components/modals/group/ModalGroupRename'
-import api from '../../api/v1/index'
+import ModalGroupRename from '@/components/dashboard/modals/group/ModalGroupRename'
+import api from '@/api/v1/index'
 
 export default {
   components: {

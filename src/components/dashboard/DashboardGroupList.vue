@@ -32,7 +32,7 @@
 import { get, sync } from 'vuex-pathify'
 
 import DashboardGroupListItem from './DashboardGroupListItem'
-import ModalGroupCreate from '../../hold-components/modals/group/ModalGroupCreate'
+import ModalGroupCreate from '@/components/dashboard/modals/group/ModalGroupCreate'
 
 export default {
   components: {

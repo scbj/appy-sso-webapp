@@ -13,7 +13,7 @@
 <script>
 import ModalGroupCreateChooseName from './ModalGroupCreateChooseName'
 import ModalGroupCreateAddUsers from './ModalGroupCreateAddUsers'
-import { buildMessage } from '../../message'
+import { buildMessage } from '@/utils/message'
 
 export default {
   components: {

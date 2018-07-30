@@ -66,7 +66,8 @@ export default {
     createUsers: 'Créer des utilisateurs',
     renameGroup: 'Renommer le groupe',
     deleteGroup: 'Suppression de {groupName}',
-    deleteUser: "Suppression d'un utilisateur | Suppression des utilisateurs"
+    deleteUser: "Suppression d'un utilisateur | Suppression des utilisateurs",
+    addUsers: 'Ajouter des utilisateurs'
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',
@@ -124,7 +125,7 @@ export default {
   },
   label: {
     emailList: 'Liste des adresses email',
-    addUsers: 'Ajouter des utilisateurs'
+    addUsers: 'Sélectionner les utilisateurs à ajouter'
   },
   description: {
     emailList: 'Un email de création de compte sera envoyé à chaque adresse renseigné.'

@@ -1,4 +1,4 @@
-import { getAsync } from '../../http-common'
+import { getAsync } from '@/http-common'
 
 const base = 'api/v1/article'
 

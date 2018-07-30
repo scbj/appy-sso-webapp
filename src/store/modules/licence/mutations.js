@@ -5,7 +5,7 @@ import {
   LICENCE_UPDATE_COMPANY_NAME,
   LICENCE_UPDATE_OWNER,
   LICENCE_CLEAN
-} from '../../mutation-types'
+} from '@/store/mutation-types'
 
 export default {
   [LICENCE_COMPLETE_STEP] (state, payload) {

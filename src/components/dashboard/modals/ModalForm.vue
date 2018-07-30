@@ -1,14 +1,24 @@
-<template lang="pug">
-el-form.ModalForm(
-  ref='elForm',
-  :model='model'
-  :rules='rules'
-  status-icon
-  @submit.native.prevent='' )
-  slot
-  el-form-item.ModalForm__buttons
-    BaseButton( v-if='canCancel' type='secondary' @click='closeModal' ) {{ $t('cancel') }}
-    BaseButton( @click='validate' :disabled='primaryButtonDisabled' ) {{ primaryButtonText}}
+<template>
+  <el-form
+    :rules="rules"
+    :model="model"
+    @submit.native.prevent
+    ref="elForm"
+    class="ModalForm"
+    status-icon="status-icon">
+    <slot/>
+    <el-form-item class="ModalForm__buttons">
+      <BaseButton
+        v-if="canCancel"
+        @click="closeModal"
+        type="secondary">
+        {{ $t('cancel') }}
+      </BaseButton>
+      <BaseButton @click="validate" :disabled="primaryButtonDisabled">
+        {{ primaryButtonText }}
+      </BaseButton>
+    </el-form-item>
+  </el-form>
 </template>
 
 <script>

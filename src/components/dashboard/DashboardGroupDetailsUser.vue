@@ -24,9 +24,9 @@
 <script>
 import { get } from 'vuex-pathify'
 
-import ModalGroupAddUsers from '../../hold-components/modals/group/ModalGroupAddUsers'
-import UserList from '../user/UserList'
-import UserProvider from '../../services/UserProvider'
+import ModalGroupAddUsers from '@/components/dashboard/modals/group/ModalGroupAddUsers'
+import UserList from '@/components/user/UserList'
+import UserProvider from '@/services/UserProvider'
 import { sortAlphabetically } from '@/utils/array'
 
 const userProvider = new UserProvider({
@@ -130,7 +130,7 @@ export default {
     },
 
     async removeSelectedUsers () {
-      const response = await this.$store.dispatch('dashboard/group/removeUsers', {
+      const response = await this.$store.dispatch('group/removeUsers', {
         ids: this.selectedUsers,
         groupId: this.group.id
       })

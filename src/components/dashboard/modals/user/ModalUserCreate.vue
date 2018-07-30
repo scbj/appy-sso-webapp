@@ -37,8 +37,8 @@
 <script>
 import { get } from 'vuex-pathify'
 
-import ModalForm from '@/hold-components/modals/ModalForm'
-import { buildMessage } from '@/hold-components/message'
+import ModalForm from '@/components/dashboard/modals/ModalForm'
+import { buildMessage } from '@/utils/message'
 import validator from '@/validators/validator'
 
 export default {

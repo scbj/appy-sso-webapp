@@ -1,4 +1,4 @@
-import { getAsync, putAsync, postAsync, deleteAsync } from '../../http-common'
+import { getAsync, putAsync, postAsync, deleteAsync } from '@/http-common'
 
 const base = 'api/v1/user'
 

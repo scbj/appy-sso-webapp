@@ -55,8 +55,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/scss/vars.scss';
-@import '../../assets/scss/mixins.scss';
+@import '../assets/scss/vars.scss';
+@import '../assets/scss/mixins.scss';
 
 $background-color: rgba(black, .2);
 $enter-background-color: rgba(black, 0);

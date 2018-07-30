@@ -1,7 +1,7 @@
 import { make } from 'vuex-pathify'
 
 import * as actions from './actions'
-import * as types from '../../mutation-types'
+import * as types from '@/store/mutation-types'
 
 export const state = {
   token: '',

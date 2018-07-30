@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import ModalForm from '@/hold-components/modals/ModalForm'
-import UserProvider from '../../../services/UserProvider'
-import UserList from '../../../components/user/UserList'
+import ModalForm from '@/components/dashboard/modals/ModalForm'
+import UserProvider from '@/services/UserProvider'
+import UserList from '@/components/user/UserList'
 
 const userProvider = new UserProvider({
   fields: [

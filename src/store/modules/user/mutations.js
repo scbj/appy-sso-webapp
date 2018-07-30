@@ -3,7 +3,7 @@ import {
   USER_FETCH,
   USER_LIST,
   USER_CLEAN_LIST
-} from '../../mutation-types'
+} from '@/store/mutation-types'
 
 export default {
   [CHANGE_LANGUAGE] (state, payload) {

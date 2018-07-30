@@ -30,8 +30,8 @@
 
 <script>
 import UserList from '@/components/user/UserList'
-import UserProvider from '../../services/UserProvider'
-import ModalUserCreate from '../../hold-components/modals/user/ModalUserCreate'
+import UserProvider from '@/services/UserProvider'
+import ModalUserCreate from '@/components/dashboard/modals/user/ModalUserCreate'
 
 const userProvider = new UserProvider({
   fields: [ 'id', 'firstname', 'lastname', 'email', 'pictureUrl', 'created_at', 'updated_at' ],
