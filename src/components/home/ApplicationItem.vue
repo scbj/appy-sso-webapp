@@ -1,15 +1,30 @@
-<template lang="pug">
-li.ApplicationItem
-  BaseImage.ApplicationItem__logo(
-    :src='logo'
-    fallbackSrc='/static/img/logo-default.png'
-    draggable='false')
-  span.ApplicationItem__name {{ name }}
-  span.ApplicationItem__new( v-show='isNew' ) {{ $t('new') | uppercase }}
+<template>
+  <li @click="onClick" class="ApplicationItem">
+    <BaseImage
+      :src="logo"
+      class="ApplicationItem__logo"
+      fallback-src="/static/img/logo-default.png"
+      draggable="false "/>
+    <span class="ApplicationItem__name">{{ name }}</span>
+    <span v-show="isNew" class="ApplicationItem__new">{{ $t('new') | uppercase }}</span>
+  </li>
 </template>
 
 <script>
 import { uppercase } from '@/utils/filters'
+
+/**
+ * Opens the specified link in a new tab.
+ * @param {String} url The url to open
+ */
+function openUrl (url) {
+  Object.assign(
+    document.createElement('a'), {
+      target: '_blank',
+      href: url
+    }
+  ).click()
+}
 
 export default {
   filters: {
@@ -21,6 +36,10 @@ export default {
       type: String,
       required: true
     },
+    url: {
+      type: String,
+      required: true
+    },
     logo: {
       type: String,
       default: null
@@ -28,6 +47,14 @@ export default {
     isNew: {
       type: Boolean,
       default: false
+    }
+  },
+
+  methods: {
+    onClick () {
+      const token = this.$store.get('auth/token')
+      const url = `${this.url}?token=${token}`
+      openUrl(url)
     }
   }
 }

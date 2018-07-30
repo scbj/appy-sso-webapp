@@ -3,9 +3,10 @@
   ul.ApplicationList__apps( v-if='apps.length' )
     ApplicationItem(
       v-for='app in apps'
-      :key='app.name'
+      :key='app.id'
       :name='app.name'
       :logo='app.pictureUrl'
+      :url='app.url'
       :isNew='app.created_at | isNew')
   .ApplicationList__no-data( v-else )
     BaseIcon( name='ios-albums' )
