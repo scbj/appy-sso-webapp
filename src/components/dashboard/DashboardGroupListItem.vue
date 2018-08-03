@@ -40,7 +40,7 @@ export default {
     },
 
     count () {
-      return this.group.user_count
+      return this.group.userCount
     },
 
     hasUsers () {

@@ -19,17 +19,13 @@ export default {
   },
 
   computed: {
-    shouldBodyScrollable: get('modal/shouldBodyScrollable')
+    shouldBodyScrollable: get('ui/modal/shouldBodyScrollable')
   },
 
   watch: {
     shouldBodyScrollable (value) {
-      document.body.style.paddingRight = value
-        ? ''
-        : '6px'
-      document.body.style.overflowY = value
-        ? ''
-        : 'hidden'
+      document.body.style.paddingRight = value ? '' : '6px'
+      document.body.style.overflowY = value ? '' : 'hidden'
     }
   },
 

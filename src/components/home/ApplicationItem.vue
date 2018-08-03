@@ -52,8 +52,8 @@ export default {
 
   methods: {
     onClick () {
-      const token = this.$store.get('auth/token')
-      const url = `${this.url}?token=${token}`
+      const token = this.$store.get('auth/accessToken')
+      const url = `${this.url}?t=${token}`
       openUrl(url)
     }
   }
@@ -134,23 +134,25 @@ span {
   }
 
   &.ApplicationItem__new {
-    --color: #DA3610;
-    right: 1rem;
-    position: absolute;
-    color: var(--color);
-    border: 1px solid var(--color);
+    $color: #DA3610;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid $color;
     border-radius: 3px;
+    color: $color;
     padding: .4em;
+    position: absolute;
+    right: 1rem;
     transition: box-shadow .1s ease-in-out;
 
     @media screen and (min-width: $mobile) {
       top: 1em;
       right: 0;
       box-shadow: 0 8px 16px 0 rgba(0,0,0,.1);
-      background-color: var(--color);
+      background-color: $color;
       border-radius: 0;
       color: white;
-      padding: .5em 1em;
+      padding: .3em 1em;
     }
   }
 }

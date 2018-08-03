@@ -2,18 +2,17 @@ import { make } from 'vuex-pathify'
 import * as actions from './actions'
 
 export const state = {
-  current: null
+  opened: false,
+  content: null,
+
+  /** If it's true the modal can be closed during a click outside of it  */
+  easyCloseEnabled: true,
+  onClose: () => {}
 }
 
 export const getters = {
-  username (state) {
-    if (!state.current) return ''
-    const { firstname, lastname } = state.current
-    return `${firstname} ${lastname}`.trim()
-  },
-
-  isAdmin (state) {
-    return state.current && state.current.roleName === 'admin'
+  shouldBodyScrollable (state) {
+    return !state.opened
   }
 }
 

@@ -7,7 +7,7 @@
       :name='app.name'
       :logo='app.pictureUrl'
       :url='app.url'
-      :isNew='app.created_at | isNew')
+      :isNew='app.createdAt | isNew')
   .ApplicationList__no-data( v-else )
     BaseIcon( name='ios-albums' )
     span.label( v-text="$t('message.noData.applications')" )
@@ -38,11 +38,11 @@ export default {
   },
 
   computed: {
-    apps: get('application/applications')
+    apps: get('application/allAvailable')
   },
 
   mounted () {
-    this.$store.dispatch('application/list')
+    this.$store.dispatch('application/listAvailable')
   }
 }
 </script>

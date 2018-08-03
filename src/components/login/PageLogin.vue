@@ -2,7 +2,7 @@
 .PageLogin( :class="$mq" )
   .app-title( v-show="$mq === 'mobile'" )
     BaseImage.PageLogin__logo( src='/static/img/title-gradient.svg' )
-  el-card( v-loading='loading' )
+  el-card( v-loading='pending' )
     div( slot='header' )
       h4( v-text='cardHeader' )
     //- User already connected
@@ -23,11 +23,9 @@
 </i18n>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
+import { get } from 'vuex-pathify'
 import LoginForm from '@/components/login/LoginForm'
 import LoginContinue from '@/components/login/LoginContinue'
-
-const { mapState, mapGetters } = createNamespacedHelpers('auth')
 
 export default {
   components: {
@@ -36,13 +34,9 @@ export default {
   },
 
   computed: {
-    // repatriates the state and getters of the auth module in the computed properties
-    ...mapState({
-      loading: state => state.pending
-    }),
-    ...mapGetters([
-      'isLoggedIn'
-    ]),
+    pending: get('auth/pending'),
+    isLoggedIn: get('auth/isLoggedIn'),
+
     cardHeader () {
       return this.isLoggedIn
         ? this.$t('title.alreadyLogged')

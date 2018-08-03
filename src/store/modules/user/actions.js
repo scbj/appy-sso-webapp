@@ -1,70 +1,35 @@
-import * as types from '@/store/mutation-types'
-import { changeLocale as i18nChangeLocale, i18n } from '@/i18n/index'
-import api from '@/api/v1/index'
+import api from '@/api/v1'
+import { changeLocale, i18n } from '@/i18n'
 
-export async function changeLanguage ({ commit, state, rootGetters }, payload) {
-  if (!payload) return false
+/** Retrieves the logged-in user information. */
+export async function fetchSelf ({ commit }) {
+  const { status, data: user } = await api.user.self()
 
-  i18nChangeLocale(payload.locale)
+  if (status !== 200) return
 
-  // Send update to the server if the user is logged in
-  const isLoggedIn = rootGetters['auth/isLoggedIn'] || false
-  if (isLoggedIn) {
-    const data = { language: payload.locale }
-    const res = await api.user.update(state.id, data)
-    if (res.status !== 201) {
-      return
-    }
-  }
-
-  // Mutate the state
-  commit(types.CHANGE_LANGUAGE, payload)
-}
-
-export async function create (context, payload) {
-  const response = await api.user.create(payload)
-  return response.status === 200
-}
-
-export async function fetch ({ commit }) {
-  const res = await api.user.self()
-  if (!res.data) {
-    return false
-  }
-
-  const { language, ...user } = res.data
-
-  // update the language of the interface
+  const { language } = user
   if (language && language !== i18n.locale) {
-    i18nChangeLocale(language)
+    changeLocale(language)
   }
 
+  commit('SET_CURRENT', user)
+}
+
+/** Update the specified data of the logged-in user. */
+export async function updateSelf ({ commit, dispatch, state }, payload) {
+  const id = state.current.id
+  const user = await dispatch('update', { id, ...payload })
   if (user) {
-    commit(types.USER_FETCH, {
-      language,
-      ...user
-    })
+    commit('SET_CURRENT', user)
   }
 }
 
-export async function search ({ commit }, payload) {
-  const res = await api.user.search(payload)
-  const data = res.data
-  if (data) {
-    commit(types.USER_LIST, {
-      total: data.total,
-      perPage: +data.per_page,
-      currentPage: data.current_page,
-      lastPage: data.last_page,
-      users: data.data
-    })
-  }
-}
+/** Updates the specified data of the specified user. */
+export async function update ({ commit }, payload) {
+  if (!payload) return
 
-export function cleanList ({ commit }) {
-  commit(types.USER_CLEAN_LIST)
-}
+  const { status, data: user } = await api.user.update(payload)
 
-export async function remove (_, payload) {
-  return api.user.remove(...payload.ids)
+  // If the update is successful then we must return the object representing the user
+  return status === 200 ? user : null
 }

@@ -70,15 +70,15 @@ export default {
      * Log int the use and navigate to the Dashboard.
      */
     async login () {
-      const creds = {
+      const credentials = {
         username: this.form.username,
         password: this.form.password
       }
-      const login = await this.$store.dispatch('auth/login', creds)
+      const { status } = await this.$store.dispatch('auth/login', credentials)
 
       // check for error
-      if (login.status !== 200) {
-        return this.handleError(login)
+      if (status !== 200) {
+        return this.handleError(status)
       }
 
       // login successfully, navigate to the Dashboard
@@ -87,14 +87,13 @@ export default {
     /**
      * Defines the message and type of error for the alert component.
      */
-    handleError ({ error, status }) {
+    handleError (statusCode) {
       this.error = status === 401
         ? this.$t('alert.incorrectCredentials')
         : this.$t('alert.networkError')
       this.errorType = status === 401
         ? 'error'
         : 'warning'
-      console.debug(error)
     }
   }
 }

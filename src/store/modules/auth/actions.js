@@ -1,46 +1,37 @@
-import * as types from '@/store/mutation-types'
+import api from '@/api/v1'
 import { setAuthorizationHeader } from '@/http-common'
-import api from '@/api/v1/'
 
 export async function login ({ commit }, credentials) {
-  commit(types.LOGIN_REQUEST)
+  commit('SET_PENDING', true)
 
-  // call API login route
   const res = await api.auth.login(credentials)
-  const token = res.data && res.data.access_token
-  const refreshToken = res.data && res.data.refresh_token
+  handleOauthTokenResponse(commit, res)
 
-  // we must have the token to validate the connection
-  if (token && refreshToken) {
-    commit(types.LOGIN_SUCCESS, { token, refreshToken })
+  commit('SET_PENDING', false)
 
-    // set the Bearer Token HTTP Header
-    setAuthorizationHeader(token)
-  } else {
-    commit(types.LOGIN_FAILURE)
-  }
-  return res
+  return { status: res.status }
 }
 
-export function logout ({ commit }) {
-  commit(types.LOGOUT)
+export async function logout ({ commit }) {
+  // TODO: Supprimer les autres variables du LocalStorage
+  commit('SET_ACCESS_TOKEN', '')
+  commit('SET_REFRESH_TOKEN', '')
 }
 
 export async function refreshAccessToken ({ commit, state }) {
-  const { status, data } = await api.auth.refreshAccessToken({
+  const res = await api.auth.refreshAccessToken({
     refreshToken: state.refreshToken
   })
+  handleOauthTokenResponse(commit, res)
 
-  const success = status === 200
-  const token = data && data.access_token
-  const refreshToken = data && data.refresh_token
+  return { status: res.status }
+}
 
-  if (success) {
-    setAuthorizationHeader(token)
+function handleOauthTokenResponse (commit, { data, status }) {
+  if (status === 200) {
+    const { accessToken, refreshToken } = data
+    setAuthorizationHeader(accessToken)
+    commit('SET_ACCESS_TOKEN', accessToken)
+    commit('SET_REFRESH_TOKEN', refreshToken)
   }
-
-  commit('SET_TOKEN', success ? token : '')
-  commit('SET_REFRESH_TOKEN', success ? refreshToken : '')
-
-  return success
 }

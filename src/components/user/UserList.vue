@@ -25,7 +25,7 @@
         </template>
         <template slot="role" slot-scope="{ value }">
           <el-tag siz="mini" :type="getTagTypeFromRole(value)">
-            {{ user.role_name }}
+            {{ user.roleName }}
           </el-tag>
         </template>
       </UserListRow>

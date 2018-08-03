@@ -88,21 +88,21 @@ export default {
         {
           label: this.$t('header.role'),
           grow: 1.6,
-          prop: 'role_name',
+          prop: 'roleName',
           slot: 'role',
           breakpointWidth: 0
         },
         {
           label: this.$t('header.createdAt'),
           grow: 2,
-          prop: 'created_at',
+          prop: 'createdAt',
           slot: 'date',
           breakpointWidth: 1070
         },
         {
           label: this.$t('header.modifiedAt'),
           grow: 2,
-          prop: 'updated_at',
+          prop: 'updatedAt',
           slot: 'date',
           breakpointWidth: 920
         }

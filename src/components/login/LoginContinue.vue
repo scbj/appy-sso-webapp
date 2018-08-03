@@ -15,15 +15,12 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
-
-const { mapGetters } = createNamespacedHelpers('user')
+import { get } from 'vuex-pathify'
 
 export default {
   computed: {
-    ...mapGetters([
-      'username'
-    ]),
+    username: get('user/username'),
+
     /** @returns {Boolean} */
     shouldTruncateUsername () {
       return this.username.length > 14

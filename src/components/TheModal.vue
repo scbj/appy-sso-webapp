@@ -11,9 +11,9 @@ import { get, sync } from 'vuex-pathify'
 
 export default {
   computed: {
-    opened: sync('modal/opened'),
-    content: sync('modal/content'),
-    easyCloseEnabled: get('modal/easyCloseEnabled')
+    opened: sync('ui/modal/opened'),
+    content: sync('ui/modal/content'),
+    easyCloseEnabled: get('ui/modal/easyCloseEnabled')
   },
 
   mounted () {

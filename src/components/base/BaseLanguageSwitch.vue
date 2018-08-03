@@ -34,7 +34,7 @@ export default {
 
   methods: {
     changeLanguage (locale) {
-      this.$store.dispatch('user/changeLanguage', { locale })
+      this.$store.dispatch('ui/changeLanguage', { locale })
     }
   }
 }

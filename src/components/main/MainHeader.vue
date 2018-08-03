@@ -19,7 +19,7 @@ import { get } from 'vuex-pathify'
 export default {
   computed: {
     username: get('user/username'),
-    pictureUrl: get('user/pictureUrl'),
+    pictureUrl: get('user/current@pictureUrl'),
     isAdmin: get('user/isAdmin')
   }
 }

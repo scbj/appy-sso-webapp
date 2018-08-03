@@ -88,7 +88,7 @@ export default {
         {
           label: this.$t('header.role'),
           grow: 1.6,
-          prop: 'role_name',
+          prop: 'roleName',
           slot: 'role',
           breakpointWidth: 0
         }

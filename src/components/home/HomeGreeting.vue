@@ -8,7 +8,7 @@ import { get } from 'vuex-pathify'
 
 export default {
   computed: {
-    firstname: get('user/firstname'),
+    firstname: get('user/current@firstname'),
     message () {
       const firstname = this.firstname
       return this.$t('message.hello', { firstname })

@@ -18,7 +18,6 @@ export function requiresAuth (to, _, next) {
 
 export function requiresAdmin (to, from, next) {
   const admin = store.get('user/isAdmin')
-  console.log('is admin', admin)
   if (!admin) {
     return next({ name: 'home' })
   }

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import camelcaseKeys from 'camelcase-keys'
 
 // TODO: Refactoriser tout le code de ce fichier qui se répète
 
@@ -8,6 +9,13 @@ import axios from 'axios'
 export const HTTP = axios.create({
   baseURL: process.env.API_URL
 })
+
+// We must transform the data of the answers into camelcase.
+// We can do that by intercepting all the response.
+HTTP.interceptors.response.use(
+  res => Object.assign(res, { data: camelcaseKeys(res.data) }),
+  error => Promise.reject(error)
+)
 
 /**
  * Define the default Authorization header for all request.

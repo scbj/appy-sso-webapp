@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "bluebird": "^3.5.1",
+    "camelcase-keys": "^4.2.0",
     "detect-browser": "^2.0.0",
     "element-ui": "^2.0.11",
     "lodash.throttle": "^4.1.1",

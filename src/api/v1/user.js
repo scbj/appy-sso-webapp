@@ -34,7 +34,7 @@ export function create ({ emails, groupId }) {
  * @method POST
  * @returns {Promise<Response>}
  */
-export function update (id, data) {
+export function update ({ id, ...data }) {
   return putAsync(`${base}/${id}`, data)
 }
 

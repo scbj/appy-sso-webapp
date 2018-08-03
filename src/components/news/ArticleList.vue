@@ -17,7 +17,7 @@ export default {
   },
 
   computed: {
-    articles: get('article/articles')
+    articles: get('article/all')
   },
 
   mounted () {

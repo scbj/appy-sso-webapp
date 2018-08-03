@@ -1,30 +1,31 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
-import VuexPathify from 'vuex-pathify'
+import pathify from 'vuex-pathify'
 
 import * as modules from './modules'
 
 Vue.use(Vuex)
 
-const localStoragePersist = new VuexPersist({
-  key: 'appy',
+const vuexLocalStorage = new VuexPersist({
+  key: 'vuex',
   storage: window.localStorage,
   reducer: state => ({
     auth: {
-      accessToken: state.auth.accessToken,
+      token: state.auth.token,
       refreshToken: state.auth.refreshToken
     },
-    user: {
-      current: state.user.current
-    }
+    user: state.user,
+    application: state.application,
+    article: state.article,
+    licence: state.licence
   })
 })
 
 export default new Vuex.Store({
   plugins: [
-    localStoragePersist.plugin,
-    VuexPathify.plugin
+    vuexLocalStorage.plugin,
+    pathify.plugin
   ],
   modules
 })
