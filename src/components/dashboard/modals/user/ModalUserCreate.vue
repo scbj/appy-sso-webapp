@@ -47,12 +47,12 @@ export default {
   },
 
   computed: {
-    groups: get('group/groups'),
-    defaultGroup: get('dashboard/groups/defaultGroup'),
+    groups: get('group/all'),
+    defaultGroup: get('group/defaultGroup'),
 
     emails () {
       return this.form.text
-        ? this.form.text.trim().split(/(?:;| |\n)+/)
+        ? this.form.text.trim().split(/(?:;| |\n)+/).filter(x => x)
         : []
     },
 
@@ -82,15 +82,12 @@ export default {
     }
   },
 
-  watch: {
-    defaultGroup () {
-      this.form.groupId = this.defaultGroup.id
-    }
-  },
-
   async mounted () {
     this.pending = true
+
     await this.$store.dispatch('group/list')
+    this.form.groupId = this.defaultGroup.id
+
     this.pending = false
   },
 
@@ -133,14 +130,17 @@ export default {
     async createUsers () {
       this.pending = true
 
-      const success = await this.$store.dispatch('user/create', {
+      const success = await this.$store.dispatch('ui/dashboard/users/create', {
         emails: this.emails,
         groupId: this.form.groupId
       })
 
       this.notifyUser(success)
+      this.pending = false
 
-      this.$store.dispatch('modal/close')
+      if (success) {
+        this.$store.dispatch('ui/modal/close')
+      }
     },
 
     notifyUser (success) {

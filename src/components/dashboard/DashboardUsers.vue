@@ -116,7 +116,7 @@ export default {
     },
 
     createUsers () {
-      this.$store.dispatch('modal/open', {
+      this.$store.dispatch('ui/modal/open', {
         content: ModalUserCreate
       })
     },

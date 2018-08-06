@@ -7,7 +7,7 @@ export const state = {
 
   /** If it's true the modal can be closed during a click outside of it  */
   easyCloseEnabled: true,
-  onClose: () => {}
+  onClosed: () => {}
 }
 
 export const getters = {
