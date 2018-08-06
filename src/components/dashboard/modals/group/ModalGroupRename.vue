@@ -26,7 +26,7 @@ export default {
   },
 
   computed: {
-    activeGroup: get('dashboard/groups/activeGroup'),
+    activeGroup: get('ui/dashboard/groups/activeGroup'),
 
     activeGroupName () {
       return this.activeGroup.name
@@ -75,7 +75,6 @@ export default {
       this.notifyUser(success)
 
       this.$store.dispatch('ui/modal/close')
-      this.$store.dispatch('dashboard/groups/list')
     },
 
     notifyUser (success) {

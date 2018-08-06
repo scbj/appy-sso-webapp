@@ -66,7 +66,7 @@ export default {
     },
 
     renameGroup () {
-      this.$store.dispatch('modal/open', {
+      this.$store.dispatch('ui/modal/open', {
         content: ModalGroupRename
       })
     },

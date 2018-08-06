@@ -49,7 +49,7 @@ export default {
 
       this.notifyUser(!!group)
 
-      this.close()
+      this.$store.dispatch('ui/modal/close')
     },
 
     notifyUser (success) {
@@ -57,10 +57,6 @@ export default {
         ? 'groupCreateSuccess'
         : 'groupCreateError')
       this.$message(message)
-    },
-
-    close () {
-      this.$store.dispatch('ui/modal/close')
     }
   }
 }

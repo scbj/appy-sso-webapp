@@ -32,7 +32,7 @@ export async function createAndAddUsers ({ state, commit }, payload) {
 
   if (status !== 200) return null
 
-  // If the group has been created and we have to add users then we update the user counter afterwards
+  // If the group has been created so we have to add users then we update the user counter afterwards
   if (users && users.length > 0) {
     const { status, data } = await api.group.addUsers(group.id, users)
     if (status === 200) {
@@ -44,4 +44,20 @@ export async function createAndAddUsers ({ state, commit }, payload) {
   commit('SET_ALL', [ group, ...state.all ])
 
   return group
+}
+
+export async function rename ({ state, commit }, payload) {
+  const { status, data: group } = await api.group.update(payload)
+  const success = status === 200
+
+  // We must rename the group in the existing list
+  if (success) {
+    // Get all the groups EXCEPT the one concerned
+    const groups = state.all.filter(x => x.id !== group.id)
+
+    // We recreate the array with the new object (with the new name)
+    commit('SET_ALL', [ group, ...groups ])
+  }
+
+  return success
 }
