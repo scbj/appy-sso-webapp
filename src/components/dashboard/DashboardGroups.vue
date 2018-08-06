@@ -18,12 +18,16 @@ export default {
   },
 
   computed: {
-    pending: get('dashboard/groups/pending'),
-    activeGroup: get('dashboard/groups/activeGroup')
+    pending: get('ui/dashboard/groups/pending'),
+    activeGroup: get('ui/dashboard/groups/activeGroup')
   },
 
-  mounted () {
-    this.$store.dispatch('dashboard/groups/list')
+  async mounted () {
+    await this.$store.dispatch('group/list')
+
+    // We must select a default group when the page loads
+    const defaultGroupId = this.$store.get('group/defaultGroup@id')
+    this.$store.set('ui/dashboard/groups/activeGroupId', defaultGroupId)
   }
 }
 </script>

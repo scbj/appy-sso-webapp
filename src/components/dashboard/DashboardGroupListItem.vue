@@ -32,7 +32,7 @@ export default {
   },
 
   computed: {
-    activeGroupId: get('dashboard/groups/activeGroupId'),
+    activeGroupId: get('ui/dashboard/groups/activeGroupId'),
 
     name () {
       const { name } = this.group

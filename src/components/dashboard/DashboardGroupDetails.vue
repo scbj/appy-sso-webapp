@@ -20,7 +20,7 @@
         <DashboardGroupDetailsUser />
       </el-tab-pane>
       <el-tab-pane :label="$t('button.applications')" name="apps">
-        <DashboardGroupDetailsApplications />
+        <!-- <DashboardGroupDetailsApplications /> -->
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -32,7 +32,6 @@ import { get } from 'vuex-pathify'
 import DashboardGroupDetailsUser from './DashboardGroupDetailsUser'
 import DashboardGroupDetailsApplications from './DashboardGroupDetailsApplications'
 import ModalGroupRename from '@/components/dashboard/modals/group/ModalGroupRename'
-import api from '@/api/v1/index'
 
 export default {
   components: {
@@ -41,8 +40,8 @@ export default {
   },
 
   computed: {
-    group: get('dashboard/groups/activeGroup'),
-    isDefaultGroup: get('dashboard/groups/isDefaultGroup'),
+    group: get('ui/dashboard/groups/activeGroup'),
+    isDefaultGroup: get('ui/dashboard/groups/isDefaultGroupActive'),
 
     groupName () {
       return this.isDefaultGroup
@@ -53,7 +52,8 @@ export default {
 
   data () {
     return {
-      activeTabName: 'apps'
+      // TODO: remettre à apps
+      activeTabName: 'users'
     }
   },
 
@@ -72,12 +72,8 @@ export default {
     },
 
     async deleteGroup () {
-      const response = await api.group.remove({
-        groupId: this.group.id
-      })
-      if (response.status === 200) {
-        this.$store.dispatch('dashboard/groups/list')
-      }
+      // TODO: Demander une confirmation avant de supprimer
+      this.$store.dispatch('ui/dashboard/groups/removeActiveGroup')
     }
   }
 }

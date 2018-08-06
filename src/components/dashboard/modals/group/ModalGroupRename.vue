@@ -74,7 +74,7 @@ export default {
       // We must inform the user if the operation failed
       this.notifyUser(success)
 
-      this.$store.dispatch('modal/close')
+      this.$store.dispatch('ui/modal/close')
       this.$store.dispatch('dashboard/groups/list')
     },
 

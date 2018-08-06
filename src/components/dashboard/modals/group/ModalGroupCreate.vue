@@ -60,7 +60,7 @@ export default {
     },
 
     close () {
-      this.$store.dispatch('modal/close')
+      this.$store.dispatch('ui/modal/close')
     }
   }
 }

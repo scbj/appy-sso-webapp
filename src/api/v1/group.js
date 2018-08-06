@@ -29,7 +29,7 @@ export function list () {
   * @method POST
   * @returns {Promise<ApiResponse>}
   */
-export function create (name) {
+export function create ({ name }) {
   return postAsync(base, { name })
 }
 

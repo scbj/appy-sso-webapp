@@ -2,7 +2,7 @@ import UserProvider from '@/services/UserProvider'
 import api from '@/api/v1/index'
 
 const userProvider = new UserProvider({
-  fields: [ 'id', 'firstname', 'lastname', 'email', 'pictureUrl', 'created_at', 'updated_at' ],
+  fields: [ 'id', 'firstname', 'lastname', 'email', 'picture_url', 'created_at', 'updated_at' ],
   orderBy: 'firstname',
   pageSize: 8
 })

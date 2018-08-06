@@ -22,3 +22,26 @@ export async function list ({ commit }) {
   // Store the final group list
   commit('SET_ALL', groups)
 }
+
+export async function createAndAddUsers ({ state, commit }, payload) {
+  // This function must receive parameters
+  if (!payload) return
+
+  const { name, users } = payload
+  let { status, data: group } = await api.group.create({ name })
+
+  if (status !== 200) return null
+
+  // If the group has been created and we have to add users then we update the user counter afterwards
+  if (users && users.length > 0) {
+    const { status, data } = await api.group.addUsers(group.id, users)
+    if (status === 200) {
+      group.userCount = data.userCount
+    }
+  }
+
+  // The group must be added to the existing list
+  commit('SET_ALL', [ group, ...state.all ])
+
+  return group
+}

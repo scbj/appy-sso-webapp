@@ -30,7 +30,7 @@
         </template>
       </UserListRow>
     </ul>
-    <UserListPagination :total="total" v-if="shouldAllowPagination" />
+    <UserListPagination :total="total" :page-size="pageSize" v-if="shouldAllowPagination" />
   </div>
 </template>
 
@@ -72,6 +72,11 @@ export default {
     headerVisible: {
       type: Boolean,
       default: true
+    },
+    /** Item count of each page. */
+    pageSize: {
+      type: Number,
+      default: 8
     }
   },
 

@@ -47,8 +47,8 @@ export default {
     ModalGroupAddUsers
   },
   computed: {
-    group: get('dashboard/groups/activeGroup'),
-    isDefaultGroup: get('dashboard/groups/isDefaultGroup'),
+    group: get('ui/dashboard/groups/activeGroup'),
+    isDefaultGroup: get('ui/dashboard/groups/isDefaultGroupActive'),
 
     sortedUsers () {
       return sortAlphabetically(this.users, 'firstname')

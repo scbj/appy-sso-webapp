@@ -39,10 +39,10 @@ export default {
     DashboardGroupListItem
   },
   computed: {
-    groups: get('dashboard/groups/sortedList'),
-    defaultGroup: get('dashboard/groups/defaultGroup'),
-    activeGroup: get('dashboard/groups/activeGroup'),
-    activeGroupId: sync('dashboard/groups/activeGroupId'),
+    groups: get('group/sortedList'),
+    defaultGroup: get('group/defaultGroup'),
+    activeGroup: get('ui/dashboard/groups/activeGroup'),
+    activeGroupId: sync('ui/dashboard/groups/activeGroupId'),
 
     groupCount () {
       return this.groups.length
@@ -55,9 +55,8 @@ export default {
     },
 
     createGroup () {
-      this.$store.dispatch('modal/open', {
-        content: ModalGroupCreate,
-        onClosed: () => this.$store.dispatch('dashboard/groups/list')
+      this.$store.dispatch('ui/modal/open', {
+        content: ModalGroupCreate
       })
     }
   }

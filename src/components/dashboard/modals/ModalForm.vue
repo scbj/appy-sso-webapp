@@ -48,7 +48,7 @@ export default {
 
   methods: {
     closeModal () {
-      this.$store.dispatch('modal/close')
+      this.$store.dispatch('ui/modal/close')
     },
 
     async validate () {

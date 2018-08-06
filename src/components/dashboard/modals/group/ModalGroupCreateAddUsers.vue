@@ -19,6 +19,7 @@
       :users="users"
       :selected-users.sync="selectedUsers"
       :total="totalUserCount"
+      :page-size="5"
       @page-changed="onPageChanged" />
     <span class="no-data" v-show="!hasUsers && !pending">{{ $t('message.noData.search') }}</span>
   </ModalForm>
@@ -72,8 +73,9 @@ export default {
           grow: 5
         },
         {
-          prop: 'email',
-          grow: 8
+          grow: 2,
+          prop: 'roleName',
+          slot: 'role'
         }
       ]
     }
@@ -81,15 +83,14 @@ export default {
 
   watch: {
     async 'form.query' (newValue) {
-      if (newValue.length >= 2) {
-        this.searching = true
-        await this.$store.dispatch('user/search', { page: 1, query: newValue })
-        this.searching = false
-      } else if (newValue.length === 0) {
-        this.searching = true
+      if (newValue.length === 0) {
+        this.pending = true
         await this.$store.dispatch('user/list', { page: this.currentPage })
-        this.searching = false
+      } else if (newValue.length >= 2) {
+        this.pending = true
+        await this.$store.dispatch('user/search', { page: 1, query: newValue })
       }
+      this.pending = false
     }
   },
 
@@ -108,25 +109,6 @@ export default {
         this.totalUserCount = response.total
       }
       this.pending = false
-    },
-
-    onUserSelected (user) {
-      const id = user && user.id
-      if (id && !this.selectedUsers.includes(id)) {
-        this.selectedUsers.push(id)
-      }
-    },
-
-    onUserUnselected (user) {
-      const id = user && user.id
-      const users = this.selectedUsers
-      if (id && users.includes(id)) {
-        const index = users.indexOf(id)
-        if (index > -1) {
-          users.splice(index, 1)
-        }
-        this.selectedUsers = users
-      }
     },
 
     async onPageChanged (page) {

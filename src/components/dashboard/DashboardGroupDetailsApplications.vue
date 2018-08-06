@@ -32,7 +32,7 @@ export default {
   },
 
   computed: {
-    group: get('dashboard/groups/activeGroup'),
+    group: get('ui/dashboard/groups/activeGroup'),
     applications: get('dashboard/applications/list'),
     pending: get('dashboard/applications/pending'),
 

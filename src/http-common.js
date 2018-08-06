@@ -15,7 +15,7 @@ export const HTTP = axios.create({
 HTTP.interceptors.response.use(
   res => {
     let { data } = res
-    if (data) {
+    if (typeof data !== 'string') {
       // Transform the snake_case into a camelCase
       data = camelcaseKeys(data, { deep: true })
     }
