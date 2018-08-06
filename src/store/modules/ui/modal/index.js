@@ -11,6 +11,7 @@ export const state = {
 }
 
 export const getters = {
+  /** Determines whether the page should be frozen or not. */
   shouldBodyScrollable (state) {
     return !state.opened
   }

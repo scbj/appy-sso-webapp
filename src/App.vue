@@ -32,7 +32,7 @@ export default {
   created () {
     this.chooseLanguage({
       initial: this.$i18n.locale,
-      userLanguage: this.$store.state.user.language
+      userLanguage: this.$store.state.user.current.language
     })
     this.authenticateRequest({
       token: this.$store.state.auth.token

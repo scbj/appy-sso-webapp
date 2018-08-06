@@ -1,5 +1,3 @@
-import { state as defaultState } from './index'
-
 export function open ({ commit }, payload) {
   const content = payload && payload.content
   const onClosed = payload && payload.onClosed
@@ -20,5 +18,5 @@ export function open ({ commit }, payload) {
 export function close ({ commit, state }) {
   state.onClosed()
   commit('SET_OPENED', false)
-  commit('SET_ON_CLOSED', defaultState.onClosed)
+  commit('SET_ON_CLOSED', () => {})
 }

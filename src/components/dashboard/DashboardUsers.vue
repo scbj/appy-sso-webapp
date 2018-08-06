@@ -15,7 +15,7 @@
       :users="users"
       :selected-users.sync="selectedUsers"
       :total="totalUserCount"
-      @page-changed="onPageChanged"/>
+      @page-changed="fetchUsers"/>
     <div class='DashboardUsers__buttons'>
       <BaseButton
         v-if="selectionStateEnabled"
@@ -29,15 +29,10 @@
 </template>
 
 <script>
-import UserList from '@/components/user/UserList'
-import UserProvider from '@/services/UserProvider'
-import ModalUserCreate from '@/components/dashboard/modals/user/ModalUserCreate'
+import { get, sync } from 'vuex-pathify'
 
-const userProvider = new UserProvider({
-  fields: [ 'id', 'firstname', 'lastname', 'email', 'pictureUrl', 'created_at', 'updated_at' ],
-  orderBy: 'firstname',
-  pageSize: 8
-})
+import UserList from '@/components/user/UserList'
+import ModalUserCreate from '@/components/dashboard/modals/user/ModalUserCreate'
 
 export default {
   components: {
@@ -45,6 +40,12 @@ export default {
   },
 
   computed: {
+    pending: get('ui/dashboard/users/pending'),
+    users: get('ui/dashboard/users/all'),
+    selectedUsers: sync('ui/dashboard/users/selectedUsers'),
+    currentPage: get('ui/dashboard/users/currentPage'),
+    totalUserCount: get('ui/dashboard/users/totalUserCount'),
+
     /**
      * Returns true when at least one user is selected
      * from the list, otherwise returns false.
@@ -63,11 +64,6 @@ export default {
 
   data () {
     return {
-      users: [],
-      currentPage: 1,
-      selectedUsers: [],
-      totalUserCount: 0,
-      pending: false,
       columns: [
         {
           grow: 1,
@@ -115,44 +111,29 @@ export default {
   },
 
   methods: {
-    async fetchUsers () {
-      this.pending = true
-      const { data: response } = await userProvider.list({ page: this.currentPage })
-      if (response && response.data) {
-        this.users = response.data
-        this.totalUserCount = response.total
-      }
-      this.pending = false
-    },
-
-    onPageChanged (page) {
-      this.currentPage = page
-      this.fetchUsers()
+    async fetchUsers (page) {
+      this.$store.dispatch('ui/dashboard/users/list', { page })
     },
 
     createUsers () {
       this.$store.dispatch('modal/open', {
-        content: ModalUserCreate,
-        onClosed: this.fetchUsers
+        content: ModalUserCreate
       })
     },
 
     async deleteSelectedUsers () {
       const confident = await this.requestDeleteConfirmation()
-      if (!confident) return
-
-      const response = await this.$store.dispatch('user/remove', { ids: this.selectedUsers })
-      if (response.status === 200) {
-        this.selectedUsers = []
-        this.fetchUsers()
+      if (confident) {
+        this.$store.dispatch('ui/dashboard/users/deleteSelectedUsers')
       }
     },
 
     async requestDeleteConfirmation () {
       const message = this.$t('question.deleteUser')
       const title = this.$tc('title.deleteUser', this.selectedUsers.length)
+      const selectedUserCount = this.selectedUsers.length
       const options = {
-        confirmButtonText: this.$tc('button.deleteUser', this.selectedUsers.length),
+        confirmButtonText: this.$tc('button.deleteUser', selectedUserCount, { count: selectedUserCount }),
         cancelButtonText: this.$t('cancel'),
         type: 'warning'
       }

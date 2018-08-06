@@ -13,7 +13,14 @@ export const HTTP = axios.create({
 // We must transform the data of the answers into camelcase.
 // We can do that by intercepting all the response.
 HTTP.interceptors.response.use(
-  res => Object.assign(res, { data: camelcaseKeys(res.data) }),
+  res => {
+    let { data } = res
+    if (data) {
+      // Transform the snake_case into a camelCase
+      data = camelcaseKeys(data, { deep: true })
+    }
+    return Object.assign(res, { data })
+  },
   error => Promise.reject(error)
 )
 

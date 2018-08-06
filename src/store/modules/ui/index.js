@@ -1,5 +1,7 @@
+import dashboard from './dashboard'
 import licence from './licence'
 import modal from './modal'
+
 import { changeLocale } from '@/i18n'
 
 export const actions = {
@@ -21,6 +23,7 @@ export default {
   namespaced: true,
   actions,
   modules: {
+    dashboard,
     licence,
     modal
   }
