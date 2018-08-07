@@ -2,6 +2,9 @@ import { make } from 'vuex-pathify'
 
 import * as actions from './actions'
 
+// Modules
+import users from './users'
+
 export const state = {
   pending: false,
   activeGroupId: 0
@@ -26,5 +29,8 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  modules: {
+    users
+  }
 }

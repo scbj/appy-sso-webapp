@@ -52,8 +52,8 @@ export function addUsers (groupId, usersIds) {
  * @method POST
  * @returns {Promise<ApiResponse>}
  */
-export function removeUsers (groupId, usersIds) {
-  const url = `${base}/${groupId}/user/${usersIds.join(',')}`
+export function removeUsers ({ groupId, userIds }) {
+  const url = `${base}/${groupId}/user/${userIds.join(',')}`
   return deleteAsync(url)
 }
 

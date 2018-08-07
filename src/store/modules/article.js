@@ -8,7 +8,7 @@ export const state = {
 export const mutations = make.mutations(state)
 
 export const actions = {
-  async list ({ rootState, commit }) {
+  async list ({ commit }) {
     const { status, data: articles } = await api.article.list()
 
     if (status === 200 && Array.isArray(articles)) {

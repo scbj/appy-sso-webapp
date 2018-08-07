@@ -7,7 +7,7 @@
       :users="sortedUsers"
       :selected-users.sync="selectedUsers"
       :total="totalUserCount"
-      @page-changed="onPageChanged"/>
+      @page-changed="fetchUsers"/>
 
     <div class='DashboardGroupDetailsUser__buttons'>
       <BaseButton
@@ -22,24 +22,11 @@
 </template>
 
 <script>
-import { get } from 'vuex-pathify'
+import { get, sync } from 'vuex-pathify'
 
 import ModalGroupAddUsers from '@/components/dashboard/modals/group/ModalGroupAddUsers'
 import UserList from '@/components/user/UserList'
-import UserProvider from '@/services/UserProvider'
 import { sortAlphabetically } from '@/utils/array'
-
-const userProvider = new UserProvider({
-  fields: [
-    'id',
-    'firstname',
-    'lastname',
-    'email',
-    'pictureUrl'
-  ],
-  orderBy: 'firstname',
-  pageSize: 8
-})
 
 export default {
   components: {
@@ -49,6 +36,11 @@ export default {
   computed: {
     group: get('ui/dashboard/groups/activeGroup'),
     isDefaultGroup: get('ui/dashboard/groups/isDefaultGroupActive'),
+    pending: get('ui/dashboard/groups/users/pending'),
+    users: get('ui/dashboard/groups/users/all'),
+    selectedUsers: sync('ui/dashboard/groups/users/selectedUsers'),
+    currentPage: get('ui/dashboard/groups/users/currentPage'),
+    totalUserCount: get('ui/dashboard/groups/users/totalUserCount'),
 
     sortedUsers () {
       return sortAlphabetically(this.users, 'firstname')
@@ -63,11 +55,6 @@ export default {
 
   data () {
     return {
-      pending: false,
-      users: [],
-      selectedUsers: [],
-      currentPage: 1,
-      totalUserCount: 0,
       columns: [
         {
           grow: 1,
@@ -98,47 +85,25 @@ export default {
 
   watch: {
     group () {
-      this.selectedUsers = []
+      this.$store.dispatch('ui/dashboard/groups/users/reset')
       this.fetchUsers()
     }
   },
 
   methods: {
-    async fetchUsers () {
-      this.pending = true
-      const { data: response } = await userProvider.listFromGroup({
-        page: this.currentPage,
-        groupId: this.group.id
-      })
-      if (response) {
-        this.users = response.data
-        this.totalUserCount = response.total
-      }
-      this.pending = false
-    },
-
-    onPageChanged (page) {
-      this.currentPage = page
-      this.fetchUsers()
+    async fetchUsers (page) {
+      this.$store.dispatch('ui/dashboard/groups/users/list', { page })
     },
 
     addUsers () {
       this.$store.dispatch('modal/open', {
         content: ModalGroupAddUsers,
-        onClosed: () => this.fetchUsers()
+        onClosed: this.fetchUsers
       })
     },
 
     async removeSelectedUsers () {
-      const response = await this.$store.dispatch('group/removeUsers', {
-        ids: this.selectedUsers,
-        groupId: this.group.id
-      })
-      if (response.status === 200) {
-        this.selectedUsers = []
-        this.fetchUsers()
-        this.$store.dispatch('dashboard/groups/list')
-      }
+      this.$store.dispatch('ui/dashboard/groups/users/removeSelectedUsers')
     }
   },
 
