@@ -24,10 +24,7 @@ export default {
 
   async mounted () {
     await this.$store.dispatch('group/list')
-
-    // We must select a default group when the page loads
-    const defaultGroupId = this.$store.get('group/defaultGroup@id')
-    this.$store.set('ui/dashboard/groups/activeGroupId', defaultGroupId)
+    this.$store.dispatch('ui/dashboard/groups/setDefaultGroupAsActive')
   }
 }
 </script>

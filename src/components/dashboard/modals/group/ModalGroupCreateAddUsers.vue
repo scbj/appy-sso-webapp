@@ -85,10 +85,10 @@ export default {
     async 'form.query' (newValue) {
       if (newValue.length === 0) {
         this.pending = true
-        await this.$store.dispatch('user/list', { page: this.currentPage })
+        await this.fetchUsers()
       } else if (newValue.length >= 2) {
         this.pending = true
-        await this.$store.dispatch('user/search', { page: 1, query: newValue })
+        await this.searchUsers()
       }
       this.pending = false
     }
@@ -109,6 +109,15 @@ export default {
         this.totalUserCount = response.total
       }
       this.pending = false
+    },
+
+    async searchUsers () {
+      const { query } = this.form
+      const { data: response } = await userProvider.search({ query })
+      if (response) {
+        this.users = response.data
+        this.totalUserCount = response.total
+      }
     },
 
     async onPageChanged (page) {

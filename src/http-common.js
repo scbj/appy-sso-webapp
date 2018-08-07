@@ -34,7 +34,7 @@ export function setAuthorizationHeader (token) {
   }
 }
 
-export function getAsync (url) {
+export function getAsync (url, config) {
   return new Promise(async resolve => {
     const response = {
       data: null,
@@ -43,7 +43,7 @@ export function getAsync (url) {
       // [error]
     }
     try {
-      const res = await HTTP.get(url)
+      const res = await HTTP.get(url, config)
       response.status = res.status
       if (!res.data) {
         response.message = `No data received from "${url}"`

@@ -51,10 +51,15 @@ export function list ({ fields, orderBy, pageSize, page }) {
 }
 
 export function search ({ query, fields, orderBy, pageSize, page }) {
-  const pagination = `paginate=${pageSize}$page=${page}`
+  const pagination = `paginate=${pageSize}&page=${page}`
   const fieldList = fields.join(',')
-  const url = `${base}/search/${query}?orderBy=${orderBy},asc&fields=${fieldList}&${pagination}`
-  return getAsync(url)
+  const url = `${base}/search?orderBy=${orderBy},asc&fields=${fieldList}&${pagination}`
+  const config = {
+    params: {
+      q: query
+    }
+  }
+  return getAsync(url, config)
 }
 
 export function remove (...ids) {
