@@ -11,6 +11,12 @@ export async function removeActiveGroup ({ getters, commit, dispatch, rootState 
     groups.splice(index, 1)
     commit('group/SET_ALL', groups, { root: true })
 
+    // Users who were in the deleted group are now in the default group.
+    // We must update the default group
+    const defaultGroup = rootState.group.defaultGroup
+    defaultGroup.userCount += group.userCount
+    commit('group/SET_DEFAULT_GROUP', defaultGroup, { root: true })
+
     // We must select the default group
     dispatch('setDefaultGroupAsActive')
   }

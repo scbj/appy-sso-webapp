@@ -33,6 +33,19 @@ export async function list ({ commit, state, rootState }, payload) {
   commit('SET_PENDING', false)
 }
 
+export async function addUsers ({ dispatch, rootState }, payload) {
+  const groupId = rootState.ui.dashboard.groups.activeGroupId
+  const { userIds } = payload
+  const { status } = await api.group.addUsers(groupId, userIds)
+
+  // We must update the user count of all groups and re-fetch the user list
+  // of the active group
+  if (status === 200) {
+    dispatch('group/list', {}, { root: true })
+    dispatch('ui/dashboard/groups/users/list', {}, { root: true })
+  }
+}
+
 export async function removeSelectedUsers ({ state, dispatch, commit, rootState, rootGetters }) {
   commit('SET_PENDING', true)
 

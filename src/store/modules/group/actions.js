@@ -23,7 +23,7 @@ export async function list ({ commit }) {
   commit('SET_ALL', groups)
 }
 
-export async function createAndAddUsers ({ state, commit }, payload) {
+export async function createAndAddUsers ({ state, commit, dispatch }, payload) {
   // This function must receive parameters
   if (!payload) return
 
@@ -32,11 +32,13 @@ export async function createAndAddUsers ({ state, commit }, payload) {
 
   if (status !== 200) return null
 
-  // If the group has been created so we have to add users then we update the user counter afterwards
+  // If the group has been created so we have to add users
   if (users && users.length > 0) {
-    const { status, data } = await api.group.addUsers(group.id, users)
+    const { status } = await api.group.addUsers(group.id, users)
     if (status === 200) {
-      group.userCount = data.userCount
+      // Knowing that users could be removed from their respective groups when the new one was created.
+      // We need to update the list of groups in order to have the right number of users.
+      dispatch('list')
     }
   }
 

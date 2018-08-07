@@ -96,7 +96,7 @@ export default {
     },
 
     addUsers () {
-      this.$store.dispatch('modal/open', {
+      this.$store.dispatch('ui/modal/open', {
         content: ModalGroupAddUsers,
         onClosed: this.fetchUsers
       })

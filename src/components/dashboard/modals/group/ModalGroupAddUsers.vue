@@ -1,23 +1,19 @@
-<template lang="pug">
-.ModalGroupAddUsers
-  h2.ModalGroupAddUsers__title {{ $t('title.addUsers') }}
-  ModalGroupCreateAddUsers(
-    v-loading='pending'
-    @usersAdded='usersAdded' )
+<template>
+  <div class="ModalGroupAddUsers">
+    <h2 class="ModalGroupAddUsers__title">{{ $t('title.addUsers') }}</h2>
+    <ModalFormAddUsers
+      v-loading="pending"
+      primary-button-text-resource-name="button.addUsers"
+      @users-added="onUsersAdded" />
+  </div>
 </template>
 
 <script>
-import { get } from 'vuex-pathify'
-
-import ModalGroupCreateAddUsers from './ModalGroupCreateAddUsers'
+import ModalFormAddUsers from '@/components/dashboard/modals/ModalFormAddUsers'
 
 export default {
   components: {
-    ModalGroupCreateAddUsers
-  },
-
-  computed: {
-    activeGroup: get('dashboard/groups/activeGroup')
+    ModalFormAddUsers
   },
 
   data () {
@@ -27,11 +23,10 @@ export default {
   },
 
   methods: {
-    async usersAdded (users) {
+    async onUsersAdded (users) {
       this.pending = true
 
-      await this.$store.dispatch('dashboard/groups/addUsers', {
-        groupId: this.activeGroup.id,
+      await this.$store.dispatch('ui/dashboard/groups/users/addUsers', {
         userIds: users
       })
 

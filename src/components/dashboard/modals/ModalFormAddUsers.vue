@@ -1,19 +1,17 @@
 <template>
   <ModalForm
     :model="form"
-    :primary-button-text="createGroupLabel"
+    :primary-button-text="primaryButtonText"
     @validated="formValidated"
-    class="ModalGroupCreateAddUsers">
-    <el-form-item prop="query" :label="$t('label.addUsers')">
+    class="ModalFormAddUsers">
+    <el-form-item :label="$t('label.addUsers')" prop="query">
       <el-input
-        ref="searchInput"
         v-model="form.query"
         :placeholder="$t('placeholder.search')"
         prefix-icon="el-icon-search" />
     </el-form-item>
     <UserList
       v-loading="pending"
-      class="ModalGroupCreateAddUsers__user-list"
       :header-visible="false"
       :columns="columns"
       :users="users"
@@ -21,7 +19,10 @@
       :total="totalUserCount"
       :page-size="5"
       @page-changed="onPageChanged" />
-    <span class="no-data" v-show="!hasUsers && !pending">{{ $t('message.noData.search') }}</span>
+    <span
+      v-show="!hasUsers && !pending"
+      v-text="$t('message.noData.search')"
+      class="no-data" />
   </ModalForm>
 </template>
 
@@ -31,12 +32,7 @@ import UserProvider from '@/services/UserProvider'
 import UserList from '@/components/user/UserList'
 
 const userProvider = new UserProvider({
-  fields: [
-    'id',
-    'firstname',
-    'lastname',
-    'email'
-  ],
+  fields: [ 'id', 'firstname', 'lastname' ],
   orderBy: 'firstname',
   pageSize: 5
 })
@@ -47,13 +43,20 @@ export default {
     UserList
   },
 
+  props: {
+    primaryButtonTextResourceName: {
+      type: String,
+      required: true
+    }
+  },
+
   computed: {
     hasUsers () {
       return this.users.length
     },
-    createGroupLabel () {
+    primaryButtonText () {
       const count = this.selectedUsers.length
-      return this.$tc('button.createGroupWithPeoples', count, { count })
+      return this.$tc(this.primaryButtonTextResourceName, count, { count })
     }
   },
 
@@ -133,8 +136,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ModalGroupCreateAddUsersList {
-  margin-bottom: 2em;
+.ModalFormAddUsers {
   min-height: 50px;
 }
 </style>

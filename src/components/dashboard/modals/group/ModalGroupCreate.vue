@@ -1,24 +1,24 @@
-<template lang="pug">
-.ModalGroupCreate
-  h2.ModalGroupCreate__title {{ $t('title.createGroup') }}
-  ModalGroupCreateChooseName(
-    v-if='!groupName'
-    @nameChosen='nameChosen' )
-  ModalGroupCreateAddUsers(
-    v-loading='creating'
-    v-else
-    @usersAdded='usersAdded' )
+<template>
+  <div class="ModalGroupCreate">
+    <h2 class="ModalGroupCreate__title">{{ $t('title.createGroup') }}</h2>
+    <ModalGroupCreateChooseName v-if="!groupName" @nameChosen="onNameChosen"/>
+    <ModalFormAddUsers
+      v-else
+      v-loading="creating"
+      @users-added="onUsersAdded"
+      primary-button-text-resource-name="button.createGroupWithPeoples" />
+  </div>
 </template>
 
 <script>
 import ModalGroupCreateChooseName from './ModalGroupCreateChooseName'
-import ModalGroupCreateAddUsers from './ModalGroupCreateAddUsers'
+import ModalFormAddUsers from '@/components/dashboard/modals/ModalFormAddUsers'
 import { buildMessage } from '@/utils/message'
 
 export default {
   components: {
     ModalGroupCreateChooseName,
-    ModalGroupCreateAddUsers
+    ModalFormAddUsers
   },
 
   data () {
@@ -30,11 +30,11 @@ export default {
   },
 
   methods: {
-    nameChosen (name) {
+    onNameChosen (name) {
       this.groupName = name
     },
 
-    usersAdded (users) {
+    onUsersAdded (users) {
       this.users = users
       this.createGroup()
     },
