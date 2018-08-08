@@ -4,7 +4,7 @@
       :src="logo"
       class="ApplicationItem__logo"
       fallback-src="/static/img/logo-default.png"
-      draggable="false "/>
+      draggable="false"/>
     <span class="ApplicationItem__name">{{ name }}</span>
     <span v-show="isNew" class="ApplicationItem__new">{{ $t('new') | uppercase }}</span>
   </li>
@@ -106,11 +106,14 @@ export default {
 }
 
 .ApplicationItem__logo {
+  // In order to disable the default behavior of an image when right click on it
+  pointer-events: none;
+
   user-select: none;
   width: 80px;
   height: 80px;
   border-radius: 4px;
-  overflow: hidden;
+  // overflow: hidden;
   margin-right: 2rem;
 
   @media screen and (min-width: $mobile) {

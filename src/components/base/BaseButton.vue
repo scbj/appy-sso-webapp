@@ -100,7 +100,8 @@ $offset-x: 0;
   margin: 0 .5em;
   cursor: pointer;
   @include box-shadow-normal;
-  transition: all .2s ease-out;
+  transition: transform .2s ease-out,
+              box-shadow .2s ease-out;
 
   &:hover { @include box-shadow-hover }
   &:active {

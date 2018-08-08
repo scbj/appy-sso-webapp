@@ -56,13 +56,18 @@ export async function removeSelectedUsers ({ state, dispatch, commit, rootState,
     userIds
   })
 
-  // We must update the user count of the group in the existing list
+  // We must update the user count of the groups in the existing list
   if (status === 200) {
     // Get all the groups EXCEPT the one concerned
     const groups = rootState.group.all.filter(x => x.id !== group.id)
 
     // We recreate the array with the new object (with the new name)
     commit('group/SET_ALL', [ group, ...groups ], { root: true })
+
+    // We also need to update the default group because the removed users are assigned to it
+    const defaultGroup = rootState.group.defaultGroup
+    defaultGroup.userCount += userIds.length
+    commit('group/SET_DEFAULT_GROUP', defaultGroup, { root: true })
 
     commit('SET_SELECTED_USERS', [])
     await dispatch('list')

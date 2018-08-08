@@ -34,10 +34,11 @@ export default {
 
   methods: {
     async requestNewToken () {
-      const success = await this.$store.dispatch('auth/refreshAccessToken')
+      const { status } = await this.$store.dispatch('auth/refreshAccessToken')
 
       // If the refreshing of the token is a failure we must ask the user to reconnect
-      if (!success) {
+      if (status !== 200) {
+        this.$store.dispatch('auth/logout')
         return this.$router.push({ name: 'login' })
       }
 
@@ -88,7 +89,7 @@ export default {
   transition-duration: .14s ease-out
 }
 
-.fade-enter-from,
+.fade-enter,
 .fade-leave-to {
   opacity: 0;
 }

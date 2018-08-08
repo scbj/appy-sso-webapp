@@ -74,6 +74,7 @@ export default {
     hello: 'Bonjour {firstname} !',
     noData: {
       applications: 'Aucune application à afficher... tant pis 👻',
+      userInGroup: "C'est calme... il n'y a encore personne ici alors prenez les devants !",
       search: 'Aucun résultat à afficher'
     },
     dragAndDropHere: 'Glissez-déposez votre photo de profil',

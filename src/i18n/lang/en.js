@@ -74,6 +74,7 @@ export default {
     hello: 'Hi {firstname}!',
     noData: {
       applications: 'No apps to display ... too bad 👻',
+      userInGroup: "It's quiet ... there is no one here yet so take the lead!",
       search: 'No results to display'
     },
     dragAndDropHere: 'Drag and drop your profile picture',

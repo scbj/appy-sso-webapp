@@ -1,23 +1,37 @@
 <template>
   <div class="DashboardGroupDetailsUser">
-    <UserList
-      v-loading="pending"
-      class="DashboardGroupDetails__user-list"
-      :columns="columns"
-      :users="sortedUsers"
-      :selected-users.sync="selectedUsers"
-      :total="totalUserCount"
-      @page-changed="fetchUsers"/>
-
-    <div class='DashboardGroupDetailsUser__buttons'>
-      <BaseButton
-        v-if="!isDefaultGroup && selectedUsers.length"
-        @click="removeSelectedUsers"
-        type="secondary">
-        {{ removeFromGroupText }}
-      </BaseButton>
-      <BaseButton @click="addUsers">{{ $t('button.addUsers') }}</BaseButton>
+    <!-- When there are no users in the active group -->
+    <div v-if="!group.userCount" class="DashboardGroupDetailsUser__no-users">
+      <BaseIcon name="md-bed" />
+      <span>
+        {{ $t('message.noData.userInGroup') }}
+      </span>
+      <BaseButton @click="addUsers" type="secondary">{{ $t('button.addUsers') }}</BaseButton>
     </div>
+
+    <!-- When there is one or more users in the active group -->
+    <template v-else>
+      <UserList
+        v-loading="pending"
+        class="DashboardGroupDetails__user-list"
+        :columns="columns"
+        :users="sortedUsers"
+        :selected-users.sync="selectedUsers"
+        :total="totalUserCount"
+        @page-changed="fetchUsers"/>
+
+      <div class='DashboardGroupDetailsUser__buttons'>
+        <transition name="button-appear">
+          <BaseButton
+            v-if="!isDefaultGroup && selectedUsers.length"
+            @click="removeSelectedUsers"
+            type="secondary">
+            {{ removeFromGroupText }}
+          </BaseButton>
+        </transition>
+        <BaseButton @click="addUsers">{{ $t('button.addUsers') }}</BaseButton>
+      </div>
+    </template>
   </div>
 </template>
 
@@ -126,4 +140,42 @@ export default {
   align-items: center;
   margin-top: 2rem;
 }
+
+.DashboardGroupDetailsUser__no-users {
+  color: #C0C4CC;
+  margin: 0 auto;
+  padding: 3em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > .BaseIcon {
+    opacity: .3;
+    font-size: 6em;
+    line-height: 1;
+  }
+
+  > span { text-align: center; }
+
+  > .BaseButton {
+    margin-top: .8em;
+    opacity: 0;
+    transform: translateY(-.2em);
+    animation: appear .4s ease-in-out  forwards;
+
+    @keyframes appear {
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+  }
+}
+
+// Transition classes of the remove button
+.button-appear-enter-active { transition: .2s ease-out }
+.button-appear-leave-active { transition: .1s ease-in-out }
+.button-appear-enter { transform: translateX(.3em) }
+.button-appear-leave-to { opacity: 0 }
 </style>
