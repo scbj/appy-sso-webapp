@@ -95,7 +95,8 @@ export default {
     userCreateSuccess: 'Emails sent successfully!',
     userCreateError: 'We encountered a problem. Please try again later.',
     selectionCount: 'You have selected a single user | You have selected {count} users',
-    updatingAuthentication: 'Updating authentication...'
+    updatingAuthentication: 'Updating authentication...',
+    groupSearchResults: 'No group contains <b>{query}</b>. | We found only one group that matched your search. | We found {count} groups that contain <b>{query}</b>:'
   },
   placeholder: {
     fullName: 'Full name (first and last name)',

@@ -8,19 +8,25 @@
         name="md-add" />
     </div>
     <el-input
+      v-model="query"
       class='DashboardGroupList__search-bar'
       placeholder='Rechercher...'
       prefix-icon='el-icon-search'/>
     <DashboardGroupListItem
       v-if="defaultGroup"
+      v-show="!query"
       :group="defaultGroup"
       :read-only="true"
       :override-name="$t('byDefault')"
       @click.native="onGroupClick(defaultGroup)"
       class="DashboardGroupListItem__default-group" />
+    <p
+      v-show="query"
+      v-html="searchResultMessage"
+      class="DashboardGroupList__search-result"/>
     <ul>
       <DashboardGroupListItem
-        v-for="group in groups"
+        v-for="group in filteredGroups"
         :key="group.id"
         :group="group"
         @click.native="onGroupClick(group)" />
@@ -46,6 +52,27 @@ export default {
 
     groupCount () {
       return this.groups.length
+    },
+
+    filteredGroups () {
+      const query = this.query.toLowerCase()
+      const match = group => {
+        const name = group.name.toLowerCase()
+        return name.indexOf(query) !== -1
+      }
+      return this.groups.filter(match)
+    },
+
+    searchResultMessage () {
+      const count = this.filteredGroups.length
+      const query = this.query
+      return this.$tc('message.groupSearchResults', count, { count, query })
+    }
+  },
+
+  data () {
+    return {
+      query: ''
     }
   },
 
@@ -98,5 +125,13 @@ export default {
 .DashboardGroupList .DashboardGroupListItem__default-group {
   margin-top: 2em;
   margin-bottom: 1em;
+}
+
+.DashboardGroupList__search-result {
+  font-style: italic;
+  color: $primaryColor;
+  margin-bottom: 1em;
+  margin-top: 2em;
+  font-size: 1.1rem;
 }
 </style>

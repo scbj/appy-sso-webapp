@@ -95,7 +95,8 @@ export default {
     userCreateSuccess: 'Emails envoyés avec succès !',
     userCreateError: 'Nous avons rencontré un problème. Veuillez réessayer plus tard.',
     selectionCount: 'Vous avez sélectionné un utilisateur | Vous avez sélectionné {count} utilisateurs',
-    updatingAuthentication: "Mise à jour de l'authentification..."
+    updatingAuthentication: "Mise à jour de l'authentification...",
+    groupSearchResults: "Aucun groupe ne contient <b>{query}</b>. | Nous avons trouvé qu'un seul groupe qui correspond à votre recherche. | Nous avons trouvé {count} groupes qui contiennent <b>{query}</b> :"
   },
   placeholder: {
     fullName: 'Nom complet (prénom et nom)',
