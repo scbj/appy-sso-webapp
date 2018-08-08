@@ -1,5 +1,5 @@
 <template lang="pug">
-.MainHeader
+.MainHeader( :class="{ 'MainHeader-pad-left': !shouldBodyScrollable }" )
   BaseImage.MainHeader__logo( src='/static/img/title-gradient.svg' )
   .MainHeader__navigation
     router-link.MainHeader__navigation-link( :to="{ name: 'home' }" )
@@ -20,7 +20,8 @@ export default {
   computed: {
     username: get('user/username'),
     pictureUrl: get('user/current@pictureUrl'),
-    isAdmin: get('user/isAdmin')
+    isAdmin: get('user/isAdmin'),
+    shouldBodyScrollable: get('ui/modal/shouldBodyScrollable')
   }
 }
 </script>
@@ -30,10 +31,11 @@ export default {
 @import '../../assets/scss/colors.scss';
 
 .MainHeader {
+  $padding: 1.5rem;
   background: white;
   border-bottom: .5px solid rgba(#ebebeb, 0.9);
   box-shadow: 0 4px 30px -6px rgba(black,0.1);
-  padding: 1.5rem;
+  padding: $padding;
   display: flex;
   align-items: center;
   position: fixed;
@@ -41,6 +43,10 @@ export default {
   width: 100%;
   user-select: none;
   z-index: $z-index-dashboard-header;
+
+  &.MainHeader-pad-left {
+    padding-right: calc($padding + 6px)
+  }
 }
 
 .MainHeader__logo {

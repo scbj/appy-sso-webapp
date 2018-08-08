@@ -26,19 +26,19 @@ export default {
 
   data () {
     return {
-      licenceKey: this.$store.state.licence.key,
-      companyName: this.$store.state.licence.companyName,
-      name: this.$store.state.licence.owner.name,
-      email: this.$store.state.licence.owner.email
+      licenceKey: this.$store.get('ui/licence/key'),
+      companyName: this.$store.get('ui/licence/companyName'),
+      name: this.$store.get('ui/licence/owner@name'),
+      email: this.$store.get('ui/licence/owner@email')
     }
   },
 
   created () {
-    this.$store.dispatch('licence/updateCurrentStep', { step: 0 })
+    this.$store.set('ui/licence/currentStep', 0)
   },
 
   mounted () {
-    this.$store.dispatch('licence/clean')
+    this.$store.dispatch('ui/licence/clean')
   }
 }
 </script>

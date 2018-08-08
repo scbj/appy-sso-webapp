@@ -27,11 +27,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$active-color: #9E3AA6;
+$inactive-color: #EBEBEB;
+$circle-size: 34px;
+$progress-height: 4px;
+
 .StepIndicator {
-  --active-color: #9E3AA6;
-  --inactive-color: #EBEBEB;
-  --circle-size: 34px;
-  --progress-height: 4px;
 
   // display: flex;
   justify-content: space-between;
@@ -42,45 +43,45 @@ export default {
 
 .progress {
   // offset for handle border-radius optical illusion
-  --offset: calc(var(--circle-size) / 2 - var(--progress-height) / 2);
+  $offset: calc(#{$circle-size} / 2 - #{$progress-height} / 2);
   position: absolute;
-  right: var(--offset);
-  left: var(--offset);
-  top: var(--offset);
+  right: $offset;
+  left: $offset;
+  top: $offset;
 }
 
 .line,
 .placeholder-line {
-  border-radius: var(--progress-height);
+  border-radius: $progress-height;
   position: absolute;
-  height: var(--progress-height);
+  height: $progress-height;
 }
 
 .placeholder-line {
-  background-color: var(--inactive-color);
+  background-color: $inactive-color;
   width: 100%;
 }
 
 .line {
-  background-color: var(--active-color);
+  background-color: $active-color;
   transition: width .2s ease-in;
 }
 
 .circle {
   color: white;
-  background-color: var(--active-color);
+  background-color: $active-color;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  width: var(--circle-size);
-  height: var(--circle-size);
+  width: $circle-size;
+  height: $circle-size;
   transition: background-color .1s ease-in-out .2s;
   animation: pop .2s ease-in-out .2s;
 
   &.pending {
-    background-color: var(--inactive-color);
+    background-color: $inactive-color;
     transition: background-color .1s ease-in-out;
     animation: none;
   }
@@ -88,8 +89,8 @@ export default {
   > span {
     user-select: none;
     font-size: 20px;
-    height: var(--circle-size);
-    line-height: var(--circle-size);
+    height: $circle-size;
+    line-height: $circle-size;
   }
 }
 

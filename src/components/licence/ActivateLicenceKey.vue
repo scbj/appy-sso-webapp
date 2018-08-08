@@ -28,7 +28,7 @@ export default {
 
   data () {
     return {
-      licenceKey: this.$store.state.licence.key,
+      licenceKey: this.$store.get('ui/licence/key'),
       placeholder: '',
       hasError: false,
       pending: false
@@ -53,7 +53,7 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('licence/updateCurrentStep', { step: 1 })
+    this.$store.set('ui/licence/currentStep', 1)
   },
 
   methods: {
@@ -87,9 +87,9 @@ export default {
       this.pending = true
 
       // Start the asynchronous task to wait for it later
-      const request = this.$store.dispatch(
-        'licence/validate',
-        { key: this.licenceKey })
+      const request = this.$store.dispatch('ui/licence/validate', {
+        key: this.licenceKey
+      })
 
       // We must wait at least 1000 milliseconds for the change
       // of state of the button so that it is not too fast (abrupt).
@@ -97,15 +97,16 @@ export default {
 
       // Wait for the result of the task and
       // complete the step if the answer is correct.
-      const response = await request
+      const { status } = await request
       this.pending = false
-      return response.status === 200
+      return status === 200
     },
 
     completeStep () {
       const step = this.$route.meta.step
-      this.$store.dispatch('licence/updateKey', { key: this.licenceKey })
-      this.$store.dispatch('licence/completeStep', { step })
+      this.$store.set('ui/licence/key', this.licenceKey)
+      this.$store.dispatch('ui/licence/completeStep', { step })
+
       this.$router.push({ name: 'activateLicenceCompany' })
     }
   }
@@ -115,9 +116,9 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/activate-licence.scss';
 
+$input-padding-horizontal: 3rem;
+
 .input {
-  --input-padding-horizontal: 3rem;
-  --text-color: #707070;
   position: relative;
 
   input,
@@ -137,7 +138,7 @@ export default {
     white-space: pre;
     position: absolute;
     top: 50%;
-    left: var(--input-padding-horizontal);
+    left: $input-padding-horizontal;
     transform: translateY(-50%);
   }
 

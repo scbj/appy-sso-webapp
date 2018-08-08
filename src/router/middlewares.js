@@ -26,10 +26,10 @@ export function requiresAdmin (to, from, next) {
 
 /** Middleware to prevent the user from skipping steps on activate licence action. */
 export function checkContinuityBetweenSteps (to, from, next) {
-  const completedStepCount = store.state.licence.completedStepCount
+  const completedStepCount = store.state.ui.licence.completedStepCount
   const step = to.meta.step
   if (step > completedStepCount + 1) {
-    return next({ name: 'activate-licence' })
+    return next({ name: 'activateLicenceKey' })
   }
   next()
 }

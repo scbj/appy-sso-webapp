@@ -25,13 +25,13 @@ export default {
 
   data () {
     return {
-      companyName: this.$store.state.licence.companyName,
+      companyName: this.$store.get('ui/licence/companyName'),
       hasError: false
     }
   },
 
   created () {
-    this.$store.dispatch('licence/updateCurrentStep', { step: 2 })
+    this.$store.set('ui/licence/currentStep', 2)
   },
 
   methods: {
@@ -39,8 +39,9 @@ export default {
       this.hasError = this.companyName.length < 3
       if (this.hasError === false) {
         const step = this.$route.meta.step
-        this.$store.dispatch('licence/updateCompanyName', { companyName: this.companyName })
-        this.$store.dispatch('licence/completeStep', { step })
+        this.$store.set('ui/licence/companyName', this.companyName)
+        this.$store.dispatch('ui/licence/completeStep', { step })
+
         this.$router.push({ name: 'activateLicenceOwner' })
       }
     }

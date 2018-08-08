@@ -11,12 +11,10 @@
 </template>
 
 <script>
-import { createNamespacedHelpers } from 'vuex'
+import { get } from 'vuex-pathify'
 
 import MobileActivateLicenceNotAvailable from './MobileActivateLicenceNotAvailable'
 import StepIndicator from './StepIndicator'
-
-const { mapState } = createNamespacedHelpers('licence')
 
 export default {
   components: {
@@ -25,14 +23,11 @@ export default {
   },
 
   computed: {
-    ...mapState([
-      'maxStep',
-      'currentStep'
-    ]),
+    maxStep: get('ui/licence/maxStep'),
+    currentStep: get('ui/licence/currentStep'),
 
     shouldShowStepIndicator () {
-      return this.currentStep > 0 &&
-        this.currentStep <= this.maxStep
+      return this.currentStep > 0 && this.currentStep <= this.maxStep
     }
   },
 

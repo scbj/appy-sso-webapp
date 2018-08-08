@@ -52,7 +52,7 @@ export default {
   },
 
   created () {
-    this.$store.dispatch('licence/updateCurrentStep', { step: 3 })
+    this.$store.set('ui/licence/currentStep', 3)
   },
 
   methods: {
@@ -93,16 +93,6 @@ export default {
         : alert('Activation failed... contact support please.')
     },
 
-    completeStep () {
-      const step = this.$route.meta.step
-      this.$store.dispatch('licence/updateOwner', {
-        name: this.name,
-        email: this.email
-      })
-      this.$store.dispatch('licence/completeStep', { step })
-      this.$router.push({ name: 'activateLicenceCompleted' })
-    },
-
     /** @returns {Promise<Boolean>} */
     async activateLicence () {
       this.pending = true
@@ -115,7 +105,7 @@ export default {
         language: i18n.locale
       }
 
-      const request = this.$store.dispatch('licence/activate', owner)
+      const request = this.$store.dispatch('ui/licence/activate', owner)
 
       // We must wait at least 1000 milliseconds for the change
       // of state of the button so that it is not too fast (abrupt).
@@ -124,6 +114,16 @@ export default {
       const response = await request
       this.pending = false
       return response.status === 200
+    },
+
+    completeStep () {
+      const step = this.$route.meta.step
+      this.$store.set('ui/licence/owner', {
+        name: this.name,
+        email: this.email
+      })
+      this.$store.dispatch('ui/licence/completeStep', { step })
+      this.$router.push({ name: 'activateLicenceCompleted' })
     }
   }
 }
