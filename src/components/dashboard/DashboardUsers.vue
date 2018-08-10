@@ -1,9 +1,10 @@
 <template>
   <BaseCard class='DashboardUsers'>
     <h2>{{ $t('users') }}</h2>
-    <h3 v-if="totalUserCount" class='DashboardUsers__total-user'>{{ totalUserCount }}</h3>
+    <h3 class='DashboardUsers__total-user'>{{ totalUserCount || '' }}</h3>
     <el-input
-      v-if="totalUserCount"
+      v-if="totalUserCount || query"
+      v-model="query"
       class='DashboardUsers__search-bar'
       placeholder='Rechercher un utilisateur'
       prefix-icon='el-icon-search'/>
@@ -46,6 +47,10 @@ export default {
     currentPage: get('ui/dashboard/users/currentPage'),
     totalUserCount: get('ui/dashboard/users/totalUserCount'),
 
+    hasUsers () {
+      return this.users.length
+    },
+
     /**
      * Returns true when at least one user is selected
      * from the list, otherwise returns false.
@@ -64,6 +69,7 @@ export default {
 
   data () {
     return {
+      query: '',
       columns: [
         {
           grow: 1,
@@ -106,13 +112,29 @@ export default {
     }
   },
 
+  watch: {
+    query (newValue) {
+      if (newValue.length === 0) {
+        this.fetchUsers()
+      } else if (newValue.length >= 2) {
+        this.searchUsers()
+      }
+    }
+  },
+
   mounted () {
     this.fetchUsers()
   },
 
   methods: {
     async fetchUsers (page) {
-      this.$store.dispatch('ui/dashboard/users/list', { page })
+      await this.$store.dispatch('ui/dashboard/users/list', { page })
+    },
+
+    async searchUsers () {
+      await this.$store.dispatch('ui/dashboard/users/search', {
+        query: this.query
+      })
     },
 
     createUsers () {

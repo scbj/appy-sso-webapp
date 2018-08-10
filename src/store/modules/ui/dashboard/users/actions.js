@@ -20,7 +20,19 @@ export async function list ({ commit, state }, payload) {
   const { data: response } = await userProvider.list({
     page: page || state.currentPage
   })
-  if (response && response.data) {
+  if (response) {
+    commit('SET_ALL', response.data)
+    commit('SET_TOTAL_USER_COUNT', response.total)
+  }
+
+  commit('SET_PENDING', false)
+}
+
+export async function search ({ commit, state }, payload) {
+  commit('SET_PENDING', true)
+
+  const { data: response } = await userProvider.search(payload)
+  if (response) {
     commit('SET_ALL', response.data)
     commit('SET_TOTAL_USER_COUNT', response.total)
   }
