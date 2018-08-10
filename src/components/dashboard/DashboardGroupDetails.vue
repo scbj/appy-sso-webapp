@@ -8,8 +8,14 @@
         trigger="click">
         <BaseIconButton name="ios-more" />
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="rename">Renommer</el-dropdown-item>
-          <el-dropdown-item command="delete">Supprimer</el-dropdown-item>
+          <el-dropdown-item command="rename">
+            <BaseIcon name="md-create" />
+            &nbsp;Renommer
+          </el-dropdown-item>
+          <el-dropdown-item command="delete">
+            <BaseIcon name="md-trash" />
+            &nbsp;Supprimer
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>

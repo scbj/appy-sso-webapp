@@ -1,15 +1,11 @@
 export function open ({ commit }, payload) {
-  const content = payload && payload.content
-  const onClosed = payload && payload.onClosed
+  // If the intention is not only to display the modal, then we must parse the payload
+  if (payload) {
+    const { content, params, onClosed } = payload
 
-  // The component must be loaded if specified
-  if (content) {
-    commit('SET_CONTENT', content)
-  }
-
-  // This function must be called once when the modal is closed.
-  if (typeof onClosed === 'function') {
-    commit('SET_ON_CLOSED', onClosed)
+    if (content) { commit('SET_CONTENT', content) }
+    if (params) { commit('SET_PARAMS', params) }
+    if (typeof onClosed === 'function') { commit('SET_ON_CLOSED', onClosed) }
   }
 
   commit('SET_OPENED', true)

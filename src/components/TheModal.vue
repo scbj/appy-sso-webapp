@@ -3,7 +3,7 @@ transition( name='isolement' @after-leave="afterLeave" )
   .TheModal( v-show='opened' @click='handleOutsideClick' )
     transition( name='landing' )
       .TheModal__container( v-show='opened' @click.stop='' )
-        component( :is='content' )
+        component( :is='content' v-bind="componentProps" )
 </template>
 
 <script>
@@ -13,6 +13,7 @@ export default {
   computed: {
     opened: sync('ui/modal/opened'),
     content: sync('ui/modal/content'),
+    componentProps: get('ui/modal/params'),
     easyCloseEnabled: get('ui/modal/easyCloseEnabled')
   },
 

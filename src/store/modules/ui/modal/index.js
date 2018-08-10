@@ -4,10 +4,13 @@ import * as actions from './actions'
 export const state = {
   opened: false,
   content: null,
+  params: null,
+
+  /** This function must be called once when the modal is closed. */
+  onClosed: () => {},
 
   /** If it's true the modal can be closed during a click outside of it  */
-  easyCloseEnabled: true,
-  onClosed: () => {}
+  easyCloseEnabled: true
 }
 
 export const getters = {
