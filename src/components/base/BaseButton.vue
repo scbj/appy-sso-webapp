@@ -99,6 +99,7 @@ $offset-x: 0;
   padding: .6em 1em;
   margin: 0 .5em;
   cursor: pointer;
+  user-select: none;
   @include box-shadow-normal;
   transition: transform .2s ease-out,
               box-shadow .2s ease-out;

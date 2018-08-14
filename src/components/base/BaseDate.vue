@@ -23,14 +23,16 @@ export default {
 
   computed: {
     formatedDate () {
-      return moment(this.date).format()
+      const m = moment(this.date)
+      m.locale(this.$i18n.locale)
+      return m.format('ll')
     },
 
     displayDate () {
       if (this.relative) {
-        const momentDate = moment(this.date)
-        momentDate.locale(this.$i18n.locale)
-        return momentDate.fromNow(true)
+        const m = moment(this.date)
+        m.locale(this.$i18n.locale)
+        return m.fromNow(true)
       }
 
       return this.formatedDate

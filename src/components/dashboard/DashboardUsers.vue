@@ -44,7 +44,6 @@ export default {
     pending: get('ui/dashboard/users/pending'),
     users: get('ui/dashboard/users/all'),
     selectedUsers: sync('ui/dashboard/users/selectedUsers'),
-    currentPage: get('ui/dashboard/users/currentPage'),
     totalUserCount: get('ui/dashboard/users/totalUserCount'),
 
     hasUsers () {

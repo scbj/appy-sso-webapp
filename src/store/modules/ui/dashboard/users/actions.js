@@ -22,6 +22,7 @@ export async function list ({ commit, state }, payload) {
   })
   if (response) {
     commit('SET_ALL', response.data)
+    commit('SET_CURRENT_PAGE', response.currentPage)
     commit('SET_TOTAL_USER_COUNT', response.total)
   }
 

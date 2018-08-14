@@ -86,7 +86,7 @@ $content-background-color: white;
 
   @media screen and (min-width: $mobile) {
     border-radius: 6px;
-    @include size(460px, auto);
+    @include size(480px, auto);
     box-shadow: 0 6px 18px -2px rgba(black, .13);
   }
 }

@@ -25,6 +25,15 @@ export function list () {
 }
 
 /**
+ * Return the specified group.
+ * @method GET
+ * @returns {Promise<ApiResponse>}
+ */
+export function fetch ({ id }) {
+  return getAsync(`${base}/${id}`)
+}
+
+/**
   * Create a new group with the specified name.
   * @method POST
   * @returns {Promise<ApiResponse>}

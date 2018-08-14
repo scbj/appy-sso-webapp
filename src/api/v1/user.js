@@ -20,6 +20,15 @@ export function self () {
 }
 
 /**
+ * Returns the specified user infos.
+ * @method GET
+ * @returns {Promise<Response>}
+ */
+export function fetch ({ id }) {
+  return getAsync(`${base}/${id}`)
+}
+
+/**
  * Creates multiple users from their email addresses and associate with a group.
  * @returns {Promise<Response>}
  */
