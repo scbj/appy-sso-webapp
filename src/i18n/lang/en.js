@@ -17,6 +17,7 @@ export default {
   licenceKey: 'Licence key:',
   chooseGroupName: 'Choose the name of the group',
   cancel: 'Cancel',
+  administrator: 'Administrator',
   alert: {
     username: { ask: 'Please enter your username' },
     password: { ask: 'Please enter your password' },
@@ -52,7 +53,10 @@ export default {
     manageUsers: 'Manage users',
     manageGroups: 'Manage groups',
     addUsers: 'Add users',
-    addApplications: 'Add applications'
+    addApplications: 'Add applications',
+    archiveUser: 'Archive this user',
+    archiveUserConfirmation: 'Are you sure you want to delete it?',
+    cancelInvitation: 'Cancel invitation'
   },
   check: { rememberMe: 'Remember me' },
   title: {
@@ -67,7 +71,11 @@ export default {
     renameGroup: 'Rename the group',
     deleteGroup: 'Deleting {groupName}',
     deleteUser: 'Deleting user | Deleting users',
-    addUsers: 'Add users'
+    addUsers: 'Add users',
+    guestUser: 'Guest User',
+    generalInformations: 'General informations',
+    activity: 'Activity',
+    accessibleApps: 'Accessible apps'
   },
   message: {
     alreadyLogged: 'You are already logged in, you can change to another account at any time.',
@@ -96,7 +104,8 @@ export default {
     userCreateError: 'We encountered a problem. Please try again later.',
     selectionCount: 'You have selected a single user | You have selected {count} users',
     updatingAuthentication: 'Updating authentication...',
-    groupSearchResults: 'No group contains <b>{query}</b>. | We found only one group that matched your search. | We found {count} groups that contain <b>{query}</b>:'
+    groupSearchResults: 'No group contains <b>{query}</b>. | We found only one group that matched your search. | We found {count} groups that contain <b>{query}</b>:',
+    invitationSent: 'An invitation has been sent to <br> the following email address:'
   },
   placeholder: {
     fullName: 'Full name (first and last name)',
@@ -111,7 +120,9 @@ export default {
     modifiedAt: 'MODIFIED AT'
   },
   infos: {
-    userInGroup: 'user in the group | users in group'
+    userInGroup: 'user in the group | users in group',
+    createdAt: 'Created at',
+    modifiedAt: 'Modified'
   },
   error: {
     atLeastOneCharacter: 'Must contain at least 1 character',
@@ -119,7 +130,8 @@ export default {
     invalidEmail: 'Invaild email',
     groupNameUnchanged: 'Hmm 🤔 No need to rename this group, it already bears that name!',
     noEmailAddressFilled: 'Still a little effort, at least one email address 🙏🏻',
-    unknowEmailFormat: 'An email address is not in a known format : {email}'
+    unknowEmailFormat: 'An email address is not in a known format : {email}',
+    canNotRetreiveUserInformations: 'Can not retrieve the information of the selected user'
   },
   question: {
     deleteGroup: 'This will permanently delete the group (group users will be assigned to the default group). Continue?',

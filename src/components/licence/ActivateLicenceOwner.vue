@@ -96,7 +96,6 @@ export default {
     /** @returns {Promise<Boolean>} */
     async activateLicence () {
       this.pending = true
-      // TODO: Convert image to Base64
       const owner = {
         firstname: this.name.split(' ')[0],
         lastname: this.name.split(' ')[1],

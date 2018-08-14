@@ -15,9 +15,12 @@
             class="UserListRow__profil-picture" />
         </template>
         <template slot="full-name" slot-scope="{ user }">
-          <span class="UserListRow__full-name">
-            {{ user.firstname }}
-            <span class="UserListRow__lastname">{{ user.lastname }}</span>
+          <span @click="openUserDetails(user)" class="UserListRow__full-name">
+            <template v-if="user.activated">
+              {{ user.firstname }}
+              <span class="UserListRow__lastname">{{ user.lastname }}</span>
+            </template>
+            <span class="UserListRow__guest-user" v-else>{{ $t('title.guestUser') }}</span>
           </span>
         </template>
         <template slot="date" slot-scope="{ value }">
@@ -163,6 +166,10 @@ export default {
         selectedUsers.splice(index, 1)
         this.$emit('update:selectedUsers', selectedUsers)
       }
+    },
+
+    openUserDetails (user) {
+      this.$store.dispatch('ui/dashboard/openUserDetails', { user })
     }
   }
 }
@@ -186,5 +193,6 @@ export default {
   }
 
   .UserListRow__lastname { font-weight: 600 }
+  .UserListRow__guest-user { font-style: italic; }
 }
 </style>

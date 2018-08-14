@@ -78,7 +78,6 @@ export default {
     },
 
     async deleteGroup () {
-      // TODO: Demander une confirmation avant de supprimer
       this.$store.dispatch('ui/dashboard/groups/removeActiveGroup')
     }
   }

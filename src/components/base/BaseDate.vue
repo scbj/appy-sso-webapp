@@ -32,7 +32,7 @@ export default {
       if (this.relative) {
         const m = moment(this.date)
         m.locale(this.$i18n.locale)
-        return m.fromNow(true)
+        return m.fromNow()
       }
 
       return this.formatedDate

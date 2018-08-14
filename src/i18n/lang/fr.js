@@ -17,6 +17,7 @@ export default {
   licenceKey: 'Clé de licence :',
   chooseGroupName: 'Choisissez le nom du groupe',
   cancel: 'Annuler',
+  administrator: 'Administrateur',
   alert: {
     username: { ask: "Veuillez renseigner votre nom d'utilisateur" },
     password: { ask: 'Veuillez renseigner votre mot de passe' },
@@ -52,7 +53,10 @@ export default {
     manageUsers: 'Gérer les utilisateurs',
     manageGroups: 'Gérer les groupes',
     addUsers: 'Ajouter des utilisateurs',
-    addApplications: 'Ajouter des applications'
+    addApplications: 'Ajouter des applications',
+    archiveUser: 'Archiver cet utilisateur',
+    archiveUserConfirmation: 'Êtes-vous sûr de vouloir le supprimer ?',
+    cancelInvitation: "Annuler l'invitation"
   },
   check: { rememberMe: 'Se souvenir de moi' },
   title: {
@@ -67,7 +71,11 @@ export default {
     renameGroup: 'Renommer le groupe',
     deleteGroup: 'Suppression de {groupName}',
     deleteUser: "Suppression d'un utilisateur | Suppression des utilisateurs",
-    addUsers: 'Ajouter des utilisateurs'
+    addUsers: 'Ajouter des utilisateurs',
+    guestUser: 'Utilisateur invité',
+    generalInformations: 'Informations générales',
+    activity: 'Activité',
+    accessibleApps: 'Applications accessibles'
   },
   message: {
     alreadyLogged: 'Vous êtes actuellement déjà connecté, vous pouvez changer de compte à tout moment.',
@@ -96,7 +104,8 @@ export default {
     userCreateError: 'Nous avons rencontré un problème. Veuillez réessayer plus tard.',
     selectionCount: 'Vous avez sélectionné un utilisateur | Vous avez sélectionné {count} utilisateurs',
     updatingAuthentication: "Mise à jour de l'authentification...",
-    groupSearchResults: "Aucun groupe ne contient <b>{query}</b>. | Nous avons trouvé qu'un seul groupe qui correspond à votre recherche. | Nous avons trouvé {count} groupes qui contiennent <b>{query}</b> :"
+    groupSearchResults: "Aucun groupe ne contient <b>{query}</b>. | Nous avons trouvé qu'un seul groupe qui correspond à votre recherche. | Nous avons trouvé {count} groupes qui contiennent <b>{query}</b> :",
+    invitationSent: "Une invitation a été envoyée à <br> l'adresse mail suivante :"
   },
   placeholder: {
     fullName: 'Nom complet (prénom et nom)',
@@ -111,7 +120,9 @@ export default {
     modifiedAt: 'MODIFIÉ IL Y A'
   },
   infos: {
-    userInGroup: 'utilisateur dans le groupe | utilisateurs dans le groupe'
+    userInGroup: 'utilisateur dans le groupe | utilisateurs dans le groupe',
+    createdAt: 'Crée le',
+    modifiedAt: 'Modifier'
   },
   error: {
     atLeastOneCharacter: 'Doit contenir au moins 1 caractère',
@@ -119,7 +130,8 @@ export default {
     invalidEmail: 'Email invalide',
     groupNameUnchanged: 'Hmm 🤔 Pas besoin de renommer ce groupe, il porte déjà ce nom !',
     noEmailAddressFilled: "Encore un peu d'effort, au moins une adresse email 🙏🏻",
-    unknowEmailFormat: "Une adresse email n'est pas au format connu : {email}"
+    unknowEmailFormat: "Une adresse email n'est pas au format connu : {email}",
+    canNotRetreiveUserInformations: "Impossible de récupérer les informations de l'utilisateur sélectionné"
   },
   question: {
     deleteGroup: 'Cela va définitivement supprimer le groupe (les utilisateurs du groupe seront assignés au groupe par défaut). Continuer ?',
