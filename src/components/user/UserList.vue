@@ -24,7 +24,7 @@
           </span>
         </template>
         <template slot="date" slot-scope="{ value }">
-          <BaseDate :date="value" />
+          <BaseDate :date="value" :suffix="showDateSuffix" />
         </template>
         <template slot="role" slot-scope="{ value }">
           <el-tag siz="mini" :type="getTagTypeFromRole(value)">
@@ -92,6 +92,10 @@ export default {
 
     shouldAllowPagination () {
       return this.total && this.total > this.users.length
+    },
+
+    showDateSuffix () {
+      return !this.headerVisible
     }
   },
 

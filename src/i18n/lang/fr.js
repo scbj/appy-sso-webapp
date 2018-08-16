@@ -122,7 +122,7 @@ export default {
   infos: {
     userInGroup: 'utilisateur dans le groupe | utilisateurs dans le groupe',
     createdAt: 'Crée le',
-    modifiedAt: 'Modifier'
+    modifiedAt: 'Modifié'
   },
   error: {
     atLeastOneCharacter: 'Doit contenir au moins 1 caractère',

@@ -18,6 +18,10 @@ export default {
     relative: {
       type: Boolean,
       default: true
+    },
+    suffix: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -32,7 +36,8 @@ export default {
       if (this.relative) {
         const m = moment(this.date)
         m.locale(this.$i18n.locale)
-        return m.fromNow()
+        const withoutSuffix = !this.suffix
+        return m.fromNow(withoutSuffix)
       }
 
       return this.formatedDate
