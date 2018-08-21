@@ -3,14 +3,16 @@ import { make } from 'vuex-pathify'
 import * as actions from './actions'
 
 export const state = {
-  groups: []
+  pending: false,
+  all: [],
+  selectedApps: []
 }
 
-const mutations = make.mutations(state)
+export const mutations = make.mutations(state)
 
 export default {
   namespaced: true,
   state,
-  actions,
-  mutations
+  mutations,
+  actions
 }

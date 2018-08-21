@@ -67,6 +67,18 @@ export function removeUsers ({ groupId, userIds }) {
 }
 
 /**
+ * Adds applications to the specified group.
+ * @param {Number} groupId The id of the group to update
+ * @param {Array<Number>} appIds TThe application IDs to add to the group
+ * @method POST
+ * @returns {Promise<ApiResponse>}
+ */
+export function addApplications (groupId, appIds) {
+  const url = `${base}/${groupId}/application/${appIds.join(',')}`
+  return postAsync(url)
+}
+
+/**
  * Removes applications to the specified group.
  * @param {Number} groupId The id of the group to update
  * @param {Array<Number>} usersIds The app IDs to remove from the group

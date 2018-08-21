@@ -3,6 +3,7 @@ import { make } from 'vuex-pathify'
 import * as actions from './actions'
 
 // Modules
+import apps from './apps'
 import users from './users'
 
 export const state = {
@@ -31,6 +32,7 @@ export default {
   actions,
   mutations,
   modules: {
+    apps,
     users
   }
 }

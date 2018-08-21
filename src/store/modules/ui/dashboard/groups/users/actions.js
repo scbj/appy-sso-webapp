@@ -42,7 +42,7 @@ export async function addUsers ({ dispatch, rootState }, payload) {
   // of the active group
   if (status === 200) {
     dispatch('group/list', {}, { root: true })
-    dispatch('ui/dashboard/groups/users/list', {}, { root: true })
+    dispatch('list')
   }
 }
 

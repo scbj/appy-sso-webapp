@@ -104,8 +104,12 @@ export default {
     }
   },
 
+  mounted () {
+    this.fetchUsers()
+  },
+
   methods: {
-    async fetchUsers (page) {
+    fetchUsers (page) {
       this.$store.dispatch('ui/dashboard/groups/users/list', { page })
     },
 
@@ -116,13 +120,9 @@ export default {
       })
     },
 
-    async removeSelectedUsers () {
+    removeSelectedUsers () {
       this.$store.dispatch('ui/dashboard/groups/users/removeSelectedUsers')
     }
-  },
-
-  mounted () {
-    this.fetchUsers()
   }
 }
 </script>

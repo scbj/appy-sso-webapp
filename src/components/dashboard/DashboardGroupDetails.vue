@@ -26,7 +26,7 @@
         <DashboardGroupDetailsUser />
       </el-tab-pane>
       <el-tab-pane :label="$t('button.applications')" name="apps">
-        <!-- <DashboardGroupDetailsApplications /> -->
+        <DashboardGroupDetailsApplications />
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -58,8 +58,7 @@ export default {
 
   data () {
     return {
-      // TODO: remettre à apps
-      activeTabName: 'users'
+      activeTabName: 'apps'
     }
   },
 

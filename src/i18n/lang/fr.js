@@ -72,6 +72,7 @@ export default {
     deleteGroup: 'Suppression de {groupName}',
     deleteUser: "Suppression d'un utilisateur | Suppression des utilisateurs",
     addUsers: 'Ajouter des utilisateurs',
+    addApps: 'Ajouter des applications',
     guestUser: 'Utilisateur invité',
     generalInformations: 'Informations générales',
     activity: 'Activité',
@@ -83,6 +84,7 @@ export default {
     noData: {
       applications: 'Aucune application à afficher... tant pis 👻',
       userInGroup: "C'est calme... il n'y a encore personne ici alors prenez les devants !",
+      appInGroup: "Ce groupe n'a accès à aucune application, donnez leur des permissions !",
       search: 'Aucun résultat à afficher'
     },
     dragAndDropHere: 'Glissez-déposez votre photo de profil',

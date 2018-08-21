@@ -53,7 +53,9 @@ export default {
 
     async validate () {
       try {
-        await this.$refs.elForm.validate()
+        if (this.model) {
+          await this.$refs.elForm.validate()
+        }
 
         // The parent must be informed that validation has been successful
         this.$emit('validated')
