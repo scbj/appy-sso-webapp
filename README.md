@@ -1,33 +1,66 @@
-# appy-sso-webapp
+# Appy - SSO
 
-> Application web du SSO de APPY
+The portal allowing access to **Appy Pack** applications as well as administration. This is a web application made with [Vue.js](https://vuejs.org/).
 
-## Build Setup
+This application uses an linter to have the ability to produce a clean and understandable code by a developer team ☝🏼.
+The project also follows the [guidelines](https://vuejs.org/v2/style-guide/) 📜 described by Vue.js.
+
+## 🚀 Development
+
+### Requirements
+
+You must enter the API development URL in the _./config/**dev**.env.js_ file at the *API_URL* attribute.
+
+### Installation
 
 ``` bash
-# install dependencies
-npm install
+# Yarn
+yarn && yarn dev
 
-# create the .env.js file by copying the .env.example.js file and verify the api url
-
-# modify the host url in config/index.js file to the url you want to run the app
-
-# verify the client_id and client_secret for the authentication of the api in src/api/auth.js
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
+# Or with npm
+npm install && npm run dev
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 📦 Build for production
+
+### Requirements
+- You must enter the API development URL in the _./config/**prod**.env.js_ file at the *API_URL* attribute.
+- Remember to use the _./static_/ folder for assets that don't have to be processed by webpack.
+
+### Build
+
+``` bash
+# Yarn
+yarn && yarn build
+
+# Or with npm
+npm install && npm run build
+```
+
+### Installation
+The command above will generate in the _./dist/_ folder all the files necessary for the web application. So you just have to put the **contents** of this folder at the **root of your website** and configure your HTTP server so that **each route** will return to the _index.html_ file.
+
+#### Example with Appache
+Create a _.htaccess_ file at the root of your website and write the content below.
+
+```
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.html?path=$1 [NC,L,QSA]
+```
+
+## Dependencies (most relevant, not exhaustive)
+- [axios](https://www.npmjs.com/package/axios)
+- [element-ui](https://www.npmjs.com/package/element-ui)
+- [lodash.throttle](https://www.npmjs.com/package/lodash.throttle)
+- [moment](https://www.npmjs.com/package/moment)
+- [vue-i18n](https://www.npmjs.com/package/vue-i18n)
+- [vue-mq](https://www.npmjs.com/package/vue-mq)
+- [vuex-pathify](https://www.npmjs.com/package/vuex-pathify)
+- [vuex-persist](https://www.npmjs.com/package/vuex-persist)
+
+
+## Authors
+- [Thomas Dubois](thomas.dubois@digi-smart.fr)
+- [Sacha Bejaud](sacha.bejaud@digi-smart.fr)
