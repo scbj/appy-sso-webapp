@@ -1,4 +1,4 @@
-import api from '@/api/v1'
+import api from '@/services/api/v1'
 
 export async function list ({ commit }) {
   // Retrieve from the API the list of all groups in the company

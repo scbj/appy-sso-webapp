@@ -1,8 +1,8 @@
 <template>
   <button
-    @click="raiseClickEvent"
     :class="{ 'BaseButton_secondary': isSecondary }"
-    class="BaseButton">
+    class="BaseButton"
+    @click="raiseClickEvent">
     <slot />
   </button>
 </template>

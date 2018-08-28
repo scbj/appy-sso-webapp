@@ -1,15 +1,16 @@
-<template lang="pug">
-#app
-  router-view
-  TheModal
+<template>
+  <div id="app">
+    <router-view />
+    <TheModal />
+  </div>
 </template>
 
 <script>
 import { get } from 'vuex-pathify'
 
 import TheModal from '@/components/TheModal'
-import { changeLocale } from './i18n/index'
-import { setAuthorizationHeader } from './http-common'
+import i18n from '@/i18n'
+import { setAuthorizationHeader } from '@/plugins/axios'
 
 export default {
   name: 'App',
@@ -35,7 +36,7 @@ export default {
       userLanguage: this.$store.get('user/current@language')
     })
     this.authenticateRequest({
-      token: this.$store.state.auth.token
+      token: this.$store.get('auth/accessToken')
     })
   },
 
@@ -43,7 +44,7 @@ export default {
     /** Store current language or uses the existing one.  */
     chooseLanguage ({ initial, userLanguage }) {
       if (userLanguage && userLanguage !== initial) {
-        changeLocale(userLanguage)
+        i18n.locale = userLanguage
       }
     },
     /** Set authorization header on axios. */
@@ -57,7 +58,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/scss/base';
+@import './assets/scss/base.scss';
 
 #app {
   height: 100%

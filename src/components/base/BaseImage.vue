@@ -1,6 +1,12 @@
-<template lang="pug">
-.BaseImage_no-source( v-if='!source' :class='{ loading }' )
-img.BaseImage( v-else :src='source' )
+<template>
+  <div
+    v-if="!source"
+    :class="{ loading }"
+    class="BaseImage_no-source" />
+  <img
+    v-else
+    :src="source"
+    class="BaseImage">
 </template>
 
 <script>
@@ -49,16 +55,16 @@ export default {
     }
   },
 
-  computed: {
-    loading () {
-      return this.source === ''
-    }
-  },
-
   data () {
     return {
       source: '',
       isFallback: false
+    }
+  },
+
+  computed: {
+    loading () {
+      return this.source === ''
     }
   },
 

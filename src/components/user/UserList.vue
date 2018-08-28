@@ -11,29 +11,32 @@
         <template slot="profil-picture" slot-scope="{ user }">
           <BaseImage
             :src="user.pictureUrl"
-            fallback-src="/static/img/default-user-picture.png"
+            :fallback-src="require('@/assets/img/default-user-picture.png')"
             class="UserListRow__profil-picture" />
         </template>
         <template slot="full-name" slot-scope="{ user }">
-          <span @click="openUserDetails(user)" class="UserListRow__full-name">
+          <span class="UserListRow__full-name" @click="openUserDetails(user)">
             <template v-if="user.activated">
               {{ user.firstname }}
               <span class="UserListRow__lastname">{{ user.lastname }}</span>
             </template>
-            <span class="UserListRow__guest-user" v-else>{{ $t('title.guestUser') }}</span>
+            <span v-else class="UserListRow__guest-user">{{ $t('title.guestUser') }}</span>
           </span>
         </template>
         <template slot="date" slot-scope="{ value }">
           <BaseDate :date="value" :suffix="showDateSuffix" />
         </template>
         <template slot="role" slot-scope="{ value }">
-          <el-tag siz="mini" :type="getTagTypeFromRole(value)">
+          <el-tag :type="getTagTypeFromRole(value)" siz="mini">
             {{ user.roleName }}
           </el-tag>
         </template>
       </UserListRow>
     </ul>
-    <UserListPagination :total="total" :page-size="pageSize" v-if="shouldAllowPagination" />
+    <UserListPagination
+      v-if="shouldAllowPagination"
+      :total="total"
+      :page-size="pageSize" />
   </div>
 </template>
 
@@ -83,6 +86,12 @@ export default {
     }
   },
 
+  data () {
+    return {
+      width: 0
+    }
+  },
+
   computed: {
     selectionModeEnabled () {
       // TODO: A voir si cette fonctionnalité peut être implémenté sans être confuse (est-ce que ça sélectionne tout les utilisateurs ou les utilisateurs visible dans la liste, la page).
@@ -96,12 +105,6 @@ export default {
 
     showDateSuffix () {
       return !this.headerVisible
-    }
-  },
-
-  data () {
-    return {
-      width: 0
     }
   },
 

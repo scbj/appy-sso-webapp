@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { limitResolution } from '@/utils/image-helpers'
+import { limitResolution } from '@/utils/image'
 
 export default {
   data () {

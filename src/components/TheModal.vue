@@ -1,9 +1,19 @@
-<template lang="pug">
-transition( name='isolement' @after-leave="afterLeave" )
-  .TheModal( v-show='opened' @click='handleOutsideClick' )
-    transition( name='landing' )
-      .TheModal__container( v-show='opened' @click.stop='' )
-        component( :is='content' v-bind="componentProps" )
+<template>
+  <transition name="isolement" @after-leave="afterLeave">
+    <div
+      v-show="opened"
+      class="TheModal"
+      @click="handleOutsideClick">
+      <transition name="landing">
+        <div
+          v-show="opened"
+          class="TheModal__container"
+          @click.stop>
+          <component :is="content" v-bind="componentProps"/>
+        </div>
+      </transition>
+    </div>
+  </transition>
 </template>
 
 <script>

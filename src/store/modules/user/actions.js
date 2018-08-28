@@ -1,5 +1,5 @@
-import api from '@/api/v1'
-import { changeLocale, i18n } from '@/i18n'
+import api from '@/services/api/v1'
+import i18n from '@/i18n'
 
 /** Retrieves the logged-in user information. */
 export async function fetchSelf ({ commit }) {
@@ -9,7 +9,7 @@ export async function fetchSelf ({ commit }) {
 
   const { language } = user
   if (language && language !== i18n.locale) {
-    changeLocale(language)
+    i18n.locale = language
   }
 
   commit('SET_CURRENT', user)

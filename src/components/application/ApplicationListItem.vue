@@ -3,8 +3,8 @@
     <el-checkbox :checked="selected" @change="onCheckChanged" />
     <BaseImage
       :src="app.pictureUrl"
+      :fallback-src="require('@/assets/img/logo-default.png')"
       class="ApplicationListItem__icon"
-      fallback-src="/static/img/logo-default.png"
       draggable="false" />
     <span class="ApplicationListItem__name">{{ app.name }}</span>
   </li>

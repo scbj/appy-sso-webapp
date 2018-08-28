@@ -1,45 +1,27 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
-// Routes and middlewares
-import activateLicenceRoute from './activate-licence'
-import mainRoute from './main'
-import { requiresAuth } from './middlewares'
+import routes from './routes'
+import { requiresAuth } from './middlewares/auth'
 
-// Components
-const PageLogin = () => import('@/components/login/PageLogin')
-const Page404 = () => import('@/components/error/Page404')
+Vue.use(VueRouter)
 
-Vue.use(Router)
+const router = new VueRouter({
+  // Imperative when the root of the web application is not the root of the domain name.
+  // Ex: domain.com/webapp/ requires to have the BASE_URL variable at "/webapp".
+  base: process.env.BASE_URL,
 
-const router = new Router({
-  mode: 'history',
+  // Automatically adds the specified class when a route matches that of a router-link
   linkActiveClass: 'active',
   linkExactActiveClass: 'exact-active',
-  routes: [
-    {
-      path: '/activate',
-      ...activateLicenceRoute
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: PageLogin
-    },
-    {
-      path: '/',
-      ...mainRoute,
-      meta: {
-        requiresAuth: true
-      }
-    },
-    {
-      path: '*',
-      component: Page404
-    }
-  ]
+
+  // The mode is "history" to remove the # in the url and use a normal url.
+  // However, this requires adding a catch-all fallback route to your server (cf README).
+  mode: 'history',
+  routes
 })
 
+// We add the middleware so that all routes without exception go through the verification of authentication
 router.beforeEach(requiresAuth)
 
 export default router

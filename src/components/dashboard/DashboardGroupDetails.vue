@@ -4,8 +4,8 @@
       <h2>{{ groupName }}</h2>
       <el-dropdown
         v-if="!isDefaultGroup"
-        @command="handleCommand"
-        trigger="click">
+        trigger="click"
+        @command="handleCommand">
         <BaseIconButton name="ios-more" />
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item command="rename">
@@ -45,6 +45,12 @@ export default {
     DashboardGroupDetailsApplications
   },
 
+  data () {
+    return {
+      activeTabName: 'apps'
+    }
+  },
+
   computed: {
     group: get('ui/dashboard/groups/activeGroup'),
     isDefaultGroup: get('ui/dashboard/groups/isDefaultGroupActive'),
@@ -53,12 +59,6 @@ export default {
       return this.isDefaultGroup
         ? this.$t('byDefault')
         : this.group.name
-    }
-  },
-
-  data () {
-    return {
-      activeTabName: 'apps'
     }
   },
 

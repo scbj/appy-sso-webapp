@@ -6,12 +6,12 @@
     <div class="GuestUser__content">
       <h3 class="GuestUser__title">{{ $t('title.guestUser') }}</h3>
       <span class="GuestUser__group">{{ groupName }}</span>
-      <span v-html="$t('message.invitationSent')" class="GuestUser__invitation-sent" />
+      <span class="GuestUser__invitation-sent" v-html="$t('message.invitationSent')" />
       <span class="GuestUser__email">{{ user.email }}</span>
       <BaseButton
-        @click="onCancelInvitationClick"
         class="UserInfos__cancel-invitation"
-        type="secondary">
+        type="secondary"
+        @click="onCancelInvitationClick">
         {{ $t('button.cancelInvitation') }}
       </basebutton>
     </div>

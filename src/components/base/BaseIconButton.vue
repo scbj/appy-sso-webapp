@@ -1,5 +1,5 @@
 <template>
-  <button @click="raiseClickEvent" class="BaseIconButton">
+  <button class="BaseIconButton" @click="raiseClickEvent">
     <div class="BaseIconButton__background">
       <BaseIcon :name="name" class="BaseIconButton__BaseIcon"/>
     </div>

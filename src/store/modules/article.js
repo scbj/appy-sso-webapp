@@ -1,5 +1,5 @@
 import { make } from 'vuex-pathify'
-import api from '@/api/v1'
+import api from '@/services/api/v1'
 
 export const state = {
   all: []

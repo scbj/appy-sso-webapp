@@ -35,16 +35,16 @@
 
     <!-- Archive user button -->
     <BaseButton
-      @click="onArchiveUserClick"
       class="UserInfos__archive-user"
-      type="secondary">
+      type="secondary"
+      @click="onArchiveUserClick">
       {{ archiveUserButtonText }}
     </basebutton>
   </div>
 </template>
 
 <script>
-import api from '@/api/v1'
+import api from '@/services/api/v1'
 import UserInfosSection from '@/components/user/UserInfosSection'
 
 export default {
@@ -56,6 +56,14 @@ export default {
     user: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      ready: false,
+      apps: [],
+      waitingArchivingConfirmation: false
     }
   },
 
@@ -81,14 +89,6 @@ export default {
         ? 'button.archiveUserConfirmation'
         : 'button.archiveUser'
       return this.$t(resourceName)
-    }
-  },
-
-  data () {
-    return {
-      ready: false,
-      apps: [],
-      waitingArchivingConfirmation: false
     }
   },
 

@@ -1,4 +1,4 @@
-import api from '@/api/v1/index'
+import api from '@/services/api/v1'
 
 /**
  * @typedef {Object} UserProviderOptions

@@ -1,6 +1,7 @@
-<template lang="pug">
-.BaseCard
-  slot
+<template>
+  <div class="BaseCard">
+    <slot />
+  </div>
 </template>
 
 <script>

@@ -29,7 +29,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/scss/colors.scss';
-@import '../../assets/scss/UserList.scss';
+@import '../../assets/scss/components/user-list.scss';
 
 .UserListHeader {
   color: $primaryColor;

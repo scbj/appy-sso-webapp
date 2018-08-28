@@ -1,15 +1,22 @@
-<template lang="pug">
-el-dropdown.BaseLanguageSwitch( v-show='currentLanguage' @command='changeLanguage' )
-    span.el-dropdown-link
-      BaseIcon( name='md-globe' )
-      span.BaseLanguageSwitch__current-language( v-text='currentLanguage' )
-      i.el-icon-arrow-down.el-icon--right
-    el-dropdown-menu( slot='dropdown' )
-      el-dropdown-item(
-        v-for='lang in languages'
-        :key='lang.locale'
-        :command='lang.locale'
-      ) {{ lang.label }}
+<template>
+  <el-dropdown
+    v-show="currentLanguage"
+    class="BaseLanguageSwitch"
+    @command="changeLanguage">
+    <span class="el-dropdown-link">
+      <BaseIcon name="md-globe" />
+      <span class="BaseLanguageSwitch__current-language">{{ currentLanguage }}</span>
+      <i class="el-icon-arrow-down el-icon--right" />
+    </span>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item
+        v-for="lang in languages"
+        :key="lang.locale"
+        :command="lang.locale">
+        {{ lang.label }}
+      </el-dropdown-item>
+    </el-dropdown-menu>
+  </el-dropdown>
 </template>
 
 <script>
@@ -43,6 +50,8 @@ export default {
 <style lang="scss" scoped>
 .BaseLanguageSwitch {
   color: #909399;
+  cursor: pointer;
+  user-select: none;
 
   .BaseIcon {
     opacity: .7;

@@ -6,8 +6,8 @@
     <div
       v-for="column in columns"
       :key="column.label"
-      class="UserList__cell"
-      :style="getCellStyle(column)">
+      :style="getCellStyle(column)"
+      class="UserList__cell">
       <slot
         v-if="column.slot"
         :name="column.slot"
@@ -51,7 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/scss/colors.scss';
-@import '../../assets/scss/UserList.scss';
+@import '../../assets/scss/components/user-list.scss';
 
 .UserListRow {
   background: transparent;

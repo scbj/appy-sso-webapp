@@ -1,5 +1,5 @@
-<template lang="pug">
-i.BaseIcon.icon( :class='iconClass' )
+<template>
+  <i :class="iconClass" class="BaseIcon icon" />
 </template>
 
 <script>

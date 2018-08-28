@@ -1,5 +1,5 @@
-import api from '@/api/v1'
-import { setAuthorizationHeader } from '@/http-common'
+import api from '@/services/api/v1'
+import { setAuthorizationHeader } from '@/plugins/axios'
 
 export async function login ({ commit }, credentials) {
   commit('SET_PENDING', true)

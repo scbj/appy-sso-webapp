@@ -8,7 +8,7 @@
       :rules="rules"
       :primary-button-text="primaryButtonText"
       @validated="createUsers">
-      <el-form-item prop="text" :label="$t('label.emailList')">
+      <el-form-item :label="$t('label.emailList')" prop="text">
         <el-input
           v-model="form.text"
           :autosize="{ minRows: 4, maxRows: 7}"
@@ -39,7 +39,7 @@ import { get } from 'vuex-pathify'
 
 import ModalForm from '@/components/dashboard/modals/ModalForm'
 import { buildMessage } from '@/utils/message'
-import validator from '@/validators/validator'
+import validator from '@/utils/validators/validator'
 
 export default {
   components: {

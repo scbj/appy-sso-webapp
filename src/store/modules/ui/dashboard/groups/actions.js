@@ -1,4 +1,4 @@
-import api from '@/api/v1'
+import api from '@/services/api/v1'
 
 export async function removeActiveGroup ({ getters, commit, dispatch, rootState }) {
   const group = getters.activeGroup

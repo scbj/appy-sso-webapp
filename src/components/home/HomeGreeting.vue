@@ -1,6 +1,7 @@
-<template lang="pug">
-.HomeGreeting
-  h3( v-text='message' )
+<template>
+  <div class="HomeGreeting">
+    <h3>{{ message }}</h3>
+  </div>
 </template>
 
 <script>

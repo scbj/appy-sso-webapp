@@ -1,15 +1,14 @@
+/**
+ * Handle Internet Explorer weakness. 🤓
+ */
+
 import { detect } from 'detect-browser'
 
-/**
- * Handle Internet Explorer weakness.
- */
-export function handleIE () {
-  const browser = detect()
+const browser = detect()
+if (browser && browser.name === 'ie') {
+  // Add support for promises
+  window.Promise = require('bluebird')
 
-  // require promise and special IE css
-  if (browser) {
-    if (browser.name === 'ie') {
-      window.Promise = require('bluebird')
-    }
-  }
+  // Adds ResizeObserver support through a polyfill
+  window.ResizeObserver = require('resize-observer-polyfill')
 }

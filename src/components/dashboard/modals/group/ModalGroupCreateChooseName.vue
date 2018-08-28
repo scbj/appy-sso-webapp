@@ -11,7 +11,7 @@ ModalForm.ModalGroupCreateChooseName(
 
 <script>
 import ModalForm from '@/components/dashboard/modals/ModalForm'
-import validator from '@/validators/validator'
+import validator from '@/utils/validators/validator'
 
 export default {
   components: {

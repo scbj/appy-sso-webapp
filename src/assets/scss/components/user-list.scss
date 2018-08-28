@@ -1,0 +1,35 @@
+@import '../colors.scss';
+
+.UserListHeader,
+.UserListRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &:hover .UserList__checkbox .el-checkbox {
+    opacity: 1;
+  }
+}
+
+.UserList__cell {
+  padding: 0 .8rem;
+  flex-basis: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  overflow: hidden;
+
+  &.UserList__checkbox {
+    flex-basis: auto;
+
+    .el-checkbox { opacity: 0; }
+    .el-checkbox.is-checked { opacity: 1 }
+  }
+
+  > span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

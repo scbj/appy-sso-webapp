@@ -6,7 +6,7 @@
       <span>
         {{ $t('message.noData.appInGroup') }}
       </span>
-      <BaseButton @click="addApps" type="secondary">{{ $t('button.addApplications') }}</BaseButton>
+      <BaseButton type="secondary" @click="addApps">{{ $t('button.addApplications') }}</BaseButton>
     </div>
 
     <!-- When there is one or more apps in the active group -->
@@ -18,8 +18,8 @@
       <div class="DashboardGroupDetailsApplications__buttons">
         <BaseButton
           v-if="selectedApps.length"
-          @click="removeSelectedApps"
-          type="secondary">
+          type="secondary"
+          @click="removeSelectedApps">
           {{ removeFromGroupText }}
         </BaseButton>
         <BaseButton @click="addApps">{{ $t('button.addApplications') }}</BaseButton>

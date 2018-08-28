@@ -18,7 +18,7 @@ import { get } from 'vuex-pathify'
 
 import ModalForm from '@/components/dashboard/modals/ModalForm'
 import { buildMessage } from '@/utils/message'
-import validator from '@/validators/validator'
+import validator from '@/utils/validators/validator'
 
 export default {
   components: {

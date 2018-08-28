@@ -4,9 +4,9 @@
     <slot/>
     <BaseButton
       v-if="showButton"
-      @click="$emit('next')"
       :class="{ pending }"
-      class="ActivateLicenceBaseStep__validate-button">
+      class="ActivateLicenceBaseStep__validate-button"
+      @click="$emit('next')">
       {{ button | uppercase }}
     </BaseButton>
   </div>
@@ -16,20 +16,22 @@
 import { uppercase } from '@/utils/filters'
 
 export default {
+  filters: {
+    uppercase
+  },
+
   props: {
     title: { type: String, required: true },
     button: { type: String, required: true },
     showButton: { type: Boolean, default: true },
     pending: { type: Boolean, default: false }
-  },
-
-  filters: {
-    uppercase
   }
 }
 </script>
 
 <style lang="scss" scoped>
+$errorColor: #C70F0F;
+
 .ActivateLicenceBaseStep {
   display: flex;
   flex-direction: column;
@@ -43,6 +45,57 @@ export default {
     font-size: 2.55rem;
     text-align: center;
     margin-bottom: 4.2rem;
+  }
+
+  input::-ms-clear {
+    display: none;
+  }
+
+  input {
+    --input-padding-horizontal: 3rem;
+    --text-color: #707070;
+    color: var(--text-color);
+    font-family: "source-sans-pro";
+    font-size: 1.8rem;
+    border: 1px solid #E4E4E4;
+    border-radius: 5px;
+    padding: 1.2rem var(--input-padding-horizontal);
+    box-shadow: 0 3px 14px -1px rgba(#393939, 0.1);
+    transition: box-shadow .1s ease-in-out;
+
+    &:focus, &:active {
+      outline: none;
+      box-shadow: 0 3px 14px -1px rgba(#393939, 0.2);
+    }
+  }
+
+  input::placeholder,
+  .placeholder {
+    opacity: .2;
+    color: var(--text-color);
+  }
+
+  .message.error {
+    color: $errorColor;
+    font-size: 1.33rem;
+    font-weight: 600;
+    margin-top: 1.2rem;
+  }
+
+  .message.error > .learn-more {
+    cursor: help;
+    position: relative;
+    max-width: 30em;
+
+    &::after {
+      content: '';
+      background-color: $errorColor;
+      position: absolute;
+      height: 1px;
+      width: 100%;
+      left: 0;
+      bottom: -.1em;
+    }
   }
 }
 

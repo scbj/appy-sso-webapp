@@ -2,10 +2,10 @@
   <el-pagination
     :total="total"
     :page-size="pageSize"
-    @current-change="onCurrentChange"
     class="UserListPagination"
     background
-    layout="prev,pager,next" />
+    layout="prev,pager,next"
+    @current-change="onCurrentChange" />
 </template>
 
 <script>

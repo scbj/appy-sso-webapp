@@ -1,8 +1,8 @@
 <template>
   <ModalForm
     :primary-button-text="$t('button.addApplications')"
-    @validated="formValidated"
-    class="ModalGroupAddApplications">
+    class="ModalGroupAddApplications"
+    @validated="formValidated">
     <h2 class="ModalGroupAddApplications__title">{{ $t('title.addApps') }}</h2>
     <ApplicationList
       v-loading="pending"
@@ -25,6 +25,13 @@ export default {
     ModalForm
   },
 
+  data () {
+    return {
+      pending: false,
+      selectedApps: []
+    }
+  },
+
   computed: {
     activeGroup: get('dashboard/groups/activeGroup'),
     apps: get('application/all'),
@@ -36,13 +43,6 @@ export default {
     primaryButtonText () {
       const count = this.selectedApps
       return this.$tc('button.addApplications', count, { count })
-    }
-  },
-
-  data () {
-    return {
-      pending: false,
-      selectedApps: []
     }
   },
 
@@ -58,6 +58,9 @@ export default {
     },
 
     async formValidated () {
+      // Before we must verify that there are selected applications
+      if (!this.selectedApps.length) return
+
       this.pending = true
 
       await this.$store.dispatch('ui/dashboard/groups/apps/addApps', {

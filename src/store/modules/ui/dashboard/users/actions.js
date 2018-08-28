@@ -1,5 +1,5 @@
 import UserProvider from '@/services/UserProvider'
-import api from '@/api/v1/index'
+import api from '@/services/api/v1'
 
 const userProvider = new UserProvider({
   fields: [ 'id', 'firstname', 'lastname', 'email', 'picture_url', 'created_at', 'updated_at' ],

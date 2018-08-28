@@ -1,19 +1,20 @@
-<template lang="pug">
-.ArticleList
-  ArticleItem(
-    v-for='article in articles'
-    :key='article.id'
-    :content='article.content')
+<template>
+  <div class="ArticleList">
+    <ArticleListItem
+      v-for="article in articles"
+      :key="article.id"
+      :content="article.content" />
+  </div>
 </template>
 
 <script>
 import { get } from 'vuex-pathify'
 
-import ArticleItem from './ArticleItem'
+import ArticleListItem from './ArticleListItem'
 
 export default {
   components: {
-    ArticleItem
+    ArticleListItem
   },
 
   computed: {

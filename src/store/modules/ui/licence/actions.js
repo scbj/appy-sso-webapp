@@ -1,4 +1,4 @@
-import api from '@/api/v1'
+import api from '@/services/api/v1'
 
 export function completeStep ({ state, commit }, payload) {
   const completedStepCount = state.completedStepCount
@@ -16,12 +16,11 @@ export function validate (_, payload) {
 }
 
 export function activate ({ state }, payload) {
-  const data = {
+  return api.licence.activate({
     owner: payload,
     licenceKey: state.key,
     companyName: state.companyName
-  }
-  return api.licence.activate(data)
+  })
 }
 
 export function clean ({ commit }) {
