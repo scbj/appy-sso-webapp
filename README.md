@@ -30,7 +30,7 @@ When the project manager is launched you can then import the Appy project.
 
 ### Requirements
 
-You must enter the API development URL in the _./env.**development**_ file at the *VUE_APP_API_URL* attribute.
+You must enter the API development URL in the _./.env.**development**_ file at the *VUE_APP_API_URL* attribute.
 
 ### Run task
 
@@ -40,7 +40,7 @@ Go to the **Tasks** section on the project manager, select the **serve** task an
 
 ### Requirements
 
-You must enter the API development URL in the _./env.**production**_ file at the *VUE_APP_API_URL* attribute.
+You must enter the API development URL in the _./.env.**production**_ file at the *VUE_APP_API_URL* attribute.
 
 ### Run task
 
