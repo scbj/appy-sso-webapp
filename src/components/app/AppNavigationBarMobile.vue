@@ -65,6 +65,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/scss/vars.scss';
+@import '../../assets/scss/colors.scss';
 
 .AppNavigationBarMobile {
   z-index: $z-index-dashboard-navigation-bar;
@@ -99,7 +100,7 @@ export default {
   transition: color .3s ease-in-out;
 
   &.active {
-    color: #A250E5;
+    color: $primary-color;
     transition: color 0s;
 
     .AppNavigationBarMobile__BaseIcon {

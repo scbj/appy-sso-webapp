@@ -1,15 +1,18 @@
 <template>
-  <div class="GuestUserBackground">
-    <PurpleWave />
-    <Clouds />
-    <Planes />
-  </div>
+  <transition-group
+    name="fade-in"
+    tag="div"
+    class="GuestUserBackground">
+    <PurpleWave key="purpleWave" class="purple-wave" />
+    <Clouds key="clouds" />
+    <Planes key="planes" />
+  </transition-group>
 </template>
 
 <script>
-import Clouds from '@/assets/svg/clouds.svg'
-import Planes from '@/assets/svg/planes.svg'
-import PurpleWave from '@/assets/svg/purple-wave.svg'
+const Clouds = () => import('@/assets/svg/clouds.svg')
+const Planes = () => import('@/assets/svg/planes.svg')
+const PurpleWave = () => import('@/assets/svg/purple-wave.svg')
 
 export default {
   components: {
@@ -51,5 +54,13 @@ svg.planes {
   width: 82%;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.fade-in-enter-active {
+  transition: opacity .2s ease-in-out;
+}
+
+.fade-in-enter {
+  opacity: 0
 }
 </style>

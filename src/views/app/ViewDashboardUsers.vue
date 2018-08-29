@@ -40,32 +40,6 @@ export default {
     UserList
   },
 
-  computed: {
-    pending: get('ui/dashboard/users/pending'),
-    users: get('ui/dashboard/users/all'),
-    selectedUsers: sync('ui/dashboard/users/selectedUsers'),
-    totalUserCount: get('ui/dashboard/users/totalUserCount'),
-
-    hasUsers () {
-      return this.users.length
-    },
-
-    /**
-     * Returns true when at least one user is selected
-     * from the list, otherwise returns false.
-     * @returns {Boolean}
-     */
-    selectionStateEnabled () {
-      return this.selectedUsers.length > 0
-    },
-
-    deleteUserText () {
-      // The user must be informed of the state of his selection
-      const count = this.selectedUsers.length
-      return this.$tc('button.deleteUser', count, { count })
-    }
-  },
-
   data () {
     return {
       query: '',
@@ -108,6 +82,32 @@ export default {
           breakpointWidth: 920
         }
       ]
+    }
+  },
+
+  computed: {
+    pending: get('ui/dashboard/users/pending'),
+    users: get('ui/dashboard/users/all'),
+    selectedUsers: sync('ui/dashboard/users/selectedUsers'),
+    totalUserCount: get('ui/dashboard/users/totalUserCount'),
+
+    hasUsers () {
+      return this.users.length
+    },
+
+    /**
+     * Returns true when at least one user is selected
+     * from the list, otherwise returns false.
+     * @returns {Boolean}
+     */
+    selectionStateEnabled () {
+      return this.selectedUsers.length > 0
+    },
+
+    deleteUserText () {
+      // The user must be informed of the state of his selection
+      const count = this.selectedUsers.length
+      return this.$tc('button.deleteUser', count, { count })
     }
   },
 
@@ -182,7 +182,7 @@ export default {
 }
 
 .ViewDashboardUsers__total-user {
-  color: $primaryColor;
+  color: $primary-color;
   margin-left: 2rem;
   flex-grow: 1;
 }

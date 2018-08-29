@@ -142,10 +142,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// @import '../../assets/scss/activate-licence.scss';
-
-$input-padding-horizontal: 3rem;
-
 .input {
   position: relative;
 
@@ -166,7 +162,7 @@ $input-padding-horizontal: 3rem;
     white-space: pre;
     position: absolute;
     top: 50%;
-    left: $input-padding-horizontal;
+    left: 3rem;
     transform: translateY(-50%);
   }
 

@@ -13,6 +13,15 @@ module.exports = {
     svgRule
       .use('vue-svg-loader')
       .loader('vue-svg-loader')
+      .tap(_ => ({
+        svgo: {
+          plugins: [
+            { removeDoctype: true },
+            { removeComments: true },
+            { cleanupIDs: { minify: false } }
+          ]
+        }
+      }))
   },
 
   baseUrl: undefined,

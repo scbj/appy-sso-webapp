@@ -46,22 +46,6 @@ export default {
     ModalForm
   },
 
-  computed: {
-    groups: get('group/all'),
-    defaultGroup: get('group/defaultGroup'),
-
-    emails () {
-      return this.form.text
-        ? this.form.text.trim().split(/(?:;| |\n)+/).filter(x => x)
-        : []
-    },
-
-    primaryButtonText () {
-      const count = this.emails.length || 1
-      return this.$tc('button.createUsers', count, { count })
-    }
-  },
-
   data () {
     return {
       pending: false,
@@ -79,6 +63,22 @@ export default {
           validator: this.validateGroupId
         }]
       }
+    }
+  },
+
+  computed: {
+    groups: get('group/all'),
+    defaultGroup: get('group/defaultGroup'),
+
+    emails () {
+      return this.form.text
+        ? this.form.text.trim().split(/(?:;| |\n)+/).filter(x => x)
+        : []
+    },
+
+    primaryButtonText () {
+      const count = this.emails.length || 1
+      return this.$tc('button.createUsers', count, { count })
     }
   },
 

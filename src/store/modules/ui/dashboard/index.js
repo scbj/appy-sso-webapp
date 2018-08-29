@@ -1,9 +1,7 @@
 import groups from './groups'
 import users from './users'
 
-// TODO: Décommenter la ligne suivante et effacer la seconde ligne
-// import ModalUserDetails from '@/components/dashboard/modals/ModalUserDetails'
-const ModalUserDetails = null
+import ModalUserDetails from '@/components/dashboard/modals/ModalUserDetails'
 
 export const actions = {
   openUserDetails ({ dispatch }, payload) {

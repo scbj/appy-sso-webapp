@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import api from '@/api/v1'
+import api from '@/services/api/v1'
 import GuestUser from '@/components/user/GuestUser'
 import UserInfos from '@/components/user/UserInfos'
 
@@ -29,16 +29,16 @@ export default {
     }
   },
 
-  computed: {
-    isActivated () {
-      return !!this.user.activated
-    }
-  },
-
   data () {
     return {
       ready: !this.user.activated,
       fetchedUser: this.user
+    }
+  },
+
+  computed: {
+    isActivated () {
+      return !!this.user.activated
     }
   },
 

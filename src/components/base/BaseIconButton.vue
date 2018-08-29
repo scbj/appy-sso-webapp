@@ -25,15 +25,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color: #A250E5;
+@import '../../assets/scss/colors.scss';
 
 .BaseIconButton {
   font-size: 2.6rem;
-  color: $color;
+  color: $primary-color;
   cursor: pointer;
 
   &:active .BaseIconButton__background::before {
-    background: rgba(lighten($color, 26%), .16);
+    background: rgba(lighten($primary-color, 26%), .16);
     transform: scale(1);
   }
 }
@@ -50,7 +50,7 @@ $color: #A250E5;
 
 .BaseIconButton__background::before {
   content: '';
-  background: rgba(lighten($color, 26%), .16);
+  background: rgba(lighten($primary-color, 26%), .16);
   border-radius: 50%;
   position: absolute;
   top: 0;

@@ -179,15 +179,15 @@ button {
   }
 
   a {
-    color: $primaryColor;
-    border-bottom: 1px solid $primaryColor;
+    color: $primary-color;
+    border-bottom: 1px solid $primary-color;
     padding: 0 .4em;
     position: relative;
     transition: border .11s ease-in-out;
 
     &::after {
       content: '';
-      background: rgba($primaryColor, .1);
+      background: rgba($primary-color, .1);
       border-radius: 0;
       position: absolute;
       top: 0;

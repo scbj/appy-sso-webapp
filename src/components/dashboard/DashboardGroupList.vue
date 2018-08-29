@@ -3,27 +3,27 @@
     <div class="DashboardGroupList__header">
       <h2>{{ $t('groups') }}</h2>
       <BaseIconButton
-        @click="createGroup"
         class="DashboardGroupList__create-group-button"
-        name="md-add" />
+        name="md-add"
+        @click="createGroup" />
     </div>
     <el-input
       v-model="query"
-      class='DashboardGroupList__search-bar'
-      placeholder='Rechercher...'
-      prefix-icon='el-icon-search'/>
+      class="DashboardGroupList__search-bar"
+      placeholder="Rechercher..."
+      prefix-icon="el-icon-search"/>
     <DashboardGroupListItem
       v-if="defaultGroup"
       v-show="!query"
       :group="defaultGroup"
       :read-only="true"
       :override-name="$t('byDefault')"
-      @click.native="onGroupClick(defaultGroup)"
-      class="DashboardGroupListItem__default-group" />
+      class="DashboardGroupListItem__default-group"
+      @click.native="onGroupClick(defaultGroup)" />
     <p
       v-show="query"
-      v-html="searchResultMessage"
-      class="DashboardGroupList__search-result"/>
+      class="DashboardGroupList__search-result"
+      v-html="searchResultMessage"/>
     <ul>
       <DashboardGroupListItem
         v-for="group in filteredGroups"
@@ -44,6 +44,13 @@ export default {
   components: {
     DashboardGroupListItem
   },
+
+  data () {
+    return {
+      query: ''
+    }
+  },
+
   computed: {
     groups: get('group/sortedList'),
     defaultGroup: get('group/defaultGroup'),
@@ -67,12 +74,6 @@ export default {
       const count = this.filteredGroups.length
       const query = this.query
       return this.$tc('message.groupSearchResults', count, { count, query })
-    }
-  },
-
-  data () {
-    return {
-      query: ''
     }
   },
 
@@ -113,7 +114,7 @@ export default {
 }
 
 .DashboardGroupList__user-count {
-  color: $primaryColor;
+  color: $primary-color;
   margin-left: .5em;
 }
 
@@ -129,7 +130,7 @@ export default {
 
 .DashboardGroupList__search-result {
   font-style: italic;
-  color: $primaryColor;
+  color: $primary-color;
   margin-bottom: 1em;
   margin-top: 2em;
   font-size: 1.1rem;

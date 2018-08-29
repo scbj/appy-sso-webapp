@@ -3,9 +3,18 @@
     <div class="AppFooter__copyright">
       © Appy {{ getCurrentYear() }}. Version 0.0.1
     </div>
-    <a class="AppFooter__contact" href="#contact" v-text="$t('contact')" />
-    <a class="AppFooter__about" href="#about" v-text="$t('about')" />
-    <a class="AppFooter__terms" href="#terms" v-text="$t('terms')" />
+    <a
+      class="AppFooter__contact"
+      href="#contact"
+      v-text="$t('contact')" />
+    <a
+      class="AppFooter__about"
+      href="#about"
+      v-text="$t('about')" />
+    <a
+      class="AppFooter__terms"
+      href="#terms"
+      v-text="$t('terms')" />
     <BaseLanguageSwitch class="AppFooter__language" />
   </div>
 </template>

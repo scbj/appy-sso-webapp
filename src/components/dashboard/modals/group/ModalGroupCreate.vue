@@ -3,10 +3,10 @@
     <h2 class="ModalGroupCreate__title">{{ $t('title.createGroup') }}</h2>
     <ModalGroupCreateChooseName v-if="!groupName" @nameChosen="onNameChosen"/>
     <ModalFormAddUsers
-      v-else
       v-loading="creating"
-      @users-added="onUsersAdded"
-      primary-button-text-resource-name="button.createGroupWithPeoples" />
+      v-else
+      primary-button-text-resource-name="button.createGroupWithPeoples"
+      @users-added="onUsersAdded" />
   </div>
 </template>
 

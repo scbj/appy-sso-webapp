@@ -150,7 +150,10 @@ export default {
   user-select: none
 }
 
-.UserInfos__group { margin-top: .3em }
+.UserInfos__group {
+  color: $primary-color;
+  margin-top: .3em;
+}
 
 .UserInfos__app-list {
   display: flex;

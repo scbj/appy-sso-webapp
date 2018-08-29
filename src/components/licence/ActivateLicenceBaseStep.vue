@@ -30,7 +30,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$errorColor: #C70F0F;
+$error-color: #C70F0F;
+$input-color: #707070;
 
 .ActivateLicenceBaseStep {
   display: flex;
@@ -52,14 +53,12 @@ $errorColor: #C70F0F;
   }
 
   input {
-    --input-padding-horizontal: 3rem;
-    --text-color: #707070;
-    color: var(--text-color);
+    color: $input-color;
     font-family: "source-sans-pro";
     font-size: 1.8rem;
     border: 1px solid #E4E4E4;
     border-radius: 5px;
-    padding: 1.2rem var(--input-padding-horizontal);
+    padding: 1.2rem 3rem;
     box-shadow: 0 3px 14px -1px rgba(#393939, 0.1);
     transition: box-shadow .1s ease-in-out;
 
@@ -72,11 +71,11 @@ $errorColor: #C70F0F;
   input::placeholder,
   .placeholder {
     opacity: .2;
-    color: var(--text-color);
+    color: $input-color;
   }
 
   .message.error {
-    color: $errorColor;
+    color: $error-color;
     font-size: 1.33rem;
     font-weight: 600;
     margin-top: 1.2rem;
@@ -89,7 +88,7 @@ $errorColor: #C70F0F;
 
     &::after {
       content: '';
-      background-color: $errorColor;
+      background-color: $error-color;
       position: absolute;
       height: 1px;
       width: 100%;

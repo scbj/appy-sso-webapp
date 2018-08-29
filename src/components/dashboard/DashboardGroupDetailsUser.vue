@@ -6,26 +6,26 @@
       <span>
         {{ $t('message.noData.userInGroup') }}
       </span>
-      <BaseButton @click="addUsers" type="secondary">{{ $t('button.addUsers') }}</BaseButton>
+      <BaseButton type="secondary" @click="addUsers">{{ $t('button.addUsers') }}</BaseButton>
     </div>
 
     <!-- When there is one or more users in the active group -->
     <template v-else>
       <UserList
         v-loading="pending"
-        class="DashboardGroupDetails__user-list"
         :columns="columns"
         :users="sortedUsers"
         :selected-users.sync="selectedUsers"
         :total="totalUserCount"
+        class="DashboardGroupDetails__user-list"
         @page-changed="fetchUsers"/>
 
-      <div class='DashboardGroupDetailsUser__buttons'>
+      <div class="DashboardGroupDetailsUser__buttons">
         <transition name="button-appear">
           <BaseButton
             v-if="!isDefaultGroup && selectedUsers.length"
-            @click="removeSelectedUsers"
-            type="secondary">
+            type="secondary"
+            @click="removeSelectedUsers">
             {{ removeFromGroupText }}
           </BaseButton>
         </transition>
@@ -46,25 +46,6 @@ export default {
   components: {
     UserList,
     ModalGroupAddUsers
-  },
-  computed: {
-    group: get('ui/dashboard/groups/activeGroup'),
-    isDefaultGroup: get('ui/dashboard/groups/isDefaultGroupActive'),
-    pending: get('ui/dashboard/groups/users/pending'),
-    users: get('ui/dashboard/groups/users/all'),
-    selectedUsers: sync('ui/dashboard/groups/users/selectedUsers'),
-    currentPage: get('ui/dashboard/groups/users/currentPage'),
-    totalUserCount: get('ui/dashboard/groups/users/totalUserCount'),
-
-    sortedUsers () {
-      return sortAlphabetically(this.users, 'firstname')
-    },
-
-    removeFromGroupText () {
-      // The user must be informed of the state of his selection
-      const count = this.selectedUsers.length
-      return this.$tc('button.removeFromGroup', count, { count })
-    }
   },
 
   data () {
@@ -94,6 +75,26 @@ export default {
           breakpointWidth: 0
         }
       ]
+    }
+  },
+
+  computed: {
+    group: get('ui/dashboard/groups/activeGroup'),
+    isDefaultGroup: get('ui/dashboard/groups/isDefaultGroupActive'),
+    pending: get('ui/dashboard/groups/users/pending'),
+    users: get('ui/dashboard/groups/users/all'),
+    selectedUsers: sync('ui/dashboard/groups/users/selectedUsers'),
+    currentPage: get('ui/dashboard/groups/users/currentPage'),
+    totalUserCount: get('ui/dashboard/groups/users/totalUserCount'),
+
+    sortedUsers () {
+      return sortAlphabetically(this.users, 'firstname')
+    },
+
+    removeFromGroupText () {
+      // The user must be informed of the state of his selection
+      const count = this.selectedUsers.length
+      return this.$tc('button.removeFromGroup', count, { count })
     }
   },
 

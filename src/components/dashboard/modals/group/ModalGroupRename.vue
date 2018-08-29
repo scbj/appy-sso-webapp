@@ -25,14 +25,6 @@ export default {
     ModalForm
   },
 
-  computed: {
-    activeGroup: get('ui/dashboard/groups/activeGroup'),
-
-    activeGroupName () {
-      return this.activeGroup.name
-    }
-  },
-
   data () {
     return {
       pending: false,
@@ -45,6 +37,14 @@ export default {
           validator: this.validateGroupName
         }]
       }
+    }
+  },
+
+  computed: {
+    activeGroup: get('ui/dashboard/groups/activeGroup'),
+
+    activeGroupName () {
+      return this.activeGroup.name
     }
   },
 

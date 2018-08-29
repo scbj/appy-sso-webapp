@@ -32,7 +32,7 @@ export default {
 @import '../../assets/scss/components/user-list.scss';
 
 .UserListHeader {
-  color: $primaryColor;
+  color: $primary-color;
   font-size: .8em;
   font-weight: 400;
   height: 4rem;

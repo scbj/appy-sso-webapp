@@ -46,6 +46,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/colors.scss';
+
 .email-sent {
   color: #5C565E;
   font-size: 1.76rem;
@@ -80,12 +82,10 @@ export default {
   width: 460px;
 
   .check-sign {
-    --start-color: #A250E5;
-    --stop-color: #7C4BFC;
     background: linear-gradient(
       135deg,
-      var(--start-color) 0%,
-      var(--stop-color) 100%
+      $primary-color 0%,
+      $secondary-color 100%
     );
     border-radius: 50%;
     position: absolute;

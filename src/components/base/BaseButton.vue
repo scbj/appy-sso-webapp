@@ -36,7 +36,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color: #A250E5;
+@import '../../assets/scss/colors.scss';
+$color: $primary-color;
 $offset-x: 0;
 
 @mixin box-shadow-normal {
@@ -92,7 +93,7 @@ $offset-x: 0;
   background: $color;
   background: linear-gradient(
     135deg,
-    #A250E5 0%,
+    $primary-color 0%,
     #7C4BFC 100%
   );
   border-radius: .3em;

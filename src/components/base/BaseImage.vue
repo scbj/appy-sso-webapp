@@ -100,15 +100,14 @@ export default {
 
 <style lang="scss" scoped>
 .BaseImage_no-source {
-  --color1: #eeeeee;
-  --color2: #e6e6e6;
+  $color: #eeeeee;
   background: linear-gradient(
     to right,
-    var(--color1) 0%,
-    var(--color1) 35%,
-    var(--color2) 50%,
-    var(--color1) 65%,
-    var(--color1) 100%
+    $color 0%,
+    $color 35%,
+    darken($color, 3%) 50%,
+    $color 65%,
+    $color 100%
   );
   background-size: 300% 100%;
   background-position-x: 100%;

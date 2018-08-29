@@ -90,7 +90,7 @@ export default {
 }
 
 .GuestUser__invitation-sent {
-  color: $primaryColor;
+  color: $primary-color;
   margin-top: 4em;
   text-align: center;
   user-select: none;

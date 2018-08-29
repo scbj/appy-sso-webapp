@@ -2,8 +2,8 @@
   <ModalForm
     :model="form"
     :primary-button-text="primaryButtonText"
-    @validated="formValidated"
-    class="ModalFormAddUsers">
+    class="ModalFormAddUsers"
+    @validated="formValidated">
     <el-form-item :label="$t('label.addUsers')" prop="query">
       <el-input
         v-model="form.query"
@@ -21,8 +21,8 @@
       @page-changed="onPageChanged" />
     <span
       v-show="!hasUsers && !pending"
-      v-text="$t('message.noData.search')"
-      class="no-data" />
+      class="no-data"
+      v-text="$t('message.noData.search')" />
   </ModalForm>
 </template>
 
@@ -50,16 +50,6 @@ export default {
     }
   },
 
-  computed: {
-    hasUsers () {
-      return this.users.length
-    },
-    primaryButtonText () {
-      const count = this.selectedUsers.length
-      return this.$tc(this.primaryButtonTextResourceName, count, { count })
-    }
-  },
-
   data () {
     return {
       pending: false,
@@ -81,6 +71,16 @@ export default {
           slot: 'role'
         }
       ]
+    }
+  },
+
+  computed: {
+    hasUsers () {
+      return this.users.length
+    },
+    primaryButtonText () {
+      const count = this.selectedUsers.length
+      return this.$tc(this.primaryButtonTextResourceName, count, { count })
     }
   },
 

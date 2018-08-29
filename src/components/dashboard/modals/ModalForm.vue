@@ -1,20 +1,20 @@
 <template>
   <el-form
+    ref="elForm"
     :rules="rules"
     :model="model"
-    @submit.native.prevent
-    ref="elForm"
     class="ModalForm"
-    status-icon="status-icon">
+    status-icon="status-icon"
+    @submit.native.prevent>
     <slot/>
     <el-form-item class="ModalForm__buttons">
       <BaseButton
         v-if="canCancel"
-        @click="closeModal"
-        type="secondary">
+        type="secondary"
+        @click="closeModal">
         {{ $t('cancel') }}
       </BaseButton>
-      <BaseButton @click="validate" :disabled="primaryButtonDisabled">
+      <BaseButton :disabled="primaryButtonDisabled" @click="validate">
         {{ primaryButtonText }}
       </BaseButton>
     </el-form-item>

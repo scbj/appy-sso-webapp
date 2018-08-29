@@ -1,11 +1,11 @@
 <template>
   <li
-    class="DashboardGroupListItem"
     :class="{
       'DashboardGroupListItem_read-only': readOnly,
       'DashboardGroupListItem_empty': !hasUsers,
       'DashboardGroupListItem_active': isActive
     }"
+    class="DashboardGroupListItem"
   >
     <span class="DashboardGroupListItem__name">{{ name }}</span>
     <span v-if="hasUsers" class="DashboardGroupListItem__count">{{ count }}</span>
@@ -78,7 +78,7 @@ export default {
   }
 
   &.DashboardGroupListItem_active {
-    color: $primaryColor;
+    color: $primary-color;
 
     .DashboardGroupListItem__name { opacity: 1 }
   }
@@ -92,7 +92,7 @@ export default {
 .DashboardGroupListItem::before {
   $size: .3em;
   content: '';
-  background: $primaryColor;
+  background: $primary-color;
   border-radius: 50%;
   opacity: 0;
   position: absolute;
@@ -108,7 +108,6 @@ export default {
   $side-padding: -0.6em;
 
   content: '';
-  // background: rgba($primaryColor, .1);
   background: rgba(black, .04);
   border-radius: 6px;
   opacity: 0;
@@ -120,7 +119,7 @@ export default {
 }
 
 .DashboardGroupListItem__count {
-  color: $primaryColor;
+  color: $primary-color;
   margin-left: .5em;
 }
 </style>

@@ -66,6 +66,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/scss/vars.scss';
+@import '../../assets/scss/colors.scss';
 
 .HomeApplicationListItem {
   -webkit-tap-highlight-color: transparent;
@@ -94,7 +95,7 @@ export default {
 
     @media screen and (min-width: $mobile) {
       background-color: white;
-      $color: darken(#A250E5, 60%);
+      $color: darken($primary-color, 60%);
       box-shadow: 0 16px 40px -2px rgba($color,.04),
               0 2px 20px rgba($color,0.02);
 

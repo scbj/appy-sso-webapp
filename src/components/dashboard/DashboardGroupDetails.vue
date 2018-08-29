@@ -105,6 +105,6 @@ export default {
 
 h2::selection {
   color: white;
-  background: rgba($primaryColor, .8);
+  background: rgba($primary-color, .8);
 }
 </style>
