@@ -16,8 +16,8 @@
       </el-form-item>
       <el-form-item
         v-if="groups.length"
-        prop="group"
-        label="Groupe associé">
+        :label="$t('label.associatedGroup')"
+        prop="group">
         <el-select v-model="form.groupId" placeholder="Choissiez un groupe">
           <el-option
             v-if="defaultGroup"

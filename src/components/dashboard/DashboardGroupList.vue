@@ -9,8 +9,8 @@
     </div>
     <el-input
       v-model="query"
+      :placeholder="$t('search')"
       class="DashboardGroupList__search-bar"
-      placeholder="Rechercher..."
       prefix-icon="el-icon-search"/>
     <DashboardGroupListItem
       v-if="defaultGroup"

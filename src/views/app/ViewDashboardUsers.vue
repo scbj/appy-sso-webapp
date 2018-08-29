@@ -5,8 +5,8 @@
     <el-input
       v-if="totalUserCount || query"
       v-model="query"
+      :placeholder="$t('placeholder.search.user')"
       class="ViewDashboardUsers__search-bar"
-      placeholder="Rechercher un utilisateur"
       prefix-icon="el-icon-search"/>
 
     <UserList
@@ -42,8 +42,13 @@ export default {
 
   data () {
     return {
-      query: '',
-      columns: [
+      query: ''
+    }
+  },
+
+  computed: {
+    columns () {
+      return [
         {
           grow: 1,
           breakpointWidth: 660,
@@ -82,10 +87,7 @@ export default {
           breakpointWidth: 920
         }
       ]
-    }
-  },
-
-  computed: {
+    },
     pending: get('ui/dashboard/users/pending'),
     users: get('ui/dashboard/users/all'),
     selectedUsers: sync('ui/dashboard/users/selectedUsers'),

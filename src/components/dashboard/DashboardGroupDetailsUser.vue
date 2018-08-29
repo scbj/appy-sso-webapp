@@ -48,9 +48,9 @@ export default {
     ModalGroupAddUsers
   },
 
-  data () {
-    return {
-      columns: [
+  computed: {
+    columns () {
+      return [
         {
           grow: 1,
           breakpointWidth: 660,
@@ -75,10 +75,7 @@ export default {
           breakpointWidth: 0
         }
       ]
-    }
-  },
-
-  computed: {
+    },
     group: get('ui/dashboard/groups/activeGroup'),
     isDefaultGroup: get('ui/dashboard/groups/isDefaultGroupActive'),
     pending: get('ui/dashboard/groups/users/pending'),
