@@ -1,19 +1,15 @@
 <template>
   <div :class="$mq" class="ViewAuthLogin">
-    <div v-show="$mq === 'mobile'" class="app-title">
-      <AppLogo class="ViewAuthLogin__logo" />
-    </div>
-    <el-card v-loading="pending">
-      <div slot="header">
-        <h4 v-text="cardHeader"/>
-      </div>
+    <AppLogo v-show="$mq === 'mobile'" class="ViewAuthLogin__logo" />
+    <BaseCard v-loading="pending" class="ViewAuthLogin__container">
+      <h4 class="ViewAuthLogin__title">{{ cardHeader }}</h4>
 
       <!-- User already connected -->
       <AuthLoginContinue v-if="isLoggedIn"/>
 
       <!-- User not connected -->
       <AuthLoginForm v-else ref="form"/>
-    </el-card>
+    </BaseCard>
     <BaseLanguageSwitch />
   </div>
 </template>
@@ -55,34 +51,34 @@ export default {
   flex-direction: column;
 
   &.mobile {
+    background: white;
+    justify-content: flex-start;
     height: auto;
 
-    > .el-card {
-      width: 100%;
+    > .ViewAuthLogin__container {
       max-width: 100%;
+      margin: 0;
       height: 100%;
       border-radius: 0;
+      border: none;
       box-shadow: none;
     }
   }
-
-  > .el-card {
-    max-width: 500px;
-    box-shadow: 1px 12px 20px 0 rgba(0,0,0,.05);
-    border: none;
-  }
 }
 
-.app-title {
-  margin: 4rem 0
+.ViewAuthLogin__container {
+  width: 100%;
+  max-width: 500px;
 }
 
 .ViewAuthLogin__logo {
   width: 12rem;
+  margin: 4rem 0
 }
 
-h4 {
+.ViewAuthLogin__title {
   text-align: center;
+  margin-bottom: 2em;
 }
 
 .BaseLanguageSwitch {

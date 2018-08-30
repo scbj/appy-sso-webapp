@@ -3,7 +3,8 @@
     ref="form"
     :model="form"
     :rules="rules"
-    :label-position="$mq === 'mobile' ? 'top' : 'left'"
+    class="AuthLoginForm"
+    label-position="top"
     label-width="180px"
     status-icon="status-icon">
     <el-alert
@@ -26,17 +27,9 @@
         @focus.native="$event.target.select()"
         @keyup.enter.native="submit"/>
     </el-form-item>
-    <el-form-item>
-      <el-checkbox :model="form.rememberMe" disabled="disabled">
-        {{ $t('check.rememberMe') }}
-      </el-checkbox>
-    </el-form-item>
-    <el-form-item>
-      <el-button
-        type="primary"
-        @click="submit"
-        v-text="$t('button.logIn')"/>
-      <el-button disabled="disabled" v-text="$t('button.needHelp')"/>
+    <el-form-item class="AuthLoginForm__buttons">
+      <BaseButton type="secondary" @click.prevent>{{ $t('button.needHelp') }}</BaseButton>
+      <BaseButton @click.prevent="submit">{{ $t('button.logIn') }}</BaseButton>
     </el-form-item>
   </el-form>
 </template>
@@ -49,8 +42,7 @@ export default {
       errorType: '',
       form: {
         username: 'simeon.hoeger@example.com',
-        password: 'secret',
-        rememberMe: false
+        password: 'secret'
       },
       rules: {
         username: [ { required: true, message: this.$t('alert.username.ask'), trigger: 'blur' } ],
@@ -109,5 +101,13 @@ export default {
 <style lang="scss" scoped>
 .alert {
   margin-bottom: 18px;
+}
+
+.AuthLoginForm__buttons {
+  margin-bottom: 0;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 </style>

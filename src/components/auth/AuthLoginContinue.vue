@@ -1,17 +1,18 @@
 <template>
   <div class="AuthLoginContinue">
     <p v-html="$t('message.alreadyLogged')" />
-    <el-button
+    <BaseButton
       :title="shouldTruncateUsername ? username : null"
-      type="primary"
-      size="big"
-      @click="continueLoggedIn"
-      v-html="primaryButtonHtml"/>
-    <el-button
-      type="text"
-      size="big"
-      @click="logout"
-      v-text="$t('button.logOut')"/>
+      class="AuthLoginContinue__continue-button"
+      @click="continueLoggedIn">
+      <span v-html="primaryButtonHtml" />
+    </BaseButton>
+    <BaseButton
+      class="AuthLoginContinue__logout-button"
+      type="secondary"
+      @click="logout">
+      {{ $t('button.logOut') }}
+    </BaseButton>
   </div>
 </template>
 
@@ -55,8 +56,11 @@ export default {
   // justify-content: center;
   align-items: center;
 
-  .el-button {
-    display: block;
+  .AuthLoginContinue__continue-button {
+    margin-top: 2rem;
+  }
+  .AuthLoginContinue__logout-button {
+    margin-top: 1rem;
   }
 }
 </style>
