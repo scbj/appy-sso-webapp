@@ -1,5 +1,5 @@
 <template>
-  <div class="ArticleListItem html-content" v-html="content" />
+  <li class="ArticleListItem html-content" v-html="content" />
 </template>
 
 <script>

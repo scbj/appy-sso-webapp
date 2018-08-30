@@ -1,8 +1,8 @@
 <template>
-  <div class="ViewHome">
+  <main class="ViewHome">
     <HomeGreeting v-if="$mq !== 'mobile'" />
     <HomeApplicationList />
-  </div>
+  </main>
 </template>
 
 <script>

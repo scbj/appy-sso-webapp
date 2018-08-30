@@ -1,7 +1,7 @@
 <template>
-  <div class="ViewNews">
+  <main class="ViewNews">
     <ArticleList />
-  </div>
+  </main>
 </template>
 
 <script>

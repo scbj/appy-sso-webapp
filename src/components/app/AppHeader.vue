@@ -1,7 +1,7 @@
 <template>
-  <div :class="{ 'AppHeader-pad-left': !shouldBodyScrollable }" class="AppHeader">
+  <header :class="{ 'AppHeader-pad-left': !shouldBodyScrollable }" class="AppHeader">
     <AppLogo class="AppHeader__logo" />
-    <div class="AppHeader__navigation">
+    <nav class="AppHeader__navigation">
       <router-link :to="{ name: 'home' }" class="AppHeader__navigation-link">
         <p>{{ $t('apps') }}</p>
       </router-link>
@@ -14,12 +14,12 @@
         class="AppHeader__navigation-link">
         <p>{{ $t('dashboard') }}</p>
       </router-link>
-    </div>
+    </nav>
     <div class="AppHeader__profil">
       <BaseImage :src="pictureUrl" fallback-src="/static/img/default-user-picture.png"/>
       <span class="AppHeader__username">{{ username }}</span>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>

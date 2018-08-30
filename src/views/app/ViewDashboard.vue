@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$mq !== 'mobile'" class="ViewDashboard">
+  <main v-if="$mq !== 'mobile'" class="ViewDashboard">
     <BaseCard>
       <h2>Résumé des statistiques</h2>
       <h3>Plusieurs graphiques ou données numériques 📈📊</h3>
@@ -16,7 +16,7 @@
     </BaseCard>
 
     <router-view />
-  </div>
+  </main>
 </template>
 
 <style lang="scss" scoped>

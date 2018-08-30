@@ -1,10 +1,10 @@
 <template>
-  <div class="ArticleList">
+  <ul class="ArticleList">
     <ArticleListItem
       v-for="article in articles"
       :key="article.id"
       :content="article.content" />
-  </div>
+  </ul>
 </template>
 
 <script>

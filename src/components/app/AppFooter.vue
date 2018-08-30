@@ -1,5 +1,5 @@
 <template>
-  <div :class="$mq" class="AppFooter">
+  <footer :class="$mq" class="AppFooter">
     <div class="AppFooter__copyright">
       © Appy {{ getCurrentYear() }}. Version 0.0.1
     </div>
@@ -16,7 +16,7 @@
       href="#terms"
       v-text="$t('terms')" />
     <BaseLanguageSwitch class="AppFooter__language" />
-  </div>
+  </footer>
 </template>
 
 <script>
