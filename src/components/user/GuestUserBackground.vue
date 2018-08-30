@@ -3,9 +3,9 @@
     name="fade-in"
     tag="div"
     class="GuestUserBackground">
-    <PurpleWave key="purpleWave" class="purple-wave" />
-    <Clouds key="clouds" />
-    <Planes key="planes" />
+    <PurpleWave key="purpleWave" class="GuestUserBackground__purple-wave" />
+    <Clouds key="clouds" class="GuestUserBackground__clouds" />
+    <Planes key="planes" class="GuestUserBackground__planes" />
   </transition-group>
 </template>
 
@@ -28,13 +28,14 @@ export default {
   overflow: hidden;
 }
 
-svg.purple-wave {
+.GuestUserBackground__purple-wave {
   position: absolute;
   bottom: -15px;
-  filter: drop-shadow(0 0 4px rgba(#341A4A, .48))
+  filter: drop-shadow(0 0 4px rgba(#341A4A, .48));
+  transform: scale(1);
 }
 
-svg.clouds {
+.GuestUserBackground__clouds {
   position: absolute;
   top: 7%;
   width: 84%;
@@ -48,7 +49,7 @@ svg.clouds {
   }
 }
 
-svg.planes {
+.GuestUserBackground__planes {
   position: absolute;
   bottom: 36%;
   width: 82%;

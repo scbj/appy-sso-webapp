@@ -3,6 +3,9 @@ import VueI18n from 'vue-i18n'
 
 Vue.use(VueI18n)
 
+/**
+ * Load all JSON files inside ./src/locales.
+ */
 function loadLocaleMessages () {
   const locales = require.context('./locales', true, /[A-Za-z0-9-_,\s]+\.json$/i)
   const messages = {}

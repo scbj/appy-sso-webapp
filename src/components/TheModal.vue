@@ -76,7 +76,6 @@ $content-background-color: white;
 .TheModal {
   z-index: $z-index-modal;
   background-color: $background-color;
-  // backdrop-filter: blur(2px);
   @include flex-center;
   position: fixed;
   top: 0;
