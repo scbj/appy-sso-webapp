@@ -16,7 +16,7 @@
       </router-link>
     </nav>
     <div class="AppHeader__profil">
-      <BaseImage :src="pictureUrl" fallback-src="/static/img/default-user-picture.png"/>
+      <BaseImage :src="pictureUrl" :fallback-src="require('@/assets/img/default-user-picture.png')"/>
       <span class="AppHeader__username">{{ username }}</span>
     </div>
   </header>

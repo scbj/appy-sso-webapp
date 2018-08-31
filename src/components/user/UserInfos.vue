@@ -2,7 +2,7 @@
   <div v-loading="!ready" class="UserInfos">
     <div class="UserInfos__header">
       <h3>{{ username }}</h3>
-      <BaseImage :src="user.pictureUrl" fallback-src="/static/img/default-user-picture.png" />
+      <BaseImage :src="user.pictureUrl" :fallback-src="require('@/assets/img/default-user-picture.png')" />
     </div>
     <span v-if="isAdmin" class="UserInfos__admin">{{ $t('administrator') }}</span>
     <span class="UserInfos__group">{{ groupName }}</span>
@@ -27,7 +27,7 @@
           :key="app.id"
           :src="app.pictureUrl"
           :title="app.name"
-          fallback-src="/static/img/logo-default.png"
+          :fallback-src="require('@/assets/img/logo-default.png')"
           class="UserInfos__app"
           draggable="false"/>
       </ul>
