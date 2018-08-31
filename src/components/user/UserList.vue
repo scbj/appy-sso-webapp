@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import ResizeObserver from 'resize-observer-polyfill'
 import throttle from 'lodash.throttle'
 
 import UserListHeader from './UserListHeader'
