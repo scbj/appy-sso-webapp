@@ -147,13 +147,13 @@ export default {
 
   input,
   .placeholder {
-    font-family: "consolas";
-    font-size: 1.8rem;
+    font-family: "source-code-pro";
+    font-size: 1.6rem;
     letter-spacing: .3em;
   }
 
   input {
-    width: 34.2em;
+    width: 36.2em;
   }
 
   .placeholder {
