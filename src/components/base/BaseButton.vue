@@ -87,7 +87,7 @@ $offset-x: 0;
 .BaseButton {
   font-family: "Lato";
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .02em;
   color: white;
   background: $color;

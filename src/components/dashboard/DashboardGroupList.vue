@@ -20,7 +20,7 @@
       :override-name="$t('byDefault')"
       class="DashboardGroupListItem__default-group"
       @click.native="onGroupClick(defaultGroup)" />
-    <p
+    <span
       v-show="query"
       class="DashboardGroupList__search-result"
       v-html="searchResultMessage"/>
@@ -129,10 +129,12 @@ export default {
 }
 
 .DashboardGroupList__search-result {
-  font-style: italic;
   color: $primary-color;
+  font-style: italic;
+  font-size: 1.1rem;
   margin-bottom: 1em;
   margin-top: 2em;
-  font-size: 1.1rem;
+  display: block;
+  user-select: none;
 }
 </style>

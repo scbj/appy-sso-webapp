@@ -3,16 +3,16 @@
     <AppLogo class="AppHeader__logo" />
     <nav class="AppHeader__navigation">
       <router-link :to="{ name: 'home' }" class="AppHeader__navigation-link">
-        <p>{{ $t('apps') }}</p>
+        <span>{{ $t('apps') }}</span>
       </router-link>
       <router-link :to="{ name: 'news' }" class="AppHeader__navigation-link">
-        <p>{{ $t('news') }}</p>
+        <span>{{ $t('news') }}</span>
       </router-link>
       <router-link
         v-if="isAdmin"
         :to="{ name: 'dashboard' }"
         class="AppHeader__navigation-link">
-        <p>{{ $t('dashboard') }}</p>
+        <span>{{ $t('dashboard') }}</span>
       </router-link>
     </nav>
     <div class="AppHeader__profil">
@@ -79,13 +79,13 @@ export default {
 .AppHeader__navigation-link {
   margin-right: 3rem;
   font-family: "lato";
-  > p {
+  > span {
     font-size: 16px;
   }
 
   &.active {
     color: #666666;
-    font-weight: bold;
+    font-weight: 700;
   }
 }
 
