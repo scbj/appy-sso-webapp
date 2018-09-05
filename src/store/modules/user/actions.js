@@ -1,8 +1,9 @@
 import api from '@/services/api/v1'
+import router from '@/router'
 import i18n from '@/i18n'
 
 /** Retrieves the logged-in user information. */
-export async function fetchSelf ({ commit }) {
+export async function fetchSelf ({ commit, getters }) {
   const { status, data: user } = await api.user.self()
 
   if (status !== 200) return
@@ -13,6 +14,11 @@ export async function fetchSelf ({ commit }) {
   }
 
   commit('SET_CURRENT', user)
+
+  // If the user has not filled in this personal information then we must redirect it to the form
+  if (getters.mustFillProfileInfos) {
+    router.push({ name: 'settings' })
+  }
 }
 
 /** Update the specified data of the logged-in user. */
@@ -22,6 +28,7 @@ export async function updateSelf ({ commit, dispatch, state }, payload) {
   if (user) {
     commit('SET_CURRENT', user)
   }
+  return user
 }
 
 /** Updates the specified data of the specified user. */

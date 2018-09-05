@@ -7,3 +7,11 @@ export function requiresAdmin (to, from, next) {
   }
   next()
 }
+
+export function requiresCompletedProfile (to, from, next) {
+  const mustFillProfileInfos = store.get('user/mustFillProfileInfos')
+  if (mustFillProfileInfos && to.name !== 'settings') {
+    return next({ name: 'settings' })
+  }
+  next()
+}

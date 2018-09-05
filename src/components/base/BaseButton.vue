@@ -1,6 +1,9 @@
 <template>
   <button
-    :class="{ 'BaseButton_secondary': isSecondary }"
+    :class="{
+      'BaseButton_secondary': isSecondary,
+      'BaseButton_align-with-text': alignWithText
+    }"
     class="BaseButton"
     @click="raiseClickEvent">
     <slot />
@@ -18,6 +21,10 @@ export default {
     type: {
       type: primaryType | secondaryType,
       default: primaryType
+    },
+    alignWithText: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -39,6 +46,7 @@ export default {
 @import '../../assets/scss/colors.scss';
 $color: $primary-color;
 $offset-x: 0;
+$padding-horizontal: 1em;
 
 @mixin box-shadow-normal {
   $offset-y: 3px;
@@ -97,7 +105,7 @@ $offset-x: 0;
     #7C4BFC 100%
   );
   border-radius: .3em;
-  padding: .6em 1em;
+  padding: .6em $padding-horizontal;
   margin: 0 .5em;
   cursor: pointer;
   user-select: none;
@@ -113,6 +121,10 @@ $offset-x: 0;
 
   &:first-of-type { margin-left: 0; }
   &:last-of-type { margin-right: 0; }
+
+  &.BaseButton_align-with-text {
+    margin-left: -$padding-horizontal;
+  }
 
   &:disabled,
   &:disabled:hover,

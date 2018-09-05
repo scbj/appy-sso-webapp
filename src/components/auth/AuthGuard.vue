@@ -47,6 +47,7 @@ export default {
         this.$store.dispatch('auth/logout')
         return this.$router.push({ name: 'login' })
       }
+      await this.$store.dispatch('user/fetchSelf')
 
       this.requiresTokenRefreshing = false
       this.$emit('token-refreshed')

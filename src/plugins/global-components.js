@@ -7,6 +7,7 @@ import BaseIcon from '@/components/base/BaseIcon'
 import BaseIconButton from '@/components/base/BaseIconButton'
 import BaseImage from '@/components/base/BaseImage'
 import BaseLanguageSwitch from '@/components/base/BaseLanguageSwitch'
+import BaseTextEditable from '@/components/base/BaseTextEditable'
 
 class GlobalComponents {
   static install (vue) {
@@ -17,6 +18,7 @@ class GlobalComponents {
     vue.component(BaseIconButton.name, BaseIconButton)
     vue.component(BaseImage.name, BaseImage)
     vue.component(BaseLanguageSwitch.name, BaseLanguageSwitch)
+    vue.component(BaseTextEditable.name, BaseTextEditable)
   }
 }
 

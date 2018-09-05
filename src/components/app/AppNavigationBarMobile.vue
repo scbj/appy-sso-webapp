@@ -6,7 +6,7 @@
     <router-link
       v-for="link in links"
       :key="link.label"
-      :to="link.routeName"
+      :to="{ name: link.routeName }"
       class="AppNavigationBarMobile__navigation-link"
       tag="li">
       <BaseIcon :name="link.icon" class="AppNavigationBarMobile__BaseIcon"/>
@@ -41,7 +41,7 @@ export default {
         {
           icon: 'md-settings',
           label: this.$t('settings'),
-          routeName: 'dashboard'
+          routeName: 'settings'
         }
       ]
     }

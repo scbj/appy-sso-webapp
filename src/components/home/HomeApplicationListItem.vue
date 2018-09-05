@@ -27,7 +27,11 @@ function openUrl (url) {
       target: '_blank',
       href: url
     }
-  ).click()
+  ).dispatchEvent(new MouseEvent(`click`, {
+    bubbles: true,
+    cancelable: true,
+    view: window
+  }))
 }
 
 export default {
@@ -58,6 +62,7 @@ export default {
     onClick () {
       const token = this.$store.get('auth/accessToken')
       const url = `${this.url}?t=${token}`
+      console.log(url)
       openUrl(url)
     }
   }

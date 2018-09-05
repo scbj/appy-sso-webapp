@@ -15,10 +15,16 @@
         <span>{{ $t('dashboard') }}</span>
       </router-link>
     </nav>
-    <div class="AppHeader__profil">
-      <BaseImage :src="pictureUrl" :fallback-src="require('@/assets/img/default-user-picture.png')"/>
+    <router-link
+      :to="{ name: 'settings' }"
+      tag="div"
+      class="AppHeader__profil">
+      <BaseImage
+        :src="pictureUrl"
+        :fallback-src="require('@/assets/img/default-user-picture.png')"
+        class="AppHeader__profil-picture" />
       <span class="AppHeader__username">{{ username }}</span>
-    </div>
+    </router-link>
   </header>
 </template>
 
@@ -44,6 +50,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../assets/scss/vars.scss';
 @import '../../assets/scss/colors.scss';
+@import '../../assets/scss/mixins.scss';
 
 .AppHeader {
   $padding: 1.5rem;
@@ -92,14 +99,13 @@ export default {
 .AppHeader__profil {
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
 
-  > img {
-    $size: 38px;
-    width: $size;
-    height: $size;
-    border-radius: 50%;
-    margin: auto 1rem;
-  }
+.AppHeader__profil-picture {
+  border-radius: 50%;
+  margin: auto 1rem;
+  @include size(38px);
 }
 
 .AppHeader__username {

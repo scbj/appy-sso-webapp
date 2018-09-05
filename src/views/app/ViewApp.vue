@@ -33,8 +33,7 @@ export default {
   },
 
   methods: {
-    async onTokenRefreshed () {
-      await this.$store.dispatch('user/fetchSelf')
+    onTokenRefreshed () {
       this.ready = true
     }
   }

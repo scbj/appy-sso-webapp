@@ -1,4 +1,5 @@
 import api from '@/services/api/v1'
+import router from '@/router'
 import { setAuthorizationHeader } from '@/plugins/axios'
 
 export async function login ({ commit }, credentials) {
@@ -16,6 +17,7 @@ export async function logout ({ commit }) {
   // TODO: Supprimer les autres variables du LocalStorage
   commit('SET_ACCESS_TOKEN', '')
   commit('SET_REFRESH_TOKEN', '')
+  router.push('/')
 }
 
 export async function refreshAccessToken ({ commit, state }) {

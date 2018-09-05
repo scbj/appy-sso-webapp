@@ -20,18 +20,3 @@
  */
 window.Promise = window.Promise ||
   require('bluebird')
-
-/**
- * Resize Observer is a new JavaScript API that’s very similar to other
- * observer APIs like the Intersection Observer API. It allows for elements
- * to be notified when their size changes.
- * https://alligator.io/js/resize-observer/
- *
- * It's recommended to use this library in the form of a ponyfill, which
- * doesn't inflict modifications of the global object.
- *
- * window.ResizeObserver = window.ResizeObserver ||
- *    require('resize-observer-polyfill')
- */
-
-console.log('💡')

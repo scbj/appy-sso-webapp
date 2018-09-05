@@ -14,6 +14,12 @@ export const getters = {
 
   isAdmin (state) {
     return state.current && state.current.roleName === 'admin'
+  },
+
+  mustFillProfileInfos (state) {
+    return state.current
+      ? !state.current.firstname || !state.current.lastname
+      : false
   }
 }
 
