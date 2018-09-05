@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { Message as showMessage } from 'element-ui'
+
 import ModalGroupCreateChooseName from './ModalGroupCreateChooseName'
 import ModalFormAddUsers from '@/components/dashboard/modals/ModalFormAddUsers'
 import { buildMessage } from '@/utils/message'
@@ -56,7 +58,7 @@ export default {
       const message = buildMessage(success
         ? 'groupCreateSuccess'
         : 'groupCreateError')
-      this.$message(message)
+      showMessage(message)
     }
   }
 }

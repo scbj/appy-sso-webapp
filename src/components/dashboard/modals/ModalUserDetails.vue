@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { Message as showMessage } from 'element-ui'
+
 import api from '@/services/api/v1'
 import GuestUser from '@/components/user/GuestUser'
 import UserInfos from '@/components/user/UserInfos'
@@ -62,7 +64,7 @@ export default {
 
   methods: {
     handleLoadingFailure () {
-      this.$message({
+      showMessage({
         message: this.$t('error.canNotRetreiveUserInformations'),
         type: 'error'
       })

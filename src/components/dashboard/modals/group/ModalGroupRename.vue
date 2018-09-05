@@ -15,6 +15,7 @@
 
 <script>
 import { get } from 'vuex-pathify'
+import { Message as showMessage } from 'element-ui'
 
 import ModalForm from '@/components/dashboard/modals/ModalForm'
 import { buildMessage } from '@/utils/message'
@@ -80,7 +81,7 @@ export default {
     notifyUser (success) {
       if (success) return
       const message = buildMessage('groupRenameError')
-      this.$message(message)
+      showMessage(message)
     }
   }
 }

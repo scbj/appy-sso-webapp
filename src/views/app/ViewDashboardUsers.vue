@@ -31,6 +31,7 @@
 
 <script>
 import { get, sync } from 'vuex-pathify'
+import { MessageBox } from 'element-ui'
 
 import UserList from '@/components/user/UserList'
 import ModalUserCreate from '@/components/dashboard/modals/user/ModalUserCreate'
@@ -163,9 +164,10 @@ export default {
       }
 
       try {
-        await this.$confirm(message, title, options)
+        await MessageBox.confirm(message, title, options)
         return true
       } catch (error) {
+        console.log(error)
         return false
       }
     }
