@@ -21,6 +21,7 @@ export async function list ({ commit, state }, payload) {
     page: page || state.currentPage
   })
   if (response) {
+    console.log('TCL: response', response)
     commit('SET_ALL', response.data)
     commit('SET_CURRENT_PAGE', response.currentPage)
     commit('SET_TOTAL_USER_COUNT', response.total)
