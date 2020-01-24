@@ -54,7 +54,7 @@ $input-color: #707070;
 
   input {
     color: $input-color;
-    font-family: "source-sans-pro";
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.8rem;
     border: 1px solid #E4E4E4;
     border-radius: 5px;

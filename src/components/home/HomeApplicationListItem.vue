@@ -136,7 +136,7 @@ export default {
 
 span {
   &.HomeApplicationListItem__name {
-    font-family: "source-sans-pro";
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 1.4rem;
 
     @media screen and (min-width: $mobile) {

@@ -85,7 +85,7 @@ export default {
 
 .AppHeader__navigation-link {
   margin-right: 3rem;
-  font-family: "lato";
+  font-family: 'Lato', sans-serif;
   > span {
     font-size: 16px;
   }

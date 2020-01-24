@@ -93,7 +93,7 @@ $padding-horizontal: 1em;
 }
 
 .BaseButton {
-  font-family: "Lato";
+  font-family: 'Lato', sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: .02em;
